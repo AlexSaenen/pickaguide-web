@@ -6,4 +6,4 @@ Pour lancer, tapez la commande suivante:
 
 `make start`
 
-Puis allez sur [a link] (http://localhost:8080)
+Puis allez sur ce [lien] (http://localhost:8080) dans votre navigateur
