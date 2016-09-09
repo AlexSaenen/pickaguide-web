@@ -1,0 +1,26 @@
+# MAC OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must ends with two \r.
+Icon
+
+# Jetbrains
+.idea/*
+**/.idea/workspace.xml
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+node_modules
+bundle.js
+assets/build
+
+npm-debug.log
+
+info.json
