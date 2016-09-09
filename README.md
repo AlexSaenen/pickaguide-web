@@ -4,6 +4,6 @@
 
 Pour lancer, tapez la commande suivante:
 
-Makefile`make start`
+`make start`
 
-Puis allez sur http://localhost:8080
+Puis allez sur [a link] (http://localhost:8080)
