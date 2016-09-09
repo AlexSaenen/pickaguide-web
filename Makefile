@@ -22,6 +22,14 @@ clean:
 run:
 	docker run --name $(CONTAINER) -p $(EXPOSE):$(PORT) -d $(REPOSITORY)
 
-start:
+prod:
 	npm install
-	npm start
+	npm run build-prod
+	npm run server-prod
+
+dev-bundle:
+	npm install
+	npm run webpack-dev
+
+dev-server:
+	npm run server-dev

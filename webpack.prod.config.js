@@ -14,7 +14,26 @@ config.plugins.push(
         compress: {
             warnings: false,
         },
+        output: {
+            comments: false,
+        },
+        sourceMap: false,
     })
 );
+
+config.module.loaders = [
+    { test: /\.html$/, loader: 'file-loader?name=[name].[ext]' },
+    { test: /\.scss$/, loaders: ['style', 'css', 'sass'], exclude: /node_modules/ },
+    { test: /\.(png|jpg|ico)$/, loader: 'file-loader?name=[name].[ext]' },
+    { test: /\.(eot|svg|ttf|woff|woff2|otf)$/, loader: 'file-loader?name=[name].[ext]' },
+    { test: /\.(mp3)$/, loader: 'file-loader?name=[name].[ext]' },
+    { test: /\.jsx?$/,
+      loader: 'babel-loader',
+      exclude: '/node_modules/',
+      query: {
+          presets: ['es2015', 'react'],
+      }
+   },
+]
 
 module.exports = config;
