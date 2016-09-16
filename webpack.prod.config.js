@@ -1,6 +1,9 @@
 const config = require('./webpack.config.js');
 const webpack = require('webpack');
 
+config.devtool = 'source-map'
+config.output.publicPath = '/assets/build/';
+
 config.plugins.push(
     new webpack.DefinePlugin({
         'process.env': {
@@ -17,7 +20,6 @@ config.plugins.push(
         output: {
             comments: false,
         },
-        sourceMap: false,
     })
 );
 

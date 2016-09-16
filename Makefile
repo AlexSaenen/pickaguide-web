@@ -5,8 +5,8 @@ REPOSITORY = $(ORG)/$(NAME)
 SHA1 = $(shell git log -1 --pretty=oneline | cut -c-10)
 BRANCH = $(shell git branch -a --contains $(SHA1) | egrep '(remotes/|\*)' | egrep -v "(HEAD|detached)" | head -1 | sed -e "s/\* //" -e "s/.*\///")
 VERSION = $(BRANCH)-$(SHA1)
-PORT = 5000
-EXPOSE = 5000
+PORT = 80
+EXPOSE = 80
 
 all: build
 
@@ -22,14 +22,13 @@ clean:
 run:
 	docker run --name $(CONTAINER) -p $(EXPOSE):$(PORT) -d $(REPOSITORY)
 
-## In prod there is no npm install, we assume that by building the docker image, npm install was done
 prod:
-	npm run build-prod
-	npm run server-prod
+	npm run build:prod
+	npm run server:prod
 
 dev-bundle:
 	npm install
-	npm run webpack-dev
+	npm run webpack:dev
 
 dev-server:
-	npm run server-dev
+	npm run server:dev
