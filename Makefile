@@ -1,5 +1,5 @@
 ORG = pickaguidedockercloud
-NAME = pickaguide_frontweb
+NAME = pickaguide-web
 CONTAINER = container_frontWeb
 REPOSITORY = $(ORG)/$(NAME)
 SHA1 = $(shell git log -1 --pretty=oneline | cut -c-10)
@@ -22,8 +22,8 @@ clean:
 run:
 	docker run --name $(CONTAINER) -p $(EXPOSE):$(PORT) -d $(REPOSITORY)
 
+## In prod there is no npm install, we assume that by building the docker image, npm install was done
 prod:
-	npm install
 	npm run build-prod
 	npm run server-prod
 
