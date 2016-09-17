@@ -15,7 +15,11 @@ export class PartialUserMenu extends React.Component {
     render() {
         return (
           <div className={'MenuElement PartialUserMenu'}>
-            <p>Account</p>
+            <div className={'PartialUserMenuContentWrapper'}>
+              <a className={'AccountLogo'} href="#">
+                <img src="/assets/images/logo.png" alt="Profile" />
+              </a>
+            </div>
           </div>
         );
     }

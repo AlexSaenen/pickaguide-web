@@ -1,6 +1,6 @@
 import React from 'react';
 
-import 'scss/components/menu/_menuEntry.scss';
+import 'scss/components/menu/_mainMenu.scss';
 
 export class MenuEntry extends React.Component {
     constructor(props, context) {
