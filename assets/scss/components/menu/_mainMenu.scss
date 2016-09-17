@@ -25,6 +25,9 @@
     padding: 0.2em 1em;
     border-radius: 0.2em;
     text-decoration: none;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
 }
 
 .MenuEntry > a:hover {
