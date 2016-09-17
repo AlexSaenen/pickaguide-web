@@ -28,6 +28,7 @@ prod:
 
 dev-bundle:
 	npm install
+	npm run build:dev
 	npm run webpack:dev
 
 dev-server:

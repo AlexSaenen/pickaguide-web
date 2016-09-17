@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HomeTest } from './components/HomeTest.jsx';
+import { HomePage } from './components/HomePage.jsx';
+
+import 'scss/global.scss';
 
 ReactDOM.render(
-  <HomeTest />, document.getElementById('app')
+  <HomePage />, document.getElementById('app')
 );
