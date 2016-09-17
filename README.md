@@ -2,12 +2,9 @@
 
 ## Launch in dev mode
 
-Pour lancer, tapez la commande suivante dans un terminal:
+Pour lancer, tapez ces 2 commandes chacun dans leur terminal:
 
 `make dev-bundle`
-
-et celle-ci dans un autre terminal:
-
 `make dev-server`
 
 Puis allez sur ce [lien] (http://localhost:8080) dans votre navigateur
@@ -19,4 +16,4 @@ Pour lancer, tapez la commande suivante:
 
 `make prod`
 
-Puis allez sur ce [lien] (http://localhost:5000) dans votre navigateur
+Puis allez sur ce [lien] (http://82.223.82.41/) dans votre navigateur
