@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class HomeTest extends React.Component {
+export class NotificationStack extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -19,6 +19,6 @@ export class HomeTest extends React.Component {
     }
 }
 
-HomeTest.propTypes = {
+NotificationStack.propTypes = {
     isTest: React.PropTypes.bool,
 };
