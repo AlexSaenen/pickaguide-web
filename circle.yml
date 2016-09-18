@@ -2,8 +2,8 @@ deployment:
   production:
     branch: master
     commands:
-      - ./deploy/deploy_prod.sh
-  staging:
-    branch: dev
-    commands:
-      - ./deploy/deploy_staging.sh
+      - ./deploy/deploy_production.sh
+  # staging:
+  #   branch: dev
+  #   commands:
+  #     - ./deploy/deploy_staging.sh
