@@ -1,8 +1,22 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+      - make build
+
 deployment:
   production:
     branch: master
     commands:
+      - docker login -e "alexander.saenen@epitech.eu" -u "pickaguidedockercloud" -p "lucasanstoast6"
+      - make push
       - ./deploy/deploy_production.sh
+  # production:
+  #   branch: master
+  #   commands:
+  #     - ./deploy/deploy_production.sh
   # staging:
   #   branch: dev
   #   commands:
