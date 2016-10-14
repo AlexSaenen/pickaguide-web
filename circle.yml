@@ -3,16 +3,19 @@ machine:
     - docker
 
 dependencies:
+  pre:
+    - docker login -e "alexander.saenen@epitech.eu" -u "pickaguidedockercloud" -p "lucasanstoast6"
+
   override:
-      - make build
+    - make pull
 
 deployment:
   production:
     branch: master
     commands:
-      - docker login -e "alexander.saenen@epitech.eu" -u "pickaguidedockercloud" -p "lucasanstoast6"
+      - make build
       - make push
-      - ./deploy/deploy_production.sh
+      - ssh root@82.223.82.41 "bash -ic deploy-web-production"
   # production:
   #   branch: master
   #   commands:
