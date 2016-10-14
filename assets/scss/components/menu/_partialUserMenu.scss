@@ -22,16 +22,16 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    -webkit-filter: drop-shadow(0px 0px 3px #111);
-    filter: drop-shadow(0px 0px 3px #111);
+    -webkit-filter: drop-shadow(0px 0px 3px $shadowColor);
+    filter:         drop-shadow(0px 0px 3px $shadowColor);
     transition-property: all;
     transition-duration: 0.8s;
     transition-timing-function: ease;
 }
 
 .AccountLogo:hover {
-    -webkit-filter: drop-shadow(0px 0px 13px #111);
-    filter: drop-shadow(0px 0px 13px #111);
+    -webkit-filter: drop-shadow(0px 0px 13px $shadowColor);
+    filter:         drop-shadow(0px 0px 13px $shadowColor);
 }
 
 .AccountLogo > img {
