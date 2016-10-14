@@ -6,6 +6,9 @@ dependencies:
   pre:
     - docker login -e "alexander.saenen@epitech.eu" -u "pickaguidedockercloud" -p "lucasanstoast6"
 
+  override:
+    - echo "Overriding default dependencies"
+
 deployment:
   production:
     branch: master
