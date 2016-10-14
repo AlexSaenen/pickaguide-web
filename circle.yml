@@ -8,19 +8,15 @@ dependencies:
 
   override:
     - make pull
+    - make build
+    - make push
 
 deployment:
   production:
     branch: master
     commands:
-      - make build
-      - make push
       - ssh root@82.223.82.41 "bash -ic deploy-web-production"
-  # production:
-  #   branch: master
-  #   commands:
-  #     - ./deploy/deploy_production.sh
-  # staging:
-  #   branch: dev
-  #   commands:
-  #     - ./deploy/deploy_staging.sh
+  staging:
+    branch: dev
+    commands:
+      - ssh root@82.223.82.41 "bash -ic deploy-web-staging"
