@@ -1,3 +1,8 @@
+general:
+  branches:
+    only:
+      - master dev
+
 machine:
   services:
     - docker
