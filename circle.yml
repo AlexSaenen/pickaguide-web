@@ -6,11 +6,6 @@ dependencies:
   pre:
     - docker login -e "alexander.saenen@epitech.eu" -u "pickaguidedockercloud" -p "lucasanstoast6"
 
-  override:
-    - make pull
-    - make build
-    - make push
-
 deployment:
   production:
     branch: master
@@ -19,4 +14,7 @@ deployment:
   staging:
     branch: dev
     commands:
+      - make pull
+      - make build
+      - make push
       - ssh root@82.223.82.41 "bash -ic deploy-web-staging"
