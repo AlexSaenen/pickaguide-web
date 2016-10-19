@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 import 'scss/components/menu/_mainMenu.scss';
 
@@ -15,9 +16,9 @@ export class MenuEntry extends React.Component {
     render() {
         return (
           <div className={'MenuEntry'}>
-            <a href={this.state.link} >
+            <Link to={this.state.link} >
               <p>{this.state.title}</p>
-            </a>
+            </Link>
           </div>
         );
     }
