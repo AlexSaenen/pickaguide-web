@@ -2,6 +2,7 @@ import React from 'react';
 
 import 'scss/components/_home.scss';
 import 'scss/components/menu/_partialUserMenu.scss';
+import { MenuEntry } from './MenuEntry.jsx';
 
 export class PartialUserMenu extends React.Component {
     constructor(props, context) {
@@ -19,6 +20,8 @@ export class PartialUserMenu extends React.Component {
               <a className={'AccountLogo'} href="#">
                 <img src="/assets/images/logo.png" alt="Profile" />
               </a>
+              <MenuEntry href={'/signin'} title={'Sign in'} />
+              <MenuEntry href={'/login'} title={'Log in'} />
             </div>
           </div>
         );

@@ -15,4 +15,17 @@ export default class PromiseApi {
             });
         });
     }
+    static post(url, body) {
+        return new Promise((resolve, reject) => {
+            request
+            .post(`${config.apiUrl}${url}`, JSON.stringify(body))
+            .end((err, res) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(JSON.parse(res.text));
+                }
+            });
+        });
+    }
 }
