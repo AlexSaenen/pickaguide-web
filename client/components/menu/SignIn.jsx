@@ -11,9 +11,13 @@ export class SignIn extends React.Component {
         super(props, context);
 
         this.state = {
-            userConnected: props.user,
             prenom: "",
-            nom: ""
+            nom: "",
+            mail: "",
+            mdp:"",
+            mdpVerif:"",
+            isSuccess: null,
+            message: ""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,15 +37,29 @@ export class SignIn extends React.Component {
     }
 
     render() {
+
+    var alertMessage = null;
+    if (this.state.isSuccess != null) {
+      alertMessage = isSuccess == true ? <div className="panel-alert alert-success" role="alert"> {this.state.message} </div> : <div className="panel-alert alert-danger" role="alert"> {this.state.message} </div>;
+    }
+
         return (
           <div>
             <HomeMenu user={this.state.userConnected} />
             <form onSubmit={this.handleSubmit}>
-               <label>Votre prénom</label> : <input type="text" name="prenom" value={this.state.prenom} placeholder="Prénom" onChange={this.handleChange} />
+               <label>Votre prénom</label> : <input type="text" name="prenom" value={this.state.prenom} placeholder="Entrez votre prénom" onChange={this.handleChange} />
                <br />
-               <label>Votre nom</label> : <input type="text" name="nom" value={this.state.nom} placeholder="Nom" onChange={this.handleChange} />
+               <label>Votre nom</label> : <input type="text" name="nom" value={this.state.nom} placeholder="Entrez votre nom" onChange={this.handleChange} />
+               <br />
+               <label>Votre mail</label> : <input type="text" name="mail" value={this.state.mail} placeholder="Entrez votre mail" onChange={this.handleChange} />
+               <br />
+               <label>Votre mot de passe</label> : <input type="password" name="mdp" value={this.state.mdp} placeholder="Entrez votre mot de passe" onChange={this.handleChange} />
+               <br />
+               <label>Confirmation</label> : <input type="password" name="mdpVerif" value={this.state.mdpVerif} placeholder="Confirmation" onChange={this.handleChange} />
+               <br />
                <input type="submit" value="Submit"/>
             </form>
+            {alertMessage}
           </div>
         );
     }

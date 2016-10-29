@@ -22,6 +22,7 @@ export class PartialUserMenu extends React.Component {
               </a>
               <MenuEntry href={'/signin'} title={'Sign in'} />
               <MenuEntry href={'/login'} title={'Log in'} />
+              <MenuEntry href={'/login'} title={'Log out'} />
             </div>
           </div>
         );
