@@ -11,8 +11,8 @@ export class LogIn extends React.Component {
         super(props, context);
 
         this.state = {
-            username: "",
-            mdp:"",
+            email: "",
+            password:"",
             isSuccess: null,
             message: ""
         };
@@ -37,9 +37,9 @@ export class LogIn extends React.Component {
           <div>
             <HomeMenu user={this.state.userConnected} />
             <form onSubmit={this.handleSubmit}>
-               <label>Entrez votre nom d'utilisateur</label> : <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+               <label>Entrez votre email</label> : <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                <br />
-               <label>Entrez votre mot de passe</label> : <input type="text" name="mdp" value={this.state.mdp} onChange={this.handleChange} />
+               <label>Entrez votre mot de passe</label> : <input type="text" name="password" value={this.state.password} onChange={this.handleChange} />
                <br />
                <input type="submit" value="Submit"/>
             </form>

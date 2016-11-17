@@ -21,6 +21,7 @@ export default class PromiseApi {
             .post(`${config.apiUrl}${url}`, JSON.stringify(body))
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
+            .set('Access-Control-Allow-Origin', '*')
             .end((err, res) => {
                 if (err) {
                     reject(err);
