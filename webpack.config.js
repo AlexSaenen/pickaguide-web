@@ -15,6 +15,7 @@ module.exports = {
            fonts: path.join(__dirname, '/assets/fonts'),
            images: path.join(__dirname, '/assets/images'),
            scss: path.join(__dirname, '/assets/scss'),
+          //  bootstrap: path.join(__dirname, '/bootstrap-3.3.7-dist/css'),
        },
     },
     module: {

@@ -16,7 +16,7 @@ export class MenuEntry extends React.Component {
     render() {
         return (
           <div className={'MenuEntry'}>
-            <Link to={this.state.link} >
+            <Link to={this.state.link}>
               <p>{this.state.title}</p>
             </Link>
           </div>

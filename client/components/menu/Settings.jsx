@@ -1,29 +1,20 @@
 import React from 'react';
-import { browserHistory } from 'react-router'
 
 import { HomeMenu } from './HomeMenu.jsx';
-import Signin from '../../actions/Signin.js';
+import SettingsActions from '../../actions/Settings.js';
 import User from '../../stores/User.js';
 
 import 'scss/components/_home.scss';
 
-export class SignIn extends React.Component {
+export class Settings extends React.Component {
     constructor(props, context) {
         super(props, context);
+
+
         this.router = context.router;
         this.state = {
-            pseudo: '',
-            prenom: '',
-            nom: '',
-            email: '',
-            password: '',
-            passwordConfirmation: '',
-            isSuccess: null,
-            message: '',
-            User: {},
+          infosProfile : {}
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
@@ -33,40 +24,24 @@ export class SignIn extends React.Component {
 
     onChange() {
         var toto = Object.assign({}, this.state);
-        toto.User = User.getState();
+        toto.infosProfile = User.getState().profile;
         this.setState(toto);
     }
 
-    handleSubmit(e) {
-      e.preventDefault();
-      Signin.requestSignin(this.state);
-    }
-
-    handleChange(e) {
-       e.preventDefault();
-       var toto = Object.assign({}, this.state);
-       toto[e.target.name] = e.target.value;
-       this.setState(toto);
-    }
+    // handleChange(e) {
+    //    e.preventDefault();
+    //    var toto = Object.assign({}, this.state);
+    //    toto[e.target.name] = e.target.value;
+    //    this.setState(toto);
+    // }
 
 
     render() {
 
-    console.log(JSON.stringify(this.state.User));
-    if (this.state.User.code !== undefined) {
-      var goodClass = this.state.User.code === 200 ? 'alertMessageSucc' : 'alertMessageErr';
-
-      var alertMessage = <div className={goodClass}>{this.state.User.message}</div>;
-      if (this.state.User.code === 200) {
-        setTimeout(function(){
-          browserHistory.push('/profile');
-        }, 2000);
-      }
-    }
-
         return (
           <div className="center_div">
             <HomeMenu user={this.state.userConnected} />
+            <h1>Here you can add and change your personal informations</h1>
             <form onSubmit={this.handleSubmit}>
               <label>Votre pseudo</label> : <input type='text' name='pseudo' value={this.state.pseudo} placeholder='Entrez votre pseudo' onChange={this.handleChange} />
               <br />
@@ -80,20 +55,22 @@ export class SignIn extends React.Component {
                <br />
                <label>Confirmation</label> : <input type='password' name='passwordConfirmation' value={this.state.passwordConfirmation} placeholder='Confirmation' onChange={this.handleChange} />
                <br />
-               <input type='submit' value='Submit'/>
+               <label>Phone</label> : <input type='text' name='phone' value={this.state.phone} placeholder='phone' onChange={this.handleChange} />
+               <br />
+               <label>City</label> : <input type='text' name='city' value={this.state.city} placeholder='city' onChange={this.handleChange} />
+               <br />
+               <label>Hobbies</label> : <input type='text' name='hobbies' value={this.state.hobbies} placeholder='hobbies' onChange={this.handleChange} />
+               <br />
+               <input type='submit' value='Modifiez mes infos'/>
             </form>
-              {alertMessage}
           </div>
         );
     }
 }
 
-SignIn.propTypes = {
+Settings.propTypes = {
     user: React.PropTypes.shape({
         id: React.PropTypes.number.isRequired,
         name: React.PropTypes.string,
     }),
 };
-// SignIn.contextTypes = {
-//     router: React.PropTypes.object.isRequired
-// };

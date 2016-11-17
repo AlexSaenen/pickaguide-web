@@ -17,3 +17,39 @@ p {
     float: left;
     height: 100%;
 }
+
+.alertMessageErr {
+  background-color: #ff1c14;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.alertMessageSucc {
+  background-color: #33cc33;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 100px;
+}
+
+.center_div {
+  text-align: center;
+}
+
+.profil_mainInfo {
+  top: 5%;
+  font-size: 25px;
+}
+
+.profil_baseInfoLeft {
+  display: inline-block;
+  float: left;
+}
+.profil_baseInfoRight {
+  display: inline-block;
+  float: right;
+}
+.profil_baseInfoCenter {
+  display: inline-block;
+  float: center;
+  width: 800px;
+}
