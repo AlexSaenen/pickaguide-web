@@ -51,7 +51,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "setup": "protractor tests/conf.js",
+    "setup": "webdriver-manager update && protractor tests/conf.js",
     "test": "echo \"Warning: no test specified\" && exit 0",
     "webpack:dev": "webpack-dev-server --progress --hot --inline --colors",
     "build:dev": "webpack --progress --color",
