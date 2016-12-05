@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 import 'scss/components/_home.scss';
 import 'scss/components/menu/_partialUserMenu.scss';
@@ -17,11 +18,11 @@ export class PartialUserMenu extends React.Component {
         return (
           <div className={'MenuElement PartialUserMenu'}>
             <div className={'PartialUserMenuContentWrapper'}>
-              <a className={'AccountLogo'} href="#">
+              <Link to={'/profile'} className={'AccountLogo'}>
                 <img src="/assets/images/logo.png" alt="Profile" />
-              </a>
-              <MenuEntry href={'/signin'} title={'Sign in'} />
-              <MenuEntry href={'/login'} title={'Log in'} />
+              </Link>
+              <MenuEntry href={'/signin'} title={'Sign up'} />
+              <MenuEntry href={'/login'} title={'Sign in'} />
             </div>
           </div>
         );

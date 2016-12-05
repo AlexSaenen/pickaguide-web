@@ -13,8 +13,19 @@ const MainMenu = () => {
           <MenuLogo />
           <MenuEntry href={'#'} title={'Home'} />
           <MenuEntry href={'#'} title={'About'} />
-          <MenuEntry href={'#'} title={'Contact'} />
+          <MenuEntry href={'/contactus'} title={'Contact'} />
+          <MenuEntry href={'/settings'} title={'Settings'} />
+
         </div>
+        <div className={'MainMenuContentWrapper'}>
+        <div className="recherche">
+          <form action="/search" id="searchthis" method="get">
+          <input id="search" name="q" type="text" placeholder="Search" />
+          <input id="search-btn" type="submit" value="Rechercher" />
+          </form>
+        </div>
+        </div>
+
       </div>
     );
 };

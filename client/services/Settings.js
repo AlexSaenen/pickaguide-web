@@ -1,10 +1,10 @@
 import SigninActions from '../actions/Signin.js';
 import PromiseApi from './promiseApi.js';
 
-export default class SigninApi {
-    static getSignin(form) {
+export default class ProfileApi {
+    static getProfile(form) {
         console.log('Form signin:', form);
-        PromiseApi.post('/account/signup', form)
+        PromiseApi.get('/profile')
         .then((result) => {
             if (result.error) {
                 SigninActions.requestSigninError(result.error);

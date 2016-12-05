@@ -5,11 +5,13 @@ function getApiUrl() {
         return 'dev.l0cal:4242/api';
     }
 
-    if (process.env.NODE_ENV === 'production') {
-        return 'http://146.148.19.240:8080/api';
-    }
-
-    return 'http://localhost:4242/api';
+    // if (process.env.NODE_ENV === 'production') {
+    // return 'http://146.148.19.240:8080/api';
+    // } else if (process.env.NODE_ENV === 'dev') {
+    return 'http://82.223.82.41:3000';
+    // } else {
+    // return 'http://localhost:3001';
+    // }
 }
 
 exports.config = {
