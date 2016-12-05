@@ -6,6 +6,8 @@ import { SignIn } from './components/menu/SignIn.jsx';
 import { LogIn } from './components/menu/LogIn.jsx';
 import { Profile } from './components/menu/Profile.jsx';
 import { Settings } from './components/menu/Settings.jsx';
+import { ContactUs } from './components/menu/ContactUs.jsx';
+
 
 import 'scss/global.scss';
 
@@ -19,6 +21,7 @@ ReactDOM.render(
     <Route path="login" component={LogIn} />
     <Route path="profile" component={Profile} />
     <Route path="settings" component={Settings} />
+    <Route path="contactus" component={ContactUs} />
   </Router>
 
   , document.getElementById('app')
