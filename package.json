@@ -52,7 +52,6 @@
   },
   "scripts": {
     "setup": "webdriver-manager update && protractor tests/conf.js",
-//    "test": "echo \"Warning: no test specified\" && exit 0",
     "test": "webdriver-manager update && protractor tests/conf.js",
     "webpack:dev": "webpack-dev-server --progress --hot --inline --colors",
     "build:dev": "webpack --progress --color",
