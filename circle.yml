@@ -12,6 +12,7 @@ dependencies:
   pre:
     - docker login -e "alexander.saenen@epitech.eu" -u "pickaguidedockercloud" -p "lucasanstoast6"
     - npm install -g webdriver-manager
+    - npm install -g protractor
 
   override:
     - echo "Overriding default dependencies"
