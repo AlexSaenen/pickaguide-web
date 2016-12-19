@@ -15,6 +15,7 @@ export default class PromiseApi {
             });
         });
     }
+
     static post(url, body) {
         return new Promise((resolve, reject) => {
             request
