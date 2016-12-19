@@ -10,6 +10,7 @@ app.use(cors());
 app.use('/assets', express.static(path.resolve(__dirname, './assets')));
 
 app.get('/', (request, response) => {
+    response.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     response.sendFile(`${__dirname}/index.html`);
 });
 
