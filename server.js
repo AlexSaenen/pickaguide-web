@@ -6,8 +6,8 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use('/assets', express.static(path.resolve(__dirname, './assets')));
 app.use(cors());
+app.use('/assets', express.static(path.resolve(__dirname, './assets')));
 
 app.get('/', (request, response) => {
     response.sendFile(`${__dirname}/index.html`);
