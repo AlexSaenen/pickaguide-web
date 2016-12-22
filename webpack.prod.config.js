@@ -8,7 +8,9 @@ try {
    config.plugins.push(
       new webpack.DefinePlugin({
          // 'process.env': JSON.stringify(process.env),
-         'process.env': JSON.stringify('production'),
+         'process.env': {
+            NODE_ENV: JSON.stringify('production')
+         },
       })
    );
 } catch (e) {
