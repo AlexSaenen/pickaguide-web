@@ -1,3 +1,8 @@
+const os = require('os');
+
+console.log(os);
+
+
 function getApiUrl() {
     console.log('ENVIRONMENT ', process.env.ENVIRONMENT, process.env.NODE_ENV, process.env);
     if (process.env.ENVIRONMENT === 'production') {

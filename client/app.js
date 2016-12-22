@@ -8,7 +8,6 @@ import { Profile } from './components/menu/Profile.jsx';
 import { Settings } from './components/menu/Settings.jsx';
 import { ContactUs } from './components/menu/ContactUs.jsx';
 
-
 import 'scss/global.scss';
 
 ReactDOM.render(
