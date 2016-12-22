@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, useRouterHistory } from 'react-router';
+import { createHashHistory } from 'history';
 import { HomePage } from './components/HomePage.jsx';
 import { SignIn } from './components/menu/SignIn.jsx';
 import { LogIn } from './components/menu/LogIn.jsx';
@@ -10,9 +11,10 @@ import { ContactUs } from './components/menu/ContactUs.jsx';
 
 import 'scss/global.scss';
 
-ReactDOM.render(
+const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
-  <Router history={browserHistory}>
+ReactDOM.render(
+  <Router history={appHistory}>
     <Route path="/" component={HomePage}>
       <IndexRoute component={HomePage} />
     </Route>
@@ -22,6 +24,5 @@ ReactDOM.render(
     <Route path="settings" component={Settings} />
     <Route path="contactus" component={ContactUs} />
   </Router>
-
   , document.getElementById('app')
 );
