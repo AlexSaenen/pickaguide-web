@@ -1,1 +1,1 @@
-start npm run server:dev-win
+start npm run start:dev-win

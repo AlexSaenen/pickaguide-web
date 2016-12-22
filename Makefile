@@ -27,7 +27,7 @@ run:
 
 prod:
 	npm run build:prod
-	npm run server:prod
+	npm run start:prod
 
 dev-bundle:
 	npm install
@@ -35,4 +35,4 @@ dev-bundle:
 	npm run webpack:dev
 
 dev-server:
-	npm run server:dev
+	npm run start:dev
