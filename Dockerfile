@@ -12,4 +12,4 @@ COPY . /app
 ENV PORT 80
 EXPOSE 80
 
-CMD FOO=caca make prod
+CMD make prod

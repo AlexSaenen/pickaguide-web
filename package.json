@@ -49,7 +49,7 @@
     "build:dev": "webpack --progress --color",
     "build:prod": "webpack -p --config webpack.prod.config.js --profile --progress --colors",
     "server:dev": "NODE_ENV=dev node server.js",
-    "server:prod": "NODE_ENV=fucker ENVIRONMENT=testing FOO=bar node server.js",
+    "server:prod": "export NODE_ENV=fucker ENVIRONMENT=testing FOO=bar && node server.js",
     "server:dev-win": "NODE_ENV=dev node server.js",
     "server:prod-win": "NODE_ENV=production node server.js"
   },
