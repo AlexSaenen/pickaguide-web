@@ -47,9 +47,9 @@
     "test": "webdriver-manager update && protractor tests/conf.js",
     "webpack:dev": "webpack-dev-server --progress --hot --inline --colors",
     "build:dev": "webpack --progress --color",
-    "build:prod": "ENVIRONMENT=testing webpack -p --config webpack.prod.config.js --profile --progress --colors",
+    "build:prod": "webpack -p --config webpack.prod.config.js --profile --progress --colors",
     "server:dev": "NODE_ENV=dev node server.js",
-    "server:prod": "NODE_ENV=production ENVIRONMENT=testing node server.js",
+    "server:prod": "NODE_ENV=fucker ENVIRONMENT=testing FOO=bar node server.js",
     "server:dev-win": "NODE_ENV=dev node server.js",
     "server:prod-win": "NODE_ENV=production node server.js"
   },
