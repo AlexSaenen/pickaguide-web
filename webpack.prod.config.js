@@ -4,18 +4,13 @@ const webpack = require('webpack');
 config.devtool = 'source-map'
 config.output.publicPath = '/assets/build/';
 
-try {
-   config.plugins.push(
-      new webpack.DefinePlugin({
-         // 'process.env': JSON.stringify(process.env),
-         'process.env': {
-            NODE_ENV: JSON.stringify('production')
-         },
-      })
-   );
-} catch (e) {
-   console.log('FUUUUUUUUUUU', e);
-}
+config.plugins.push(
+   new webpack.DefinePlugin({
+      'process.env': {
+         NODE_ENV: JSON.stringify('production'),
+      },
+   })
+);
 
 config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
