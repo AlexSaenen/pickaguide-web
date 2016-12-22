@@ -3,8 +3,6 @@ const logger = require('./server/system').System.Logger();
 const cors = require('cors');
 const path = require('path');
 
-console.log('SERVER ENV ', process.env);
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
