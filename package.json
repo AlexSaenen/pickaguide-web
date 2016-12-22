@@ -20,7 +20,6 @@
     "express": "^4.13.4",
     "fluxxor": "^1.7.3",
     "jsx-loader": "^0.13.2",
-    "mongoose": "^4.4.20",
     "node-sass": "^3.4.2",
     "react": "^0.14.8",
     "react-bootstrap": "^0.30.6",
