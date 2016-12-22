@@ -4,11 +4,15 @@ const webpack = require('webpack');
 config.devtool = 'source-map'
 config.output.publicPath = '/assets/build/';
 
-config.plugins.push(
-    new webpack.DefinePlugin({
-        'process.env': JSON.stringify(process.env),
-    })
-);
+try {
+   config.plugins.push(
+      new webpack.DefinePlugin({
+         'process.env': JSON.stringify(process.env),
+      })
+   );
+} catch (e) {
+   console.log('FUUUUUUUUUUU', e);
+}
 
 config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
