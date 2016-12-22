@@ -7,7 +7,8 @@ config.output.publicPath = '/assets/build/';
 try {
    config.plugins.push(
       new webpack.DefinePlugin({
-         'process.env': JSON.stringify(process.env),
+         // 'process.env': JSON.stringify(process.env),
+         'process.env': JSON.stringify('production'),
       })
    );
 } catch (e) {
