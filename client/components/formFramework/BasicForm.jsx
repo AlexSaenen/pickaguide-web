@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SubmitButton } from '../formFramework/SubmitButton.jsx';
 import { Message } from '../formFramework/Message.jsx';
-import FormActions from '../../actions/CurrentForm.js';
+// import FormActions from '../../actions/CurrentForm.js';
 import FormStore from '../../stores/CurrentForm.js';
 
 import 'scss/components/_form.scss';
@@ -11,13 +11,15 @@ export class BasicForm extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    FormActions.flush();
     this.state = props;
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // componentDidMount() {
+  //   FormActions.flush();
+  // }
+
   componentWillReceiveProps(props) {
-    FormActions.flush();
     const stateCopy = Object.assign({}, this.state);
     stateCopy.children = props.children;
     stateCopy.message = props.message;

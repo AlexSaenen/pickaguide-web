@@ -10,13 +10,13 @@ export class InlineForm extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    FormActions.flush();
+    // FormActions.flush();
     this.state = props;
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillReceiveProps(props) {
-    FormActions.flush();
+    // FormActions.flush();
     const stateCopy = Object.assign({}, this.state);
     stateCopy.body = props.children;
     this.setState(stateCopy);
