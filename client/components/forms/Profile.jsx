@@ -1,8 +1,7 @@
 import React from 'react';
-import { browserHistory } from 'react-router'
 
-import { HomeMenu } from './HomeMenu.jsx';
-import ProfileActions from '../../actions/Profile.js';
+import { HomeMenu } from '../menu/HomeMenu.jsx';
+// import ProfileActions from '../../actions/Profile.js';
 import User from '../../stores/User.js';
 
 import 'scss/components/_home.scss';
