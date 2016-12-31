@@ -30,7 +30,7 @@ export class Login extends React.Component {
 
     if (store.error) {
       stateCopy.messageTitle = 'Some error occurred when logging in';
-      stateCopy.messageContent = store.error;
+      stateCopy.messageContent = String(store.error);
       stateCopy.isSuccess = false;
       this.setState(stateCopy);
     } else if (store.login) {
