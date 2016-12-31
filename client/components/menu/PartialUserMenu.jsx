@@ -21,7 +21,7 @@ export class PartialUserMenu extends React.Component {
               <Link to={'/profile'} className={'AccountLogo'}>
                 <img src="/assets/images/logo.png" alt="Profile" />
               </Link>
-              <MenuEntry href={'/signin'} title={'Sign up'} />
+              <MenuEntry href={'/signup'} title={'Sign up'} />
               <MenuEntry href={'/login'} title={'Sign in'} />
             </div>
           </div>

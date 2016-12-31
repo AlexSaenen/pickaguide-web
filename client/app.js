@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { HomePage } from './components/HomePage.jsx';
-import { SignIn } from './components/menu/SignIn.jsx';
-import { LogIn } from './components/menu/LogIn.jsx';
-import { Profile } from './components/menu/Profile.jsx';
-import { Settings } from './components/menu/Settings.jsx';
-import { ContactUs } from './components/menu/ContactUs.jsx';
+import { Signup } from './components/forms/Signup.jsx';
+import { Login } from './components/forms/Login.jsx';
+import { Profile } from './components/forms/Profile.jsx';
+import { Settings } from './components/forms/Settings.jsx';
+import { ContactUs } from './components/forms/ContactUs.jsx';
 
 import 'scss/global.scss';
 
@@ -16,8 +16,8 @@ ReactDOM.render(
     <Route path="/" component={HomePage}>
       <IndexRoute component={HomePage} />
     </Route>
-    <Route path="signin" component={SignIn} />
-    <Route path="login" component={LogIn} />
+    <Route path="signup" component={Signup} />
+    <Route path="login" component={Login} />
     <Route path="profile" component={Profile} />
     <Route path="settings" component={Settings} />
     <Route path="contactus" component={ContactUs} />

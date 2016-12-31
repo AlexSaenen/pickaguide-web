@@ -1,0 +1,34 @@
+@import '../../_colors.scss';
+
+.MessageContainer {
+  border-radius: 0.4em;
+  overflow: hidden;
+}
+
+.Success {
+  .MessageTitle {
+    background-color: $successTitleColor;
+  }
+
+  .MessageContent {
+    background-color: $successBodyColor;
+  }
+}
+
+.Alert {
+  .MessageTitle {
+    background-color: $alertTitleColor;
+  }
+
+  .MessageContent {
+    background-color: $alertBodyColor;
+  }
+}
+
+.MessageTitle, .MessageContent {
+  padding: 1em;
+}
+
+.Hide {
+  display: none;
+}

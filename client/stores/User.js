@@ -1,11 +1,11 @@
 import alt from '../alt';
 
-import SigninActions from '../actions/Signin.js';
-import LoginActions from '../actions/Login.js';
+import SignupActions from '../actions/Signup.js';
+// import LoginActions from '../actions/Login.js';
 import ContactUsActions from '../actions/ContactUs.js';
 
-import SigninApi from '../services/Signin.js';
-import LoginApi from '../services/Login.js';
+import SignupApi from '../services/Signup.js';
+// import LoginApi from '../services/Login.js';
 import ContactUsApi from '../services/ContactUs.js';
 
 
@@ -13,42 +13,43 @@ class UserStore {
     constructor() {
         this.message = '';
         this.code = 0;
-        this.bindActions(SigninActions);
-        this.bindActions(LoginActions);
+        this.bindActions(SignupActions);
+        // this.bindActions(LoginActions);
         this.bindActions(ContactUsActions);
     }
 
-    onRequestSignin(form) {
-        SigninApi.getSignin(form);
+    onRequestSignup(form) {
+        SignupApi.getSignup(form);
     }
 
-    onRequestSigninSuccess(signin) {
+    onRequestSignupSuccess(signin) {
         // this.error = null;
         console.log('SUC', signin);
         this.message = signin.result;
         this.code = 200;
     }
 
-    onRequestSigninError(error) {
+    onRequestSignupError(error) {
       console.log('ERR', error);
       this.message = JSON.stringify(error.response.body) !== undefined ? JSON.stringify(error.response.body.err) : JSON.stringify(error);
       // this.message = JSON.stringify(error);
       // this.message = "SUCCESS";
       this.code = 400;
     }
-
-    onRequestLogin(form) {
-        LoginApi.getLogin(form);
-    }
-
-    onRequestLoginSuccess(login) {
-        this.error = null;
-        this.login = login;
-    }
-
-    onRequestLoginError(error) {
-        this.error = error;
-    }
+    // 
+    // onRequestLogin(form) {
+    //     LoginApi.getLogin(form);
+    // }
+    //
+    // onRequestLoginSuccess(login) {
+    //     this.error = null;
+    //     this.login = login;
+    // }
+    //
+    // onRequestLoginError(error) {
+    //     console.log(error);
+    //     this.error = error;
+    // }
 
     onRequestContactUs() {
       console.log('Try to contact API')
