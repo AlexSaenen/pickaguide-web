@@ -7,20 +7,16 @@ import { EmailInput } from '../formFramework/EmailInput.jsx';
 import { PasswordInput } from '../formFramework/PasswordInput.jsx';
 // import { browserHistory } from 'react-router';
 import SignupActions from '../../actions/Signup.js';
-import User from '../../stores/User.js';
+import SignupStore from '../../stores/Signup.js';
 
 export class Signup extends React.Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      prenom: '',
-      nom: '',
-      email: '',
-      password: '',
-      passwordConfirmation: '',
       isSuccess: null,
-      message: '',
+      messageTitle: '',
+      messageContent: '',
       User: {},
     };
 
@@ -28,19 +24,27 @@ export class Signup extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillMount() {
-    User.listen(this.onChange);
+  componentDidMount() {
+    SignupStore.listen(this.onChange);
   }
 
-  onChange() {
+  onChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.User = User.getState();
+
+    stateCopy.isSuccess = !store.error;
+    if (store.error) {
+      stateCopy.messageTitle = 'Some error occurred when logging in';
+      stateCopy.messageContent = String(store.error);
+    } else {
+      stateCopy.messageTitle = 'Info';
+      stateCopy.messageContent = store.message;
+    }
+
     this.setState(stateCopy);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    SignupActions.requestSignin(this.state);
+  handleSubmit(form) {
+    SignupActions.requestSignup(form);
   }
 
   render() {
@@ -57,7 +61,8 @@ export class Signup extends React.Component {
     }
 
     const message = {
-      content: '',
+      title: this.state.messageTitle,
+      content: this.state.messageContent,
       type: (this.state.isSuccess ? 'Success' : 'Alert'),
     };
 
@@ -65,8 +70,8 @@ export class Signup extends React.Component {
       <div className="center_div">
         <HomeMenu user={this.state.userConnected} />
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
-          <TextInput label={'prenom'} placeholder={'Entrez votre prénom'} required />
-          <TextInput label={'nom'} placeholder={'Entrez votre nom'} required />
+          <TextInput label={'firstName'} placeholder={'Entrez votre prénom'} required />
+          <TextInput label={'lastName'} placeholder={'Entrez votre nom'} required />
           <EmailInput placeholder={'Entrez votre email'} required />
           <PasswordInput
             label={'password'}
