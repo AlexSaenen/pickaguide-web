@@ -9,9 +9,9 @@ export default class PromiseApi {
         .end((err, res) => {
           if (err) {
             reject(err);
-          } else {
-            resolve(JSON.parse(res.text));
           }
+
+          resolve(JSON.parse(res.text));
         });
     });
   }
@@ -24,10 +24,14 @@ export default class PromiseApi {
         .set('Accept', 'application/json')
         .end((err, res) => {
           if (err) {
+            if (String(err).indexOf('Request has been terminated') !== -1) {
+              reject('Server seems to be down, please try again later');
+            }
+
             reject(err);
-          } else {
-            resolve(JSON.parse(res.text));
           }
+
+          resolve(JSON.parse(res.text));
         });
     });
   }

@@ -7,8 +7,12 @@ class SignupStore {
   constructor() {
     this.error = '';
     this.message = '';
-    this.code = 0;
     this.bindActions(SignupActions);
+  }
+
+  _handleError(error) {
+    this.error = error;
+    this.message = '';
   }
 
   onRequestSignup(form) {
@@ -18,13 +22,14 @@ class SignupStore {
   onRequestSignupSuccess(result) {
     this.error = null;
     this.message = result;
-    this.code = 200;
   }
 
   onRequestSignupError(error) {
-    this.error = error;
-    this.message = '';
-    this.code = 400;
+    this._handleError(error);
+  }
+
+  onSignupValidationError(error) {
+    this._handleError(error);
   }
 }
 

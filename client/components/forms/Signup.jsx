@@ -33,7 +33,7 @@ export class Signup extends React.Component {
 
     stateCopy.isSuccess = !store.error;
     if (store.error) {
-      stateCopy.messageTitle = 'Some error occurred when logging in';
+      stateCopy.messageTitle = 'Some error occurred when creating your account';
       stateCopy.messageContent = String(store.error);
     } else {
       stateCopy.messageTitle = 'Info';
@@ -44,7 +44,11 @@ export class Signup extends React.Component {
   }
 
   handleSubmit(form) {
-    SignupActions.requestSignup(form);
+    if (form.password !== form.passwordConfirmation) {
+      SignupActions.signupValidationError('The passwords do not match');
+    } else {
+      SignupActions.requestSignup(form);
+    }
   }
 
   render() {
@@ -67,14 +71,13 @@ export class Signup extends React.Component {
     };
 
     return (
-      <div className="center_div">
+      <div>
         <HomeMenu user={this.state.userConnected} />
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
           <TextInput label={'firstName'} placeholder={'Entrez votre prénom'} required />
           <TextInput label={'lastName'} placeholder={'Entrez votre nom'} required />
           <EmailInput placeholder={'Entrez votre email'} required />
           <PasswordInput
-            label={'password'}
             placeholder={'Entrez votre mot de passe'}
             required
           />
