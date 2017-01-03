@@ -3,8 +3,8 @@ import React from 'react';
 import MenuLink from './MenuLink.jsx';
 import MenuAction from './MenuAction.jsx';
 import { ProfilePicture } from './ProfilePicture.jsx';
+import AuthActions from '../../actions/Auth.js';
 
-import 'scss/components/_home.scss';
 import 'scss/components/menu/_partialUserMenu.scss';
 
 const PartialUserMenu = () => {
@@ -14,7 +14,7 @@ const PartialUserMenu = () => {
         <MenuLink href={'/signup'} title={'Sign up'} unauth />
         <MenuLink href={'/login'} title={'Sign in'} unauth />
         <ProfilePicture auth />
-        <MenuAction href={'/logout'} title={'Logout'} auth />
+        <MenuAction callBack={AuthActions.logout} title={'Logout'} auth />
       </div>
     </div>
   );

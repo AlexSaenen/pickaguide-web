@@ -11,7 +11,7 @@ export class ProfilePicture extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    const profile = ProfileStore.getState().profile || { photoUrl: 'https://www.soundstream.tv/assets/default_profile-e08597880fc222202f22984a4f1966a29b108e856a3fb935072bfbbc302a4b73.png' };
+    const profile = ProfileStore.getState().profile || { photoUrl: '' };
     this.state = { url: profile.photoUrl };
     this.onChange = this.onChange.bind(this);
     this.props = props;
@@ -26,7 +26,6 @@ export class ProfilePicture extends React.Component {
   }
 
   onChange(store) {
-    console.log('onChange()', store);
     const stateCopy = Object.assign({}, this.state);
 
     if (store.profile) {
@@ -38,19 +37,10 @@ export class ProfilePicture extends React.Component {
   }
 
   render() {
-    const imageStyle = {
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center top',
-      backgroundImage: `${this.state.url}`,
-    };
-
-    console.log('render()');
-
     return (
       <AuthDependent className="AccountLogo" {...this.props}>
         <Link to={'/profile'}>
-          <div key="profileImage" style={imageStyle} />
+          <img src={this.state.url} alt="Profile" />
         </Link>
       </AuthDependent>
     );

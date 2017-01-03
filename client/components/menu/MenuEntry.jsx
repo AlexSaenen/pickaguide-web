@@ -7,6 +7,7 @@ import 'scss/components/menu/_mainMenu.scss';
 const MenuEntry = (props) => {
   const copyProps = Object.assign({}, props);
   delete copyProps.children;
+
   return (
     <AuthDependent className="MenuEntry" {...copyProps}>
       {props.children}

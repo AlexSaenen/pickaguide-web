@@ -3,15 +3,17 @@ import React from 'react';
 import MainMenu from './menu/MainMenu.jsx';
 import PartialUserMenu from './menu/PartialUserMenu.jsx';
 
-import 'scss/components/_home.scss';
+export class Menu extends React.Component {
+  shouldComponentUpdate() {
+    return false;
+  }
 
-const HomeMenu = () => {
-  return (
-    <div className={'MainMenuWrapper'}>
-      <MainMenu />
-      <PartialUserMenu />
-    </div>
-  );
-};
-
-export default HomeMenu;
+  render() {
+    return (
+      <div className={'MainMenuWrapper'}>
+        <MainMenu />
+        <PartialUserMenu />
+      </div>
+    );
+  }
+}

@@ -17,4 +17,19 @@ export default class AuthApi {
       AuthActions.loginError(err);
     });
   }
+
+  static logout() {
+    PromiseApi.auth().post('/account/logout')
+    .then((result) => {
+      if (result.error) {
+        AuthActions.logoutError(result.error);
+      } else {
+        AuthActions.logoutSuccess();
+        ProfileActions.invalidateProfile();
+      }
+    })
+    .catch((err) => {
+      AuthActions.logoutError(err);
+    });
+  }
 }

@@ -1,20 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 import MenuEntry from './MenuEntry.jsx';
 
 const MenuAction = (props) => {
   return (
     <MenuEntry {...props}>
-      <Link to={props.href}>
+      <a onClick={props.callBack}>
         <p>{props.title}</p>
-      </Link>
+      </a>
     </MenuEntry>
   );
 };
 
 MenuAction.propTypes = {
-  href: React.PropTypes.string,
+  callBack: React.PropTypes.func,
   title: React.PropTypes.string,
 };
 

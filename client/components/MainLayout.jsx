@@ -1,9 +1,7 @@
 import React from 'react';
 
-import Menu from './Menu.jsx';
-import Footer from './Footer.jsx';
-
-import 'scss/components/_home.scss';
+import { Menu } from './Menu.jsx';
+import { Footer } from './Footer.jsx';
 
 const MainLayout = (props) => {
   return (
