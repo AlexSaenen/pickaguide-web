@@ -1,37 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router';
+
+import MenuLink from './MenuLink.jsx';
+import MenuAction from './MenuAction.jsx';
+import { ProfilePicture } from './ProfilePicture.jsx';
 
 import 'scss/components/_home.scss';
 import 'scss/components/menu/_partialUserMenu.scss';
-import { MenuEntry } from './MenuEntry.jsx';
 
-export class PartialUserMenu extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      user: props.user,
-    };
-  }
-
-  render() {
-    return (
-      <div className={'MenuElement PartialUserMenu'}>
-        <div className={'PartialUserMenuContentWrapper'}>
-          <Link to={'/profile'} className={'AccountLogo'}>
-            <img src="/assets/images/logo.png" alt="Profile" />
-          </Link>
-          <MenuEntry href={'/signup'} title={'Sign up'} />
-          <MenuEntry href={'/login'} title={'Sign in'} />
-        </div>
+const PartialUserMenu = () => {
+  return (
+    <div className={'MenuElement PartialUserMenu'}>
+      <div className={'PartialUserMenuContentWrapper'}>
+        <MenuLink href={'/signup'} title={'Sign up'} unauth />
+        <MenuLink href={'/login'} title={'Sign in'} unauth />
+        <ProfilePicture auth />
+        <MenuAction href={'/logout'} title={'Logout'} auth />
       </div>
-    );
-  }
-}
-
-PartialUserMenu.propTypes = {
-  user: React.PropTypes.shape({
-    id: React.PropTypes.number.isRequired,
-    name: React.PropTypes.string,
-  }),
+    </div>
+  );
 };
+
+export default PartialUserMenu;

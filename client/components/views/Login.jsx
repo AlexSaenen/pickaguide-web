@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { HomeMenu } from '../menu/HomeMenu.jsx';
 import { BasicForm } from '../formFramework/BasicForm.jsx';
 import { EmailInput } from '../formFramework/EmailInput.jsx';
 import { PasswordInput } from '../formFramework/PasswordInput.jsx';
-import LoginActions from '../../actions/Login.js';
-import LoginStore from '../../stores/Login.js';
+import AuthActions from '../../actions/Auth.js';
+import AuthStore from '../../stores/Auth.js';
+const _ = require('lodash');
 
 export class Login extends React.Component {
   constructor(props, context) {
@@ -22,7 +22,11 @@ export class Login extends React.Component {
   }
 
   componentDidMount() {
-    LoginStore.listen(this.onChange);
+    AuthStore.listen(this.onChange);
+  }
+
+  componentWillUnmount() {
+    AuthStore.unlisten(this.onChange);
   }
 
   onChange(store) {
@@ -32,17 +36,19 @@ export class Login extends React.Component {
       stateCopy.messageTitle = 'Some error occurred when logging in';
       stateCopy.messageContent = String(store.error);
       stateCopy.isSuccess = false;
-      this.setState(stateCopy);
-    } else if (store.login) {
+    } else if (store.token) {
       stateCopy.messageTitle = 'Successful';
       stateCopy.messageContent = 'You have successfully logged in !';
       stateCopy.isSuccess = true;
+    }
+
+    if (_.isEqual(stateCopy, this.state) === false) {
       this.setState(stateCopy);
     }
   }
 
   handleSubmit(form) {
-    LoginActions.requestLogin(form);
+    AuthActions.login(form);
   }
 
   render() {
@@ -54,7 +60,6 @@ export class Login extends React.Component {
 
     return (
       <div>
-        <HomeMenu user={this.state.userConnected} />
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Login" message={message}>
           <EmailInput placeholder={'Email'} required />
           <PasswordInput placeholder={'Password'} required />
@@ -63,10 +68,3 @@ export class Login extends React.Component {
     );
   }
 }
-
-// LogIn.propTypes = {
-//     user: React.PropTypes.shape({
-//         id: React.PropTypes.number.isRequired,
-//         name: React.PropTypes.string,
-//     }),
-// };

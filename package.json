@@ -23,6 +23,7 @@
     "fluxxor": "^1.7.3",
     "history": "^4.5.0",
     "jsx-loader": "^0.13.2",
+    "lodash": "^4.17.4",
     "node-sass": "^3.4.2",
     "react": "^0.14.8",
     "react-bootstrap": "^0.30.6",

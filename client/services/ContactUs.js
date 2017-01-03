@@ -1,5 +1,5 @@
 import ContactUsActions from '../actions/ContactUs.js';
-import PromiseApi from './promiseApi.js';
+import PromiseApi from './PromiseApi.js';
 
 export default class ContactUsApi {
     static getContactUs() {
