@@ -21,6 +21,12 @@ export class AuthDependent extends React.Component {
     AuthStore.listen(this.onChange);
   }
 
+  componentWillReceiveProps(props) {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.children = props.children;
+    this._alterState(stateCopy);
+  }
+
   componentWillUnmount() {
     AuthStore.unlisten(this.onChange);
   }
@@ -28,8 +34,12 @@ export class AuthDependent extends React.Component {
   onChange(store) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.isVisible = this._isVisible(store.token);
-    if (_.isEqual(stateCopy, this.state) === false) {
-      this.setState(stateCopy);
+    this._alterState(stateCopy);
+  }
+
+  _alterState(newState) {
+    if (_.isEqual(newState, this.state) === false) {
+      this.setState(newState);
     }
   }
 
@@ -38,7 +48,6 @@ export class AuthDependent extends React.Component {
   }
 
   render() {
-    console.log('AuthDependent render()');
     return (
       <div className={`${this.className}${this.state.isVisible ? '' : ' Hidden'}`}>
         {this.state.children}

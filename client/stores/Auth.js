@@ -22,6 +22,19 @@ class AuthStore {
   onLoginError(error) {
     this.error = error;
   }
+
+  onLogout() {
+    AuthApi.logout();
+  }
+
+  onLogoutSuccess() {
+    this.error = null;
+    this.token = null;
+  }
+
+  onLogoutError(error) {
+    this.error = error;
+  }
 }
 
 export default alt.createStore(AuthStore, 'AuthStore');

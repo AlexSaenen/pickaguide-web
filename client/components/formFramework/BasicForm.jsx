@@ -2,7 +2,6 @@ import React from 'react';
 
 import { SubmitButton } from '../formFramework/SubmitButton.jsx';
 import { Message } from '../formFramework/Message.jsx';
-// import FormActions from '../../actions/CurrentForm.js';
 import FormStore from '../../stores/CurrentForm.js';
 
 import 'scss/components/_form.scss';

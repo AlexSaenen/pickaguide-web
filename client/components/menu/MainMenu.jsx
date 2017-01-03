@@ -4,7 +4,6 @@ import MenuLogo from './MenuLogo.jsx';
 import MenuLink from './MenuLink.jsx';
 import { SearchBar } from '../formFramework/SearchBar.jsx';
 
-import 'scss/components/_home.scss';
 import 'scss/components/menu/_mainMenu.scss';
 
 const MainMenu = () => {

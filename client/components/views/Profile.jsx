@@ -23,9 +23,9 @@ export class Profile extends React.Component {
     ProfileStore.unlisten(this.onChange);
   }
 
-  onChange() {
+  onChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.profile = ProfileStore.getState().profile;
+    stateCopy.profile = store.profile;
     if (_.isEqual(stateCopy, this.state) === false) {
       this.setState(stateCopy);
     }

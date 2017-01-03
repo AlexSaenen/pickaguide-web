@@ -1,11 +1,15 @@
 import React from 'react';
 
-const Footer = () => {
-  return (
-    <div>
-      <p>This is the footer</p>
-    </div>
-  );
-};
+export class Footer extends React.Component {
+  shouldComponentUpdate() {
+    return false;
+  }
 
-export default Footer;
+  render() {
+    return (
+      <div>
+        <p>This is the footer</p>
+      </div>
+    );
+  }
+}

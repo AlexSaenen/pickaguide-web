@@ -23,6 +23,10 @@ class ProfileStore {
     this.error = error;
     this.profile = null;
   }
+
+  onInvalidateProfile() {
+    this.profile = null;
+  }
 }
 
 export default alt.createStore(ProfileStore, 'ProfileStore');

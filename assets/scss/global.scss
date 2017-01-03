@@ -43,6 +43,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+a {
+  cursor: pointer;
+}
 
 html, body, #app {
   height: 100%;
