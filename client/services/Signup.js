@@ -1,18 +1,18 @@
 import SignupActions from '../actions/Signup.js';
-import PromiseApi from './promiseApi.js';
+import PromiseApi from './PromiseApi.js';
 
 export default class SignupApi {
-  static getSignup(form) {
+  static signup(form) {
     PromiseApi.post('/public/signup', form)
     .then((result) => {
       if (result.error) {
-        SignupActions.requestSignupError(result.error);
+        SignupActions.signupError(result.error);
       } else {
-        SignupActions.requestSignupSuccess(result.message);
+        SignupActions.signupSuccess(result.message);
       }
     })
     .catch((err) => {
-      SignupActions.requestSignupError(err);
+      SignupActions.signupError(err);
     });
   }
 }

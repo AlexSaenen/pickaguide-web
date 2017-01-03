@@ -3,14 +3,11 @@ import React from 'react';
 import 'scss/components/menu/_logo.scss';
 
 const MenuLogo = () => {
-    return (
-      <div className={'Logo'}>
-        <img src="/assets/images/logo.png" alt="PickaGuide Logo" />
-      </div>
-    );
-};
-
-MenuLogo.propTypes = {
+  return (
+    <div className={'Logo'}>
+      <img src="/assets/images/logo.png" alt="PickaGuide Logo" />
+    </div>
+  );
 };
 
 export default MenuLogo;

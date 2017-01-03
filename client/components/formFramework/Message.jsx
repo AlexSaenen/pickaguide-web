@@ -21,7 +21,7 @@ export class Message extends React.Component {
     let classes = `MessageContainer ${this.state.message.type}`;
 
     if (this.state.message.content === '') {
-      classes += ' Hide';
+      classes += ' Hidden';
     }
 
     return (

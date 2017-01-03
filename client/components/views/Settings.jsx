@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { HomeMenu } from '../menu/HomeMenu.jsx';
 import { BasicForm } from '../formFramework/BasicForm.jsx';
 import { TextInput } from '../formFramework/TextInput.jsx';
 import { PasswordInput } from '../formFramework/PasswordInput.jsx';
 import { TelInput } from '../formFramework/TelInput.jsx';
 import { EmailInput } from '../formFramework/EmailInput.jsx';
 // import SettingsActions from '../../actions/Settings.js';
-import User from '../../stores/User.js';
+import ProfileStore from '../../stores/Profile.js';
+const _ = require('lodash');
 
 import 'scss/components/_home.scss';
 
@@ -18,18 +18,31 @@ export class Settings extends React.Component {
 
     this.router = context.router;
     this.state = {
-      infosProfile: {},
+      profile: {},
     };
 
+    this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
-    User.listen(this.handleSubmit);
+    ProfileStore.listen(this.onChange);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
+  componentWillUnmount() {
+    ProfileStore.unlisten(this.onChange);
+  }
+
+  onChange() {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.profile = ProfileStore.getState().profile;
+    if (_.isEqual(stateCopy, this.state) === false) {
+      this.setState(stateCopy);
+    }
+  }
+
+  handleSubmit(form) {
+    console.log(form);
   }
 
   // TODO: Alex: Insert a title for Settings, make sure to create the element for that
@@ -37,10 +50,9 @@ export class Settings extends React.Component {
   render() {
     return (
       <div>
-        <HomeMenu user={this.state.userConnected} />
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Save">
-          <TextInput label="prenom" placeholder="Entrez votre prénom" />
-          <TextInput label="nom" placeholder="Entrez votre nom" />
+          <TextInput label="firstName" placeholder="Entrez votre prénom" />
+          <TextInput label="lastName" placeholder="Entrez votre nom" />
           <EmailInput placeholder="Entrez votre email" />
           <PasswordInput placeholder="Entrez votre mot de passe" />
           <PasswordInput label="passwordConfirmation" placeholder="Confirmez votre mot de passe" />
@@ -52,10 +64,3 @@ export class Settings extends React.Component {
     );
   }
 }
-
-// Settings.propTypes = {
-//   user: React.PropTypes.shape({
-//     id: React.PropTypes.number.isRequired,
-//     name: React.PropTypes.string,
-//   }),
-// };

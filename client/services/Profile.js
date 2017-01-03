@@ -1,20 +1,18 @@
-import SigninActions from '../actions/Signin.js';
-import PromiseApi from './promiseApi.js';
+import ProfileActions from '../actions/Profile.js';
+import PromiseApi from './PromiseApi.js';
 
 export default class ProfileApi {
-    static getProfile(form) {
-        console.log('Form signin:', form);
-        PromiseApi.get('/profile')
-        .then((result) => {
-            if (result.error) {
-                SigninActions.requestSigninError(result.error);
-                return;
-            }
-
-            SigninActions.requestSigninSuccess(result);
-        })
-        .catch((err) => {
-            SigninActions.requestSigninError(err);
-        });
-    }
+  static getProfile() {
+    PromiseApi.auth().get('/profile')
+    .then((result) => {
+      if (result.error) {
+        ProfileActions.getProfileError(result.error);
+      } else {
+        ProfileActions.getProfileSuccess(result);
+      }
+    })
+    .catch((err) => {
+      ProfileActions.getProfileError(err);
+    });
+  }
 }

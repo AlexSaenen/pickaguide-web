@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { HomeMenu } from '../menu/HomeMenu.jsx';
 import { BasicForm } from '../formFramework/BasicForm.jsx';
 import { TextInput } from '../formFramework/TextInput.jsx';
 import { EmailInput } from '../formFramework/EmailInput.jsx';
 import { PasswordInput } from '../formFramework/PasswordInput.jsx';
-// import { browserHistory } from 'react-router';
 import SignupActions from '../../actions/Signup.js';
 import SignupStore from '../../stores/Signup.js';
+const _ = require('lodash');
 
 export class Signup extends React.Component {
   constructor(props, context) {
@@ -17,7 +16,6 @@ export class Signup extends React.Component {
       isSuccess: null,
       messageTitle: '',
       messageContent: '',
-      User: {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,6 +24,10 @@ export class Signup extends React.Component {
 
   componentDidMount() {
     SignupStore.listen(this.onChange);
+  }
+
+  componentWillUnmount() {
+    SignupStore.unlisten(this.onChange);
   }
 
   onChange(store) {
@@ -40,30 +42,20 @@ export class Signup extends React.Component {
       stateCopy.messageContent = store.message;
     }
 
-    this.setState(stateCopy);
+    if (_.isEqual(stateCopy, this.state) === false) {
+      this.setState(stateCopy);
+    }
   }
 
   handleSubmit(form) {
     if (form.password !== form.passwordConfirmation) {
       SignupActions.signupValidationError('The passwords do not match');
     } else {
-      SignupActions.requestSignup(form);
+      SignupActions.signup(form);
     }
   }
 
   render() {
-    console.log(JSON.stringify(this.state.User));
-    if (this.state.User.code !== undefined) {
-      // const goodClass = this.state.User.code === 200 ? 'alertMessageSucc' : 'alertMessageErr';
-      // const alertMessage = <div className={goodClass}>{this.state.User.message}</div>;
-
-      if (this.state.User.code === 200) {
-        // setTimeout(() => {
-        //   browserHistory.push('/profile');
-        // }, 2000);
-      }
-    }
-
     const message = {
       title: this.state.messageTitle,
       content: this.state.messageContent,
@@ -72,33 +64,14 @@ export class Signup extends React.Component {
 
     return (
       <div>
-        <HomeMenu user={this.state.userConnected} />
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
           <TextInput label={'firstName'} placeholder={'Entrez votre prénom'} required />
           <TextInput label={'lastName'} placeholder={'Entrez votre nom'} required />
           <EmailInput placeholder={'Entrez votre email'} required />
-          <PasswordInput
-            placeholder={'Entrez votre mot de passe'}
-            required
-          />
-          <PasswordInput
-            label={'passwordConfirmation'}
-            placeholder={'Confirmez le mot de passe'}
-            required
-          />
+          <PasswordInput placeholder={'Entrez votre mot de passe'} required />
+          <PasswordInput label={'passwordConfirmation'} placeholder={'Confirmez le mot de passe'} required />
         </BasicForm>
       </div>
     );
   }
 }
-
-Signup.propTypes = {
-  user: React.PropTypes.shape({
-    id: React.PropTypes.number.isRequired,
-    name: React.PropTypes.string,
-  }),
-};
-
-// SignIn.contextTypes = {
-//     router: React.PropTypes.object.isRequired
-// };

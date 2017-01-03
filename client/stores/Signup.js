@@ -5,7 +5,7 @@ import SignupApi from '../services/Signup.js';
 
 class SignupStore {
   constructor() {
-    this.error = '';
+    this.error = null;
     this.message = '';
     this.bindActions(SignupActions);
   }
@@ -15,16 +15,16 @@ class SignupStore {
     this.message = '';
   }
 
-  onRequestSignup(form) {
-    SignupApi.getSignup(form);
+  onSignup(form) {
+    SignupApi.signup(form);
   }
 
-  onRequestSignupSuccess(result) {
+  onSignupSuccess(result) {
     this.error = null;
     this.message = result;
   }
 
-  onRequestSignupError(error) {
+  onSignupError(error) {
     this._handleError(error);
   }
 

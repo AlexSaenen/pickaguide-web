@@ -15,10 +15,6 @@ export class BasicForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentDidMount() {
-  //   FormActions.flush();
-  // }
-
   componentWillReceiveProps(props) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.children = props.children;
