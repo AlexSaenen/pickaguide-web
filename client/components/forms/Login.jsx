@@ -56,8 +56,8 @@ export class Login extends React.Component {
       <div>
         <HomeMenu user={this.state.userConnected} />
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Login" message={message}>
-          <EmailInput ref="email" placeholder={'Email'} required />
-          <PasswordInput ref="password" label={'password'} placeholder={'Password'} required />
+          <EmailInput placeholder={'Email'} required />
+          <PasswordInput placeholder={'Password'} required />
         </BasicForm>
       </div>
     );

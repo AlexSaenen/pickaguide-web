@@ -3,7 +3,6 @@ import PromiseApi from './promiseApi.js';
 
 export default class SignupApi {
   static getSignup(form) {
-    console.log('Form signup:', form);
     PromiseApi.post('/public/signup', form)
     .then((result) => {
       if (result.error) {
