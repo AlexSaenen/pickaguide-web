@@ -13,7 +13,7 @@ const MainMenu = () => {
         <MenuLogo />
         <MenuLink href={'#'} title={'Home'} />
         <MenuLink href={'#'} title={'About'} />
-        <MenuLink href={'/contactus'} title={'Contact'} />
+        <MenuLink name={'contact'} href={'/contactus'} title={'Contact'} />
         <MenuLink href={'/settings'} title={'Settings'} auth />
       </div>
       <div className={'MainMenuContentWrapper'}>

@@ -26,8 +26,8 @@ export class Message extends React.Component {
 
     return (
       <div className={classes}>
-        <div className="MessageTitle">{this.state.message.title}</div>
-        <div className="MessageContent">{this.state.message.content}</div>
+        <div className="MessageTitle" name="MessageTitle">{this.state.message.title}</div>
+        <div className="MessageContent" name="MessageContent">{this.state.message.content}</div>
       </div>
     );
   }
