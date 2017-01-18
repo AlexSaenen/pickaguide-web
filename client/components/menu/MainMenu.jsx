@@ -11,8 +11,8 @@ const MainMenu = () => {
     <div className={'MenuElement MainMenu'}>
       <div className={'MainMenuContentWrapper'}>
         <MenuLogo />
-        <MenuLink href={'#'} title={'Home'} />
-        <MenuLink href={'#'} title={'About'} />
+        <MenuLink href={'/'} title={'Home'} />
+        <MenuLink href={'/about'} title={'About'} />
         <MenuLink href={'/contactus'} title={'Contact'} />
         <MenuLink href={'/settings'} title={'Settings'} auth />
       </div>

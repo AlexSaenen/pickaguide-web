@@ -9,8 +9,6 @@ import { EmailInput } from '../formFramework/EmailInput.jsx';
 import ProfileStore from '../../stores/Profile.js';
 const _ = require('lodash');
 
-import 'scss/components/_home.scss';
-
 export class Settings extends React.Component {
   constructor(props, context) {
     super(props, context);
