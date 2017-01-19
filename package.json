@@ -52,7 +52,7 @@
     "build:prod": "webpack -p --config webpack.prod.config.js --profile --progress --colors",
     "server:dev": "NODE_ENV=dev node server.js",
     "server:prod": "NODE_ENV=production && node server.js",
-    "server:dev-win": "NODE_ENV=dev node server.js"
+    "server:dev-win": "node server.js"
   },
   "repository": {
     "type": "git",
