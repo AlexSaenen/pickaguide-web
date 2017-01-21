@@ -4,7 +4,7 @@ import PromiseApi from './PromiseApi.js';
 
 export default class AuthApi {
   static login(form) {
-    PromiseApi.post('/public/login', form)
+    PromiseApi.post('/public/sign-in', form)
     .then((result) => {
       if (result.error) {
         AuthActions.loginError(result.error);
