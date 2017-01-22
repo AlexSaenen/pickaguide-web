@@ -7,7 +7,8 @@ import { Signup } from './components/views/Signup.jsx';
 import { Login } from './components/views/Login.jsx';
 import { Profile } from './components/views/Profile.jsx';
 import { Settings } from './components/views/Settings.jsx';
-import { ContactUs } from './components/views/ContactUs.jsx';
+import { Contact } from './components/views/Contact.jsx';
+import About from './components/views/About.jsx';
 
 import 'scss/global.scss';
 
@@ -20,7 +21,8 @@ ReactDOM.render(
       <Route path="login" component={Login} />
       <Route path="profile" component={Profile} />
       <Route path="settings" component={Settings} />
-      <Route path="contactus" component={ContactUs} />
+      <Route path="contactus" component={Contact} />
+      <Route path="about" component={About} />
     </Route>
   </Router>
 

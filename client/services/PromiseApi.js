@@ -5,7 +5,10 @@ import AuthStore from '../stores/Auth.js';
 export default class PromiseApi {
   static auth() {
     const newInstance = Object.create(PromiseApi);
-    newInstance.token = AuthStore.getState().token;
+    const token = AuthStore.getState().token;
+
+    if (token) { newInstance.token = token; }
+
     return newInstance;
   }
 

@@ -4,7 +4,7 @@ import PromiseApi from './PromiseApi.js';
 
 export default class AuthApi {
   static login(form) {
-    PromiseApi.post('/public/login', form)
+    PromiseApi.post('/public/sign-in', form)
     .then((result) => {
       if (result.error) {
         AuthActions.loginError(result.error);
@@ -19,7 +19,7 @@ export default class AuthApi {
   }
 
   static logout() {
-    PromiseApi.auth().post('/account/logout')
+    PromiseApi.auth().get('/account/logout')
     .then((result) => {
       if (result.error) {
         AuthActions.logoutError(result.error);

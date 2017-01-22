@@ -4,8 +4,6 @@ import ProfileActions from '../../actions/Profile.js';
 import ProfileStore from '../../stores/Profile.js';
 const _ = require('lodash');
 
-import 'scss/components/_home.scss';
-
 export class Profile extends React.Component {
   constructor(props, context) {
     super(props, context);
