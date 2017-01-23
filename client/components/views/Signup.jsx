@@ -4,13 +4,15 @@ import { BasicForm } from '../formFramework/BasicForm.jsx';
 import { TextInput } from '../formFramework/TextInput.jsx';
 import { EmailInput } from '../formFramework/EmailInput.jsx';
 import { PasswordInput } from '../formFramework/PasswordInput.jsx';
-import SignupActions from '../../actions/Signup.js';
-import SignupStore from '../../stores/Signup.js';
-const _ = require('lodash');
+import { StoreObserver } from '../base/StoreObserver.jsx';
 
-export class Signup extends React.Component {
+import SignupActions from '../../actions/Signup.js';
+
+import SignupStore from '../../stores/Signup.js';
+
+export class Signup extends StoreObserver {
   constructor(props, context) {
-    super(props, context);
+    super(props, context, SignupStore);
 
     this.state = {
       isSuccess: null,
@@ -20,14 +22,6 @@ export class Signup extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-  }
-
-  componentDidMount() {
-    SignupStore.listen(this.onChange);
-  }
-
-  componentWillUnmount() {
-    SignupStore.unlisten(this.onChange);
   }
 
   onChange(store) {
@@ -42,9 +36,7 @@ export class Signup extends React.Component {
       stateCopy.messageContent = store.message;
     }
 
-    if (_.isEqual(stateCopy, this.state) === false) {
-      this.setState(stateCopy);
-    }
+    this._alterState(stateCopy);
   }
 
   handleSubmit(form) {

@@ -10,16 +10,16 @@ class ProfileStore {
     this.bindActions(ProfileActions);
   }
 
-  onGetProfile() {
-    ProfileApi.getProfile();
+  onGet() {
+    ProfileApi.get();
   }
 
-  onGetProfileSuccess(profile) {
+  onGetSuccess(profile) {
     this.error = null;
     this.profile = profile;
   }
 
-  onGetProfileError(error) {
+  onGetError(error) {
     this.error = error;
     this.profile = null;
   }

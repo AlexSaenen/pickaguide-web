@@ -3,13 +3,15 @@ import React from 'react';
 import { BasicForm } from '../formFramework/BasicForm.jsx';
 import { EmailInput } from '../formFramework/EmailInput.jsx';
 import { PasswordInput } from '../formFramework/PasswordInput.jsx';
-import AuthActions from '../../actions/Auth.js';
-import AuthStore from '../../stores/Auth.js';
-const _ = require('lodash');
+import { StoreObserver } from '../base/StoreObserver.jsx';
 
-export class Login extends React.Component {
+import AuthActions from '../../actions/Auth.js';
+
+import AuthStore from '../../stores/Auth.js';
+
+export class Login extends StoreObserver {
   constructor(props, context) {
-    super(props, context);
+    super(props, context, AuthStore);
 
     this.state = {
       isSuccess: null,
@@ -19,14 +21,6 @@ export class Login extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-  }
-
-  componentDidMount() {
-    AuthStore.listen(this.onChange);
-  }
-
-  componentWillUnmount() {
-    AuthStore.unlisten(this.onChange);
   }
 
   onChange(store) {
@@ -42,9 +36,7 @@ export class Login extends React.Component {
       stateCopy.isSuccess = true;
     }
 
-    if (_.isEqual(stateCopy, this.state) === false) {
-      this.setState(stateCopy);
-    }
+    this._alterState(stateCopy);
   }
 
   handleSubmit(form) {
