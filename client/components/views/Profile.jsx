@@ -1,32 +1,27 @@
 import React from 'react';
 
+import { StoreObserver } from '../base/StoreObserver.jsx';
+
 import ProfileActions from '../../actions/Profile.js';
 import ProfileStore from '../../stores/Profile.js';
-const _ = require('lodash');
 
-export class Profile extends React.Component {
+export class Profile extends StoreObserver {
   constructor(props, context) {
-    super(props, context);
+    super(props, context, ProfileStore);
 
     this.state = { profile: ProfileStore.getState().profile };
     this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    ProfileStore.listen(this.onChange);
+    super.componentDidMount();
     ProfileActions.getProfile();
-  }
-
-  componentWillUnmount() {
-    ProfileStore.unlisten(this.onChange);
   }
 
   onChange(store) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.profile = store.profile;
-    if (_.isEqual(stateCopy, this.state) === false) {
-      this.setState(stateCopy);
-    }
+    this._alterState(stateCopy);
   }
 
   render() {

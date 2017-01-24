@@ -5,13 +5,13 @@ import { TextInput } from '../formFramework/TextInput.jsx';
 import { PasswordInput } from '../formFramework/PasswordInput.jsx';
 import { TelInput } from '../formFramework/TelInput.jsx';
 import { EmailInput } from '../formFramework/EmailInput.jsx';
+import { StoreObserver } from '../base/StoreObserver.jsx';
 // import SettingsActions from '../../actions/Settings.js';
 import ProfileStore from '../../stores/Profile.js';
-const _ = require('lodash');
 
-export class Settings extends React.Component {
+export class Settings extends StoreObserver {
   constructor(props, context) {
-    super(props, context);
+    super(props, context, ProfileStore);
 
 
     this.router = context.router;
@@ -23,20 +23,10 @@ export class Settings extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {
-    ProfileStore.listen(this.onChange);
-  }
-
-  componentWillUnmount() {
-    ProfileStore.unlisten(this.onChange);
-  }
-
   onChange() {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.profile = ProfileStore.getState().profile;
-    if (_.isEqual(stateCopy, this.state) === false) {
-      this.setState(stateCopy);
-    }
+    this._alterState(stateCopy);
   }
 
   handleSubmit(form) {

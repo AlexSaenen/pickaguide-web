@@ -3,7 +3,6 @@ import PromiseApi from './PromiseApi.js';
 
 export default class ContactApi {
   static contact(form) {
-    console.log(form);
     PromiseApi.post('/public/contactus', form)
       .then((result) => {
         if (result.error) {

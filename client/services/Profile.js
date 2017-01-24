@@ -2,17 +2,17 @@ import ProfileActions from '../actions/Profile.js';
 import PromiseApi from './PromiseApi.js';
 
 export default class ProfileApi {
-  static getProfile() {
+  static get() {
     PromiseApi.auth().get('/profile')
     .then((result) => {
       if (result.error) {
-        ProfileActions.getProfileError(result.error);
+        ProfileActions.getError(result.error);
       } else {
-        ProfileActions.getProfileSuccess(result);
+        ProfileActions.getSuccess(result);
       }
     })
     .catch((err) => {
-      ProfileActions.getProfileError(err);
+      ProfileActions.getError(err);
     });
   }
 }

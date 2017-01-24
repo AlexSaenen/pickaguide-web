@@ -5,17 +5,20 @@ import { TextArea } from '../formFramework/TextArea.jsx';
 import { TextInput } from '../formFramework/TextInput.jsx';
 import { TelInput } from '../formFramework/TelInput.jsx';
 import { EmailInput } from '../formFramework/EmailInput.jsx';
-import ContactActions from '../../actions/Contact.js';
-import ProfileStore from '../../stores/Profile.js';
-import ContactStore from '../../stores/Contact.js';
-const _ = require('lodash');
 
-export class Contact extends React.Component {
+import { StoreObserver } from '../base/StoreObserver.jsx';
+
+import ContactActions from '../../actions/Contact.js';
+
+import AccountStore from '../../stores/Account.js';
+import ContactStore from '../../stores/Contact.js';
+
+export class Contact extends StoreObserver {
   constructor(props, context) {
-    super(props, context);
+    super(props, context, [AccountStore, ContactStore]);
 
     this.state = {
-      profile: ProfileStore.getState().profile,
+      account: AccountStore.getState().account,
       isSuccess: null,
       messageTitle: '',
       messageContent: '',
@@ -24,16 +27,6 @@ export class Contact extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onContact = this.onContact.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    ProfileStore.listen(this.onChange);
-    ContactStore.listen(this.onContact);
-  }
-
-  componentWillUnmount() {
-    ProfileStore.unlisten(this.onChange);
-    ContactStore.unlisten(this.onContact);
   }
 
   onContact(store) {
@@ -49,17 +42,13 @@ export class Contact extends React.Component {
         `You have successfully contacted us! Your contact id is '${store.contactId}'. One of our staff will answer you soon.`;
     }
 
-    if (_.isEqual(stateCopy, this.state) === false) {
-      this.setState(stateCopy);
-    }
+    this._alterState(stateCopy);
   }
 
   onChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.profile = store.profile;
-    if (_.isEqual(stateCopy, this.state) === false) {
-      this.setState(stateCopy);
-    }
+    stateCopy.account = store.account;
+    this._alterState(stateCopy);
   }
 
   handleSubmit(form) {
@@ -67,7 +56,7 @@ export class Contact extends React.Component {
   }
 
   render() {
-    const profile = this.state.profile;
+    const account = this.state.account;
     const message = {
       title: this.state.messageTitle,
       content: this.state.messageContent,
@@ -77,9 +66,9 @@ export class Contact extends React.Component {
     return (
       <div>
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
-          <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder="Nom complet" required />
-          <EmailInput value={profile ? profile.email : ''} placeholder="Email" required />
-          <TelInput label="phone" value={profile ? profile.phone : ''} placeholder="Téléphone" />
+          <TextInput label="name" value={account ? `${account.firstName} ${account.lastName}` : ''} placeholder="Nom complet" required />
+          <EmailInput value={account ? account.email : ''} placeholder="Email" required />
+          <TelInput label="phone" value={account ? account.phone : ''} placeholder="Téléphone" />
           <TextArea label="message" placeholder="Entrez votre message" required />
         </BasicForm>
       </div>
