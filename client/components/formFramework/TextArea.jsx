@@ -1,10 +1,12 @@
 import React from 'react';
 
-import FormActions from '../../actions/CurrentForm.js';
+import FormActions from 'actions/CurrentForm.js';
 
 import 'scss/components/_form.scss';
 
+
 export class TextArea extends React.Component {
+
   constructor(props, context) {
     super(props, context);
 
@@ -34,7 +36,7 @@ export class TextArea extends React.Component {
       name: this.state.label,
       value: this.state.value,
       placeholder: this.state.placeholder,
-      onChange: this.handleEdit,
+      onStoreChange: this.handleEdit,
     };
 
     if (this.state.required) {

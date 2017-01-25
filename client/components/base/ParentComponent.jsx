@@ -1,7 +1,10 @@
 import React from 'react';
-import { StateComponent } from './StateComponent.jsx';
+
+import { StateComponent } from 'base/StateComponent.jsx';
+
 
 export class ParentComponent extends StateComponent {
+
   constructor(props, context) {
     super(props, context);
 
@@ -11,7 +14,7 @@ export class ParentComponent extends StateComponent {
   componentWillReceiveProps(props) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.children = props.children;
-    this._alterState(stateCopy);
+    this.updateState(stateCopy);
   }
 }
 

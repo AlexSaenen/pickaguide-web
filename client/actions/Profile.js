@@ -1,4 +1,4 @@
-import alt from '../alt';
+import alt from 'client/alt';
 
 export default alt.generateActions('get', 'getError', 'getSuccess',
   'invalidateProfile');

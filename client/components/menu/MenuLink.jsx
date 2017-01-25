@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import MenuEntry from './MenuEntry.jsx';
+import MenuEntry from 'menu/MenuEntry.jsx';
+
 
 const MenuLink = (props) => {
   return (

@@ -1,9 +1,10 @@
-import alt from '../alt';
+import alt from 'client/alt';
+import SignupActions from 'actions/Signup.js';
+import SignupApi from 'services/Signup.js';
 
-import SignupActions from '../actions/Signup.js';
-import SignupApi from '../services/Signup.js';
 
 class SignupStore {
+
   constructor() {
     this.error = null;
     this.message = '';
@@ -17,6 +18,7 @@ class SignupStore {
 
   onSignup(form) {
     SignupApi.signup(form);
+    return false;
   }
 
   onSignupSuccess(result) {

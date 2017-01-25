@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import MainLayout from './components/MainLayout.jsx';
-import Home from './components/views/Home.jsx';
-import { Signup } from './components/views/Signup.jsx';
-import { Login } from './components/views/Login.jsx';
-import { Profile } from './components/views/Profile.jsx';
-import { Settings } from './components/views/Settings.jsx';
-import { Contact } from './components/views/Contact.jsx';
-import About from './components/views/About.jsx';
+
+import { MainLayout } from 'components/MainLayout.jsx';
+import Home from 'components/views/Home.jsx';
+import { Signup } from 'components/views/Signup.jsx';
+import { Login } from 'components/views/Login.jsx';
+import { Profile } from 'components/views/Profile.jsx';
+import { Settings } from 'components/views/Settings.jsx';
+import { Contact } from 'components/views/Contact.jsx';
+import About from 'components/views/About.jsx';
 
 import 'scss/global.scss';
 

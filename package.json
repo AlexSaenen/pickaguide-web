@@ -37,6 +37,7 @@
     "webpack-uglify-js-plugin": "^1.1.8"
   },
   "devDependencies": {
+    "babel-preset-react-hmre": "^1.1.1",
     "eslint": "^2.11.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",
@@ -48,11 +49,9 @@
     "setup": "webdriver-manager update && protractor tests/conf.js",
     "test": "webdriver-manager update && protractor tests/conf.js",
     "webpack:dev": "webpack-dev-server --progress --hot --inline --colors",
-    "build:dev": "webpack --progress --color",
-    "build:prod": "webpack -p --config webpack.prod.config.js --profile --progress --colors",
+    "webpack": "webpack -p --config webpack.prod.config.js --profile --progress --colors",
     "server:dev": "NODE_ENV=dev node server.js",
-    "server:prod": "NODE_ENV=production && node server.js",
-    "server:dev-win": "node server.js"
+    "server": "NODE_ENV=production && node server.js"
   },
   "repository": {
     "type": "git",

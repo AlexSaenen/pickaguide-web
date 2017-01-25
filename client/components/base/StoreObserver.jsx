@@ -1,6 +1,8 @@
-import { StateComponent } from './StateComponent.jsx';
+import { StateComponent } from 'base/StateComponent.jsx';
+
 
 export class StoreObserver extends StateComponent {
+
   constructor(props, context, stores) {
     super(props, context);
 
@@ -9,13 +11,13 @@ export class StoreObserver extends StateComponent {
 
   componentDidMount() {
     this.stores.forEach((store) => {
-      store.listen(this.onChange);
+      store.listen(this.onStoreChange);
     });
   }
 
   componentWillUnmount() {
     this.stores.forEach((store) => {
-      store.unlisten(this.onChange);
+      store.unlisten(this.onStoreChange);
     });
   }
 }

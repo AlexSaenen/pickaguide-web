@@ -2,7 +2,9 @@ import React from 'react';
 
 import 'scss/components/formFramework/message.scss';
 
+
 export class Message extends React.Component {
+
   constructor(props, context) {
     super(props, context);
 

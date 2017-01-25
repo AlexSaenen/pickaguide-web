@@ -1,5 +1,5 @@
 const express = require('express');
-const logger = require('./server/system').System.Logger();
+const logger = require('server/system').System.Logger();
 const path = require('path');
 
 const app = express();

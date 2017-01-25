@@ -1,8 +1,11 @@
 import React from 'react';
-import AuthStore from '../stores/Auth.js';
-import { StoreObserverForChildren } from './base/StoreObserverForChildren.jsx';
+
+import { StoreObserverForChildren } from 'base/StoreObserverForChildren.jsx';
+import AuthStore from 'stores/Auth.js';
+
 
 export class AuthDependent extends StoreObserverForChildren {
+
   constructor(props, context) {
     super(props, context, AuthStore);
     this.auth = props.auth;
@@ -10,13 +13,13 @@ export class AuthDependent extends StoreObserverForChildren {
     this.className = props.className;
 
     this.state.isVisible = this._isVisible(AuthStore.getState().token);
-    this.onChange = this.onChange.bind(this);
+    this.onStoreChange = this.onStoreChange.bind(this);
   }
 
-  onChange(store) {
+  onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.isVisible = this._isVisible(store.token);
-    this._alterState(stateCopy);
+    this.updateState(stateCopy);
   }
 
   _isVisible(token) {

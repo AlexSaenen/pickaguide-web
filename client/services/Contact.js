@@ -1,7 +1,9 @@
-import ContactActions from '../actions/Contact.js';
-import PromiseApi from './PromiseApi.js';
+import ContactActions from 'actions/Contact.js';
+import PromiseApi from 'services/PromiseApi.js';
+
 
 export default class ContactApi {
+
   static contact(form) {
     PromiseApi.post('/public/contactus', form)
       .then((result) => {

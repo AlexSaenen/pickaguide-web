@@ -1,15 +1,17 @@
 import React from 'react';
 
-import { BasicForm } from '../formFramework/BasicForm.jsx';
-import { TextInput } from '../formFramework/TextInput.jsx';
-import { PasswordInput } from '../formFramework/PasswordInput.jsx';
-import { TelInput } from '../formFramework/TelInput.jsx';
-import { EmailInput } from '../formFramework/EmailInput.jsx';
-import { StoreObserver } from '../base/StoreObserver.jsx';
-// import SettingsActions from '../../actions/Settings.js';
-import ProfileStore from '../../stores/Profile.js';
+import { BasicForm } from 'formFramework/BasicForm.jsx';
+import { TextInput } from 'formFramework/TextInput.jsx';
+import { PasswordInput } from 'formFramework/PasswordInput.jsx';
+import { TelInput } from 'formFramework/TelInput.jsx';
+import { EmailInput } from 'formFramework/EmailInput.jsx';
+import { StoreObserver } from 'base/StoreObserver.jsx';
+// import SettingsActions from 'actions/Settings.js';
+import ProfileStore from 'stores/Profile.js';
+
 
 export class Settings extends StoreObserver {
+
   constructor(props, context) {
     super(props, context, ProfileStore);
 
@@ -19,14 +21,14 @@ export class Settings extends StoreObserver {
       profile: {},
     };
 
-    this.onChange = this.onChange.bind(this);
+    this.onStoreChange = this.onStoreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  onChange() {
+  onStoreChange() {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.profile = ProfileStore.getState().profile;
-    this._alterState(stateCopy);
+    this.updateState(stateCopy);
   }
 
   handleSubmit(form) {

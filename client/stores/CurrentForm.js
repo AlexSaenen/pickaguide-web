@@ -1,8 +1,9 @@
-import alt from '../alt';
+import alt from 'client/alt';
+import FormActions from 'actions/CurrentForm.js';
 
-import FormActions from '../actions/CurrentForm.js';
 
 class CurrentForm {
+
   constructor() {
     this.fields = {};
     this.bindActions(FormActions);

@@ -1,22 +1,23 @@
 import React from 'react';
 
-import MenuLogo from './MenuLogo.jsx';
-import MenuLink from './MenuLink.jsx';
-import { SearchBar } from '../formFramework/SearchBar.jsx';
+import MenuLogo from 'menu/MenuLogo.jsx';
+import MenuLink from 'menu/MenuLink.jsx';
+import { SearchBar } from 'formFramework/SearchBar.jsx';
 
 import 'scss/components/menu/_mainMenu.scss';
 
+
 const MainMenu = () => {
   return (
-    <div className={'MenuElement MainMenu'}>
-      <div className={'MainMenuContentWrapper'}>
+    <div className="MenuElement MainMenu">
+      <div className="MainMenuContentWrapper">
         <MenuLogo />
-        <MenuLink href={'/'} title={'Home'} />
-        <MenuLink href={'/about'} title={'About'} />
-        <MenuLink href={'/contactus'} title={'Contact'} />
-        <MenuLink href={'/settings'} title={'Settings'} auth />
+        <MenuLink href="/" title="Home" />
+        <MenuLink href="/about" title="About" />
+        <MenuLink href="/contactus" title="Contact" />
+        <MenuLink href="/settings" title="Settings" auth />
       </div>
-      <div className={'MainMenuContentWrapper'}>
+      <div className="MainMenuContentWrapper">
         <SearchBar />
       </div>
     </div>
