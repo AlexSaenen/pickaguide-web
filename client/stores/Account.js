@@ -1,9 +1,10 @@
-import alt from '../alt';
+import alt from 'client/alt';
+import AccountActions from 'actions/Account.js';
+import AccountApi from 'services/Account.js';
 
-import AccountActions from '../actions/Account.js';
-import AccountApi from '../services/Account.js';
 
 class AccountStore {
+
   constructor() {
     this.error = null;
     this.account = null;

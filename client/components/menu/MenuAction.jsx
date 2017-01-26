@@ -1,6 +1,7 @@
 import React from 'react';
 
-import MenuEntry from './MenuEntry.jsx';
+import MenuEntry from 'menu/MenuEntry.jsx';
+
 
 const MenuAction = (props) => {
   return (

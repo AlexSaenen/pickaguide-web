@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { BasicForm } from '../formFramework/BasicForm.jsx';
-import { TextInput } from '../formFramework/TextInput.jsx';
-import { EmailInput } from '../formFramework/EmailInput.jsx';
-import { PasswordInput } from '../formFramework/PasswordInput.jsx';
-import { StoreObserver } from '../base/StoreObserver.jsx';
+import { BasicForm } from 'formFramework/BasicForm.jsx';
+import { TextInput } from 'formFramework/TextInput.jsx';
+import { EmailInput } from 'formFramework/EmailInput.jsx';
+import { PasswordInput } from 'formFramework/PasswordInput.jsx';
+import { StoreObserver } from 'base/StoreObserver.jsx';
+import SignupActions from 'actions/Signup.js';
+import SignupStore from 'stores/Signup.js';
 
-import SignupActions from '../../actions/Signup.js';
-
-import SignupStore from '../../stores/Signup.js';
 
 export class Signup extends StoreObserver {
+
   constructor(props, context) {
     super(props, context, SignupStore);
 
@@ -21,10 +21,10 @@ export class Signup extends StoreObserver {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.onStoreChange = this.onStoreChange.bind(this);
   }
 
-  onChange(store) {
+  onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
 
     stateCopy.isSuccess = !store.error;
@@ -36,7 +36,7 @@ export class Signup extends StoreObserver {
       stateCopy.messageContent = store.message;
     }
 
-    this._alterState(stateCopy);
+    this.updateState(stateCopy);
   }
 
   handleSubmit(form) {
@@ -57,11 +57,11 @@ export class Signup extends StoreObserver {
     return (
       <div>
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
-          <TextInput label={'firstName'} placeholder={'Entrez votre prénom'} required />
-          <TextInput label={'lastName'} placeholder={'Entrez votre nom'} required />
-          <EmailInput placeholder={'Entrez votre email'} required />
-          <PasswordInput placeholder={'Entrez votre mot de passe'} required />
-          <PasswordInput label={'passwordConfirmation'} placeholder={'Confirmez le mot de passe'} required />
+          <TextInput label="firstName" placeholder="Entrez votre prénom" required />
+          <TextInput label="lastName" placeholder="Entrez votre nom" required />
+          <EmailInput placeholder="Entrez votre email" required />
+          <PasswordInput placeholder="Entrez votre mot de passe" required />
+          <PasswordInput label="passwordConfirmation" placeholder="Confirmez le mot de passe" required />
         </BasicForm>
       </div>
     );

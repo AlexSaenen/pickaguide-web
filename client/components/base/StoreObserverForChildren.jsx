@@ -1,6 +1,8 @@
-import { ParentComponent } from './ParentComponent.jsx';
+import { ParentComponent } from 'base/ParentComponent.jsx';
+
 
 export class StoreObserverForChildren extends ParentComponent {
+
   constructor(props, context, stores) {
     super(props, context);
 
@@ -9,13 +11,13 @@ export class StoreObserverForChildren extends ParentComponent {
 
   componentDidMount() {
     this.stores.forEach((store) => {
-      store.listen(this.onChange);
+      store.listen(this.onStoreChange);
     });
   }
 
   componentWillUnmount() {
     this.stores.forEach((store) => {
-      store.unlisten(this.onChange);
+      store.unlisten(this.onStoreChange);
     });
   }
 }

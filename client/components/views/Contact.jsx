@@ -1,19 +1,18 @@
 import React from 'react';
 
-import { BasicForm } from '../formFramework/BasicForm.jsx';
-import { TextArea } from '../formFramework/TextArea.jsx';
-import { TextInput } from '../formFramework/TextInput.jsx';
-import { TelInput } from '../formFramework/TelInput.jsx';
-import { EmailInput } from '../formFramework/EmailInput.jsx';
+import { BasicForm } from 'formFramework/BasicForm.jsx';
+import { TextArea } from 'formFramework/TextArea.jsx';
+import { TextInput } from 'formFramework/TextInput.jsx';
+import { TelInput } from 'formFramework/TelInput.jsx';
+import { EmailInput } from 'formFramework/EmailInput.jsx';
+import { StoreObserver } from 'base/StoreObserver.jsx';
+import ContactActions from 'actions/Contact.js';
+import AccountStore from 'stores/Account.js';
+import ContactStore from 'stores/Contact.js';
 
-import { StoreObserver } from '../base/StoreObserver.jsx';
-
-import ContactActions from '../../actions/Contact.js';
-
-import AccountStore from '../../stores/Account.js';
-import ContactStore from '../../stores/Contact.js';
 
 export class Contact extends StoreObserver {
+
   constructor(props, context) {
     super(props, context, [AccountStore, ContactStore]);
 
@@ -24,7 +23,7 @@ export class Contact extends StoreObserver {
       messageContent: '',
     };
 
-    this.onChange = this.onChange.bind(this);
+    this.onStoreChange = this.onStoreChange.bind(this);
     this.onContact = this.onContact.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -42,13 +41,13 @@ export class Contact extends StoreObserver {
         `You have successfully contacted us! Your contact id is '${store.contactId}'. One of our staff will answer you soon.`;
     }
 
-    this._alterState(stateCopy);
+    this.updateState(stateCopy);
   }
 
-  onChange(store) {
+  onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.account = store.account;
-    this._alterState(stateCopy);
+    this.updateState(stateCopy);
   }
 
   handleSubmit(form) {

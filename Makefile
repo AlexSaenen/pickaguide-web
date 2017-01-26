@@ -26,12 +26,11 @@ run:
 	docker run --name $(CONTAINER) -p $(EXPOSE):$(PORT) -d $(REPOSITORY)
 
 prod:
-	npm run build:prod
-	npm run server:prod
+	npm run webpack
+	npm run server
 
 dev-bundle:
 	npm install
-	npm run build:dev
 	npm run webpack:dev
 
 dev-server:

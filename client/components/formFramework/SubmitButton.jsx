@@ -2,7 +2,9 @@ import React from 'react';
 
 import 'scss/components/_form.scss';
 
+
 export class SubmitButton extends React.Component {
+
   constructor(props, context) {
     super(props, context);
 

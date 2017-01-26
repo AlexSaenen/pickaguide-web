@@ -1,9 +1,10 @@
-import alt from '../alt';
+import alt from 'client/alt';
+import ProfileActions from 'actions/Profile.js';
+import ProfileApi from 'services/Profile.js';
 
-import ProfileActions from '../actions/Profile.js';
-import ProfileApi from '../services/Profile.js';
 
 class ProfileStore {
+
   constructor() {
     this.error = null;
     this.profile = null;

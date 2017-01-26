@@ -1,7 +1,9 @@
-import AccountActions from '../actions/Account.js';
-import PromiseApi from './PromiseApi.js';
+import AccountActions from 'actions/Account.js';
+import PromiseApi from 'services/PromiseApi.js';
+
 
 export default class AccountApi {
+
   static get() {
     PromiseApi.auth().get('/account')
       .then((result) => {

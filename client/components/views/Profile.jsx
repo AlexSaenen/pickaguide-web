@@ -1,16 +1,17 @@
 import React from 'react';
 
-import { StoreObserver } from '../base/StoreObserver.jsx';
+import { StoreObserver } from 'base/StoreObserver.jsx';
+import ProfileActions from 'actions/Profile.js';
+import ProfileStore from 'stores/Profile.js';
 
-import ProfileActions from '../../actions/Profile.js';
-import ProfileStore from '../../stores/Profile.js';
 
 export class Profile extends StoreObserver {
+
   constructor(props, context) {
     super(props, context, ProfileStore);
 
     this.state = { profile: ProfileStore.getState().profile };
-    this.onChange = this.onChange.bind(this);
+    this.onStoreChange = this.onStoreChange.bind(this);
   }
 
   componentDidMount() {
@@ -18,10 +19,10 @@ export class Profile extends StoreObserver {
     ProfileActions.getProfile();
   }
 
-  onChange(store) {
+  onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.profile = store.profile;
-    this._alterState(stateCopy);
+    this.updateState(stateCopy);
   }
 
   render() {

@@ -1,7 +1,9 @@
-import SigninActions from '../actions/Signin.js';
-import PromiseApi from './PromiseApi.js';
+import SigninActions from 'actions/Signin.js';
+import PromiseApi from 'services/PromiseApi.js';
+
 
 export default class ProfileApi {
+
   static getProfile(form) {
     PromiseApi.get('/profile')
     .then((result) => {

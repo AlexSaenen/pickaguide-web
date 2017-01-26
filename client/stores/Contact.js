@@ -1,9 +1,10 @@
-import alt from '../alt';
+import alt from 'client/alt';
+import ContactActions from 'actions/Contact.js';
+import ContactApi from 'services/Contact.js';
 
-import ContactActions from '../actions/Contact.js';
-import ContactApi from '../services/Contact.js';
 
 class ContactStore {
+
   constructor() {
     this.error = null;
     this.contactId = null;
@@ -12,6 +13,7 @@ class ContactStore {
 
   onContact(form) {
     ContactApi.contact(form);
+    return false;
   }
 
   onContactSuccess(contactId) {

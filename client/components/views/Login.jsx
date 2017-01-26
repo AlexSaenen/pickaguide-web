@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { BasicForm } from '../formFramework/BasicForm.jsx';
-import { EmailInput } from '../formFramework/EmailInput.jsx';
-import { PasswordInput } from '../formFramework/PasswordInput.jsx';
-import { StoreObserver } from '../base/StoreObserver.jsx';
+import { BasicForm } from 'formFramework/BasicForm.jsx';
+import { EmailInput } from 'formFramework/EmailInput.jsx';
+import { PasswordInput } from 'formFramework/PasswordInput.jsx';
+import { StoreObserver } from 'base/StoreObserver.jsx';
+import AuthActions from 'actions/Auth.js';
+import AuthStore from 'stores/Auth.js';
 
-import AuthActions from '../../actions/Auth.js';
-
-import AuthStore from '../../stores/Auth.js';
 
 export class Login extends StoreObserver {
+
   constructor(props, context) {
     super(props, context, AuthStore);
 
@@ -20,10 +20,10 @@ export class Login extends StoreObserver {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.onStoreChange = this.onStoreChange.bind(this);
   }
 
-  onChange(store) {
+  onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
 
     if (store.error) {
@@ -36,7 +36,7 @@ export class Login extends StoreObserver {
       stateCopy.isSuccess = true;
     }
 
-    this._alterState(stateCopy);
+    this.updateState(stateCopy);
   }
 
   handleSubmit(form) {
@@ -53,10 +53,14 @@ export class Login extends StoreObserver {
     return (
       <div>
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Login" message={message}>
-          <EmailInput placeholder={'Email'} required />
-          <PasswordInput placeholder={'Password'} required />
+          <EmailInput placeholder="Email" required />
+          <PasswordInput placeholder="Password" required />
         </BasicForm>
       </div>
     );
   }
 }
+
+Login.contextTypes = {
+  router: React.PropTypes.object.isRequired,
+};

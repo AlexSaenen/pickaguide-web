@@ -8,6 +8,6 @@
         'no-console': 0,
         'arrow-body-style': 0,
         'max-len': 0,
-        'import/no-unresolved': ['error', { ignore: ['^components*', '^actions*', '^stores*', '^services*', '^config*', '^scss*'] }],
+        'import/no-unresolved': ['error', { ignore: ['^formFramework*', '^base*', '^menu*', '^components*', '^actions*', '^stores*', '^client*', '^services*', '^config*', '^scss*'] }],
     }
 }

@@ -1,20 +1,19 @@
 import React from 'react';
 
-import { Menu } from './Menu.jsx';
-import { Footer } from './Footer.jsx';
+import { Menu } from 'components/Menu.jsx';
+import { Footer } from 'components/Footer.jsx';
+import { ParentComponent } from 'base/ParentComponent.jsx';
 
-const MainLayout = (props) => {
-  return (
-    <div>
-      <Menu />
-      {props.children}
-      <Footer />
-    </div>
-  );
-};
 
-MainLayout.propTypes = {
-  children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array]),
-};
+export class MainLayout extends ParentComponent {
 
-export default MainLayout;
+  render() {
+    return (
+      <div>
+        <Menu />
+        {this.state.children}
+        <Footer />
+      </div>
+    );
+  }
+}
