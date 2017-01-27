@@ -41,7 +41,7 @@ export class Input extends React.Component {
       id: this.state.label,
       value: this.state.value,
       placeholder: this.state.placeholder,
-      onStoreChange: this.handleEdit,
+      onChange: this.handleEdit,
       maxLength: '50',
     };
 
