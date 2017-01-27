@@ -15,6 +15,16 @@ module.exports = {
            fonts: path.join(__dirname, '/assets/fonts'),
            images: path.join(__dirname, '/assets/images'),
            scss: path.join(__dirname, '/assets/scss'),
+           client: path.join(__dirname, '/client'),
+           actions: path.join(__dirname, '/client/actions'),
+           components: path.join(__dirname, '/client/components'),
+           base: path.join(__dirname, '/client/components/base'),
+           formFramework: path.join(__dirname, '/client/components/formFramework'),
+           menu: path.join(__dirname, '/client/components/menu'),
+           views: path.join(__dirname, '/client/components/views'),
+           services: path.join(__dirname, '/client/services'),
+           stores: path.join(__dirname, '/client/stores'),
+           server: path.join(__dirname, '/server'),
        },
     },
     module: {
@@ -28,7 +38,7 @@ module.exports = {
               loader: 'babel-loader',
               exclude: '/node_modules/',
               query: {
-                  presets: ['es2015', 'react'],
+                  presets: ['es2015', 'react', 'react-hmre'],
               }
            },
         ],
@@ -37,7 +47,6 @@ module.exports = {
         new webpack.NoErrorsPlugin(),
     ],
     devServer: {
-        hot: true,
         proxy: {
             '/': {
                 target: `http://localhost:${process.env.PORT || 5000}`,

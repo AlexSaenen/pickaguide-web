@@ -1,20 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
-import { HomePage } from './components/HomePage.jsx';
-import { SignIn } from './components/menu/SignIn.jsx';
-import { LogIn } from './components/menu/LogIn.jsx';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+
+import { MainLayout } from 'components/MainLayout.jsx';
+import Home from 'components/views/Home.jsx';
+import { Signup } from 'components/views/Signup.jsx';
+import { Login } from 'components/views/Login.jsx';
+import { Profile } from 'components/views/Profile.jsx';
+import { Settings } from 'components/views/Settings.jsx';
+import { Contact } from 'components/views/Contact.jsx';
+import About from 'components/views/About.jsx';
 
 import 'scss/global.scss';
 
 ReactDOM.render(
 
-  <Router history={hashHistory}>
-    <Route path="/" component={HomePage}>
-      <IndexRoute component={HomePage} />
+  <Router history={browserHistory}>
+    <Route path="/" component={MainLayout}>
+      <IndexRoute component={Home} />
+      <Route path="signup" component={Signup} />
+      <Route path="login" component={Login} />
+      <Route path="profile" component={Profile} />
+      <Route path="settings" component={Settings} />
+      <Route path="contactus" component={Contact} />
+      <Route path="about" component={About} />
     </Route>
-    <Route path="signin" component={SignIn} />
-    <Route path="login" component={LogIn} />
   </Router>
 
   , document.getElementById('app')

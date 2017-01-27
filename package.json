@@ -6,33 +6,38 @@
   "author": "PickaGuideTeam",
   "main": "server.js",
   "engines": {
-    "node": "4.1.1",
-    "npm": "2.14.4"
+    "node": "6.9.3",
+    "npm": "4.1.2"
   },
   "dependencies": {
     "alt": "^0.18.6",
-    "babel-core": "^6.0.0",
-    "babel-loader": "^6.1.0",
-    "babel-preset-es2015": "^6.14.0",
-    "babel-preset-react": "^6.11.1",
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
     "css-loader": "^0.23.1",
+    "deep-diff": "^0.3.4",
     "express": "^4.13.4",
     "file-loader": "^0.9.0",
     "fluxxor": "^1.7.3",
+    "history": "^4.5.0",
     "jsx-loader": "^0.13.2",
-    "mongoose": "^4.4.20",
     "node-sass": "^3.4.2",
-    "react": "^0.14.6",
-    "react-dom": "^0.14.6",
+    "react": "^0.14.8",
+    "react-bootstrap": "^0.30.6",
+    "react-dom": "^0.14.8",
     "react-router": "^2.2.4",
     "sass-loader": "^3.2.0",
-    "style-loader": "^0.13.0",
+    "style-loader": "^0.13.1",
     "superagent": "^2.2.0",
-    "webpack": "^1.12.12",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.3",
     "webpack-uglify-js-plugin": "^1.1.8"
   },
   "devDependencies": {
+    "babel-preset-react-hmre": "^1.1.1",
     "eslint": "^2.11.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",
@@ -41,14 +46,12 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "test": "echo \"Warning: no test specified\" && exit 0",
+    "setup": "webdriver-manager update && protractor tests/conf.js",
+    "test": "webdriver-manager update && protractor tests/conf.js",
     "webpack:dev": "webpack-dev-server --progress --hot --inline --colors",
-    "build:dev": "webpack --progress --color",
-    "build:prod": "webpack -p --config webpack.prod.config.js --profile --progress --colors",
+    "webpack": "webpack -p --config webpack.prod.config.js --profile --progress --colors",
     "server:dev": "NODE_ENV=dev node server.js",
-    "server:prod": "NODE_ENV=production node server.js",
-    "server:dev-win": "node server.js",
-    "server:prod-win": "node server.js"
+    "server": "NODE_ENV=production && node server.js"
   },
   "repository": {
     "type": "git",

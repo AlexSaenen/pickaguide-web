@@ -5,11 +5,12 @@ config.devtool = 'source-map'
 config.output.publicPath = '/assets/build/';
 
 config.plugins.push(
-    new webpack.DefinePlugin({
-        'process.env': {
-            NODE_ENV: JSON.stringify('production'),
-        },
-    })
+   new webpack.DefinePlugin({
+      'process.env': {
+         NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production'),
+         ENVIRONMENT: JSON.stringify(process.env.ENVIRONMENT || 'production'),
+      }
+   })
 );
 
 config.plugins.push(
