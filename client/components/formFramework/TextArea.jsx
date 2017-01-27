@@ -36,7 +36,7 @@ export class TextArea extends React.Component {
       name: this.state.label,
       value: this.state.value,
       placeholder: this.state.placeholder,
-      onStoreChange: this.handleEdit,
+      onChange: this.handleEdit,
     };
 
     if (this.state.required) {
