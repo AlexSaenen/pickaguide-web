@@ -6,13 +6,13 @@ export default class ProfileApi {
 
   static getProfile(form) {
     PromiseApi.get('/profile')
-    .then((result) => {
-        if (result.error) {
-            SigninActions.requestSigninError(result.error);
+    .then((res) => {
+        if (res.error) {
+            SigninActions.requestSigninError(res.error);
             return;
         }
 
-        SigninActions.requestSigninSuccess(result);
+        SigninActions.requestSigninSuccess(res);
     })
     .catch((err) => {
         SigninActions.requestSigninError(err);

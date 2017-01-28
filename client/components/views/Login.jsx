@@ -30,7 +30,7 @@ export class Login extends StoreObserver {
       stateCopy.messageTitle = 'Some error occurred when logging in';
       stateCopy.messageContent = String(store.error);
       stateCopy.isSuccess = false;
-    } else if (store.token) {
+    } else if (store.credentials) {
       stateCopy.messageTitle = 'Successful';
       stateCopy.messageContent = 'You have successfully logged in !';
       stateCopy.isSuccess = true;

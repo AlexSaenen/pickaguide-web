@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { StateComponent } from 'base/StateComponent.jsx';
+
 import 'scss/components/formFramework/message.scss';
 
 
-export class Message extends React.Component {
+export class Message extends StateComponent {
 
   constructor(props, context) {
     super(props, context);
@@ -16,7 +18,7 @@ export class Message extends React.Component {
   componentWillReceiveProps(props) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.message = props.payload;
-    this.setState(stateCopy);
+    this.updateState(stateCopy);
   }
 
   render() {

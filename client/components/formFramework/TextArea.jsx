@@ -1,11 +1,12 @@
 import React from 'react';
 
+import { StateComponent } from 'base/StateComponent.jsx';
 import FormActions from 'actions/CurrentForm.js';
 
 import 'scss/components/_form.scss';
 
 
-export class TextArea extends React.Component {
+export class TextArea extends StateComponent {
 
   constructor(props, context) {
     super(props, context);
@@ -28,7 +29,7 @@ export class TextArea extends React.Component {
     FormActions.updateValue({ label: e.target.name, value: e.target.value });
     const stateCopy = Object.assign({}, this.state);
     stateCopy.value = e.target.value;
-    this.setState(stateCopy);
+    this.updateState(stateCopy);
   }
 
   render() {

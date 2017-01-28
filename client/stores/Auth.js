@@ -3,13 +3,18 @@ import { browserHistory } from 'react-router';
 import alt from 'client/alt';
 import AuthActions from 'actions/Auth.js';
 import AuthApi from 'services/Auth.js';
+import CookieApi from 'services/Cookie.js';
 
 
 class AuthStore {
 
   constructor() {
     this.error = null;
-    this.token = AuthApi.getTokenFromCookie();
+    this.credentials = {
+      token: CookieApi.get('userToken'),
+      id: CookieApi.get('userId'),
+    };
+
     this.bindActions(AuthActions);
   }
 
@@ -18,9 +23,9 @@ class AuthStore {
     return false;
   }
 
-  onLoginSuccess(token) {
+  onLoginSuccess(credentials) {
     this.error = null;
-    this.token = token;
+    this.credentials = credentials;
     browserHistory.push('/');
   }
 
@@ -35,7 +40,7 @@ class AuthStore {
 
   onLogoutSuccess() {
     this.error = null;
-    this.token = null;
+    this.credentials = null;
     browserHistory.push('/');
   }
 

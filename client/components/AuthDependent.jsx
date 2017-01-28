@@ -12,18 +12,18 @@ export class AuthDependent extends StoreObserverForChildren {
     this.unauth = props.unauth && !props.auth;
     this.className = props.className;
 
-    this.state.isVisible = this._isVisible(AuthStore.getState().token);
+    this.state.isVisible = this._isVisible(AuthStore.getState().credentials);
     this.onStoreChange = this.onStoreChange.bind(this);
   }
 
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.isVisible = this._isVisible(store.token);
+    stateCopy.isVisible = this._isVisible(store.credentials);
     this.updateState(stateCopy);
   }
 
-  _isVisible(token) {
-    return (token === null ? (this.unauth || !this.auth) : (this.auth || !this.unauth));
+  _isVisible(credentials) {
+    return (credentials === null ? (this.unauth || !this.auth) : (this.auth || !this.unauth));
   }
 
   render() {

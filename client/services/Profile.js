@@ -6,11 +6,11 @@ export default class ProfileApi {
 
   static get() {
     PromiseApi.auth().get('/profile')
-    .then((result) => {
-      if (result.error) {
-        ProfileActions.getError(result.error);
+    .then((res) => {
+      if (res.error) {
+        ProfileActions.getError(res.error);
       } else {
-        ProfileActions.getSuccess(result);
+        ProfileActions.getSuccess(res);
       }
     })
     .catch((err) => {

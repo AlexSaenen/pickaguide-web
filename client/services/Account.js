@@ -6,11 +6,11 @@ export default class AccountApi {
 
   static get() {
     PromiseApi.auth().get('/account')
-      .then((result) => {
-        if (result.error) {
-          AccountActions.getError(result.error);
+      .then((res) => {
+        if (res.error) {
+          AccountActions.getError(res.error);
         } else {
-          AccountActions.getSuccess(result);
+          AccountActions.getSuccess(res);
         }
       })
       .catch((err) => {

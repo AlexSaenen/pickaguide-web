@@ -8,9 +8,9 @@ export default class PromiseApi {
 
   static auth() {
     const newInstance = Object.create(PromiseApi);
-    const token = AuthStore.getState().token;
+    const credentials = AuthStore.getState().credentials;
 
-    if (token) { newInstance.token = token; }
+    if (credentials) { newInstance.token = credentials.token; }
 
     return newInstance;
   }
@@ -43,6 +43,19 @@ export default class PromiseApi {
     return new Promise((resolve, reject) => {
       const requestBuilder = request
         .post(`${config.apiUrl}${url}`, JSON.stringify(body))
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json');
+
+      if (this.token) { requestBuilder.set('Authorization', `Bearer ${this.token}`); }
+
+      PromiseApi._handleResponse(requestBuilder, { resolve, reject });
+    });
+  }
+
+  static put(url, body) {
+    return new Promise((resolve, reject) => {
+      const requestBuilder = request
+        .put(`${config.apiUrl}${url}`, JSON.stringify(body))
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json');
 
