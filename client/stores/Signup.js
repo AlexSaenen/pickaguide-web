@@ -21,9 +21,9 @@ class SignupStore {
     return false;
   }
 
-  onSignupSuccess(result) {
+  onSignupSuccess(message) {
     this.error = null;
-    this.message = result;
+    this.message = message;
   }
 
   onSignupError(error) {

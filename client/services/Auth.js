@@ -2,19 +2,19 @@
 // import AccountActions from 'actions/Account.js';
 import AuthActions from 'actions/Auth.js';
 import PromiseApi from 'services/PromiseApi.js';
+import CookieApi from 'services/Cookie.js';
 
 
 export default class AuthApi {
 
-  // TODO: Alex: Store token into a cookie
   static login(form) {
     PromiseApi.post('/public/sign-in', form)
-      .then((result) => {
-        if (result.error) {
-          AuthActions.loginError(result.error);
+      .then((res) => {
+        if (res.error) {
+          AuthActions.loginError(res.error);
         } else {
-          AuthApi.storeTokenToCookie(result.token);
-          AuthActions.loginSuccess(result.token);
+          CookieApi.override([{ key: 'userToken', value: res.token }, { key: 'userId', value: res.id }]);
+          AuthActions.loginSuccess(res);
           // ProfileActions.get();
           // AccountActions.get();
         }
@@ -24,14 +24,13 @@ export default class AuthApi {
       });
   }
 
-  // TODO: Alex: Delete cookie containing token
   static logout() {
     PromiseApi.auth().get('/account/logout')
-      .then((result) => {
-        if (result.error) {
-          AuthActions.logoutError(result.error);
+      .then((res) => {
+        if (res.error) {
+          AuthActions.logoutError(res.error);
         } else {
-          AuthApi.invalidateToken();
+          CookieApi.revoke();
           AuthActions.logoutSuccess();
           // ProfileActions.invalidateProfile();
           // AccountActions.invalidateAccount();
@@ -40,24 +39,5 @@ export default class AuthApi {
       .catch((err) => {
         AuthActions.logoutError(err);
       });
-  }
-
-  static storeTokenToCookie(token) {
-    document.cookie = `userToken=${token}`;
-  }
-
-  static getTokenFromCookie() {
-    const cookiePairs = document.cookie.split(';');
-    const cookieSplitPairs = cookiePairs.map(pair => {
-      const splitPair = pair.split('=');
-      return { key: splitPair[0], value: splitPair[1] };
-    });
-
-    const tokenPair = cookieSplitPairs.find(pair => pair.key === 'userToken');
-    return (tokenPair ? tokenPair.value : null);
-  }
-
-  static invalidateToken() {
-    document.cookie = '';
   }
 }

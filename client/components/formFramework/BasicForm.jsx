@@ -2,25 +2,19 @@ import React from 'react';
 
 import { SubmitButton } from 'formFramework/SubmitButton.jsx';
 import { Message } from 'formFramework/Message.jsx';
+import { ParentComponent } from 'base/ParentComponent.jsx';
 import FormStore from 'stores/CurrentForm.js';
 
 import 'scss/components/_form.scss';
 
 
-export class BasicForm extends React.Component {
+export class BasicForm extends ParentComponent {
 
   constructor(props, context) {
     super(props, context);
 
     this.state = props;
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentWillReceiveProps(props) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.children = props.children;
-    stateCopy.message = props.message;
-    this.setState(stateCopy);
   }
 
   handleSubmit(e) {

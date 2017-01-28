@@ -6,11 +6,11 @@ export default class SignupApi {
 
   static signup(form) {
     PromiseApi.post('/public/sign-up', form)
-      .then((result) => {
-        if (result.error) {
-          SignupActions.signupError(result.error);
+      .then((res) => {
+        if (res.error) {
+          SignupActions.signupError(res.error);
         } else {
-          SignupActions.signupSuccess(result.message);
+          SignupActions.signupSuccess(res.message);
         }
       })
       .catch((err) => {
