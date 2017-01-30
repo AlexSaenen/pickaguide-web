@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Menu } from 'components/Menu.jsx';
 import { Footer } from 'components/Footer.jsx';
-import { ParentComponent } from 'base/ParentComponent.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 
 
-export class MainLayout extends ParentComponent {
+export class MainLayout extends PropsComponent {
 
   render() {
     return (

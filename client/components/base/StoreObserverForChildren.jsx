@@ -1,7 +1,7 @@
-import { ParentComponent } from 'base/ParentComponent.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 
 
-export class StoreObserverForChildren extends ParentComponent {
+export class StoreObserverForChildren extends PropsComponent {
 
   constructor(props, context, stores) {
     super(props, context);

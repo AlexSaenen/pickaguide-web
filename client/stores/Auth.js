@@ -2,6 +2,8 @@ import { browserHistory } from 'react-router';
 
 import alt from 'client/alt';
 import AuthActions from 'actions/Auth.js';
+import ProfileActions from 'actions/Profile.js';
+import AccountActions from 'actions/Account.js';
 import AuthApi from 'services/Auth.js';
 import CookieApi from 'services/Cookie.js';
 
@@ -10,12 +12,25 @@ class AuthStore {
 
   constructor() {
     this.error = null;
-    this.credentials = {
-      token: CookieApi.get('userToken'),
-      id: CookieApi.get('userId'),
-    };
+    this.credentials = null;
 
     this.bindActions(AuthActions);
+
+    if (CookieApi.isEmpty() === false) {
+      this.credentials = {
+        token: CookieApi.get('userToken'),
+        id: CookieApi.get('userId'),
+      };
+    }
+  }
+
+  onSync() {
+    if (this.credentials) {
+      ProfileActions.get.defer();
+      AccountActions.get.defer();
+    }
+
+    return false;
   }
 
   onLogin(form) {

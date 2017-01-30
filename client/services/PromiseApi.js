@@ -24,7 +24,12 @@ export default class PromiseApi {
           callbacks.reject(res.text ? JSON.parse(res.text).message : err.statusText);
         }
       } else {
-        callbacks.resolve(JSON.parse(res.text));
+        const jsonBody = JSON.parse(res.text);
+        if (jsonBody.code !== undefined && jsonBody.code !== 0) {
+          callbacks.reject(`${jsonBody.message} (code ${jsonBody.code})`);
+        } else {
+          callbacks.resolve(jsonBody);
+        }
       }
     });
   }

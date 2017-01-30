@@ -1,20 +1,23 @@
 import ProfileActions from 'actions/Profile.js';
 import PromiseApi from 'services/PromiseApi.js';
+import AuthStore from 'stores/Auth.js';
 
 
 export default class ProfileApi {
 
   static get() {
-    PromiseApi.auth().get('/profile')
-    .then((res) => {
-      if (res.error) {
-        ProfileActions.getError(res.error);
-      } else {
-        ProfileActions.getSuccess(res);
-      }
-    })
-    .catch((err) => {
-      ProfileActions.getError(err);
-    });
+    const credentials = AuthStore.getState().credentials;
+
+    if (credentials) {
+      PromiseApi.auth().get(`/profile/${credentials.id}`)
+        .then((res) => {
+          ProfileActions.getSuccess.defer(res);
+        })
+        .catch((err) => {
+          ProfileActions.getError.defer(err);
+        });
+    } else {
+      ProfileActions.getError.defer('Need to be logged in for that');
+    }
   }
 }
