@@ -17,4 +17,19 @@ export default class ProfileApi {
       ProfileActions.getError(err);
     });
   }
+
+  static settings(form) {
+    PromiseApi.auth().put('/profile', form)
+      .then((res) => {
+        if (res.error) {
+          ProfileActions.settingsSuccess(res.error);
+        } else {
+          ProfileActions.settingsSuccess(res);
+        }
+      })
+      .catch((err) => {
+        ProfileActions.settingsSuccess(err);
+      });
+  }
+
 }
