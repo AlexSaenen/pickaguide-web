@@ -20,4 +20,19 @@ export default class ProfileApi {
       ProfileActions.getError.defer('Need to be logged in for that');
     }
   }
+
+  static settings(form) {
+    PromiseApi.auth().put('/profile', form)
+      .then((res) => {
+        if (res.error) {
+          ProfileActions.settingsSuccess(res.error);
+        } else {
+          ProfileActions.settingsSuccess(res);
+        }
+      })
+      .catch((err) => {
+        ProfileActions.settingsSuccess(err);
+      });
+  }
+
 }

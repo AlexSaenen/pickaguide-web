@@ -25,6 +25,20 @@ class ProfileStore {
     this.profile = null;
   }
 
+  onSettings(form) {
+    ProfileApi.settings(form);
+  }
+
+  onSettingsSuccess(profile) {
+    this.error = null;
+    this.profile = profile;
+  }
+
+  onSettingsError(error) {
+    this.error = error;
+    this.profile = null;
+  }
+
   onInvalidateProfile() {
     this.profile = null;
   }

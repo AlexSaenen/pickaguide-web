@@ -1,5 +1,6 @@
-import SignupActions from 'actions/Signup.js';
 import PromiseApi from 'services/PromiseApi.js';
+import SignupActions from 'actions/Signup.js';
+import AuthActions from 'actions/Auth.js';
 
 
 export default class SignupApi {
@@ -7,7 +8,16 @@ export default class SignupApi {
   static signup(form) {
     PromiseApi.post('/public/sign-up', form)
       .then((res) => {
-        SignupActions.signupSuccess(res.message);
+        console.log('--- SIGNUP ---', res);
+        if (res.error) {
+          SignupActions.signupError(res.error);
+        } else {
+          SignupActions.signupSuccess(res.message);
+          AuthActions.login({
+            email: form.email,
+            password: form.password
+          });
+        }
       })
       .catch((err) => {
         SignupActions.signupError(err);

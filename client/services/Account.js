@@ -2,7 +2,6 @@ import AccountActions from 'actions/Account.js';
 import PromiseApi from 'services/PromiseApi.js';
 import AuthStore from 'stores/Auth.js';
 
-
 export default class AccountApi {
 
   static get() {
@@ -20,4 +19,19 @@ export default class AccountApi {
       AccountActions.getError.defer('Need to be logged in for that');
     }
   }
+
+  static settings(form) {
+    PromiseApi.auth().put('/account', form)
+      .then((res) => {
+        if (res.error) {
+          AccountActions.settingsError(res.error);
+        } else {
+          AccountActions.settingsSuccess(res);
+        }
+      })
+      .catch((err) => {
+        AccountActions.settingsError(err);
+      });
+  }
+
 }

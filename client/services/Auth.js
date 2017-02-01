@@ -10,10 +10,17 @@ export default class AuthApi {
   static login(form) {
     PromiseApi.post('/public/sign-in', form)
       .then((res) => {
-        CookieApi.set('userToken', res.token);
-        CookieApi.set('userId', res.id);
-        AuthActions.loginSuccess(res);
-        AuthActions.sync();
+        if (res.error) {
+          AuthActions.loginError(res.error);
+        } else {
+          CookieApi.set('userToken', res.token);
+          CookieApi.set('userId', res.id);
+          AuthActions.loginSuccess(res);
+          AuthActions.sync();
+          
+          AccountActions.get(); // adapt with new API and pass id in query
+          ProfileActions.get(); // adapt with new API and pass id in query
+        }
       })
       .catch((err) => {
         AuthActions.loginError(err);
