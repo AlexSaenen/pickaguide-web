@@ -1,23 +1,23 @@
 import React from 'react';
 
-import { StateComponent } from 'base/StateComponent.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 
 import 'scss/components/formFramework/message.scss';
 
 
-export class Message extends StateComponent {
+export class Message extends PropsComponent {
 
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      message: props.payload,
+      message: props.message,
     };
   }
 
-  componentWillReceiveProps(props) {
+  dismiss() {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.message = props.payload;
+    stateCopy.message.content = '';
     this.updateState(stateCopy);
   }
 
@@ -26,6 +26,10 @@ export class Message extends StateComponent {
 
     if (this.state.message.content === '') {
       classes += ' Hidden';
+    } else {
+      setTimeout(() => {
+        this.dismiss();
+      }, 5000);
     }
 
     return (
@@ -38,7 +42,7 @@ export class Message extends StateComponent {
 }
 
 Message.propTypes = {
-  payload: React.PropTypes.shape({
+  message: React.PropTypes.shape({
     title: React.PropTypes.string,
     content: React.PropTypes.string,
     type: React.PropTypes.string,

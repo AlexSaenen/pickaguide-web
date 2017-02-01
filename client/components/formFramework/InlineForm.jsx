@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { SubmitButton } from 'formFramework/SubmitButton.jsx';
-import { ParentComponent } from 'base/ParentComponent.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 // import FormActions from 'actions/CurrentForm.js';
 import FormStore from 'stores/CurrentForm.js';
 
 import 'scss/components/_form.scss';
 
 
-export class InlineForm extends ParentComponent {
+export class InlineForm extends PropsComponent {
 
   constructor(props, context) {
     super(props, context);

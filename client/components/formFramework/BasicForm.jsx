@@ -2,13 +2,13 @@ import React from 'react';
 
 import { SubmitButton } from 'formFramework/SubmitButton.jsx';
 import { Message } from 'formFramework/Message.jsx';
-import { ParentComponent } from 'base/ParentComponent.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 import FormStore from 'stores/CurrentForm.js';
 
 import 'scss/components/_form.scss';
 
 
-export class BasicForm extends ParentComponent {
+export class BasicForm extends PropsComponent {
 
   constructor(props, context) {
     super(props, context);
@@ -29,7 +29,7 @@ export class BasicForm extends ParentComponent {
           {this.state.children}
           <SubmitButton label={this.state.submitLabel} />
         </form>
-        <Message payload={this.state.message} />
+        <Message message={this.state.message} />
       </div>
     );
   }
