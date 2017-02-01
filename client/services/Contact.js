@@ -7,11 +7,7 @@ export default class ContactApi {
   static contact(form) {
     PromiseApi.post('/public/contactus', form)
       .then((res) => {
-        if (res.error) {
-          ContactActions.contactError(res.error);
-        } else {
-          ContactActions.contactSuccess(res.id);
-        }
+        ContactActions.contactSuccess(res.id);
       })
       .catch((err) => {
         ContactActions.contactError(err);

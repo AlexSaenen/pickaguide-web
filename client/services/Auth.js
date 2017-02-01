@@ -10,12 +10,14 @@ export default class AuthApi {
   static login(form) {
     PromiseApi.post('/public/sign-in', form)
       .then((res) => {
-          console.log('Res login:', res);
         if (res.error) {
           AuthActions.loginError(res.error);
         } else {
-          CookieApi.override([{ key: 'userToken', value: res.token }, { key: 'userId', value: res.id }]);
+          CookieApi.set('userToken', res.token);
+          CookieApi.set('userId', res.id);
           AuthActions.loginSuccess(res);
+          AuthActions.sync();
+          
           AccountActions.get(); // adapt with new API and pass id in query
           ProfileActions.get(); // adapt with new API and pass id in query
         }
@@ -27,15 +29,11 @@ export default class AuthApi {
 
   static logout() {
     PromiseApi.auth().get('/account/logout')
-      .then((res) => {
-        if (res.error) {
-          AuthActions.logoutError(res.error);
-        } else {
-          CookieApi.revoke();
-          AuthActions.logoutSuccess();
-          // ProfileActions.invalidateProfile();
-          // AccountActions.invalidateAccount();
-        }
+      .then(() => {
+        CookieApi.revoke();
+        AuthActions.logoutSuccess();
+        ProfileActions.invalidateProfile();
+        AccountActions.invalidateAccount();
       })
       .catch((err) => {
         AuthActions.logoutError(err);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import AuthActions from 'actions/Auth.js';
 import ProfileStore from 'stores/Profile.js';
 import { AuthDependent } from 'components/AuthDependent.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
@@ -16,7 +17,7 @@ export class ProfilePicture extends StoreObserver {
     const profile = ProfileStore.getState().profile || { photoUrl: '' };
     this.state = { url: profile.photoUrl };
     this.onStoreChange = this.onStoreChange.bind(this);
-    this.props = props;
+    AuthActions.sync();
   }
 
   onStoreChange(store) {
