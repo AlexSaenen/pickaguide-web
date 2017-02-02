@@ -1,4 +1,4 @@
-describe('Tests on client web', function() {
+describe('Tests on client web with api', function() {
   it('complete complete form', function() {
   	browser.ignoreSynchronization = true;
 		browser.get('http://localhost:8080');
@@ -14,16 +14,12 @@ describe('Tests on client web', function() {
 	})
 	it('compleat complete form', function() {
 		browser.get('http://localhost:8080');
-		console.log("01");
 		element(by.css('[href="/login"]')).click();
-		console.log("02");
-		//element(by.id('email')).sendKeys("vivien.pradelles@gmail.com");
-		console.log("03");
-		//element(by.id('password')).sendKeys("azerty");
-		console.log("04");
+		element(by.id('email')).sendKeys("vivien.pradelles@gmail.com");
+		element(by.id('password')).sendKeys("azerty");
 		
-		//element(by.name('Submit')).click();
-		// console.log("lol: " + element(by.name('MessageTitle')).textContent);
+		element(by.name('Submit')).click();
+		//console.log("lol: " + element(by.name('MessageTitle')).textContent);
 
 		//expect(element(by.name('MessageTitle')).getText()).toEqual("Successful");
 	})

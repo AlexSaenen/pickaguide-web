@@ -48,7 +48,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "test": "webdriver-manager update && protractor tests/conf.js",
+    "test_local": "webdriver-manager update && protractor tests/conf-local.js",
+    "test": "webdriver-manager update && protractor tests/conf-circleCI.js",
     "webpack:dev": "webpack-dev-server --progress --hot --inline --colors",
     "webpack": "webpack -p --config webpack.prod.config.js --profile --progress --colors",
     "server:dev": "NODE_ENV=dev node server.js",
