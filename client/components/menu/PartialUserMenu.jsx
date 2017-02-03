@@ -15,14 +15,7 @@ const PartialUserMenu = () => {
       <div className="PartialUserMenuContentWrapper">
         <MenuLink href="/signup" title="Sign up" unauth />
         <MenuLink href="/login" title="Sign in" unauth />
-        <div className="dropdown">
-          <ProfilePicture auth />
-          <div className="dropdown-content">
-            <Link to="/settings"><p>Settings</p></Link>
-            <Link to="/settingsAccount"><p>Account</p></Link>
-            <Link to="/settingsProfile"><p>Profile</p></Link>
-          </div>
-        </div>
+        <ProfilePicture auth />
         <MenuAction callBack={AuthActions.logout} title="Logout" auth />
       </div>
     </div>

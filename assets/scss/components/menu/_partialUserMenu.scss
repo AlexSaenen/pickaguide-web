@@ -27,7 +27,6 @@
     transition-property: all;
     transition-duration: 0.8s;
     transition-timing-function: ease;
-
     & img {
         height: 100%;
     }
@@ -36,33 +35,17 @@
 .AccountLogo:hover {
     -webkit-filter: drop-shadow(0px 0px 13px $shadowColor);
     filter:         drop-shadow(0px 0px 13px $shadowColor);
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-    border: solid black 1px;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 6px 8px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
+    .Dropdown {
+        position: fixed;
+        display: block !important;
+        background-color: $softMainColor;
+        & a {
+            margin: 1em 1.5em;
+            text-decoration: none;
+            color: white;
+        }
+        & :hover {
+            background-color: $darkMainColor;
+        }
+    }
 }
