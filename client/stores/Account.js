@@ -20,8 +20,18 @@ class AccountStore {
     this.account = account;
   }
 
-  onGetError(error) {
+  onError(error) {
     this.error = error;
+    this.account = null;
+  }
+
+  onUpdate(form) {
+    AccountApi.update(form);
+  }
+
+  onUpdateSuccess(user) {
+    this.error = null;
+    this.account = user.account;
   }
 
   onInvalidateAccount() {

@@ -10,13 +10,17 @@ export default class AuthApi {
   static login(form) {
     PromiseApi.post('/public/sign-in', form)
       .then((res) => {
-        CookieApi.set('userToken', res.token);
-        CookieApi.set('userId', res.id);
-        AuthActions.loginSuccess(res);
-        AuthActions.sync();
+        if (res.error) {
+          AuthActions.error(res.error);
+        } else {
+          CookieApi.set('userToken', res.token);
+          CookieApi.set('userId', res.id);
+          AuthActions.loginSuccess(res);
+          AuthActions.sync();
+        }
       })
       .catch((err) => {
-        AuthActions.loginError(err);
+        AuthActions.error(err);
       });
   }
 
@@ -29,7 +33,7 @@ export default class AuthApi {
         AccountActions.invalidateAccount();
       })
       .catch((err) => {
-        AuthActions.logoutError(err);
+        AuthActions.error(err);
       });
   }
 }

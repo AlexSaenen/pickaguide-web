@@ -13,11 +13,6 @@ class SignupStore {
     this.bindActions(SignupActions);
   }
 
-  _handleError(error) {
-    this.error = error;
-    this.message = '';
-  }
-
   onSignup(form) {
     SignupApi.signup(form);
     return false;
@@ -29,12 +24,9 @@ class SignupStore {
     browserHistory.push('/login');
   }
 
-  onSignupError(error) {
-    this._handleError(error);
-  }
-
-  onSignupValidationError(error) {
-    this._handleError(error);
+  onError(error) {
+    this.error = error;
+    this.message = '';
   }
 }
 

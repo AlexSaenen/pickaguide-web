@@ -41,7 +41,7 @@ export class Signup extends StoreObserver {
 
   handleSubmit(form) {
     if (form.password !== form.passwordConfirmation) {
-      SignupActions.signupValidationError('The passwords do not match');
+      SignupActions.error('The passwords do not match');
     } else {
       SignupActions.signup(form);
     }

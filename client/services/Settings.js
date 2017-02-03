@@ -1,16 +1,20 @@
-import SigninActions from 'actions/Signin.js';
+import SettingsActions from 'actions/Settings.js';
 import PromiseApi from 'services/PromiseApi.js';
 
 
-export default class ProfileApi {
+export default class SettingsApi {
 
-  static getProfile(form) {
-    PromiseApi.get('/profiles')
-    .then((res) => {
-      SigninActions.requestSigninSuccess(res);
-    })
-    .catch((err) => {
-      SigninActions.requestSigninError(err);
-    });
+  static update(form) {
+    PromiseApi.auth().put('/settings', form)
+      .then((res) => {
+        if (res.error) {
+          SettingsActions.error(res.error);
+        } else {
+          SettingsActions.updateSuccess(res);
+        }
+      })
+      .catch((err) => {
+        SettingsActions.error(err);
+      });
   }
 }
