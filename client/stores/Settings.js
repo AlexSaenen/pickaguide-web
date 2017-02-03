@@ -7,26 +7,21 @@ class SignupStore {
 
   constructor() {
     this.error = null;
-    this.settings = '';
+    this.settings = null;
     this.bindActions(SettingsActions);
   }
 
-  _handleError(error) {
-    this.error = error;
-    this.settings = '';
-  }
-
-  onSettings(form) {
+  onUpdate(form) {
     console.log('here', form);
     SettingsApi.settings(form);
   }
 
-  onSettingsSuccess(settings) {
+  onUpdateSuccess(settings) {
     this.error = null;
     this.settings = settings;
   }
 
-  onSettingsError(error) {
+  onError(error) {
     this.error = error;
   }
 }

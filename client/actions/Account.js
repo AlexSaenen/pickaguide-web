@@ -1,4 +1,4 @@
 import alt from 'client/alt';
 
-export default alt.generateActions('get', 'getError', 'getSuccess',
-  'invalidateAccount', 'settingsValidationError', 'settings', 'settingsError', 'settingsSuccess');
+export default alt.generateActions('get', 'getSuccess', 'error',
+  'invalidateAccount', 'update', 'updateSuccess');

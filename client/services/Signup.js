@@ -9,7 +9,7 @@ export default class SignupApi {
     PromiseApi.post('/public/sign-up', form)
       .then((res) => {
         if (res.error) {
-          SignupActions.signupError(res.error);
+          SignupActions.error(res.error);
         } else {
           SignupActions.signupSuccess(res.message);
           AuthActions.login({
@@ -19,7 +19,7 @@ export default class SignupApi {
         }
       })
       .catch((err) => {
-        SignupActions.signupError(err);
+        SignupActions.error(err);
       });
   }
 }

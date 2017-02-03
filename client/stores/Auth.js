@@ -44,7 +44,7 @@ class AuthStore {
     browserHistory.push('/');
   }
 
-  onLoginError(error) {
+  onError(error) {
     this.error = error;
   }
 
@@ -57,10 +57,6 @@ class AuthStore {
     this.error = null;
     this.credentials = null;
     browserHistory.push('/');
-  }
-
-  onLogoutError(error) {
-    this.error = error;
   }
 }
 

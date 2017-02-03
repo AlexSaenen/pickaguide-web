@@ -11,7 +11,7 @@ export default class AuthApi {
     PromiseApi.post('/public/sign-in', form)
       .then((res) => {
         if (res.error) {
-          AuthActions.loginError(res.error);
+          AuthActions.error(res.error);
         } else {
           CookieApi.set('userToken', res.token);
           CookieApi.set('userId', res.id);
@@ -20,7 +20,7 @@ export default class AuthApi {
         }
       })
       .catch((err) => {
-        AuthActions.loginError(err);
+        AuthActions.error(err);
       });
   }
 
@@ -37,7 +37,7 @@ export default class AuthApi {
         }
       })
       .catch((err) => {
-        AuthActions.logoutError(err);
+        AuthActions.error(err);
       });
   }
 }

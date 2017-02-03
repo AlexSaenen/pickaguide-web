@@ -12,7 +12,6 @@ export class Settings extends StoreObserver {
   constructor(props, context) {
     super(props, context, SettingsStore);
 
-
     this.router = context.router;
     console.log('---', SettingsStore.getState().settings);
     this.state = {
@@ -32,7 +31,7 @@ export class Settings extends StoreObserver {
 
   handleSubmit(form) {
     console.log(form);
-    SettingsActions.settings(form);
+    SettingsActions.update(form);
   }
 
   // TODO: Alex: Insert a title for Settings, make sure to create the element for that

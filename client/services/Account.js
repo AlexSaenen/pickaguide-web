@@ -12,24 +12,24 @@ export default class AccountApi {
           AccountActions.getSuccess.defer(res);
         })
         .catch((err) => {
-          AccountActions.getError.defer(err);
+          AccountActions.error.defer(err);
         });
     } else {
-      AccountActions.getError.defer('Need to be logged in for that');
+      AccountActions.error.defer('Need to be logged in for that');
     }
   }
 
-  static settings(form) {
+  static update(form) {
     PromiseApi.auth().put('/accounts', form)
       .then((res) => {
         if (res.error) {
-          AccountActions.settingsError(res.error);
+          AccountActions.error(res.error);
         } else {
-          AccountActions.settingsSuccess(res);
+          AccountActions.updateSuccess(res);
         }
       })
       .catch((err) => {
-        AccountActions.settingsError(err);
+        AccountActions.error(err);
       });
   }
 

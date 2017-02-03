@@ -14,24 +14,24 @@ export default class ProfileApi {
           ProfileActions.getSuccess.defer(res);
         })
         .catch((err) => {
-          ProfileActions.getError.defer(err);
+          ProfileActions.error.defer(err);
         });
     } else {
-      ProfileActions.getError.defer('Need to be logged in for that');
+      ProfileActions.error.defer('Need to be logged in for that');
     }
   }
 
-  static settings(form) {
+  static update(form) {
     PromiseApi.auth().put('/profiles', form)
       .then((res) => {
         if (res.error) {
-          ProfileActions.settingsSuccess(res.error);
+          ProfileActions.error(res.error);
         } else {
-          ProfileActions.settingsSuccess(res);
+          ProfileActions.updateSuccess(res);
         }
       })
       .catch((err) => {
-        ProfileActions.settingsSuccess(err);
+        ProfileActions.error(err);
       });
   }
 

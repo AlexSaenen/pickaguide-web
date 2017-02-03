@@ -47,7 +47,7 @@ export class SettingsProfile extends StoreObserver {
   handleSubmit(form) {
     console.log(form);
     // maybe check if a value is empty => profileSettingsValidationError(form.firstName'value empty');
-    ProfileActions.settings(form);
+    ProfileActions.update(form);
   }
 
   render() {

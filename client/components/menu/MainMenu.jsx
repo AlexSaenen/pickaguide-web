@@ -16,6 +16,7 @@ const MainMenu = () => {
         <MenuLink href="/about" title="About" />
         <MenuLink href="/contactus" title="Contact" />
       </div>
+
       <div className="MainMenuContentWrapper">
         <SearchBar />
       </div>

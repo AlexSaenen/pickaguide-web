@@ -49,15 +49,15 @@ export class SettingsAccount extends StoreObserver {
     if (form.password) {
         // verif old password ?
       if (form.password !== form.passwordConfirmation) {
-        AccountActions.settingsValidationError('The passwords do not match');
+        AccountActions.error('The passwords do not match');
       } else {
-        AccountActions.settings(form);
+        AccountActions.update(form);
       }
     } else if (form.email) {
       if (form.email !== form.emailConfirmation) {
-        AccountActions.settingsValidationError('The emails do not match');
+        AccountActions.error('The emails do not match');
       } else {
-        AccountActions.settings(form);
+        AccountActions.update(form);
       }
     }
   }
