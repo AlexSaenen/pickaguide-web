@@ -4,7 +4,6 @@ import MenuLink from 'menu/MenuLink.jsx';
 import MenuAction from 'menu/MenuAction.jsx';
 import { ProfilePicture } from 'menu/ProfilePicture.jsx';
 import AuthActions from 'actions/Auth.js';
-import { Link } from 'react-router';
 
 import 'scss/components/menu/_partialUserMenu.scss';
 
