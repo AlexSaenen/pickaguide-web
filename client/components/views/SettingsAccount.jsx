@@ -5,29 +5,42 @@ import { PasswordInput } from 'formFramework/PasswordInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import AccountActions from 'actions/Account.js';
-import ProfileStore from 'stores/Profile.js';
 import AccountStore from 'stores/Account.js';
 
 
 export class SettingsAccount extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, ProfileStore);
+    super(props, context, AccountStore);
 
     this.router = context.router;
-    console.log('---', AccountStore.getState().account);
+
+    console.log('***', AccountStore.getState().account);
     this.state = {
       account: AccountStore.getState().account,
+      isSuccess: null,
+      messageTitle: '',
+      messageContent: '',
     };
 
     this.onStoreChange = this.onStoreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  onStoreChange() {
+  onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.account = AccountStore.getState().account;
-    console.log(stateCopy.account);
+    stateCopy.account = store.account;
+    console.log('onStoreChange Profile:', stateCopy.account, '|', store);
+
+    if (store.error) {
+      stateCopy.messageTitle = 'Some error occurred when updating your account';
+      stateCopy.messageContent = String(store.error);
+      stateCopy.isSuccess = false;
+    } else {
+      stateCopy.messageTitle = 'Successful';
+      stateCopy.messageContent = store.account.message;
+      stateCopy.isSuccess = true;
+    }
     this.updateState(stateCopy);
   }
 
@@ -47,17 +60,21 @@ export class SettingsAccount extends StoreObserver {
         AccountActions.settings(form);
       }
     }
-    // <EmailInput value={this.state.account.email} placeholder="Entrez votre email" />
   }
 
-  // TODO: Alex: Insert a title for Settings, make sure to create the element for that
-
   render() {
+    const account = this.state.account || {};
+    const message = {
+      title: this.state.messageTitle,
+      content: this.state.messageContent,
+      type: (this.state.isSuccess ? 'Success' : 'Alert'),
+    };
+
     return (
       <div>
-        <BasicForm onSubmit={this.handleSubmit} submitLabel="Save">
+        <BasicForm onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
           <h1>Update your email</h1>
-          <EmailInput placeholder="Entrez votre email" />
+          <EmailInput value={account.email} placeholder="Entrez votre email" />
           <EmailInput label="emailConfirmation" placeholder="Confirmez votre email" />
         </BasicForm>
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Save">

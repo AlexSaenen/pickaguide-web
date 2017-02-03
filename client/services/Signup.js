@@ -8,14 +8,13 @@ export default class SignupApi {
   static signup(form) {
     PromiseApi.post('/public/sign-up', form)
       .then((res) => {
-        console.log('--- SIGNUP ---', res);
         if (res.error) {
           SignupActions.signupError(res.error);
         } else {
           SignupActions.signupSuccess(res.message);
           AuthActions.login({
             email: form.email,
-            password: form.password
+            password: form.password,
           });
         }
       })

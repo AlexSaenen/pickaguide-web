@@ -28,6 +28,7 @@ export class Signup extends StoreObserver {
     const stateCopy = Object.assign({}, this.state);
 
     stateCopy.isSuccess = !store.error;
+    console.log('onStoreChange:', store, '|', stateCopy);
     if (store.error) {
       stateCopy.messageTitle = 'Some error occurred when creating your account';
       stateCopy.messageContent = String(store.error);
