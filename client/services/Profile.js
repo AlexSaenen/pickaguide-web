@@ -9,29 +9,29 @@ export default class ProfileApi {
     const credentials = AuthStore.getState().credentials;
 
     if (credentials) {
-      PromiseApi.auth().get(`/profile/${credentials.id}`)
+      PromiseApi.auth().get(`/profiles/${credentials.id}`)
         .then((res) => {
           ProfileActions.getSuccess.defer(res);
         })
         .catch((err) => {
-          ProfileActions.getError.defer(err);
+          ProfileActions.error.defer(err);
         });
     } else {
-      ProfileActions.getError.defer('Need to be logged in for that');
+      ProfileActions.error.defer('Need to be logged in for that');
     }
   }
 
-  static settings(form) {
-    PromiseApi.auth().put('/profile', form)
+  static update(form) {
+    PromiseApi.auth().put('/profiles', form)
       .then((res) => {
         if (res.error) {
-          ProfileActions.settingsSuccess(res.error);
+          ProfileActions.error(res.error);
         } else {
-          ProfileActions.settingsSuccess(res);
+          ProfileActions.updateSuccess(res);
         }
       })
       .catch((err) => {
-        ProfileActions.settingsSuccess(err);
+        ProfileActions.error(err);
       });
   }
 

@@ -11,11 +11,6 @@ class AccountStore {
     this.bindActions(AccountActions);
   }
 
-  _handleError(error) {
-    this.error = error;
-    this.account = '';
-  }
-
   onGet() {
     AccountApi.get();
   }
@@ -25,29 +20,22 @@ class AccountStore {
     this.account = account;
   }
 
-  onGetError(error) {
+  onError(error) {
     this.error = error;
+    this.account = null;
   }
 
-  onSettings(form) {
-    AccountApi.settings(form);
+  onUpdate(form) {
+    AccountApi.update(form);
   }
 
-  onSettingsSuccess(account) {
+  onUpdateSuccess(user) {
     this.error = null;
-    this.account = account;
-  }
-
-  onSettingsError(error) {
-    this.error = error;
+    this.account = user.account;
   }
 
   onInvalidateAccount() {
     this.account = null;
-  }
-
-  onSettingsValidationError(error) {
-    this._handleError(error);
   }
 }
 

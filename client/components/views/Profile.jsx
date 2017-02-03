@@ -16,7 +16,7 @@ export class Profile extends StoreObserver {
 
   componentDidMount() {
     super.componentDidMount();
-    ProfileActions.getProfile();
+    ProfileActions.get();
   }
 
   onStoreChange(store) {

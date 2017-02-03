@@ -10,17 +10,17 @@ export default class SignupApi {
       .then((res) => {
         console.log('--- SIGNUP ---', res);
         if (res.error) {
-          SignupActions.signupError(res.error);
+          SignupActions.error(res.error);
         } else {
           SignupActions.signupSuccess(res.message);
           AuthActions.login({
             email: form.email,
-            password: form.password
+            password: form.password,
           });
         }
       })
       .catch((err) => {
-        SignupActions.signupError(err);
+        SignupActions.error(err);
       });
   }
 }

@@ -31,7 +31,7 @@ export class SettingsProfile extends StoreObserver {
 
   handleSubmit(form) {
     console.log(form);
-    ProfileActions.settings(form);
+    ProfileActions.update(form);
     // <TextInput value={this.state.prfole.firstName} label="firstName" placeholder="Entrez votre prénom" />
     // <TextInput value={this.state.prfole.lastName} label="lastName" placeholder="Entrez votre nom" />
     // <TextInput value={this.state.prfole.phone} label="phone" placeholder="Entrez votre téléphone" />

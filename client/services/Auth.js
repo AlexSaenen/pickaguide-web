@@ -11,24 +11,21 @@ export default class AuthApi {
     PromiseApi.post('/public/sign-in', form)
       .then((res) => {
         if (res.error) {
-          AuthActions.loginError(res.error);
+          AuthActions.error(res.error);
         } else {
           CookieApi.set('userToken', res.token);
           CookieApi.set('userId', res.id);
           AuthActions.loginSuccess(res);
           AuthActions.sync();
-          
-          AccountActions.get(); // adapt with new API and pass id in query
-          ProfileActions.get(); // adapt with new API and pass id in query
         }
       })
       .catch((err) => {
-        AuthActions.loginError(err);
+        AuthActions.error(err);
       });
   }
 
   static logout() {
-    PromiseApi.auth().get('/account/logout')
+    PromiseApi.auth().get('/accounts/logout')
       .then(() => {
         CookieApi.revoke();
         AuthActions.logoutSuccess();
@@ -36,7 +33,7 @@ export default class AuthApi {
         AccountActions.invalidateAccount();
       })
       .catch((err) => {
-        AuthActions.logoutError(err);
+        AuthActions.error(err);
       });
   }
 }

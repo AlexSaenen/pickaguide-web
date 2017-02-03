@@ -2,19 +2,19 @@ import SettingsActions from 'actions/Settings.js';
 import PromiseApi from 'services/PromiseApi.js';
 
 
-export default class ProfileApi {
+export default class SettingsApi {
 
-  static settings(form) {
+  static update(form) {
     PromiseApi.auth().put('/settings', form)
-    .then((res) => {
+      .then((res) => {
         if (res.error) {
-            SettingsActions.onSettingsError(res.error);
-            return;
+          SettingsActions.error(res.error);
+        } else {
+          SettingsActions.updateSuccess(res);
         }
-        SettingsActions.onSettingsSuccess(res);
-    })
-    .catch((err) => {
-        SettingsActions.onSettingsError(err);
-    });
+      })
+      .catch((err) => {
+        SettingsActions.error(err);
+      });
   }
 }
