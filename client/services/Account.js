@@ -9,7 +9,7 @@ export default class AccountApi {
     const credentials = AuthStore.getState().credentials;
 
     if (credentials) {
-      PromiseApi.auth().get(`/account/${credentials.id}`)
+      PromiseApi.auth().get(`/accounts/${credentials.id}`)
         .then((res) => {
           AccountActions.getSuccess.defer(res);
         })

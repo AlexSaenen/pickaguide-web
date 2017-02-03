@@ -21,7 +21,7 @@ export default class AuthApi {
   }
 
   static logout() {
-    PromiseApi.auth().get('/account/logout')
+    PromiseApi.auth().get('/accounts/logout')
       .then(() => {
         CookieApi.revoke();
         AuthActions.logoutSuccess();

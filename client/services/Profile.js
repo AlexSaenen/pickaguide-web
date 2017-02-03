@@ -9,7 +9,7 @@ export default class ProfileApi {
     const credentials = AuthStore.getState().credentials;
 
     if (credentials) {
-      PromiseApi.auth().get(`/profile/${credentials.id}`)
+      PromiseApi.auth().get(`/profiles/${credentials.id}`)
         .then((res) => {
           ProfileActions.getSuccess.defer(res);
         })

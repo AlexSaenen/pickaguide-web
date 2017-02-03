@@ -5,7 +5,7 @@ import PromiseApi from 'services/PromiseApi.js';
 export default class ProfileApi {
 
   static getProfile(form) {
-    PromiseApi.get('/profile')
+    PromiseApi.get('/profiles')
     .then((res) => {
       SigninActions.requestSigninSuccess(res);
     })
