@@ -25,7 +25,7 @@ export default class AuthApi {
   }
 
   static logout() {
-    PromiseApi.auth().get('/accounts/logout')
+    PromiseApi.auth().put('/accounts/logout')
       .then((res) => {
         if (res.error) {
           AuthActions.logoutError(res.error);
