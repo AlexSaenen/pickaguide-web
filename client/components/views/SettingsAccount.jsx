@@ -30,7 +30,7 @@ export class SettingsAccount extends StoreObserver {
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.account = store.account;
-    console.log('onStoreChange Profile:', stateCopy.account, '|', store);
+    console.log('onStoreChange Account:', stateCopy.account, '|', store);
 
     if (store.error) {
       stateCopy.messageTitle = 'Some error occurred when updating your account';
@@ -38,7 +38,7 @@ export class SettingsAccount extends StoreObserver {
       stateCopy.isSuccess = false;
     } else {
       stateCopy.messageTitle = 'Successful';
-      stateCopy.messageContent = store.account.message;
+      stateCopy.messageContent = 'Your informations have been updated';
       stateCopy.isSuccess = true;
     }
     this.updateState(stateCopy);
@@ -46,20 +46,20 @@ export class SettingsAccount extends StoreObserver {
 
   handleSubmit(form) {
     console.log(form);
-    if (form.password) {
-        // verif old password ?
-      if (form.password !== form.passwordConfirmation) {
-        AccountActions.error('The passwords do not match');
-      } else {
+    // if (form.password) {
+    //     // verif old password ?
+    //   if (form.password !== form.passwordConfirmation) {
+    //     AccountActions.error('The passwords do not match');
+    //   } else {
+    //     AccountActions.update(form);
+    //   }
+    // } else if (form.email) {
+    //   if (form.email !== form.emailConfirmation) {
+    //     AccountActions.error('The emails do not match');
+    //   } else {
         AccountActions.update(form);
-      }
-    } else if (form.email) {
-      if (form.email !== form.emailConfirmation) {
-        AccountActions.error('The emails do not match');
-      } else {
-        AccountActions.update(form);
-      }
-    }
+      // }
+    // }
   }
 
   render() {
@@ -74,7 +74,7 @@ export class SettingsAccount extends StoreObserver {
       <div>
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
           <h1>Update your email</h1>
-          <EmailInput value={account.email} placeholder="Entrez votre email" />
+          <EmailInput value={account.email} label="email" placeholder="Entrez votre email" />
           <EmailInput label="emailConfirmation" placeholder="Confirmez votre email" />
         </BasicForm>
         <BasicForm onSubmit={this.handleSubmit} submitLabel="Save">

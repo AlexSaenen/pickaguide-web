@@ -38,7 +38,7 @@ export class SettingsProfile extends StoreObserver {
       stateCopy.isSuccess = false;
     } else {
       stateCopy.messageTitle = 'Successful';
-      stateCopy.messageContent = store.profile.message;
+      stateCopy.messageContent = 'Your informations have been updated';
       stateCopy.isSuccess = true;
     }
     this.updateState(stateCopy);
