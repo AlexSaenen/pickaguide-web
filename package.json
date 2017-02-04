@@ -34,7 +34,9 @@
     "superagent": "^2.2.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
-    "webpack-uglify-js-plugin": "^1.1.8"
+    "webpack-uglify-js-plugin": "^1.1.8",
+    "webdriver-manager": "^11.1.1",
+    "protractor": "^4.0.14"
   },
   "devDependencies": {
     "babel-preset-react-hmre": "^1.1.1",
@@ -46,8 +48,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "setup": "webdriver-manager update && protractor tests/conf.js",
-    "test": "webdriver-manager update && protractor tests/conf.js",
+    "test_local": "webdriver-manager update && protractor tests/conf-local.js",
+    "test": "webdriver-manager update && protractor tests/conf-circleCI.js",
     "webpack:dev": "webpack-dev-server --progress --hot --inline --colors",
     "webpack": "webpack -p --config webpack.prod.config.js --profile --progress --colors",
     "server:dev": "NODE_ENV=dev node server.js",

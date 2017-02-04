@@ -35,3 +35,6 @@ dev-bundle:
 
 dev-server:
 	npm run server:dev
+
+test:
+	npm run test_local
