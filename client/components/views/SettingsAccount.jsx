@@ -52,13 +52,18 @@ export class SettingsAccount extends StoreObserver {
     //     AccountActions.error('The passwords do not match');
     //   } else {
     //     AccountActions.update(form);
+    // console.log(form);
+    // if (form.password) {
+        // verif old password ?
+      // if (form.password !== form.passwordConfirmation) {
+      //   AccountActions.error('The passwords do not match');
+      // } else {
+    AccountActions.update(form);
     //   }
     // } else if (form.email) {
     //   if (form.email !== form.emailConfirmation) {
     //     AccountActions.error('The emails do not match');
     //   } else {
-        AccountActions.update(form);
-      // }
     // }
   }
 
