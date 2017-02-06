@@ -33,4 +33,31 @@ export default class AccountApi {
       });
   }
 
+  static updatePassword(form) {
+    PromiseApi.auth().put('/accounts/password', form)
+      .then((res) => {
+        if (res.error) {
+          AccountActions.updatePasswordError(res.error);
+        } else {
+          AccountActions.updatePasswordSuccess(res);
+        }
+      })
+      .catch((err) => {
+        AccountActions.updatePasswordError(err);
+      });
+  }
+
+  static updateMail(form) {
+    PromiseApi.auth().put('/accounts/mail', form)
+      .then((res) => {
+        if (res.error) {
+          AccountActions.updateMailError(res.error);
+        } else {
+          AccountActions.updateMailSuccess(res);
+        }
+      })
+      .catch((err) => {
+        AccountActions.updateMailError(err);
+      });
+  }
 }

@@ -19,7 +19,10 @@ export class BasicForm extends PropsComponent {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.state.onSubmit(FormStore.getState().fields);
+    const formChildren = Array.from(e.target.children);
+    const submitElement = formChildren.slice(-1).pop();
+    const submitName = submitElement.childNodes[0].value;
+    this.state.onSubmit(FormStore.getState().fields, submitName);
   }
 
   render() {

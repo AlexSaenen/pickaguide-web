@@ -35,6 +35,10 @@ export class Message extends PropsComponent {
     if (this.state.message.content === '') {
       classes += ' Hidden';
     } else {
+      if (this.messageTimeout) {
+        clearTimeout(this.messageTimeout);
+      }
+
       this.messageTimeout = setTimeout(() => {
         this.dismiss();
         this.messageTimeout = null;

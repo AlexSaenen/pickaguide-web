@@ -18,9 +18,11 @@ export class SettingsAccount extends StoreObserver {
     console.log('***', AccountStore.getState().account);
     this.state = {
       account: AccountStore.getState().account,
-      isSuccess: null,
-      messageTitle: '',
-      messageContent: '',
+      messages: {
+        titles: { mail: '', password: '' },
+        content: { mail: '', password: '' },
+        isSuccess: { mail: null, password: null },
+      },
     };
 
     this.onStoreChange = this.onStoreChange.bind(this);
@@ -32,56 +34,75 @@ export class SettingsAccount extends StoreObserver {
     stateCopy.account = store.account;
     console.log('onStoreChange Profile:', stateCopy.account, '|', store);
 
-    if (store.error) {
-      stateCopy.messageTitle = 'Some error occurred when updating your account';
-      stateCopy.messageContent = String(store.error);
-      stateCopy.isSuccess = false;
-    } else {
-      stateCopy.messageTitle = 'Successful';
-      stateCopy.messageContent = store.account.message;
-      stateCopy.isSuccess = true;
-    }
+    const errorsToHandle = [];
+    if (store.mailError) { errorsToHandle.push('mail'); }
+    if (store.passwordError) { errorsToHandle.push('password'); }
+
+    errorsToHandle.forEach((error) => {
+      stateCopy.messages.titles[error] = `Some error occurred when updating your ${error}`;
+      stateCopy.messages.content[error] = String(store[`${error}Error`]);
+      stateCopy.messages.isSuccess[error] = false;
+    });
+
+    const eventsToHandle = [];
+    if (store.mailSuccess) { eventsToHandle.push('mail'); }
+    if (store.passwordSuccess) { eventsToHandle.push('password'); }
+
+    eventsToHandle.forEach((error) => {
+      stateCopy.messages.titles[error] = 'Successful';
+      stateCopy.messages.content[error] = String(store[`${error}Success`]);
+      stateCopy.messages.isSuccess[error] = true;
+    });
+
     this.updateState(stateCopy);
   }
 
-  handleSubmit(form) {
-    // console.log(form);
-    // if (form.password) {
-        // verif old password ?
-      // if (form.password !== form.passwordConfirmation) {
-      //   AccountActions.error('The passwords do not match');
-      // } else {
-    AccountActions.update(form);
-    //   }
-    // } else if (form.email) {
-    //   if (form.email !== form.emailConfirmation) {
-    //     AccountActions.error('The emails do not match');
-    //   } else {
-    //     AccountActions.update(form);
-    //   }
-    // }
+  handleSubmit(form, submitType) {
+    if (submitType === 'Update Password') {
+      if (form.password !== form.passwordConfirmation) {
+        AccountActions.updatePasswordError('The passwords do not match');
+      } else {
+        AccountActions.updatePassword({
+          password: form.password,
+          currentPassword: form.oldPassword,
+        });
+      }
+    } else {
+      if (form.email !== form.emailConfirmation) {
+        AccountActions.updateMailError('The emails do not match');
+      } else {
+        AccountActions.updateMail({ email: form.email });
+      }
+    }
   }
 
   render() {
     const account = this.state.account || {};
-    const message = {
-      title: this.state.messageTitle,
-      content: this.state.messageContent,
-      type: (this.state.isSuccess ? 'Success' : 'Alert'),
+    const messages = {
+      mail: {
+        title: this.state.messages.titles.mail,
+        content: this.state.messages.content.mail,
+        type: (this.state.messages.isSuccess.mail ? 'Success' : 'Alert'),
+      },
+      password: {
+        title: this.state.messages.titles.password,
+        content: this.state.messages.content.password,
+        type: (this.state.messages.isSuccess.password ? 'Success' : 'Alert'),
+      },
     };
 
     return (
       <div>
-        <BasicForm onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
+        <BasicForm onSubmit={this.handleSubmit} submitLabel="Update Email" message={messages.mail}>
           <h1>Update your email</h1>
-          <EmailInput value={account.email} placeholder="Entrez votre email" />
-          <EmailInput label="emailConfirmation" placeholder="Confirmez votre email" />
+          <EmailInput value={account.email} placeholder="Entrez votre email" required />
+          <EmailInput label="emailConfirmation" placeholder="Confirmez votre email" required />
         </BasicForm>
-        <BasicForm onSubmit={this.handleSubmit} submitLabel="Save">
+        <BasicForm onSubmit={this.handleSubmit} submitLabel="Update Password" message={messages.password}>
           <h1>Update your password</h1>
-          <PasswordInput label="oldPassword" placeholder="Entrez votre ancien mot de passe" />
-          <PasswordInput placeholder="Entrez votre mot de passe" />
-          <PasswordInput label="passwordConfirmation" placeholder="Confirmez votre mot de passe" />
+          <PasswordInput label="oldPassword" placeholder="Entrez votre ancien mot de passe" required />
+          <PasswordInput placeholder="Entrez votre mot de passe" required />
+          <PasswordInput label="passwordConfirmation" placeholder="Confirmez votre mot de passe" required />
         </BasicForm>
       </div>
     );
