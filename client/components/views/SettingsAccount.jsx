@@ -32,7 +32,7 @@ export class SettingsAccount extends StoreObserver {
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.account = store.account;
-    console.log('onStoreChange Profile:', stateCopy.account, '|', store);
+    console.log('onStoreChange Account:', stateCopy.account, '|', store);
 
     const errorsToHandle = [];
     if (store.mailError) { errorsToHandle.push('mail'); }
