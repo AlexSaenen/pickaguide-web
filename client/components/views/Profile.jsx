@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { Layout } from 'base/Layout.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
@@ -29,7 +30,7 @@ export class Profile extends StoreObserver {
     const profile = this.state.profile || {};
 
     return (
-      <div>
+      <Layout>
         <div className="profil_mainInfo">
           <h1>Welcome home {`${profile.firstName} ${profile.lastName}`}, you will find here all your info</h1>
         </div>
@@ -46,7 +47,7 @@ export class Profile extends StoreObserver {
         <div className="profil_baseInfoRight">
           <p>{profile.interests}</p>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BasicForm } from 'formFramework/BasicForm.jsx';
+import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { TextArea } from 'formFramework/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
@@ -60,7 +60,7 @@ export class SettingsProfile extends StoreObserver {
 
     return (
       <div>
-        <BasicForm onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
+        <FormLayout onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
           <h1>Update your profile</h1>
           <TextInput value={profile.firstName} label="firstName" placeholder="Entrez votre prénom" />
           <TextInput value={profile.lastName} label="lastName" placeholder="Entrez votre nom" />
@@ -69,7 +69,7 @@ export class SettingsProfile extends StoreObserver {
           <TextInput value={profile.country} label="country" placeholder="Entrez votre pays" />
           <TextArea value={profile.description} label="description" placeholder="Entrez votre description" required />
           <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Entrez votre photo" required />
-        </BasicForm>
+        </FormLayout>
       </div>
     );
   }

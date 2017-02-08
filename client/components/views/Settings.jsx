@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BasicForm } from 'formFramework/BasicForm.jsx';
+import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import SettingsActions from 'actions/Settings.js';
@@ -39,11 +39,11 @@ export class Settings extends StoreObserver {
   render() {
     return (
       <div>
-        <BasicForm onSubmit={this.handleSubmit} submitLabel="Save">
+        <FormLayout onSubmit={this.handleSubmit} submitLabel="Save">
           <h1>General settings</h1>
           <TextInput label="language" placeholder="Entrez votre prénom" />
           <TextInput label="lastName" placeholder="Entrez votre nom" />
-        </BasicForm>
+        </FormLayout>
       </div>
     );
   }

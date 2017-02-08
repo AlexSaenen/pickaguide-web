@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BasicForm } from 'formFramework/BasicForm.jsx';
+import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { PasswordInput } from 'formFramework/PasswordInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
@@ -93,17 +93,17 @@ export class SettingsAccount extends StoreObserver {
 
     return (
       <div>
-        <BasicForm onSubmit={this.handleSubmit} submitLabel="Update Email" message={messages.mail}>
+        <FormLayout onSubmit={this.handleSubmit} submitLabel="Update Email" message={messages.mail}>
           <h1>Update your email</h1>
           <EmailInput value={account.email} placeholder="Entrez votre email" required />
           <EmailInput label="emailConfirmation" placeholder="Confirmez votre email" required />
-        </BasicForm>
-        <BasicForm onSubmit={this.handleSubmit} submitLabel="Update Password" message={messages.password}>
+        </FormLayout>
+        <FormLayout onSubmit={this.handleSubmit} submitLabel="Update Password" message={messages.password}>
           <h1>Update your password</h1>
           <PasswordInput label="oldPassword" placeholder="Entrez votre ancien mot de passe" required />
           <PasswordInput placeholder="Entrez votre mot de passe" required />
           <PasswordInput label="passwordConfirmation" placeholder="Confirmez votre mot de passe" required />
-        </BasicForm>
+        </FormLayout>
       </div>
     );
   }
