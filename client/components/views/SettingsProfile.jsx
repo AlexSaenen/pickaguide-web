@@ -4,6 +4,7 @@ import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { TextArea } from 'formFramework/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { Title } from 'base/Title.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
@@ -61,7 +62,7 @@ export class SettingsProfile extends StoreObserver {
     return (
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
-          <h1>Update your profile</h1>
+          <Title>Update your profile</Title>
           <TextInput value={profile.firstName} label="firstName" placeholder="Entrez votre prénom" />
           <TextInput value={profile.lastName} label="lastName" placeholder="Entrez votre nom" />
           <TextInput value={profile.phone} label="phone" placeholder="Entrez votre téléphone" />

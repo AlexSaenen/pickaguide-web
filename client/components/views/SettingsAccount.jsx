@@ -4,6 +4,7 @@ import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { PasswordInput } from 'formFramework/PasswordInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { Title } from 'base/Title.jsx';
 import AccountActions from 'actions/Account.js';
 import AccountStore from 'stores/Account.js';
 
@@ -94,12 +95,12 @@ export class SettingsAccount extends StoreObserver {
     return (
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Update Email" message={messages.mail}>
-          <h1>Update your email</h1>
+          <Title>Update your email</Title>
           <EmailInput value={account.email} placeholder="Entrez votre email" required />
           <EmailInput label="emailConfirmation" placeholder="Confirmez votre email" required />
         </FormLayout>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Update Password" message={messages.password}>
-          <h1>Update your password</h1>
+          <Title>Update your password</Title>
           <PasswordInput label="oldPassword" placeholder="Entrez votre ancien mot de passe" required />
           <PasswordInput placeholder="Entrez votre mot de passe" required />
           <PasswordInput label="passwordConfirmation" placeholder="Confirmez votre mot de passe" required />

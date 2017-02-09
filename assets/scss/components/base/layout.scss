@@ -4,7 +4,7 @@
   text-align: center;
   font-family: bariol;
   display: block;
-  padding: 4em 2em 2em 2em;
+  padding: 2em;
   width: 40em;
   margin: 5em auto;
   background-color: $modalMainColor;
@@ -13,4 +13,10 @@
 	box-shadow: 0 0 6px black;
   border: 1px solid #555;
   border-radius: 0.1em;
+
+  .Title {
+    margin-bottom: 1em;
+    font-size: 1.8em;
+    color: black;
+  }
 }
