@@ -23,5 +23,5 @@ export class PropsComponent extends StateComponent {
 }
 
 PropsComponent.propTypes = {
-  children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array]),
+  children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array, React.PropTypes.string]),
 };
