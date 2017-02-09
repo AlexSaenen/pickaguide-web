@@ -5,13 +5,9 @@ import PromiseApi from 'services/PromiseApi.js';
 export default class ContactApi {
 
   static contact(form) {
-    PromiseApi.post('/public/contactus', form)
-      .then((result) => {
-        if (result.error) {
-          ContactActions.contactError(result.error);
-        } else {
-          ContactActions.contactSuccess(result.id);
-        }
+    PromiseApi.post('/public/contact-us', form)
+      .then((res) => {
+        ContactActions.contactSuccess(res.id);
       })
       .catch((err) => {
         ContactActions.contactError(err);

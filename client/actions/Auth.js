@@ -1,4 +1,4 @@
 import alt from 'client/alt';
 
-export default alt.generateActions('login', 'loginError', 'loginSuccess',
-    'logout', 'logoutError', 'logoutSuccess');
+export default alt.generateActions('login', 'loginSuccess', 'error',
+    'logout', 'logoutSuccess', 'sync');

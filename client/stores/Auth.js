@@ -2,15 +2,35 @@ import { browserHistory } from 'react-router';
 
 import alt from 'client/alt';
 import AuthActions from 'actions/Auth.js';
+import ProfileActions from 'actions/Profile.js';
+import AccountActions from 'actions/Account.js';
 import AuthApi from 'services/Auth.js';
+import CookieApi from 'services/Cookie.js';
 
 
 class AuthStore {
 
   constructor() {
     this.error = null;
-    this.token = AuthApi.getTokenFromCookie();
+    this.credentials = null;
+
     this.bindActions(AuthActions);
+
+    if (CookieApi.isEmpty() === false) {
+      this.credentials = {
+        token: CookieApi.get('userToken'),
+        id: CookieApi.get('userId'),
+      };
+    }
+  }
+
+  onSync() {
+    if (this.credentials) {
+      ProfileActions.get.defer();
+      AccountActions.get.defer();
+    }
+
+    return false;
   }
 
   onLogin(form) {
@@ -18,13 +38,13 @@ class AuthStore {
     return false;
   }
 
-  onLoginSuccess(token) {
+  onLoginSuccess(credentials) {
     this.error = null;
-    this.token = token;
+    this.credentials = credentials;
     browserHistory.push('/');
   }
 
-  onLoginError(error) {
+  onError(error) {
     this.error = error;
   }
 
@@ -35,12 +55,8 @@ class AuthStore {
 
   onLogoutSuccess() {
     this.error = null;
-    this.token = null;
+    this.credentials = null;
     browserHistory.push('/');
-  }
-
-  onLogoutError(error) {
-    this.error = error;
   }
 }
 

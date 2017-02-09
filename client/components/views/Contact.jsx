@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BasicForm } from 'formFramework/BasicForm.jsx';
+import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { TextArea } from 'formFramework/TextArea.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { TelInput } from 'formFramework/TelInput.jsx';
@@ -64,12 +64,12 @@ export class Contact extends StoreObserver {
 
     return (
       <div>
-        <BasicForm onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
+        <FormLayout onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
           <TextInput label="name" value={account ? `${account.firstName} ${account.lastName}` : ''} placeholder="Nom complet" required />
           <EmailInput value={account ? account.email : ''} placeholder="Email" required />
           <TelInput label="phone" value={account ? account.phone : ''} placeholder="Téléphone" />
           <TextArea label="message" placeholder="Entrez votre message" required />
-        </BasicForm>
+        </FormLayout>
       </div>
     );
   }

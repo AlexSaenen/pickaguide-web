@@ -1,3 +1,5 @@
+import { browserHistory } from 'react-router';
+
 import alt from 'client/alt';
 import SignupActions from 'actions/Signup.js';
 import SignupApi from 'services/Signup.js';
@@ -11,27 +13,20 @@ class SignupStore {
     this.bindActions(SignupActions);
   }
 
-  _handleError(error) {
-    this.error = error;
-    this.message = '';
-  }
-
   onSignup(form) {
     SignupApi.signup(form);
     return false;
   }
 
-  onSignupSuccess(result) {
+  onSignupSuccess(message) {
     this.error = null;
-    this.message = result;
+    this.message = message;
+    browserHistory.push('/login');
   }
 
-  onSignupError(error) {
-    this._handleError(error);
-  }
-
-  onSignupValidationError(error) {
-    this._handleError(error);
+  onError(error) {
+    this.error = error;
+    this.message = '';
   }
 }
 

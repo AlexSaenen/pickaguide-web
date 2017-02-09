@@ -1,22 +1,32 @@
 import React from 'react';
 
+import { PropsComponent } from 'base/PropsComponent.jsx';
+
 import 'scss/components/formFramework/message.scss';
 
 
-export class Message extends React.Component {
+export class Message extends PropsComponent {
 
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      message: props.payload,
+      message: props.message,
     };
+
+    this.messageTimeout = null;
   }
 
-  componentWillReceiveProps(props) {
+  componentWillUnmount() {
+    if (this.messageTimeout) {
+      clearTimeout(this.messageTimeout);
+    }
+  }
+
+  dismiss() {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.message = props.payload;
-    this.setState(stateCopy);
+    stateCopy.message.content = '';
+    this.updateState(stateCopy);
   }
 
   render() {
@@ -24,6 +34,15 @@ export class Message extends React.Component {
 
     if (this.state.message.content === '') {
       classes += ' Hidden';
+    } else {
+      if (this.messageTimeout) {
+        clearTimeout(this.messageTimeout);
+      }
+
+      this.messageTimeout = setTimeout(() => {
+        this.dismiss();
+        this.messageTimeout = null;
+      }, 5000);
     }
 
     return (
@@ -36,7 +55,7 @@ export class Message extends React.Component {
 }
 
 Message.propTypes = {
-  payload: React.PropTypes.shape({
+  message: React.PropTypes.shape({
     title: React.PropTypes.string,
     content: React.PropTypes.string,
     type: React.PropTypes.string,

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BasicForm } from 'formFramework/BasicForm.jsx';
+import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { PasswordInput } from 'formFramework/PasswordInput.jsx';
@@ -28,6 +28,7 @@ export class Signup extends StoreObserver {
     const stateCopy = Object.assign({}, this.state);
 
     stateCopy.isSuccess = !store.error;
+    console.log('onStoreChange:', store, '|', stateCopy);
     if (store.error) {
       stateCopy.messageTitle = 'Some error occurred when creating your account';
       stateCopy.messageContent = String(store.error);
@@ -41,8 +42,9 @@ export class Signup extends StoreObserver {
 
   handleSubmit(form) {
     if (form.password !== form.passwordConfirmation) {
-      SignupActions.signupValidationError('The passwords do not match');
+      SignupActions.error('The passwords do not match');
     } else {
+      delete form.passwordConfirmation;
       SignupActions.signup(form);
     }
   }
@@ -56,13 +58,13 @@ export class Signup extends StoreObserver {
 
     return (
       <div>
-        <BasicForm onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
+        <FormLayout onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
           <TextInput label="firstName" placeholder="Entrez votre prénom" required />
           <TextInput label="lastName" placeholder="Entrez votre nom" required />
           <EmailInput placeholder="Entrez votre email" required />
           <PasswordInput placeholder="Entrez votre mot de passe" required />
           <PasswordInput label="passwordConfirmation" placeholder="Confirmez le mot de passe" required />
-        </BasicForm>
+        </FormLayout>
       </div>
     );
   }

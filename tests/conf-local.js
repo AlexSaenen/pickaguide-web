@@ -2,7 +2,7 @@ exports.config = {
 	framwork: 'jasmine',
 	directConnect: true,
 	//seleniumAddress: 'http://localhost:4444/wd/hub',
-	specs: ['first-test.js'],
+	specs: ['tests-client-server.js'],
 //	multiCapabilities: [{
 //		'browserName': 'firefox'
 //	}, {

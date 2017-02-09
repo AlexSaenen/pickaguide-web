@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BasicForm } from 'formFramework/BasicForm.jsx';
+import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { PasswordInput } from 'formFramework/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
@@ -30,7 +30,7 @@ export class Login extends StoreObserver {
       stateCopy.messageTitle = 'Some error occurred when logging in';
       stateCopy.messageContent = String(store.error);
       stateCopy.isSuccess = false;
-    } else if (store.token) {
+    } else if (store.credentials) {
       stateCopy.messageTitle = 'Successful';
       stateCopy.messageContent = 'You have successfully logged in !';
       stateCopy.isSuccess = true;
@@ -52,10 +52,10 @@ export class Login extends StoreObserver {
 
     return (
       <div>
-        <BasicForm onSubmit={this.handleSubmit} submitLabel="Login" message={message}>
+        <FormLayout onSubmit={this.handleSubmit} submitLabel="Login" message={message}>
           <EmailInput placeholder="Email" required />
           <PasswordInput placeholder="Password" required />
-        </BasicForm>
+        </FormLayout>
       </div>
     );
   }

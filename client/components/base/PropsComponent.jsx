@@ -3,7 +3,7 @@ import React from 'react';
 import { StateComponent } from 'base/StateComponent.jsx';
 
 
-export class ParentComponent extends StateComponent {
+export class PropsComponent extends StateComponent {
 
   constructor(props, context) {
     super(props, context);
@@ -13,11 +13,15 @@ export class ParentComponent extends StateComponent {
 
   componentWillReceiveProps(props) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.children = props.children;
+
+    Object.keys(props).forEach((propKey) => {
+      stateCopy[propKey] = props[propKey];
+    });
+
     this.updateState(stateCopy);
   }
 }
 
-ParentComponent.propTypes = {
-  children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array]),
+PropsComponent.propTypes = {
+  children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array, React.PropTypes.string]),
 };

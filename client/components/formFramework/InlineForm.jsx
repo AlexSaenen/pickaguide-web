@@ -1,13 +1,14 @@
 import React from 'react';
 
 import { SubmitButton } from 'formFramework/SubmitButton.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 // import FormActions from 'actions/CurrentForm.js';
 import FormStore from 'stores/CurrentForm.js';
 
 import 'scss/components/_form.scss';
 
 
-export class InlineForm extends React.Component {
+export class InlineForm extends PropsComponent {
 
   constructor(props, context) {
     super(props, context);
@@ -15,13 +16,6 @@ export class InlineForm extends React.Component {
     // FormActions.flush();
     this.state = props;
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentWillReceiveProps(props) {
-    // FormActions.flush();
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.body = props.children;
-    this.setState(stateCopy);
   }
 
   handleSubmit(e) {
