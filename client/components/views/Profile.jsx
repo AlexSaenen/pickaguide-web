@@ -33,17 +33,17 @@ export class Profile extends StoreObserver {
     return (
       <Layout>
         <Title>Welcome home {`${profile.firstName} ${profile.lastName}`}, you will find here all your info</Title>
-        <div className="profil_baseInfoLeft">
+        <div>
           <img src={profile.photoUrl} alt="Profile" />
           <p>Date de naissance : {profile.birthdate}</p>
           <p>email : {profile.email}</p>
           <p>Téléphone : {profile.phone}</p>
           <p>Ville : {profile.city}</p>
         </div>
-        <div className="profil_baseInfoCenter">
+        <div>
           <p>{profile.description}</p>
         </div>
-        <div className="profil_baseInfoRight">
+        <div>
           <p>{profile.interests}</p>
         </div>
       </Layout>
