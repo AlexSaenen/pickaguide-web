@@ -6,22 +6,7 @@
   display: inline;
 }
 
-.FormContainer {
-  text-align: center;
-  font-family: bariol;
-  display: block;
-  padding: 4em 2em 2em 2em;
-  width: 40em;
-  margin: 5em auto;
-  background-color: $modalMainColor;
-  -moz-box-shadow: 0 0 6px black;
-	-webkit-box-shadow: 0 0 6px black;
-	box-shadow: 0 0 6px black;
-  border: 1px solid #555;
-  border-radius: 0.1em;
-}
-
-.FormContainer, .InlineFormContainer {
+.LayoutContainer, .InlineFormContainer {
   input, textarea {
     font-family: bariol;
     font-size: 1em;

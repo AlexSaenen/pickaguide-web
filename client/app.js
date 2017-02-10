@@ -8,6 +8,8 @@ import { Signup } from 'components/views/Signup.jsx';
 import { Login } from 'components/views/Login.jsx';
 import { Profile } from 'components/views/Profile.jsx';
 import { Settings } from 'components/views/Settings.jsx';
+import { SettingsAccount } from 'components/views/SettingsAccount.jsx';
+import { SettingsProfile } from 'components/views/SettingsProfile.jsx';
 import { Contact } from 'components/views/Contact.jsx';
 import About from 'components/views/About.jsx';
 
@@ -22,6 +24,8 @@ ReactDOM.render(
       <Route path="login" component={Login} />
       <Route path="profile" component={Profile} />
       <Route path="settings" component={Settings} />
+      <Route path="settingsAccount" component={SettingsAccount} />
+      <Route path="settingsProfile" component={SettingsProfile} />
       <Route path="contactus" component={Contact} />
       <Route path="about" component={About} />
     </Route>

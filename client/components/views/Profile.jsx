@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { Layout } from 'base/Layout.jsx';
+import { Title } from 'base/Title.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
@@ -16,7 +18,7 @@ export class Profile extends StoreObserver {
 
   componentDidMount() {
     super.componentDidMount();
-    ProfileActions.getProfile();
+    ProfileActions.get();
   }
 
   onStoreChange(store) {
@@ -29,10 +31,8 @@ export class Profile extends StoreObserver {
     const profile = this.state.profile || {};
 
     return (
-      <div>
-        <div className="profil_mainInfo">
-          <h1>Welcome home {`${profile.firstName} ${profile.lastName}`}, you will find here all your info</h1>
-        </div>
+      <Layout>
+        <Title>Welcome home {`${profile.firstName} ${profile.lastName}`}, you will find here all your info</Title>
         <div className="profil_baseInfoLeft">
           <img src={profile.photoUrl} alt="Profile" />
           <p>Date de naissance : {profile.birthdate}</p>
@@ -46,7 +46,7 @@ export class Profile extends StoreObserver {
         <div className="profil_baseInfoRight">
           <p>{profile.interests}</p>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

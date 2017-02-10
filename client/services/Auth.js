@@ -10,26 +10,34 @@ export default class AuthApi {
   static login(form) {
     PromiseApi.post('/public/sign-in', form)
       .then((res) => {
-        CookieApi.set('userToken', res.token);
-        CookieApi.set('userId', res.id);
-        AuthActions.loginSuccess(res);
-        AuthActions.sync();
+        if (res.error) {
+          AuthActions.error(res.error);
+        } else {
+          CookieApi.set('userToken', res.token);
+          CookieApi.set('userId', res.id);
+          AuthActions.loginSuccess(res);
+          AuthActions.sync();
+        }
       })
       .catch((err) => {
-        AuthActions.loginError(err);
+        AuthActions.error(err);
       });
   }
 
   static logout() {
-    PromiseApi.auth().get('/account/logout')
-      .then(() => {
-        CookieApi.revoke();
-        AuthActions.logoutSuccess();
-        ProfileActions.invalidateProfile();
-        AccountActions.invalidateAccount();
+    PromiseApi.auth().put('/accounts/logout')
+      .then((res) => {
+        if (res.error) {
+          AuthActions.logoutError(res.error);
+        } else {
+          CookieApi.revoke();
+          AuthActions.logoutSuccess();
+          ProfileActions.invalidateProfile();
+          AccountActions.invalidateAccount();
+        }
       })
       .catch((err) => {
-        AuthActions.logoutError(err);
+        AuthActions.error(err);
       });
   }
 }
