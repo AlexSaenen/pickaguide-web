@@ -69,6 +69,9 @@ export class SettingsProfile extends StoreObserver {
           <TextInput value={profile.city} label="city" placeholder="Entrez votre ville" />
           <TextInput value={profile.country} label="country" placeholder="Entrez votre pays" />
           <TextArea value={profile.description} label="description" placeholder="Entrez votre description" required />
+          <p>
+            <img src={profile.photoUrl} alt={profile.photoUrl} height="150" width="150" />
+          </p>
           <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Entrez votre photo" required />
         </FormLayout>
       </div>
