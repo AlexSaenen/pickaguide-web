@@ -63,13 +63,13 @@ export class SettingsProfile extends StoreObserver {
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
           <Title>Update your profile</Title>
-          <TextInput value={profile.firstName} label="firstName" placeholder="Entrez votre prénom" />
-          <TextInput value={profile.lastName} label="lastName" placeholder="Entrez votre nom" />
-          <TextInput value={profile.phone} label="phone" placeholder="Entrez votre téléphone" />
-          <TextInput value={profile.city} label="city" placeholder="Entrez votre ville" />
-          <TextInput value={profile.country} label="country" placeholder="Entrez votre pays" />
-          <TextArea value={profile.description} label="description" placeholder="Entrez votre description" required />
-          <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Entrez votre photo" required />
+          <TextInput value={profile.firstName} label="firstName" placeholder="First name" />
+          <TextInput value={profile.lastName} label="lastName" placeholder="Last name" />
+          <TextInput value={profile.phone} label="phone" />
+          <TextInput value={profile.city} label="city" />
+          <TextInput value={profile.country} label="country" />
+          <TextArea value={profile.description} label="description" required />
+          <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Photo URL" required />
         </FormLayout>
       </div>
     );

@@ -59,11 +59,11 @@ export class Signup extends StoreObserver {
     return (
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
-          <TextInput label="firstName" placeholder="Entrez votre prénom" required />
-          <TextInput label="lastName" placeholder="Entrez votre nom" required />
-          <EmailInput placeholder="Entrez votre email" required />
-          <PasswordInput placeholder="Entrez votre mot de passe" required />
-          <PasswordInput label="passwordConfirmation" placeholder="Confirmez le mot de passe" required />
+          <TextInput label="firstName" placeholder="First name" required />
+          <TextInput label="lastName" placeholder="Last name" required />
+          <EmailInput required />
+          <PasswordInput required />
+          <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />
         </FormLayout>
       </div>
     );

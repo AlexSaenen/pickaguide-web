@@ -37,8 +37,8 @@ export class ProfilePicture extends StoreObserver {
         </Link>
         <div className="Dropdown Hidden">
           <Link to="/settings"><p>Settings</p></Link>
-          <Link to="/settingsAccount"><p>Account</p></Link>
-          <Link to="/settingsProfile"><p>Profile</p></Link>
+          <Link to="/account"><p>Account</p></Link>
+          <Link to="/profile"><p>Profile</p></Link>
         </div>
       </AuthDependent>
     );

@@ -9,6 +9,7 @@
         'arrow-body-style':0,
         'max-len':0,
         'no-param-reassign':0,
+        'no-extend-native':0,
         'import/no-unresolved':['error', { ignore:['^formFramework*', '^base*', '^menu*', '^components*', '^actions*', '^stores*', '^client*', '^services*', '^config*', '^scss*'] }],
     }
 }

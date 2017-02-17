@@ -96,14 +96,14 @@ export class SettingsAccount extends StoreObserver {
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Update Email" message={messages.mail}>
           <Title>Update your email</Title>
-          <EmailInput value={account.email} placeholder="Entrez votre email" required />
-          <EmailInput label="emailConfirmation" placeholder="Confirmez votre email" required />
+          <EmailInput value={account.email} required />
+          <EmailInput label="emailConfirmation" placeholder="Confirm email" required />
         </FormLayout>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Update Password" message={messages.password}>
           <Title>Update your password</Title>
-          <PasswordInput label="oldPassword" placeholder="Entrez votre ancien mot de passe" required />
-          <PasswordInput placeholder="Entrez votre mot de passe" required />
-          <PasswordInput label="passwordConfirmation" placeholder="Confirmez votre mot de passe" required />
+          <PasswordInput label="oldPassword" placeholder="Current password" required />
+          <PasswordInput placeholder="New password" required />
+          <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />
         </FormLayout>
       </div>
     );
