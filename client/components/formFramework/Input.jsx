@@ -16,7 +16,7 @@ export class Input extends StateComponent {
       label: props.label || props.type || 'input',
       id: props.id || props.label || props.type || 'input',
       value: props.value,
-      placeholder: props.placeholder || props.label,
+      placeholder: props.placeholder || props.label || props.type,
       required: props.required,
       inline: props.inline,
       className: props.className,
@@ -41,7 +41,7 @@ export class Input extends StateComponent {
       name: this.state.label,
       id: this.state.label,
       value: this.state.value,
-      placeholder: this.state.placeholder,
+      placeholder: this.state.placeholder.capitalize(),
       onChange: this.handleEdit,
       maxLength: '50',
     };

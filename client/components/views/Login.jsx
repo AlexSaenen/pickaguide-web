@@ -53,8 +53,8 @@ export class Login extends StoreObserver {
     return (
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Login" message={message}>
-          <EmailInput placeholder="Email" required />
-          <PasswordInput placeholder="Password" required />
+          <EmailInput required />
+          <PasswordInput required />
         </FormLayout>
       </div>
     );
