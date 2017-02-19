@@ -6,6 +6,7 @@ import { TextInput } from 'formFramework/TextInput.jsx';
 import { TelInput } from 'formFramework/TelInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { Title } from 'base/Title.jsx';
 import ContactActions from 'actions/Contact.js';
 import AccountStore from 'stores/Account.js';
 import ProfileStore from 'stores/Profile.js';
@@ -24,8 +25,6 @@ export class Contact extends StoreObserver {
       messageTitle: '',
       messageContent: '',
     };
-
-    console.log(this.state);
 
     this.onStoreChange = this.onStoreChange.bind(this);
     this.onContact = this.onContact.bind(this);
@@ -76,6 +75,7 @@ export class Contact extends StoreObserver {
     return (
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
+          <Title>Contact Us</Title>
           <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder="Full name" required />
           <EmailInput value={account ? account.email : ''} required />
           <TelInput label="phone" value={profile ? profile.phone : ''} />

@@ -12,8 +12,8 @@ class SignupStore {
   }
 
   onUpdate(form) {
-    console.log('here', form);
     SettingsApi.settings(form);
+    return false;
   }
 
   onUpdateSuccess(settings) {

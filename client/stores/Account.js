@@ -17,6 +17,7 @@ class AccountStore {
 
   onGet() {
     AccountApi.get();
+    return false;
   }
 
   onGetSuccess(account) {
@@ -39,6 +40,7 @@ class AccountStore {
 
   onUpdate(form) {
     AccountApi.update(form);
+    return false;
   }
 
   onUpdateSuccess(user) {
@@ -52,6 +54,7 @@ class AccountStore {
 
   onUpdateMail(form) {
     AccountApi.updateMail(form);
+    return false;
   }
 
   onUpdateMailSuccess(user) {
@@ -73,6 +76,7 @@ class AccountStore {
 
   onUpdatePassword(form) {
     AccountApi.updatePassword(form);
+    return false;
   }
 
   onUpdatePasswordSuccess(user) {
