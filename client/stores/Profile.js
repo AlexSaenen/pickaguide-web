@@ -13,6 +13,7 @@ class ProfileStore {
 
   onGet() {
     ProfileApi.get();
+    return false;
   }
 
   onGetSuccess(profile) {
@@ -27,6 +28,7 @@ class ProfileStore {
 
   onUpdate(form) {
     ProfileApi.update(form);
+    return false;
   }
 
   onUpdateSuccess(user) {

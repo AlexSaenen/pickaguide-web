@@ -6,7 +6,7 @@ import { MainLayout } from 'components/MainLayout.jsx';
 import Home from 'components/views/Home.jsx';
 import { Signup } from 'components/views/Signup.jsx';
 import { Login } from 'components/views/Login.jsx';
-// import { Profile } from 'components/views/Profile.jsx';
+import { Profile } from 'components/views/Profile.jsx';
 import { Settings } from 'components/views/Settings.jsx';
 import { SettingsAccount } from 'components/views/SettingsAccount.jsx';
 import { SettingsProfile } from 'components/views/SettingsProfile.jsx';
@@ -16,7 +16,6 @@ import 'services/Utils.js';
 
 import 'scss/global.scss';
 
-// <Route path="profile" component={Profile} />
 ReactDOM.render(
 
   <Router history={browserHistory}>
@@ -24,9 +23,10 @@ ReactDOM.render(
       <IndexRoute component={Home} />
       <Route path="signup" component={Signup} />
       <Route path="login" component={Login} />
-      <Route path="settings" component={Settings} />
-      <Route path="account" component={SettingsAccount} />
-      <Route path="profile" component={SettingsProfile} />
+      <Route path="settings/edit" component={Settings} />
+      <Route path="profile" component={Profile} />
+      <Route path="profile/edit" component={SettingsProfile} />
+      <Route path="account/edit" component={SettingsAccount} />
       <Route path="contact-us" component={Contact} />
       <Route path="about" component={About} />
     </Route>
