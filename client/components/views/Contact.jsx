@@ -6,18 +6,21 @@ import { TextInput } from 'formFramework/TextInput.jsx';
 import { TelInput } from 'formFramework/TelInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { Title } from 'base/Title.jsx';
 import ContactActions from 'actions/Contact.js';
 import AccountStore from 'stores/Account.js';
+import ProfileStore from 'stores/Profile.js';
 import ContactStore from 'stores/Contact.js';
 
 
 export class Contact extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, [AccountStore, ContactStore]);
+    super(props, context, [AccountStore, ProfileStore, ContactStore]);
 
     this.state = {
       account: AccountStore.getState().account,
+      profile: ProfileStore.getState().profile,
       isSuccess: null,
       messageTitle: '',
       messageContent: '',
@@ -46,7 +49,13 @@ export class Contact extends StoreObserver {
 
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.account = store.account;
+
+    if (store.account) {
+      stateCopy.account = store.account;
+    } else if (store.profile) {
+      stateCopy.profile = store.profile;
+    }
+
     this.updateState(stateCopy);
   }
 
@@ -56,6 +65,7 @@ export class Contact extends StoreObserver {
 
   render() {
     const account = this.state.account;
+    const profile = this.state.profile;
     const message = {
       title: this.state.messageTitle,
       content: this.state.messageContent,
@@ -65,10 +75,11 @@ export class Contact extends StoreObserver {
     return (
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
-          <TextInput label="name" value={account ? `${account.firstName} ${account.lastName}` : ''} placeholder="Nom complet" required />
-          <EmailInput value={account ? account.email : ''} placeholder="Email" required />
-          <TelInput label="phone" value={account ? account.phone : ''} placeholder="Téléphone" />
-          <TextArea label="message" placeholder="Entrez votre message" required />
+          <Title>Contact Us</Title>
+          <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder="Full name" required />
+          <EmailInput value={account ? account.email : ''} required />
+          <TelInput label="phone" value={profile ? profile.phone : ''} />
+          <TextArea label="message" required />
         </FormLayout>
       </div>
     );

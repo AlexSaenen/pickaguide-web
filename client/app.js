@@ -12,6 +12,7 @@ import { SettingsAccount } from 'components/views/SettingsAccount.jsx';
 import { SettingsProfile } from 'components/views/SettingsProfile.jsx';
 import { Contact } from 'components/views/Contact.jsx';
 import About from 'components/views/About.jsx';
+import 'services/Utils.js';
 
 import 'scss/global.scss';
 
@@ -22,11 +23,11 @@ ReactDOM.render(
       <IndexRoute component={Home} />
       <Route path="signup" component={Signup} />
       <Route path="login" component={Login} />
+      <Route path="settings/edit" component={Settings} />
       <Route path="profile" component={Profile} />
-      <Route path="settings" component={Settings} />
-      <Route path="settingsAccount" component={SettingsAccount} />
-      <Route path="settingsProfile" component={SettingsProfile} />
-      <Route path="contactus" component={Contact} />
+      <Route path="profile/edit" component={SettingsProfile} />
+      <Route path="account/edit" component={SettingsAccount} />
+      <Route path="contact-us" component={Contact} />
       <Route path="about" component={About} />
     </Route>
   </Router>

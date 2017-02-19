@@ -49,13 +49,15 @@ class AuthStore {
   }
 
   onLogout() {
+    CookieApi.revoke();
+    ProfileActions.invalidateProfile.defer();
+    AccountActions.invalidateAccount.defer();
     AuthApi.logout();
-    return false;
+    this.credentials = null;
   }
 
   onLogoutSuccess() {
     this.error = null;
-    this.credentials = null;
     browserHistory.push('/');
   }
 }

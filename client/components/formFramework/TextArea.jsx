@@ -36,7 +36,7 @@ export class TextArea extends StateComponent {
     const props = {
       name: this.state.label,
       value: this.state.value,
-      placeholder: this.state.placeholder,
+      placeholder: this.state.placeholder.capitalize(),
       onChange: this.handleEdit,
     };
 

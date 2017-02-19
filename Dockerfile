@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:4.4.5
+FROM mhart/alpine-node:6.9.3
 
 WORKDIR /app
 
@@ -10,6 +10,6 @@ RUN npm install --unsafe-perm --production --silent
 COPY . /app
 
 ENV PORT 80
-EXPOSE 80
+EXPOSE 80 443
 
 CMD make prod
