@@ -79,13 +79,12 @@ class AccountStore {
     return false;
   }
 
-  onUpdatePasswordSuccess(user) {
+  onUpdatePasswordSuccess(result) {
     this.mailError = null;
     this.mailSuccess = null;
     this.error = null;
     this.passwordError = null;
-    this.passwordSuccess = 'Your password has been updated';
-    this.account = user.account;
+    this.passwordSuccess = result.message;
   }
 
   onUpdatePasswordError(error) {
