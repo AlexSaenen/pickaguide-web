@@ -1,6 +1,6 @@
 function getApiUrl() {
   if (process.env.ENVIRONMENT === 'production') {
-    return 'http://82.223.82.41:3000';
+    return 'https://82.223.82.41:3000';
   } else if (process.env.ENVIRONMENT === 'staging') {
     return 'http://82.223.82.41:3030';
   }
