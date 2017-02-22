@@ -30,6 +30,7 @@ export class Message extends PropsComponent {
   }
 
   render() {
+    console.log('Message.render()', this.state);
     let classes = `MessageContainer ${this.state.message.type}`;
 
     if (this.state.message.content === '') {
