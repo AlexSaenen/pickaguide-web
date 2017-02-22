@@ -1,5 +1,7 @@
 import React from 'react';
 
+import 'scss/components/footer.scss';
+
 
 export class Footer extends React.Component {
 
@@ -9,8 +11,7 @@ export class Footer extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>This is the footer</p>
+      <div className="Footer">
       </div>
     );
   }
