@@ -5,6 +5,7 @@ import { Message } from 'formFramework/Message.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Layout } from 'base/Layout.jsx';
 import FormStore from 'stores/CurrentForm.js';
+import FormActions from 'actions/CurrentForm.js';
 
 import 'scss/components/_form.scss';
 
@@ -16,6 +17,10 @@ export class FormLayout extends PropsComponent {
 
     this.state = props;
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillUnmount() {
+    FormActions.flush.defer();
   }
 
   handleSubmit(e) {

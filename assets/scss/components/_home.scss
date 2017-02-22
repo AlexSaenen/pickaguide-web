@@ -1,12 +1,14 @@
 @import '../_colors.scss';
 
+$menuHeight: 6em;
+
 p {
     font-family: bariol !important;
 }
 
 .MainMenuWrapper {
-    height: 6em;
-    background-color: $darkHighlightColor;
+    height: $menuHeight;
+    background-color: $darkShadeColor;
     -moz-box-shadow:    0px 1px 8px 0px $shadowColor;
     -webkit-box-shadow: 0px 1px 8px 0px $shadowColor;
     box-shadow:         0px 1px 8px 0px $shadowColor;

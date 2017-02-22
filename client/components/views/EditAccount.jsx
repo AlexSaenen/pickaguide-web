@@ -9,7 +9,7 @@ import AccountActions from 'actions/Account.js';
 import AccountStore from 'stores/Account.js';
 
 
-export class SettingsAccount extends StoreObserver {
+export class EditAccount extends StoreObserver {
 
   constructor(props, context) {
     super(props, context, AccountStore);
@@ -19,7 +19,7 @@ export class SettingsAccount extends StoreObserver {
     console.log('***', AccountStore.getState().account);
     this.state = {
       account: AccountStore.getState().account,
-      messages: SettingsAccount.resetMessages(),
+      messages: EditAccount.resetMessages(),
     };
 
     this.onStoreChange = this.onStoreChange.bind(this);
@@ -37,7 +37,7 @@ export class SettingsAccount extends StoreObserver {
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.account = store.account;
-    stateCopy.messages = SettingsAccount.resetMessages();
+    stateCopy.messages = EditAccount.resetMessages();
 
     const errorsToHandle = [];
     if (store.mailError) { errorsToHandle.push('mail'); }
