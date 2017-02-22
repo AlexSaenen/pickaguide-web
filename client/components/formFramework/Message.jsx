@@ -10,6 +10,7 @@ export class Message extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
+    console.log('Message.constructor()', props.message);
     this.state = {
       message: props.message,
     };
@@ -30,7 +31,7 @@ export class Message extends PropsComponent {
   }
 
   render() {
-    console.log('Message.render()', this.state);
+    console.log('Message.render()', this.state.message);
     let classes = `MessageContainer ${this.state.message.type}`;
 
     if (this.state.message.content === '') {
