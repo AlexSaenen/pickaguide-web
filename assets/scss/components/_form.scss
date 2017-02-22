@@ -39,7 +39,7 @@
     background-color: rgba(0, 0, 0, 0);
     color: white;
     border: 0;
-    border-bottom: 1px dashed #83A4C5;
+    border-bottom: 1px dashed $highlightColor;
     z-index: 1;
   }
 }
