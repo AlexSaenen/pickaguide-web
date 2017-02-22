@@ -12,7 +12,7 @@ export default class Cookie {
 
   static toList() {
     let cookiePairs = document.cookie.split(';');
-    cookiePairs = cookiePairs.filter(pair => pair !== ' ');
+    cookiePairs = cookiePairs.filter(pair => [' ', ''].indexOf(pair) === -1);
     return cookiePairs.map(pair => {
       const splitPair = pair.split('=');
       return { key: splitPair[0].trim(), value: splitPair[1].trim() };
