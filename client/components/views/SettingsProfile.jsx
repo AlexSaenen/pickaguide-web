@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { FormLayout } from 'formFramework/FormLayout.jsx';
+import { Layout } from 'base/Layout.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { TextArea } from 'formFramework/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
@@ -22,6 +23,7 @@ export class SettingsProfile extends StoreObserver {
       isSuccess: null,
       messageTitle: '',
       messageContent: '',
+      editMode: true,
     };
 
     this.onStoreChange = this.onStoreChange.bind(this);
@@ -58,23 +60,50 @@ export class SettingsProfile extends StoreObserver {
       content: this.state.messageContent,
       type: (this.state.isSuccess ? 'Success' : 'Alert'),
     };
+    if (true)
+    {
+      return (
+        <div>
+          <Layout>
+            <Title>{`${profile.firstName}${profile.lastName.charAt(0).toUpperCase()}`}</Title>
+            <div>
+              <img src={profile.photoUrl} alt="Profile" />
+              <p>email : {` ${profile.email} ? ${profile.email} : "je n'ai pas d'email..." `}</p>
+              <p>Téléphone : {profile.phone}</p>
+              <p>Ville : {profile.city}</p>
+            </div>
 
-    return (
-      <div>
-        <FormLayout onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
-          <Title>Update your profile</Title>
-          <TextInput value={profile.firstName} label="firstName" placeholder="Entrez votre prénom" />
-          <TextInput value={profile.lastName} label="lastName" placeholder="Entrez votre nom" />
-          <TextInput value={profile.phone} label="phone" placeholder="Entrez votre téléphone" />
-          <TextInput value={profile.city} label="city" placeholder="Entrez votre ville" />
-          <TextInput value={profile.country} label="country" placeholder="Entrez votre pays" />
-          <TextArea value={profile.description} label="description" placeholder="Entrez votre description" required />
-          <p>
-            <img src={profile.photoUrl} alt={profile.photoUrl} height="150" width="150" />
-          </p>
-          <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Entrez votre photo" required />
-        </FormLayout>
-      </div>
-    );
+          </Layout>
+          <Layout>
+            <div>
+              <p>{profile.description}</p>
+            </div>
+            <div>
+              <p>{profile.interests}</p>
+            </div>
+          </Layout>
+        </div>
+      );
+    }
+    else
+    {
+      return (
+        <div>
+          <FormLayout onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
+            <Title>Update your profile</Title>
+            <TextInput value={profile.firstName} label="firstName" placeholder="Entrez votre prénom" />
+            <TextInput value={profile.lastName} label="lastName" placeholder="Entrez votre nom" />
+            <TextInput value={profile.phone} label="phone" placeholder="Entrez votre téléphone" />
+            <TextInput value={profile.city} label="city" placeholder="Entrez votre ville" />
+            <TextInput value={profile.country} label="country" placeholder="Entrez votre pays" />
+            <TextArea value={profile.description} label="description" placeholder="Entrez votre description" required />
+            <p>
+              <img src={profile.photoUrl} alt={profile.photoUrl} height="150" width="150" />
+            </p>
+            <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Entrez votre photo" required />
+          </FormLayout>
+        </div>
+      );
+    }
   }
 }

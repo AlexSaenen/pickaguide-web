@@ -65,7 +65,7 @@ export class Contact extends StoreObserver {
     return (
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
-          <TextInput label="name" value={account ? `${account.firstName} ${account.lastName}` : ''} placeholder="Nom complet" required />
+          <TextInput label="name" value={(account && account.firstName) ? `${account.firstName} ${account.lastName}` : ''} placeholder="Nom complet" required />
           <EmailInput value={account ? account.email : ''} placeholder="Email" required />
           <TelInput label="phone" value={account ? account.phone : ''} placeholder="Téléphone" />
           <TextArea label="message" placeholder="Entrez votre message" required />

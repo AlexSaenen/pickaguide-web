@@ -2,6 +2,7 @@ import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Layout } from 'base/Layout.jsx';
+import { TextArea } from 'formFramework/TextArea.jsx';
 import { Title } from 'base/Title.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
@@ -31,15 +32,18 @@ export class Profile extends StoreObserver {
     const profile = this.state.profile || {};
 
     return (
+      <div>
       <Layout>
-        <Title>Welcome home {`${profile.firstName} ${profile.lastName}`}, you will find here all your info</Title>
+        <Title>{`${profile.firstName}${profile.lastName.charAt(0).toUpperCase()}`}</Title>
         <div>
           <img src={profile.photoUrl} alt="Profile" />
-          <p>Date de naissance : {profile.birthdate}</p>
           <p>email : {profile.email}</p>
           <p>Téléphone : {profile.phone}</p>
           <p>Ville : {profile.city}</p>
         </div>
+
+      </Layout>
+      <Layout>
         <div>
           <p>{profile.description}</p>
         </div>
@@ -47,6 +51,7 @@ export class Profile extends StoreObserver {
           <p>{profile.interests}</p>
         </div>
       </Layout>
+      </div>
     );
   }
 }
