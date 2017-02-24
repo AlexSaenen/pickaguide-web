@@ -9,7 +9,7 @@ import AccountActions from 'actions/Account.js';
 import AccountStore from 'stores/Account.js';
 
 
-export class SettingsAccount extends StoreObserver {
+export class EditAccount extends StoreObserver {
 
   constructor(props, context) {
     super(props, context, AccountStore);
@@ -19,21 +19,25 @@ export class SettingsAccount extends StoreObserver {
     console.log('***', AccountStore.getState().account);
     this.state = {
       account: AccountStore.getState().account,
-      messages: {
-        titles: { mail: '', password: '' },
-        content: { mail: '', password: '' },
-        isSuccess: { mail: null, password: null },
-      },
+      messages: EditAccount.resetMessages(),
     };
 
     this.onStoreChange = this.onStoreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  static resetMessages() {
+    return {
+      titles: { mail: '', password: '' },
+      content: { mail: '', password: '' },
+      isSuccess: { mail: null, password: null },
+    };
+  }
+
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.account = store.account;
-    console.log('onStoreChange Account:', stateCopy.account, '|', store);
+    stateCopy.messages = EditAccount.resetMessages();
 
     const errorsToHandle = [];
     if (store.mailError) { errorsToHandle.push('mail'); }
@@ -63,16 +67,24 @@ export class SettingsAccount extends StoreObserver {
       if (form.password !== form.passwordConfirmation) {
         AccountActions.updatePasswordError('The passwords do not match');
       } else {
-        AccountActions.updatePassword({
-          password: form.password,
-          currentPassword: form.oldPassword,
-        });
+        if (form.oldPassword === form.password) {
+          AccountActions.updatePasswordError('Your new password needs to be different');
+        } else {
+          AccountActions.updatePassword({
+            password: form.password,
+            currentPassword: form.oldPassword,
+          });
+        }
       }
     } else {
       if (form.email !== form.emailConfirmation) {
         AccountActions.updateMailError('The emails do not match');
       } else {
-        AccountActions.updateMail({ email: form.email });
+        if (form.email === this.state.account.email) {
+          AccountActions.updateMailError('Your new email needs to be different');
+        } else {
+          AccountActions.updateMail({ email: form.email });
+        }
       }
     }
   }
@@ -96,14 +108,14 @@ export class SettingsAccount extends StoreObserver {
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Update Email" message={messages.mail}>
           <Title>Update your email</Title>
-          <EmailInput value={account.email} placeholder="Entrez votre email" required />
-          <EmailInput label="emailConfirmation" placeholder="Confirmez votre email" required />
+          <EmailInput placeholder={`Current Email: ${account.email}`} required />
+          <EmailInput label="emailConfirmation" placeholder="Confirm email" required />
         </FormLayout>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Update Password" message={messages.password}>
           <Title>Update your password</Title>
-          <PasswordInput label="oldPassword" placeholder="Entrez votre ancien mot de passe" required />
-          <PasswordInput placeholder="Entrez votre mot de passe" required />
-          <PasswordInput label="passwordConfirmation" placeholder="Confirmez votre mot de passe" required />
+          <PasswordInput label="oldPassword" placeholder="Current password" required />
+          <PasswordInput placeholder="New password" required />
+          <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />
         </FormLayout>
       </div>
     );

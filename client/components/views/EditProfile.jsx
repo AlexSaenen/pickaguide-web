@@ -10,7 +10,7 @@ import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
 
-export class SettingsProfile extends StoreObserver {
+export class EditProfile extends StoreObserver {
 
   constructor(props, context) {
     super(props, context, ProfileStore);

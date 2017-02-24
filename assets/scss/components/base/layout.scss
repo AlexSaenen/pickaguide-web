@@ -1,10 +1,12 @@
 @import '../../_colors.scss';
 
+$layoutPadding: 2em;
+
 .LayoutContainer {
   text-align: center;
   font-family: bariol;
   display: block;
-  padding: 2em;
+  padding: $layoutPadding;
   width: 40em;
   margin: 5em auto;
   background-color: $modalMainColor;
@@ -18,5 +20,19 @@
     margin: 0.5em 0 1.5em 0;
     font-size: 1.8em;
     color: white;
+  }
+
+  hr.Divider {
+    margin: 2em -#{$layoutPadding};
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), $modalSecondaryColor, rgba(0, 0, 0, 0));
+  }
+
+  hr.Overlay {
+    margin: 2em -#{$layoutPadding};
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
   }
 }

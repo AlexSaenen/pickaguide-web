@@ -40,8 +40,8 @@ export class Settings extends StoreObserver {
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Save">
           <Title>General settings</Title>
-          <TextInput label="language" placeholder="Entrez votre prénom" />
-          <TextInput label="lastName" placeholder="Entrez votre nom" />
+          <TextInput label="firstName" placeholder="First name" />
+          <TextInput label="lastName" placeholder="Last name" />
         </FormLayout>
       </div>
     );

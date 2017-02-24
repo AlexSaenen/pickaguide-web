@@ -17,6 +17,7 @@ class AccountStore {
 
   onGet() {
     AccountApi.get();
+    return false;
   }
 
   onGetSuccess(account) {
@@ -39,6 +40,7 @@ class AccountStore {
 
   onUpdate(form) {
     AccountApi.update(form);
+    return false;
   }
 
   onUpdateSuccess(user) {
@@ -52,6 +54,7 @@ class AccountStore {
 
   onUpdateMail(form) {
     AccountApi.updateMail(form);
+    return false;
   }
 
   onUpdateMailSuccess(user) {
@@ -73,15 +76,15 @@ class AccountStore {
 
   onUpdatePassword(form) {
     AccountApi.updatePassword(form);
+    return false;
   }
 
-  onUpdatePasswordSuccess(user) {
+  onUpdatePasswordSuccess(result) {
     this.mailError = null;
     this.mailSuccess = null;
     this.error = null;
     this.passwordError = null;
-    this.passwordSuccess = 'Your password has been updated';
-    this.account = user.account;
+    this.passwordSuccess = result.message;
   }
 
   onUpdatePasswordError(error) {

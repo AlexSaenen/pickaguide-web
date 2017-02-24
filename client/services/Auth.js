@@ -30,10 +30,7 @@ export default class AuthApi {
         if (res.error) {
           AuthActions.logoutError(res.error);
         } else {
-          CookieApi.revoke();
           AuthActions.logoutSuccess();
-          ProfileActions.invalidateProfile();
-          AccountActions.invalidateAccount();
         }
       })
       .catch((err) => {

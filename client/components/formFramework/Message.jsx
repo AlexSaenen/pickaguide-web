@@ -25,6 +25,7 @@ export class Message extends PropsComponent {
 
   dismiss() {
     const stateCopy = Object.assign({}, this.state);
+    stateCopy.message.title = '';
     stateCopy.message.content = '';
     this.updateState(stateCopy);
   }

@@ -4,6 +4,8 @@ import { Menu } from 'components/Menu.jsx';
 import { Footer } from 'components/Footer.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 
+import 'scss/components/mainLayout.scss';
+
 
 export class MainLayout extends PropsComponent {
 
@@ -11,7 +13,9 @@ export class MainLayout extends PropsComponent {
     return (
       <div>
         <Menu />
-        {this.state.children}
+        <div className="MainContent">
+          {this.state.children}
+        </div>
         <Footer />
       </div>
     );

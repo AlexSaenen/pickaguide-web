@@ -35,10 +35,10 @@ export class ProfilePicture extends StoreObserver {
         <Link to="/profile">
           <img src={this.state.url} alt="Profile" />
         </Link>
-        <div className="Dropdown Hidden">
-          <Link to="/settings"><p>Settings</p></Link>
-          <Link to="/settingsAccount"><p>Account</p></Link>
-          <Link to="/settingsProfile"><p>Profile</p></Link>
+        <div className="Dropdown HeightNone">
+          <Link to="/settings/edit"><p>Settings</p></Link>
+          <Link to="/account/edit"><p>Account</p></Link>
+          <Link to="/profile/edit"><p>Profile</p></Link>
         </div>
       </AuthDependent>
     );

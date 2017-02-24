@@ -5,6 +5,7 @@ import { TextInput } from 'formFramework/TextInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { PasswordInput } from 'formFramework/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { Title } from 'base/Title.jsx';
 import SignupActions from 'actions/Signup.js';
 import SignupStore from 'stores/Signup.js';
 
@@ -59,11 +60,12 @@ export class Signup extends StoreObserver {
     return (
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
-          <TextInput label="firstName" placeholder="Entrez votre prénom" required />
-          <TextInput label="lastName" placeholder="Entrez votre nom" required />
-          <EmailInput placeholder="Entrez votre email" required />
-          <PasswordInput placeholder="Entrez votre mot de passe" required />
-          <PasswordInput label="passwordConfirmation" placeholder="Confirmez le mot de passe" required />
+          <Title>Create an Account</Title>
+          <TextInput label="firstName" placeholder="First name" required />
+          <TextInput label="lastName" placeholder="Last name" required />
+          <EmailInput required />
+          <PasswordInput required />
+          <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />
         </FormLayout>
       </div>
     );

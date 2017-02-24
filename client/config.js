@@ -1,8 +1,8 @@
 function getApiUrl() {
   if (process.env.ENVIRONMENT === 'production') {
-    return 'http://82.223.82.41:3000';
+    return 'https://pickaguide.fr:3000';
   } else if (process.env.ENVIRONMENT === 'staging') {
-    return 'http://82.223.82.41:3030';
+    return 'http://pickaguide.fr:3030';
   }
 
   return 'http://dev.l0cal:3030';

@@ -13,7 +13,6 @@ export class InlineForm extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
-    // FormActions.flush();
     this.state = props;
     this.handleSubmit = this.handleSubmit.bind(this);
   }

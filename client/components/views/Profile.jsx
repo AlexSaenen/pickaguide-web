@@ -37,9 +37,10 @@ export class Profile extends StoreObserver {
         <Title>{`${profile.firstName}${profile.lastName.charAt(0).toUpperCase()}`}</Title>
         <div>
           <img src={profile.photoUrl} alt="Profile" />
-          <p>email : {profile.email}</p>
-          <p>Téléphone : {profile.phone}</p>
-          <p>Ville : {profile.city}</p>
+          <p>Date of Birth : {profile.birthdate}</p>
+          <p>Email : {profile.email}</p>
+          <p>Phone : {profile.phone}</p>
+          <p>City : {profile.city}</p>
         </div>
 
       </Layout>
