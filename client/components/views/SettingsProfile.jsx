@@ -72,9 +72,7 @@ export class SettingsProfile extends StoreObserver {
               <p>Téléphone : {profile.phone}</p>
               <p>Ville : {profile.city}</p>
             </div>
-
-          </Layout>
-          <Layout>
+            <hr className="Overlay" />
             <div>
               <p>{profile.description}</p>
             </div>
