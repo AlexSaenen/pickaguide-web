@@ -63,12 +63,15 @@ export class EditProfile extends StoreObserver {
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
           <Title>Update your profile</Title>
+          <hr className="Overlay" />
           <TextInput value={profile.firstName} label="firstName" placeholder="First name" />
           <TextInput value={profile.lastName} label="lastName" placeholder="Last name" />
+          <hr className="Divider" />
           <TextInput value={profile.phone} label="phone" />
           <TextInput value={profile.city} label="city" />
           <TextInput value={profile.country} label="country" />
           <TextArea value={profile.description} label="description" required />
+          <hr className="Divider" />
           <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Photo URL" required />
         </FormLayout>
       </div>

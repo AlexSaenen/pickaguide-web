@@ -73,15 +73,14 @@ export class Contact extends StoreObserver {
     };
 
     return (
-      <div>
-        <FormLayout onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
-          <Title>Contact Us</Title>
-          <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder="Full name" required />
-          <EmailInput value={account ? account.email : ''} required />
-          <TelInput label="phone" value={profile ? profile.phone : ''} />
-          <TextArea label="message" required />
-        </FormLayout>
-      </div>
+      <FormLayout onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
+        <Title>Contact Us</Title>
+        <hr className="Overlay" />
+        <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder="Full name" required />
+        <EmailInput value={account ? account.email : ''} required />
+        <TelInput label="phone" value={profile ? profile.phone : ''} />
+        <TextArea label="message" required />
+      </FormLayout>
     );
   }
 }

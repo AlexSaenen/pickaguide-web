@@ -42,6 +42,10 @@
     border-bottom: 1px dashed $highlightColor;
     z-index: 1;
   }
+
+  textarea {
+    resize: vertical;
+  }
 }
 
 .FormWrapper {

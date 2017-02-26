@@ -61,8 +61,10 @@ export class Signup extends StoreObserver {
       <div>
         <FormLayout onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
           <Title>Create an Account</Title>
+          <hr className="Overlay" />
           <TextInput label="firstName" placeholder="First name" required />
           <TextInput label="lastName" placeholder="Last name" required />
+          <hr className="Divider" />
           <EmailInput required />
           <PasswordInput required />
           <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />
