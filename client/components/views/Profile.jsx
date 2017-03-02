@@ -4,6 +4,7 @@ import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Layout } from 'layout/Layout.jsx';
 import { Title } from 'layout/Title.jsx';
 import { Picture } from 'layout/Picture.jsx';
+import { Text } from 'layout/Text.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
@@ -34,19 +35,16 @@ export class Profile extends StoreObserver {
     return (
       <Layout layoutStyle="LayoutLight">
         <Title>{`${profile.firstName} ${profile.lastName}`}</Title>
-        <div>
-          <Picture pictureName="Profile" url={profile.photoUrl} />
-          <p>Date of Birth : {profile.birthdate}</p>
-          <p>Email : {profile.email}</p>
-          <p>Phone : {profile.phone}</p>
-          <p>City : {profile.city}</p>
-        </div>
-        <div>
-          <p>{profile.description}</p>
-        </div>
-        <div>
-          <p>{profile.interests}</p>
-        </div>
+        <Picture pictureName="Profile" url={profile.photoUrl} />
+        <hr className="Overlay" />
+        <Text>
+          <p>Date of Birth: {profile.birthdate}</p>
+          <p>City: {profile.city}</p>
+        </Text>
+        <hr className="Divider" />
+        <Text>{profile.description}</Text>
+        <hr className="Divider" />
+        <Text>{profile.interests}</Text>
       </Layout>
     );
   }

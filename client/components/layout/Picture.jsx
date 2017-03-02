@@ -29,5 +29,5 @@ Picture.defaultProps = {
 
 Picture.propTypes = {
   pictureName: React.PropTypes.string,
-  url: React.PropTypes.string.required,
+  url: React.PropTypes.string.isRequired,
 };

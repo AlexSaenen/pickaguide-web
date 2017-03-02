@@ -28,6 +28,15 @@ $layoutPadding: 2em;
     & > img {
       width: 100%;
     }
+
+  }
+
+  .Text {
+    font-size: 1em;
+
+    & > p {
+      padding: 0.1em;
+    }
   }
 
   hr.Divider {

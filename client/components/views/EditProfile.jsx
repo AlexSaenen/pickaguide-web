@@ -71,6 +71,7 @@ export class EditProfile extends StoreObserver {
           <TextInput value={profile.city} label="city" />
           <TextInput value={profile.country} label="country" />
           <TextArea value={profile.description} label="description" required />
+          <TextArea value={profile.interests} label="interests" required />
           <hr className="Divider" />
           <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Photo URL" required />
         </FormLayout>
