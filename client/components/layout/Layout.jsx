@@ -14,14 +14,21 @@ export class Layout extends PropsComponent {
   }
 
   render() {
+    const classNames = `LayoutContainer ${this.state.layoutStyle}`;
+
     return (
-      <div className="LayoutContainer">
+      <div className={classNames}>
         {this.state.children}
       </div>
     );
   }
 }
 
+Layout.defaultProps = {
+  layoutStyle: 'LayoutDark',
+};
+
 Layout.propTypes = {
   children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array]),
+  layoutStyle: React.PropTypes.string,
 };

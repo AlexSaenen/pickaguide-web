@@ -6,7 +6,7 @@ import { TextInput } from 'formFramework/TextInput.jsx';
 import { TelInput } from 'formFramework/TelInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'base/Title.jsx';
+import { Title } from 'layout/Title.jsx';
 import ContactActions from 'actions/Contact.js';
 import AccountStore from 'stores/Account.js';
 import ProfileStore from 'stores/Profile.js';

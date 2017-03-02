@@ -4,7 +4,7 @@ import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { PasswordInput } from 'formFramework/PasswordInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'base/Title.jsx';
+import { Title } from 'layout/Title.jsx';
 import AccountActions from 'actions/Account.js';
 import AccountStore from 'stores/Account.js';
 
