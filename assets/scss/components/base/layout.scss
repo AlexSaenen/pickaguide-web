@@ -20,6 +20,16 @@ $layoutPadding: 2em;
     font-size: 1.8em;
   }
 
+  .Picture {
+    width: 80%;
+    margin: auto;
+    padding: 1em;
+
+    & > img {
+      width: 100%;
+    }
+  }
+
   hr.Divider {
     margin: 2em -#{$layoutPadding};
     border: 0;

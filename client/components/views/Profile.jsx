@@ -3,6 +3,7 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Layout } from 'layout/Layout.jsx';
 import { Title } from 'layout/Title.jsx';
+import { Picture } from 'layout/Picture.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
@@ -31,19 +32,19 @@ export class Profile extends StoreObserver {
     const profile = this.state.profile || {};
 
     return (
-      <Layout>
-        <Title>Welcome home {`${profile.firstName} ${profile.lastName}`}, you will find here all your info</Title>
-        <div className="profil_baseInfoLeft">
-          <img src={profile.photoUrl} alt="Profile" />
+      <Layout layoutStyle="LayoutLight">
+        <Title>{`${profile.firstName} ${profile.lastName}`}</Title>
+        <div>
+          <Picture pictureName="Profile" url={profile.photoUrl} />
           <p>Date of Birth : {profile.birthdate}</p>
           <p>Email : {profile.email}</p>
           <p>Phone : {profile.phone}</p>
           <p>City : {profile.city}</p>
         </div>
-        <div className="profil_baseInfoCenter">
+        <div>
           <p>{profile.description}</p>
         </div>
-        <div className="profil_baseInfoRight">
+        <div>
           <p>{profile.interests}</p>
         </div>
       </Layout>
