@@ -16,16 +16,14 @@ export class EditProfile extends StoreObserver {
     super(props, context, ProfileStore);
 
     this.router = context.router;
-
     console.log('***', ProfileStore.getState().profile);
+    this.editMode = false;
     this.state = {
       profile: ProfileStore.getState().profile,
       isSuccess: null,
       messageTitle: '',
       messageContent: '',
-      editMode: true,
     };
-
     this.onStoreChange = this.onStoreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -53,6 +51,12 @@ export class EditProfile extends StoreObserver {
     ProfileActions.update(form);
   }
 
+  handleEdit(form) {
+    console.log(form)
+    console.log("I'm clicked!!")
+    //this.editMode = true;
+  }
+
   render() {
     const profile = this.state.profile || {};
     const message = {
@@ -60,16 +64,17 @@ export class EditProfile extends StoreObserver {
       content: this.state.messageContent,
       type: (this.state.isSuccess ? 'Success' : 'Alert'),
     };
-    if (true)
+    if (this.editMode)
     {
       return (
         <div>
           <Layout>
             <Title>{`${profile.firstName}${profile.lastName.charAt(0).toUpperCase()}`}</Title>
             <div>
+              <button type="button" onClick={this.handleEdit} >Edit</button>
               <img src={profile.photoUrl} alt="Profile" />
               <p>Date of Birth : {profile.birthdate}</p>
-              <p>email : {` ${profile.email} ? ${profile.email} : "je n'ai pas d'email..." `}</p>
+              <p>email : {` ${profile.email} ? ${profile.email} : "je n'ai pas d'email..." `} </p>
               <p>Téléphone : {profile.phone}</p>
               <p>Ville : {profile.city}</p>
             </div>
@@ -77,6 +82,7 @@ export class EditProfile extends StoreObserver {
             <div>
               <p>{profile.description}</p>
             </div>
+            <hr className="Overlay" />
             <div>
               <p>{profile.interests}</p>
             </div>
