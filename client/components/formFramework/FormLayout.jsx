@@ -3,7 +3,7 @@ import React from 'react';
 import { SubmitButton } from 'formFramework/SubmitButton.jsx';
 import { Message } from 'formFramework/Message.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { Layout } from 'base/Layout.jsx';
+import { Layout } from 'layout/Layout.jsx';
 import FormStore from 'stores/CurrentForm.js';
 import FormActions from 'actions/CurrentForm.js';
 

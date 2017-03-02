@@ -9,7 +9,6 @@ $layoutPadding: 2em;
   padding: $layoutPadding;
   width: 40em;
   margin: 5em auto;
-  background-color: $modalMainColor;
   -moz-box-shadow: 0 0 6px black;
 	-webkit-box-shadow: 0 0 6px black;
 	box-shadow: 0 0 6px black;
@@ -19,7 +18,6 @@ $layoutPadding: 2em;
   .Title {
     margin: 0.5em 0 1.5em 0;
     font-size: 1.8em;
-    color: white;
   }
 
   hr.Divider {
@@ -34,5 +32,37 @@ $layoutPadding: 2em;
     height: 12px;
     border: 0;
     box-shadow: inset 0 12px 12px -10px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.LayoutLight {
+  background-color: $modalLightColor;
+
+  .Title {
+    color: black;
+  }
+
+  input, textarea {
+    color: black;
+  }
+
+  input[type="submit"] {
+    color: white;
+  }
+}
+
+.LayoutDark {
+  background-color: $modalDarkColor;
+
+  .Title {
+    color: white;
+  }
+
+  input, textarea {
+    color: white;
+  }
+
+  input[type="submit"] {
+    color: black;
   }
 }

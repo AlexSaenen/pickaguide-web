@@ -4,7 +4,7 @@ import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { TextArea } from 'formFramework/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'base/Title.jsx';
+import { Title } from 'layout/Title.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 

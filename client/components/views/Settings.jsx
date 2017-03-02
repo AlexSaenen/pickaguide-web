@@ -3,7 +3,7 @@ import React from 'react';
 import { FormLayout } from 'formFramework/FormLayout.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'base/Title.jsx';
+import { Title } from 'layout/Title.jsx';
 import SettingsActions from 'actions/Settings.js';
 import SettingsStore from 'stores/Settings.js';
 

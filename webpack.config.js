@@ -19,6 +19,7 @@ module.exports = {
            actions: path.join(__dirname, '/client/actions'),
            components: path.join(__dirname, '/client/components'),
            base: path.join(__dirname, '/client/components/base'),
+           layout: path.join(__dirname, '/client/components/layout'),
            formFramework: path.join(__dirname, '/client/components/formFramework'),
            menu: path.join(__dirname, '/client/components/menu'),
            views: path.join(__dirname, '/client/components/views'),

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Layout } from 'base/Layout.jsx';
-import { Title } from 'base/Title.jsx';
+import { Layout } from 'layout/Layout.jsx';
+import { Title } from 'layout/Title.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
