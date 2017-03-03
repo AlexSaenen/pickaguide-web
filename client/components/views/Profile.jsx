@@ -2,7 +2,8 @@ import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Layout } from 'layout/Layout.jsx';
-import { Title } from 'layout/Title.jsx';
+import { CheckMark } from 'layout/CheckMark.jsx';
+import { SubTitle } from 'layout/SubTitle.jsx';
 import { Picture } from 'layout/Picture.jsx';
 import { Text } from 'layout/Text.jsx';
 import ProfileActions from 'actions/Profile.js';
@@ -31,19 +32,26 @@ export class Profile extends StoreObserver {
 
   render() {
     const profile = this.state.profile || {};
+    const birthDate = new Date(profile.birthdate);
 
     return (
-      <Layout layoutStyle="LayoutLight">
-        <Title>{`${profile.firstName} ${profile.lastName}`}</Title>
-        <Picture pictureName="Profile" url={profile.photoUrl} />
+      <Layout layoutStyle="LayoutLight Tight">
+        <div className="LayoutHeader">
+          <div className="HeaderPicture Inline-Block"><Picture url={profile.photoUrl} pictureName="Profile" /></div>
+          <p className="HeaderText Title Inline-Block" >{`${profile.firstName} ${profile.lastName}`}</p>
+          <div className="HeaderCheckMark"><CheckMark active={true} /></div>
+        </div>
         <hr className="Overlay" />
+        <SubTitle>Basic Info</SubTitle>
         <Text>
-          <p>Date of Birth: {profile.birthdate}</p>
-          <p>City: {profile.city}</p>
+          <p><strong>Date of Birth:</strong> {birthDate.toDateString()}</p>
+          <p><strong>City:</strong> {profile.city}</p>
         </Text>
         <hr className="Divider" />
+        <SubTitle>Description</SubTitle>
         <Text>{profile.description}</Text>
         <hr className="Divider" />
+        <SubTitle>Interests</SubTitle>
         <Text>{profile.interests}</Text>
       </Layout>
     );

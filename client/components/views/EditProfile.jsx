@@ -14,9 +14,6 @@ export class EditProfile extends StoreObserver {
   constructor(props, context) {
     super(props, context, ProfileStore);
 
-    this.router = context.router;
-
-    console.log('***', ProfileStore.getState().profile);
     this.state = {
       profile: ProfileStore.getState().profile,
       isSuccess: null,
@@ -31,7 +28,6 @@ export class EditProfile extends StoreObserver {
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.profile = store.profile;
-    console.log('onStoreChange Profile:', stateCopy.profile, '|', store);
 
     if (store.error) {
       stateCopy.messageTitle = 'Some error occurred when updating your profile';
@@ -46,7 +42,6 @@ export class EditProfile extends StoreObserver {
   }
 
   handleSubmit(form) {
-    console.log(form);
     // maybe check if a value is empty => profileSettingsValidationError(form.firstName'value empty');
     ProfileActions.update(form);
   }

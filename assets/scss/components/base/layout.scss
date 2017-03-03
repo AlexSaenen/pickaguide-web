@@ -20,13 +20,22 @@ $layoutPadding: 2em;
     font-size: 1.8em;
   }
 
+  .SubTitle {
+    margin: -0.3em 0 1.5em 0;
+    font-size: 1.2em;
+    font-style: italic;
+    font-weight: bold;
+  }
+
   .Picture {
-    width: 80%;
     margin: auto;
-    padding: 1em;
+    height: inherit;
 
     & > img {
-      width: 100%;
+      margin: auto;
+      height: 100%;
+      width: auto;
+      display: block;
     }
 
   }
@@ -40,6 +49,8 @@ $layoutPadding: 2em;
   }
 
   hr.Divider {
+    display: block;
+    clear: both;
     margin: 2em -#{$layoutPadding};
     border: 0;
     height: 1px;
@@ -47,6 +58,8 @@ $layoutPadding: 2em;
   }
 
   hr.Overlay {
+    display: block;
+    clear: both;
     margin: 2em -#{$layoutPadding};
     height: 12px;
     border: 0;
@@ -54,11 +67,23 @@ $layoutPadding: 2em;
   }
 }
 
+.Tight {
+  padding: #{$layoutPadding / 2};
+
+  hr.Divider, hr.Overlay {
+    margin: 1em -#{$layoutPadding / 2};
+  }
+}
+
 .LayoutLight {
   background-color: $modalLightColor;
 
-  .Title {
+  .Title, .Text {
     color: black;
+  }
+
+  .SubTitle {
+    color: $textDarkColor;
   }
 
   input, textarea {
@@ -73,8 +98,12 @@ $layoutPadding: 2em;
 .LayoutDark {
   background-color: $modalDarkColor;
 
-  .Title {
+  .Title, .Text {
     color: white;
+  }
+
+  .SubTitle {
+    color: $textLightColor;
   }
 
   input, textarea {
@@ -83,5 +112,43 @@ $layoutPadding: 2em;
 
   input[type="submit"] {
     color: black;
+  }
+}
+
+.LayoutHeader {
+  width: 100%;
+  height: 4em;
+
+  .Title {
+    height: auto;
+    margin: 0;
+  }
+}
+
+.HeaderPicture {
+  width: 20%;
+  text-align: center;
+  height: inherit;
+  vertical-align: middle;
+}
+
+.HeaderText {
+  width: 70%;
+  height: inherit;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.HeaderCheckMark {
+  width: 10%;
+  height: inherit;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+
+  .CheckMark {
+    width: 40%;
+    height: 40%;
+    margin: auto;
   }
 }

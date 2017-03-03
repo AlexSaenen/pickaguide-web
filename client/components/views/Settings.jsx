@@ -13,8 +13,6 @@ export class Settings extends StoreObserver {
   constructor(props, context) {
     super(props, context, SettingsStore);
 
-    this.router = context.router;
-    console.log('---', SettingsStore.getState().settings);
     this.state = {
       settings: SettingsStore.getState().settings,
     };
@@ -26,12 +24,10 @@ export class Settings extends StoreObserver {
   onStoreChange() {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.settings = SettingsStore.getState().settings;
-    console.log(stateCopy.settings);
     this.updateState(stateCopy);
   }
 
   handleSubmit(form) {
-    console.log(form);
     SettingsActions.update(form);
   }
 

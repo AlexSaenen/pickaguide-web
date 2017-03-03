@@ -14,9 +14,6 @@ export class EditAccount extends StoreObserver {
   constructor(props, context) {
     super(props, context, AccountStore);
 
-    this.router = context.router;
-
-    console.log('***', AccountStore.getState().account);
     this.state = {
       account: AccountStore.getState().account,
       messages: EditAccount.resetMessages(),

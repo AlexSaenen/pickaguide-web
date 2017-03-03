@@ -17,7 +17,6 @@ export default class PromiseApi {
 
   static _handleResponse(requestBuilder, callbacks) {
     requestBuilder.end((err, res) => {
-      console.log(err, res);
       if (err) {
         if (String(err).indexOf('Request has been terminated') !== -1) {
           callbacks.reject('Server seems to be down, please try again later');
