@@ -3,7 +3,7 @@ import React from 'react';
 import { SubmitButton } from 'formFramework/SubmitButton.jsx';
 import { Message } from 'formFramework/Message.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { Layout } from 'layout/Layout.jsx';
+import { Layout } from 'layoutFramework/Layout.jsx';
 import FormStore from 'stores/CurrentForm.js';
 import FormActions from 'actions/CurrentForm.js';
 
@@ -33,7 +33,7 @@ export class FormLayout extends PropsComponent {
 
   render() {
     return (
-      <Layout>
+      <Layout layoutStyle={this.state.layoutStyle}>
         <form className="FormWrapper" onSubmit={this.handleSubmit}>
           {this.state.children}
           <SubmitButton label={this.state.submitLabel} />
@@ -50,6 +50,7 @@ FormLayout.defaultProps = {
     type: 'Empty',
   },
   submitLabel: 'Submit',
+  layoutStyle: 'LayoutDark',
 };
 
 FormLayout.propTypes = {
@@ -59,4 +60,5 @@ FormLayout.propTypes = {
   }),
   children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array]),
   submitLabel: React.PropTypes.string,
+  layoutStyle: React.PropTypes.string,
 };

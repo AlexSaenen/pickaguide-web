@@ -1,10 +1,17 @@
 import React from 'react';
 
-import { FormLayout } from 'formFramework/FormLayout.jsx';
+import { PanelFormLayout } from 'layouts/PanelFormLayout.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { TextArea } from 'formFramework/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'layout/Title.jsx';
+import { Title } from 'layoutFramework/Title.jsx';
+
+import { Modal } from 'layoutFramework/Modal.jsx';
+import { FormLayout } from 'layouts/FormLayout.jsx';
+import { EmailInput } from 'formFramework/EmailInput.jsx';
+import { PasswordInput } from 'formFramework/PasswordInput.jsx';
+
+// import { Picture } from 'layoutFramework/Picture.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
@@ -46,6 +53,10 @@ export class EditProfile extends StoreObserver {
     ProfileActions.update(form);
   }
 
+  // <div style={{ height: '10em' }}>
+  //   <Picture pictureName="Photo URL" url={profile.photoUrl} />
+  // </div>
+
   render() {
     const profile = this.state.profile || {};
     const message = {
@@ -56,20 +67,35 @@ export class EditProfile extends StoreObserver {
 
     return (
       <div>
-        <FormLayout onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
+        <PanelFormLayout onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
           <Title>Update your profile</Title>
+
           <hr className="Overlay" />
+
           <TextInput value={profile.firstName} label="firstName" placeholder="First name" />
           <TextInput value={profile.lastName} label="lastName" placeholder="Last name" />
+
           <hr className="Divider" />
+
           <TextInput value={profile.phone} label="phone" />
           <TextInput value={profile.city} label="city" />
           <TextInput value={profile.country} label="country" />
           <TextArea value={profile.description} label="description" required />
           <TextArea value={profile.interests} label="interests" required />
+
           <hr className="Divider" />
+
           <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Photo URL" required />
-        </FormLayout>
+        </PanelFormLayout>
+
+        <Modal active>
+          <FormLayout layoutStyle="LayoutDark Tight">
+            <Title>Login</Title>
+            <hr className="Overlay" />
+            <EmailInput required />
+            <PasswordInput required />
+          </FormLayout>
+        </Modal>
       </div>
     );
   }

@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Layout } from 'layout/Layout.jsx';
-import { CheckMark } from 'layout/CheckMark.jsx';
-import { SubTitle } from 'layout/SubTitle.jsx';
-import { Picture } from 'layout/Picture.jsx';
-import { Text } from 'layout/Text.jsx';
+import { PanelLayout } from 'layouts/PanelLayout.jsx';
+import { CheckMark } from 'layoutFramework/CheckMark.jsx';
+import { SubTitle } from 'layoutFramework/SubTitle.jsx';
+import { Picture } from 'layoutFramework/Picture.jsx';
+import { Text } from 'layoutFramework/Text.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
@@ -35,25 +35,31 @@ export class Profile extends StoreObserver {
     const birthDate = new Date(profile.birthdate);
 
     return (
-      <Layout layoutStyle="LayoutLight Tight">
+      <PanelLayout layoutStyle="LayoutLight Tight">
         <div className="LayoutHeader">
           <div className="HeaderPicture Inline-Block"><Picture url={profile.photoUrl} pictureName="Profile" /></div>
           <p className="HeaderText Title Inline-Block" >{`${profile.firstName} ${profile.lastName}`}</p>
-          <div className="HeaderCheckMark"><CheckMark active={true} /></div>
+          <div className="HeaderCheckMark"><CheckMark active={false} /></div>
         </div>
+
         <hr className="Overlay" />
+
         <SubTitle>Basic Info</SubTitle>
         <Text>
           <p><strong>Date of Birth:</strong> {birthDate.toDateString()}</p>
           <p><strong>City:</strong> {profile.city}</p>
         </Text>
+
         <hr className="Divider" />
+
         <SubTitle>Description</SubTitle>
         <Text>{profile.description}</Text>
+
         <hr className="Divider" />
+
         <SubTitle>Interests</SubTitle>
         <Text>{profile.interests}</Text>
-      </Layout>
+      </PanelLayout>
     );
   }
 }

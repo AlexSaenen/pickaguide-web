@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { FormLayout } from 'formFramework/FormLayout.jsx';
+import { PanelFormLayout } from 'layouts/PanelFormLayout.jsx';
 import { TextArea } from 'formFramework/TextArea.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { TelInput } from 'formFramework/TelInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'layout/Title.jsx';
+import { Title } from 'layoutFramework/Title.jsx';
 import ContactActions from 'actions/Contact.js';
 import AccountStore from 'stores/Account.js';
 import ProfileStore from 'stores/Profile.js';
@@ -73,14 +73,14 @@ export class Contact extends StoreObserver {
     };
 
     return (
-      <FormLayout onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
+      <PanelFormLayout onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
         <Title>Contact Us</Title>
         <hr className="Overlay" />
         <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder="Full name" required />
         <EmailInput value={account ? account.email : ''} required />
         <TelInput label="phone" value={profile ? profile.phone : ''} />
         <TextArea label="message" required />
-      </FormLayout>
+      </PanelFormLayout>
     );
   }
 }

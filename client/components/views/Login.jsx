@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { FormLayout } from 'formFramework/FormLayout.jsx';
+import { PanelFormLayout } from 'layouts/PanelFormLayout.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { PasswordInput } from 'formFramework/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'layout/Title.jsx';
+import { Title } from 'layoutFramework/Title.jsx';
 import AuthActions from 'actions/Auth.js';
 import AuthStore from 'stores/Auth.js';
 
@@ -53,11 +53,11 @@ export class Login extends StoreObserver {
 
     return (
       <div>
-        <FormLayout onSubmit={this.handleSubmit} submitLabel="Login" message={message}>
+        <PanelFormLayout onSubmit={this.handleSubmit} submitLabel="Login" message={message}>
           <Title>Login</Title>
           <EmailInput required />
           <PasswordInput required />
-        </FormLayout>
+        </PanelFormLayout>
       </div>
     );
   }

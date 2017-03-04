@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { FormLayout } from 'formFramework/FormLayout.jsx';
+import { PanelFormLayout } from 'layouts/PanelFormLayout.jsx';
 import { TextInput } from 'formFramework/TextInput.jsx';
 import { EmailInput } from 'formFramework/EmailInput.jsx';
 import { PasswordInput } from 'formFramework/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'layout/Title.jsx';
+import { Title } from 'layoutFramework/Title.jsx';
 import SignupActions from 'actions/Signup.js';
 import SignupStore from 'stores/Signup.js';
 
@@ -58,7 +58,7 @@ export class Signup extends StoreObserver {
 
     return (
       <div>
-        <FormLayout onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
+        <PanelFormLayout onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
           <Title>Create an Account</Title>
           <hr className="Overlay" />
           <TextInput label="firstName" placeholder="First name" required />
@@ -67,7 +67,7 @@ export class Signup extends StoreObserver {
           <EmailInput required />
           <PasswordInput required />
           <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />
-        </FormLayout>
+        </PanelFormLayout>
       </div>
     );
   }
