@@ -5,13 +5,8 @@ import { TextInput } from 'form/TextInput.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/Title.jsx';
-
-import { Modal } from 'layout/Modal.jsx';
-import { Form } from 'layout/Form.jsx';
-import { EmailInput } from 'form/EmailInput.jsx';
-import { PasswordInput } from 'form/PasswordInput.jsx';
-
-// import { Picture } from 'layout/Picture.jsx';
+import { EditPicture } from 'layout/user/EditPicture.jsx';
+import NewPicture from 'modals/NewPicture.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
@@ -30,6 +25,9 @@ export class EditProfile extends StoreObserver {
 
     this.onStoreChange = this.onStoreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitPicture = this.handleSubmitPicture.bind(this);
+    this.openEditModal = this.openEditModal.bind(this);
+    this.closeEditModal = this.closeEditModal.bind(this);
   }
 
   onStoreChange(store) {
@@ -53,9 +51,21 @@ export class EditProfile extends StoreObserver {
     ProfileActions.update(form);
   }
 
-  // <div style={{ height: '10em' }}>
-  //   <Picture pictureName="Photo URL" url={profile.photoUrl} />
-  // </div>
+  handleSubmitPicture(form) {
+    ProfileActions.update({ photoUrl: form.photoUrl });
+  }
+
+  openEditModal() {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.editActive = true;
+    this.updateState(stateCopy);
+  }
+
+  closeEditModal() {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.editActive = false;
+    this.updateState(stateCopy);
+  }
 
   render() {
     const profile = this.state.profile || {};
@@ -83,18 +93,15 @@ export class EditProfile extends StoreObserver {
           <TextArea value={profile.description} label="description" required />
           <TextArea value={profile.interests} label="interests" required />
 
-          <hr className="Divider" />
-
-          <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Photo URL" required />
+          <EditPicture url={profile.photoUrl} onClick={this.openEditModal} />
         </PanelForm>
 
-        <Modal active>
-          <Form layoutStyle="LayoutDark Tight">
-            <Title>Login</Title>
-            <EmailInput required />
-            <PasswordInput required />
-          </Form>
-        </Modal>
+        <NewPicture
+          active={this.state.editActive}
+          onClose={this.closeEditModal}
+          onSubmit={this.handleSubmitPicture}
+          inputLabel="photoUrl"
+        />
       </div>
     );
   }

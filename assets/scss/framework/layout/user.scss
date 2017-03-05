@@ -1,0 +1,16 @@
+@import '../../colors.scss';
+
+.EditPicture {
+  height: 10em;
+
+  & img {
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+  }
+}
+
+.EditPicture img:hover {
+  cursor: pointer;
+  opacity: 0.3;
+}

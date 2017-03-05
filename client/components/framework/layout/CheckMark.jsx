@@ -18,7 +18,7 @@ export class CheckMark extends PropsComponent {
     let drawColor = '#2ECC71';
 
     if (this.state.active === false) {
-      drawPoints = '-5,-5 410,410 -5,410 410,-5';
+      drawPoints = '-20,-20 420,420 -20,420 420,-20';
       drawColor = '#F75C4C';
     }
 

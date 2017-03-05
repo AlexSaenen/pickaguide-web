@@ -43,7 +43,6 @@ export class Input extends StateComponent {
       value: this.state.value,
       placeholder: this.state.placeholder.capitalize(),
       onChange: this.handleEdit,
-      maxLength: '50',
     };
 
     if (this.state.required) {

@@ -24,6 +24,7 @@ module.exports = {
            form: path.join(__dirname, '/client/components/framework/layout/form'),
            view: path.join(__dirname, '/client/components/framework/view'),
            main: path.join(__dirname, '/client/components/main'),
+           modals: path.join(__dirname, '/client/components/modals'),
            menu: path.join(__dirname, '/client/components/main/menu'),
            views: path.join(__dirname, '/client/components/views'),
            services: path.join(__dirname, '/client/services'),
