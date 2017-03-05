@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Input } from 'formFramework/Input.jsx';
+import { Input } from 'form/Input.jsx';
 
 import 'scss/components/_form.scss';
 

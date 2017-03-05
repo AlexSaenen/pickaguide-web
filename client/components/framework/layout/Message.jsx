@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 
-import 'scss/components/formFramework/message.scss';
+import 'scss/components/form/message.scss';
 
 
 export class Message extends PropsComponent {

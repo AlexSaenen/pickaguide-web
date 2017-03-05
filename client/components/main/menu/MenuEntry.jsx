@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AuthDependent } from 'components/AuthDependent.jsx';
+import { AuthDependent } from 'base/AuthDependent.jsx';
 
 import 'scss/components/menu/_mainMenu.scss';
 

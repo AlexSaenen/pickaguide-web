@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SubmitButton } from 'formFramework/SubmitButton.jsx';
+import { SubmitButton } from 'form/SubmitButton.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 // import FormActions from 'actions/CurrentForm.js';
 import FormStore from 'stores/CurrentForm.js';

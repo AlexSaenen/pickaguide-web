@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { PanelLayout } from 'layouts/PanelLayout.jsx';
-import { CheckMark } from 'layoutFramework/CheckMark.jsx';
-import { SubTitle } from 'layoutFramework/SubTitle.jsx';
-import { Picture } from 'layoutFramework/Picture.jsx';
-import { Text } from 'layoutFramework/Text.jsx';
+import { PanelLayout } from 'view/PanelLayout.jsx';
+import { CheckMark } from 'layout/CheckMark.jsx';
+import { SubTitle } from 'layout/SubTitle.jsx';
+import { Picture } from 'layout/Picture.jsx';
+import { Text } from 'layout/Text.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 

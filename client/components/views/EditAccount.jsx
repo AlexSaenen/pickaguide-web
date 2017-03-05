@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { PanelFormLayout } from 'layouts/PanelFormLayout.jsx';
-import { PasswordInput } from 'formFramework/PasswordInput.jsx';
-import { EmailInput } from 'formFramework/EmailInput.jsx';
+import { PanelForm } from 'view/PanelForm.jsx';
+import { PasswordInput } from 'form/PasswordInput.jsx';
+import { EmailInput } from 'form/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'layoutFramework/Title.jsx';
+import { Title } from 'layout/Title.jsx';
 import AccountActions from 'actions/Account.js';
 import AccountStore from 'stores/Account.js';
 
@@ -103,19 +103,19 @@ export class EditAccount extends StoreObserver {
 
     return (
       <div>
-        <PanelFormLayout onSubmit={this.handleSubmit} submitLabel="Update Email" message={messages.mail}>
+        <PanelForm onSubmit={this.handleSubmit} submitLabel="Update Email" message={messages.mail}>
           <Title>Update your email</Title>
           <hr className="Overlay" />
           <EmailInput placeholder={`Current Email: ${account.email}`} required />
           <EmailInput label="emailConfirmation" placeholder="Confirm email" required />
-        </PanelFormLayout>
-        <PanelFormLayout onSubmit={this.handleSubmit} submitLabel="Update Password" message={messages.password}>
+        </PanelForm>
+        <PanelForm onSubmit={this.handleSubmit} submitLabel="Update Password" message={messages.password}>
           <Title>Update your password</Title>
           <hr className="Overlay" />
           <PasswordInput label="oldPassword" placeholder="Current password" required />
           <PasswordInput placeholder="New password" required />
           <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />
-        </PanelFormLayout>
+        </PanelForm>
       </div>
     );
   }

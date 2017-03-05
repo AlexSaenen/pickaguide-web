@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { PanelFormLayout } from 'layouts/PanelFormLayout.jsx';
-import { EmailInput } from 'formFramework/EmailInput.jsx';
-import { PasswordInput } from 'formFramework/PasswordInput.jsx';
+import { PanelForm } from 'view/PanelForm.jsx';
+import { EmailInput } from 'form/EmailInput.jsx';
+import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'layoutFramework/Title.jsx';
+import { Title } from 'layout/Title.jsx';
 import AuthActions from 'actions/Auth.js';
 import AuthStore from 'stores/Auth.js';
 
@@ -53,11 +53,11 @@ export class Login extends StoreObserver {
 
     return (
       <div>
-        <PanelFormLayout onSubmit={this.handleSubmit} submitLabel="Login" message={message}>
+        <PanelForm onSubmit={this.handleSubmit} submitLabel="Login" message={message}>
           <Title>Login</Title>
           <EmailInput required />
           <PasswordInput required />
-        </PanelFormLayout>
+        </PanelForm>
       </div>
     );
   }

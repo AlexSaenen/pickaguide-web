@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { SubmitButton } from 'formFramework/SubmitButton.jsx';
-import { Message } from 'formFramework/Message.jsx';
+import { SubmitButton } from 'form/SubmitButton.jsx';
+import { Message } from 'layout/Message.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { Layout } from 'layoutFramework/Layout.jsx';
+import { Layout } from 'layout/Layout.jsx';
 import FormStore from 'stores/CurrentForm.js';
 import FormActions from 'actions/CurrentForm.js';
 
 import 'scss/components/_form.scss';
 
 
-export class FormLayout extends PropsComponent {
+export class Form extends PropsComponent {
 
   constructor(props, context) {
     super(props, context);
@@ -44,7 +44,7 @@ export class FormLayout extends PropsComponent {
   }
 }
 
-FormLayout.defaultProps = {
+Form.defaultProps = {
   message: {
     content: '',
     type: 'Empty',
@@ -53,7 +53,7 @@ FormLayout.defaultProps = {
   layoutStyle: 'LayoutDark',
 };
 
-FormLayout.propTypes = {
+Form.propTypes = {
   message: React.PropTypes.shape({
     content: React.PropTypes.string,
     type: React.PropTypes.string,

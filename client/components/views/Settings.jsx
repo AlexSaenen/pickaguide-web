@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { PanelFormLayout } from 'layouts/PanelFormLayout.jsx';
-import { TextInput } from 'formFramework/TextInput.jsx';
+import { PanelForm } from 'view/PanelForm.jsx';
+import { TextInput } from 'form/TextInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'layoutFramework/Title.jsx';
+import { Title } from 'layout/Title.jsx';
 import SettingsActions from 'actions/Settings.js';
 import SettingsStore from 'stores/Settings.js';
 
@@ -34,12 +34,12 @@ export class Settings extends StoreObserver {
   render() {
     return (
       <div>
-        <PanelFormLayout onSubmit={this.handleSubmit} submitLabel="Save">
+        <PanelForm onSubmit={this.handleSubmit} submitLabel="Save">
           <Title>General settings</Title>
           <hr className="Overlay" />
           <TextInput label="firstName" placeholder="First name" />
           <TextInput label="lastName" placeholder="Last name" />
-        </PanelFormLayout>
+        </PanelForm>
       </div>
     );
   }

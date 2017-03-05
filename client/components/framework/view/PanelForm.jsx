@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { Panel } from 'layoutFramework/Panel.jsx';
-import { FormLayout } from 'layouts/FormLayout.jsx';
+import { Panel } from 'layout/Panel.jsx';
+import { Form } from 'layout/Form.jsx';
 
 
-export class PanelFormLayout extends PropsComponent {
+export class PanelForm extends PropsComponent {
 
   constructor(props, context) {
     super(props, context);
@@ -16,14 +16,14 @@ export class PanelFormLayout extends PropsComponent {
   render() {
     return (
       <Panel>
-        <FormLayout {...this.state} >
+        <Form {...this.state} >
           {this.state.children}
-        </FormLayout>
+        </Form>
       </Panel>
     );
   }
 }
 
-PanelFormLayout.propTypes = {
+PanelForm.propTypes = {
   children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array]),
 };

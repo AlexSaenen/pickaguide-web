@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { InlineForm } from 'formFramework/InlineForm.jsx';
-import { TextInput } from 'formFramework/TextInput.jsx';
+import { InlineForm } from 'form/InlineForm.jsx';
+import { TextInput } from 'form/TextInput.jsx';
 
 import 'scss/components/_form.scss';
 import 'scss/components/menu/_mainMenu.scss';

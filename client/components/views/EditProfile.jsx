@@ -1,17 +1,17 @@
 import React from 'react';
 
-import { PanelFormLayout } from 'layouts/PanelFormLayout.jsx';
-import { TextInput } from 'formFramework/TextInput.jsx';
-import { TextArea } from 'formFramework/TextArea.jsx';
+import { PanelForm } from 'view/PanelForm.jsx';
+import { TextInput } from 'form/TextInput.jsx';
+import { TextArea } from 'form/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'layoutFramework/Title.jsx';
+import { Title } from 'layout/Title.jsx';
 
-import { Modal } from 'layoutFramework/Modal.jsx';
-import { FormLayout } from 'layouts/FormLayout.jsx';
-import { EmailInput } from 'formFramework/EmailInput.jsx';
-import { PasswordInput } from 'formFramework/PasswordInput.jsx';
+import { Modal } from 'layout/Modal.jsx';
+import { Form } from 'layout/Form.jsx';
+import { EmailInput } from 'form/EmailInput.jsx';
+import { PasswordInput } from 'form/PasswordInput.jsx';
 
-// import { Picture } from 'layoutFramework/Picture.jsx';
+// import { Picture } from 'layout/Picture.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
@@ -67,7 +67,7 @@ export class EditProfile extends StoreObserver {
 
     return (
       <div>
-        <PanelFormLayout onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
+        <PanelForm onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
           <Title>Update your profile</Title>
 
           <hr className="Overlay" />
@@ -86,14 +86,14 @@ export class EditProfile extends StoreObserver {
           <hr className="Divider" />
 
           <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Photo URL" required />
-        </PanelFormLayout>
+        </PanelForm>
 
         <Modal active>
-          <FormLayout layoutStyle="LayoutDark Tight">
+          <Form layoutStyle="LayoutDark Tight">
             <Title>Login</Title>
             <EmailInput required />
             <PasswordInput required />
-          </FormLayout>
+          </Form>
         </Modal>
       </div>
     );

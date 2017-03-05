@@ -2,7 +2,7 @@ import React from 'react';
 
 import MenuLogo from 'menu/MenuLogo.jsx';
 import MenuLink from 'menu/MenuLink.jsx';
-import { SearchBar } from 'formFramework/SearchBar.jsx';
+import { SearchBar } from 'form/SearchBar.jsx';
 
 import 'scss/components/menu/_mainMenu.scss';
 

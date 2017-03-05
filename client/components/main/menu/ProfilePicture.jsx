@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import AuthActions from 'actions/Auth.js';
 import ProfileStore from 'stores/Profile.js';
-import { AuthDependent } from 'components/AuthDependent.jsx';
+import { AuthDependent } from 'base/AuthDependent.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 
 import 'scss/components/menu/_mainMenu.scss';

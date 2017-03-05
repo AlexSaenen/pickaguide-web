@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Menu } from 'components/Menu.jsx';
-import { Footer } from 'components/Footer.jsx';
+import { Menu } from 'main/Menu.jsx';
+import { Footer } from 'main/Footer.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 
 import 'scss/components/mainLayout.scss';

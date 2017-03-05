@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Input } from 'formFramework/Input.jsx';
+import { Input } from 'form/Input.jsx';
 
 import 'scss/components/_form.scss';
 
 
-export class TelInput extends React.Component {
+export class PasswordInput extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -15,8 +15,7 @@ export class TelInput extends React.Component {
 
   render() {
     const props = Object.assign({}, this.state);
-    props.type = 'tel';
-    props.pattern = /^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$/;
+    props.type = 'password';
 
     return (
       <Input {...props} />
