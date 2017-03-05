@@ -91,7 +91,6 @@ export class EditProfile extends StoreObserver {
         <Modal active>
           <FormLayout layoutStyle="LayoutDark Tight">
             <Title>Login</Title>
-            <hr className="Overlay" />
             <EmailInput required />
             <PasswordInput required />
           </FormLayout>
