@@ -3,7 +3,7 @@ import React from 'react';
 import { StateComponent } from 'base/StateComponent.jsx';
 import FormActions from 'actions/CurrentForm.js';
 
-import 'scss/components/_form.scss';
+import 'scss/framework/form.scss';
 
 
 export class TextArea extends StateComponent {

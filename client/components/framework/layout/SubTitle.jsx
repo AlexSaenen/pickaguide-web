@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 
-import 'scss/components/base/layout.scss';
+import 'scss/framework/layout.scss';
 
 
 export class SubTitle extends PropsComponent {

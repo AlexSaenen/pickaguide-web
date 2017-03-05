@@ -1,6 +1,6 @@
 import React from 'react';
 
-import 'scss/components/menu/_logo.scss';
+import 'scss/main/menu/logo.scss';
 
 
 const MenuLogo = () => {

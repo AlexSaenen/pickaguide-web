@@ -1,4 +1,4 @@
-@import '../../_colors.scss';
+@import '../colors.scss';
 
 $layoutPadding: 2em;
 
@@ -42,7 +42,7 @@ $layoutPadding: 2em;
   border-radius: 0.1em;
 }
 
-.LayoutContainer {
+.Layout {
   text-align: center;
   font-family: bariol;
   padding: $layoutPadding;

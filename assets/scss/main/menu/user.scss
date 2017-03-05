@@ -1,6 +1,6 @@
-@import '../../_colors.scss';
+@import "../../colors.scss";
 
-.PartialUserMenu {
+.UserMenu {
     width: 20%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -10,7 +10,7 @@
     text-align: center;
 }
 
-.PartialUserMenuContentWrapper {
+.UserMenuContentWrapper {
     display: inline-block;
     height: inherit;
 }

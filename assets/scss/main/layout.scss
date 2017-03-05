@@ -1,4 +1,8 @@
-@import '../_colors.scss';
+@import "../colors.scss";
+
+.MainContent {
+  min-height: 100%;
+}
 
 $footerHeight: 10em;
 

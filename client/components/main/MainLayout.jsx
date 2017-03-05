@@ -4,7 +4,7 @@ import { Menu } from 'main/Menu.jsx';
 import { Footer } from 'main/Footer.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 
-import 'scss/components/mainLayout.scss';
+import 'scss/main/layout.scss';
 
 
 export class MainLayout extends PropsComponent {

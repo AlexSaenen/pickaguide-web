@@ -1,12 +1,12 @@
-@import '../_colors.scss';
+@import '../colors.scss';
 
-.InlineFormContainer {
+.InlineForm {
   text-align: center;
   font-family: bariol;
   display: inline;
 }
 
-.LayoutContainer, .InlineFormContainer {
+.Layout, .InlineForm {
   input, textarea {
     font-family: bariol;
     font-size: 1em;

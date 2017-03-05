@@ -3,8 +3,8 @@ import React from 'react';
 import { Button } from 'layout/Button.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 
-import 'scss/components/base/modal.scss';
-import 'scss/components/base/layout.scss';
+import 'scss/framework/modal.scss';
+import 'scss/framework/layout.scss';
 
 
 export class Modal extends PropsComponent {
@@ -23,7 +23,7 @@ export class Modal extends PropsComponent {
   }
 
   render() {
-    let classNames = `ModalContainer ${this.state.modalStyle}`;
+    let classNames = `Modal ${this.state.modalStyle}`;
 
     if (this.state.active === false) {
       classNames += ' Hidden';

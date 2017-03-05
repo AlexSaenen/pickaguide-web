@@ -3,8 +3,8 @@ import React from 'react';
 import { InlineForm } from 'form/InlineForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 
-import 'scss/components/_form.scss';
-import 'scss/components/menu/_mainMenu.scss';
+import 'scss/framework/form.scss';
+import 'scss/main/menu/entry.scss';
 
 
 export class SearchBar extends React.Component {

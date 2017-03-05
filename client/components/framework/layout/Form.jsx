@@ -7,7 +7,7 @@ import { Layout } from 'layout/Layout.jsx';
 import FormStore from 'stores/CurrentForm.js';
 import FormActions from 'actions/CurrentForm.js';
 
-import 'scss/components/_form.scss';
+import 'scss/framework/form.scss';
 
 
 export class Form extends PropsComponent {

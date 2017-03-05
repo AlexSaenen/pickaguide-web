@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Input } from 'form/Input.jsx';
 
-import 'scss/components/_form.scss';
+import 'scss/framework/form.scss';
 
 
 export class PasswordInput extends React.Component {

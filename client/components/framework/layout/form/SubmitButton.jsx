@@ -1,6 +1,6 @@
 import React from 'react';
 
-import 'scss/components/_form.scss';
+import 'scss/framework/form.scss';
 
 
 export class SubmitButton extends React.Component {

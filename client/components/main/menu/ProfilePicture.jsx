@@ -6,7 +6,7 @@ import ProfileStore from 'stores/Profile.js';
 import { AuthDependent } from 'base/AuthDependent.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 
-import 'scss/components/menu/_mainMenu.scss';
+import 'scss/main/menu/main.scss';
 
 
 export class ProfilePicture extends StoreObserver {

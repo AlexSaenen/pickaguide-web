@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AuthDependent } from 'base/AuthDependent.jsx';
 
-import 'scss/components/menu/_mainMenu.scss';
+import 'scss/main/menu/main.scss';
 
 
 const MenuEntry = (props) => {

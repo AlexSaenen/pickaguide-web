@@ -5,7 +5,7 @@ import { PropsComponent } from 'base/PropsComponent.jsx';
 // import FormActions from 'actions/CurrentForm.js';
 import FormStore from 'stores/CurrentForm.js';
 
-import 'scss/components/_form.scss';
+import 'scss/framework/form.scss';
 
 
 export class InlineForm extends PropsComponent {
@@ -24,7 +24,7 @@ export class InlineForm extends PropsComponent {
 
   render() {
     return (
-      <div className="InlineFormContainer">
+      <div className="InlineForm">
         <form className="FormWrapper" onSubmit={this.handleSubmit}>
           {this.state.children}
           <SubmitButton className="FormElement" label={this.state.submitLabel} />

@@ -1,19 +1,4 @@
-@import '../../_colors.scss';
-
-// MainMenu
-
-.MainMenu {
-    width: 80%;
-    text-align: center;
-}
-
-.MainMenuContentWrapper {
-    display: inline-block;
-    float: left;
-    height: inherit;
-}
-
-// MenuEntry
+@import "../../colors.scss";
 
 .MenuEntry {
     display: inline-flex;

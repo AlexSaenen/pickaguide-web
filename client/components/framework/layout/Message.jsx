@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 
-import 'scss/components/form/message.scss';
+import 'scss/framework/message.scss';
 
 
 export class Message extends PropsComponent {
@@ -31,7 +31,7 @@ export class Message extends PropsComponent {
   }
 
   render() {
-    let classes = `MessageContainer ${this.state.message.type}`;
+    let classes = `Message ${this.state.message.type}`;
 
     if (this.state.message.content === '') {
       classes += ' Hidden';

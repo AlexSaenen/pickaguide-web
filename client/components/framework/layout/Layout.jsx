@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 
-import 'scss/components/base/layout.scss';
+import 'scss/framework/layout.scss';
 
 
 export class Layout extends PropsComponent {
@@ -14,7 +14,7 @@ export class Layout extends PropsComponent {
   }
 
   render() {
-    const classNames = `LayoutContainer ${this.state.layoutStyle}`;
+    const classNames = `Layout ${this.state.layoutStyle}`;
 
     return (
       <div className={classNames}>

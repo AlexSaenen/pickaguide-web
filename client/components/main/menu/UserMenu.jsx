@@ -5,13 +5,13 @@ import MenuAction from 'menu/MenuAction.jsx';
 import { ProfilePicture } from 'menu/ProfilePicture.jsx';
 import AuthActions from 'actions/Auth.js';
 
-import 'scss/components/menu/_partialUserMenu.scss';
+import 'scss/main/menu/user.scss';
 
 
-const PartialUserMenu = () => {
+const UserMenu = () => {
   return (
-    <div className="MenuElement PartialUserMenu">
-      <div className="PartialUserMenuContentWrapper">
+    <div className="MenuElement UserMenu">
+      <div className="UserMenuContentWrapper">
         <MenuLink href="/signup" title="Sign up" unauth />
         <MenuLink href="/login" title="Sign in" unauth />
         <ProfilePicture auth />
@@ -21,4 +21,4 @@ const PartialUserMenu = () => {
   );
 };
 
-export default PartialUserMenu;
+export default UserMenu;
