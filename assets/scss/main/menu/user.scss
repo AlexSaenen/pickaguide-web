@@ -33,11 +33,12 @@
     }
 
     .Dropdown {
-        border-radius: 0.4em;
+        border-radius: 0.2em;
         overflow: hidden;
         transition-property: all;
         transition-duration: 0.3s;
         transition-timing-function: ease-in-out;
+        color: $textDarkColor;
 
         p {
             padding: 0.5em 2em;
@@ -51,14 +52,15 @@
 
     .Dropdown {
         height: auto;
-        background-color: $softMainColor;
+        background-color: $modalLightColor;
 
         a {
             text-decoration: none;
-            color: white;
+            color: $textDarkColor;
 
             p:hover {
-                background-color: $darkMainColor;
+                color: white;
+                background-color: $elementColor;
             }
         }
 

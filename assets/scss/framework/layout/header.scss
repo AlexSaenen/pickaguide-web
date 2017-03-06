@@ -1,0 +1,27 @@
+.HeaderPicture {
+  width: 20%;
+  text-align: center;
+  height: inherit;
+  vertical-align: middle;
+}
+
+.HeaderText {
+  width: 70%;
+  height: inherit;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.HeaderCheckMark {
+  width: 10%;
+  height: inherit;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+
+  .CheckMark {
+    width: 40%;
+    height: 40%;
+    margin: auto;
+  }
+}

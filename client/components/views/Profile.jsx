@@ -39,7 +39,7 @@ export class Profile extends StoreObserver {
         <div className="LayoutHeader">
           <div className="HeaderPicture Inline-Block"><Picture url={profile.photoUrl} pictureName="Profile" /></div>
           <p className="HeaderText Title Inline-Block" >{`${profile.firstName} ${profile.lastName}`}</p>
-          <div className="HeaderCheckMark"><CheckMark active={false} /></div>
+          <div className="HeaderCheckMark"><CheckMark active /></div>
         </div>
 
         <hr className="Overlay" />

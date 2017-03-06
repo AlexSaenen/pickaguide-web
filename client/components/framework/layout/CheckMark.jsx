@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 
-import 'scss/framework/layout.scss';
+import 'scss/framework/layout/header.scss';
 
 
 export class CheckMark extends PropsComponent {

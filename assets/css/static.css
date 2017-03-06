@@ -6,9 +6,10 @@ h1, p, a {
   font-family: Molengo;
 }
 
-a {
+a, p {
   text-decoration: none;
   color: white;
+  margin: 0;
 }
 
 .CenteredMessage {
