@@ -47,18 +47,20 @@ export class Profile extends StoreObserver {
         <SubTitle>Basic Info</SubTitle>
         <Text>
           <p><strong>Date of Birth:</strong> {birthDate.toDateString()}</p>
-          <p><strong>City:</strong> {profile.city}</p>
+          <p><strong>City:</strong> {profile.city ? profile.city : 'None'}</p>
         </Text>
 
         <hr className="Divider" />
 
         <SubTitle>Description</SubTitle>
-        <Text>{profile.description}</Text>
+        <Text>{profile.description ? profile.description : 'None'}</Text>
 
         <hr className="Divider" />
 
         <SubTitle>Interests</SubTitle>
-        <Text>{profile.interests}</Text>
+        <Text>{profile.interests.length > 0 ?
+            profile.interests.map(interest => React.createElement('p', null, interest)) : 'None'}
+        </Text>
       </PanelLayout>
     );
   }

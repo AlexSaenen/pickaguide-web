@@ -82,16 +82,16 @@ export class EditProfile extends StoreObserver {
 
           <hr className="Overlay" />
 
-          <TextInput value={profile.firstName} label="firstName" placeholder="First name" />
-          <TextInput value={profile.lastName} label="lastName" placeholder="Last name" />
+          <TextInput value={profile.firstName} label="firstName" placeholder="First name" required />
+          <TextInput value={profile.lastName} label="lastName" placeholder="Last name" required />
 
           <hr className="Divider" />
 
           <TextInput value={profile.phone} label="phone" />
           <TextInput value={profile.city} label="city" />
           <TextInput value={profile.country} label="country" />
-          <TextArea value={profile.description} label="description" required />
-          <TextArea value={profile.interests} label="interests" required />
+          <TextArea value={profile.description} label="description" />
+          <TextArea value={profile.interests[0]} label="interests" />
 
           <EditPicture url={profile.photoUrl} onClick={this.openEditModal} />
         </PanelForm>

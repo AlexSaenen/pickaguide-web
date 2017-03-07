@@ -16,7 +16,7 @@ export class LinkModal extends PropsComponent {
 
   render() {
     return (
-      <ModalForm {...this.state}>
+      <ModalForm {...this.state} modalStyle="Small">
         <Title>{this.state.title}</Title>
         <TextInput required label={this.state.inputLabel} placeholder={this.state.inputHolder} />
       </ModalForm>
