@@ -106,7 +106,7 @@ export class EditAccount extends StoreObserver {
         <PanelForm onSubmit={this.handleSubmit} submitLabel="Update Email" message={messages.mail}>
           <Title>Update your email</Title>
           <hr className="Overlay" />
-          <EmailInput placeholder={`Current Email: ${account.email}`} required />
+          <EmailInput placeholder={`New email (current: ${account.email})`} required />
           <EmailInput label="emailConfirmation" placeholder="Confirm email" required />
         </PanelForm>
         <PanelForm onSubmit={this.handleSubmit} submitLabel="Update Password" message={messages.password}>

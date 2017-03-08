@@ -13,9 +13,9 @@ export class StateComponent extends React.Component {
   }
 
   updateState(newState) {
-    const prefilter = path => path.length < COMPARISON_DEPTH;
+    const prefilter = path => path.length > COMPARISON_DEPTH;
 
-    if (comparator.diff(newState, this.state, prefilter) === undefined) {
+    if (comparator.diff(this.state, newState, prefilter) !== undefined) {
       this.setState(newState);
     }
   }

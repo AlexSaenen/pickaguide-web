@@ -5,6 +5,7 @@ import MenuLink from 'menu/MenuLink.jsx';
 import { SearchBar } from 'form/SearchBar.jsx';
 
 import 'scss/main/menu/main.scss';
+import 'scss/main/menu/entry.scss';
 
 
 const MainMenu = () => {

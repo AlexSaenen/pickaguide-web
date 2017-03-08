@@ -63,7 +63,7 @@ html, body, #app {
 }
 
 *:focus { outline: none; }
-.Hidden { display: none; }
+.Hidden { display: none !important; }
 .Inline { display: inline; }
 .Inline-Block { display: inline-block; }
 .HeightNone { height: 0; }

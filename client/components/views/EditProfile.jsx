@@ -26,8 +26,7 @@ export class EditProfile extends StoreObserver {
     this.onStoreChange = this.onStoreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubmitPicture = this.handleSubmitPicture.bind(this);
-    this.openEditModal = this.openEditModal.bind(this);
-    this.closeEditModal = this.closeEditModal.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   onStoreChange(store) {
@@ -55,15 +54,9 @@ export class EditProfile extends StoreObserver {
     ProfileActions.update({ photoUrl: form.photoUrl });
   }
 
-  openEditModal() {
+  toggleModal() {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.editActive = true;
-    this.updateState(stateCopy);
-  }
-
-  closeEditModal() {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.editActive = false;
+    stateCopy.editActive = !this.state.editActive;
     this.updateState(stateCopy);
   }
 
@@ -72,8 +65,14 @@ export class EditProfile extends StoreObserver {
     const message = {
       title: this.state.messageTitle,
       content: this.state.messageContent,
-      type: (this.state.isSuccess ? 'Success' : 'Alert'),
+      type: '',
     };
+
+    if (this.state.isSuccess !== null) {
+      message.type = (this.state.isSuccess ? 'Success' : 'Alert');
+    }
+
+    console.log('EditProfile.render()', message);
 
     return (
       <div>
@@ -93,12 +92,12 @@ export class EditProfile extends StoreObserver {
           <TextArea value={profile.description} label="description" />
           <TextArea value={profile.interests[0]} label="interests" />
 
-          <EditPicture url={profile.photoUrl} onClick={this.openEditModal} />
+          <EditPicture url={profile.photoUrl} onClick={this.toggleModal} />
         </PanelForm>
 
         <NewPicture
           active={this.state.editActive}
-          onClose={this.closeEditModal}
+          onClose={this.toggleModal}
           onSubmit={this.handleSubmitPicture}
           inputLabel="photoUrl"
         />

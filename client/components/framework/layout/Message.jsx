@@ -10,10 +10,7 @@ export class Message extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-      message: props.message,
-    };
-
+    this.state = props;
     this.messageTimeout = null;
   }
 
@@ -24,16 +21,13 @@ export class Message extends PropsComponent {
   }
 
   dismiss() {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.message.title = '';
-    stateCopy.message.content = '';
-    this.updateState(stateCopy);
+    this.state.onDismiss(this);
   }
 
   render() {
-    let classes = `Message ${this.state.message.type}`;
+    let classes = `Message ${this.state.type}`;
 
-    if (this.state.message.content === '') {
+    if (this.state.content === '') {
       classes += ' Hidden';
     } else {
       if (this.messageTimeout) {
@@ -48,8 +42,8 @@ export class Message extends PropsComponent {
 
     return (
       <div className={classes}>
-        <div className="MessageTitle" name="MessageTitle">{this.state.message.title}</div>
-        <div className="MessageContent" name="MessageContent">{this.state.message.content}</div>
+        <div className="MessageTitle" name="MessageTitle">{this.state.title}</div>
+        <div className="MessageContent" name="MessageContent">{this.state.content}</div>
       </div>
     );
   }
@@ -57,8 +51,9 @@ export class Message extends PropsComponent {
 
 Message.propTypes = {
   message: React.PropTypes.shape({
-    title: React.PropTypes.string,
-    content: React.PropTypes.string,
-    type: React.PropTypes.string,
+    title: React.PropTypes.string.isRequired,
+    content: React.PropTypes.string.isRequired,
+    type: React.PropTypes.string.isRequired,
   }),
+  onDismiss: React.PropTypes.func.isRequired,
 };
