@@ -56,14 +56,6 @@ export class EditProfile extends StoreObserver {
   toggleModal() {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.modalState = !this.state.modalState;
-
-    // if (stateCopy.modalState) {
-    //   ProfileStore.unlisten(this.onStoreChange);
-    // } else {
-    //   ProfileStore.listen(this.onStoreChange);
-    //   stateCopy.profile = ProfileStore.getState().profile;
-    // }
-
     this.updateState(stateCopy);
   }
 
@@ -75,6 +67,7 @@ export class EditProfile extends StoreObserver {
       <div>
         <PanelForm onSubmit={this.handleSubmit} submitLabel="Save">
           <Title>Update your profile</Title>
+          <ClickablePicture url={profile.photoUrl} onClick={this.toggleModal} />
 
           <hr className="Overlay" />
 
@@ -88,8 +81,6 @@ export class EditProfile extends StoreObserver {
           <TextInput value={profile.country} label="country" />
           <TextArea value={profile.description} label="description" />
           <TextArea value={profile.interests[0]} label="interests" />
-
-          <ClickablePicture url={profile.photoUrl} onClick={this.toggleModal} />
         </PanelForm>
 
         <EditPicture
