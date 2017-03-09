@@ -42,7 +42,6 @@ export class EditPicture extends StoreObserver {
   }
 
   render() {
-    console.log('EditPicture.render()');
     return (
       <LinkModal
         {...this.props}

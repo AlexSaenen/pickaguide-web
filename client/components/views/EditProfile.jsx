@@ -61,7 +61,6 @@ export class EditProfile extends StoreObserver {
 
   render() {
     const profile = this.state.profile || {};
-    console.log('EditProfile.render()', this.state.modalState);
 
     return (
       <div>

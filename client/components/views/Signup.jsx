@@ -15,32 +15,34 @@ export class Signup extends StoreObserver {
   constructor(props, context) {
     super(props, context, SignupStore);
 
-    this.state = {
-      isSuccess: null,
-      messageTitle: '',
-      messageContent: '',
-    };
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onStoreChange = this.onStoreChange.bind(this);
+    this.messageCallback = () => {};
   }
 
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.isSuccess = !store.error;
 
     if (store.error) {
-      stateCopy.messageTitle = 'Some error occurred when creating your account';
-      stateCopy.messageContent = String(store.error);
+      this.messageCallback({
+        title: 'Some error occurred when creating your account',
+        content: String(store.error),
+        type: 'Alert',
+      });
     } else {
-      stateCopy.messageTitle = 'Info';
-      stateCopy.messageContent = store.message;
+      this.messageCallback({
+        title: 'Info',
+        content: store.message,
+        type: 'Success',
+      });
     }
 
-    this.updateState(stateCopy);
+    this.setState(stateCopy);
   }
 
-  handleSubmit(form) {
+  handleSubmit(form, submitName, messageCallback) {
+    this.messageCallback = messageCallback;
+
     if (form.password !== form.passwordConfirmation) {
       SignupActions.error('The passwords do not match');
     } else {
@@ -50,15 +52,9 @@ export class Signup extends StoreObserver {
   }
 
   render() {
-    const message = {
-      title: this.state.messageTitle,
-      content: this.state.messageContent,
-      type: (this.state.isSuccess ? 'Success' : 'Alert'),
-    };
-
     return (
       <div>
-        <PanelForm onSubmit={this.handleSubmit} submitLabel="Signup" message={message}>
+        <PanelForm onSubmit={this.handleSubmit} submitLabel="Signup">
           <Title>Create an Account</Title>
           <hr className="Overlay" />
           <TextInput label="firstName" placeholder="First name" required />

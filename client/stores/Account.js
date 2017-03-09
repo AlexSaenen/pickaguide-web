@@ -7,10 +7,6 @@ class AccountStore {
 
   constructor() {
     this.error = null;
-    this.mailError = null;
-    this.passwordError = null;
-    this.mailSuccess = null;
-    this.passwordSuccess = null;
     this.account = null;
     this.bindActions(AccountActions);
   }
@@ -22,20 +18,11 @@ class AccountStore {
 
   onGetSuccess(account) {
     this.error = null;
-    this.mailError = null;
-    this.passwordError = null;
-    this.mailSuccess = null;
-    this.passwordSuccess = null;
     this.account = account;
   }
 
   onError(error) {
     this.error = error;
-    this.mailError = null;
-    this.passwordError = null;
-    this.mailSuccess = null;
-    this.passwordSuccess = null;
-    this.account = null;
   }
 
   onUpdate(form) {
@@ -45,54 +32,12 @@ class AccountStore {
 
   onUpdateSuccess(user) {
     this.error = null;
-    this.mailError = null;
-    this.passwordError = null;
-    this.mailSuccess = null;
-    this.passwordSuccess = null;
     this.account = user.account;
   }
 
   onUpdateMail(form) {
     AccountApi.updateMail(form);
     return false;
-  }
-
-  onUpdateMailSuccess(user) {
-    this.error = null;
-    this.passwordError = null;
-    this.passwordSuccess = null;
-    this.mailError = null;
-    this.mailSuccess = 'You will receive a confirmation mail at your new address';
-    this.account = user.account;
-  }
-
-  onUpdateMailError(error) {
-    this.passwordError = null;
-    this.passwordSuccess = null;
-    this.error = null;
-    this.mailError = error;
-    this.mailSuccess = null;
-  }
-
-  onUpdatePassword(form) {
-    AccountApi.updatePassword(form);
-    return false;
-  }
-
-  onUpdatePasswordSuccess(result) {
-    this.mailError = null;
-    this.mailSuccess = null;
-    this.error = null;
-    this.passwordError = null;
-    this.passwordSuccess = result.message;
-  }
-
-  onUpdatePasswordError(error) {
-    this.mailError = null;
-    this.mailSuccess = null;
-    this.error = null;
-    this.passwordError = error;
-    this.passwordSuccess = null;
   }
 
   onInvalidateAccount() {

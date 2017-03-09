@@ -21,30 +21,32 @@ export class Contact extends StoreObserver {
     this.state = {
       account: AccountStore.getState().account,
       profile: ProfileStore.getState().profile,
-      isSuccess: null,
-      messageTitle: '',
-      messageContent: '',
     };
 
     this.onStoreChange = this.onStoreChange.bind(this);
     this.onContact = this.onContact.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.messageCallback = () => {};
   }
 
   onContact(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.isSuccess = store.error === null;
 
     if (store.error) {
-      stateCopy.messageTitle = 'Some error occurred when contacting us';
-      stateCopy.messageContent = String(store.error);
-    } else if (store.contactId) {
-      stateCopy.messageTitle = 'Successful';
-      stateCopy.messageContent =
-        `You have successfully contacted us! Your contact id is '${store.contactId}'. One of our staff will answer you soon.`;
+      this.messageCallback({
+        title: 'Some error occurred when contacting us',
+        content: String(store.error),
+        type: 'Alert',
+      });
+    } else {
+      this.messageCallback({
+        title: 'Successful',
+        content: `You have successfully contacted us! Your contact id is '${store.contactId}'. One of our staff will answer you soon.`,
+        type: 'Success',
+      });
     }
 
-    this.updateState(stateCopy);
+    this.setState(stateCopy);
   }
 
   onStoreChange(store) {
@@ -59,21 +61,17 @@ export class Contact extends StoreObserver {
     this.updateState(stateCopy);
   }
 
-  handleSubmit(form) {
+  handleSubmit(form, submitName, messageCallback) {
+    this.messageCallback = messageCallback;
     ContactActions.contact(form);
   }
 
   render() {
     const account = this.state.account;
     const profile = this.state.profile;
-    const message = {
-      title: this.state.messageTitle,
-      content: this.state.messageContent,
-      type: (this.state.isSuccess ? 'Success' : 'Alert'),
-    };
 
     return (
-      <PanelForm onSubmit={this.handleSubmit} submitLabel="Contact" message={message}>
+      <PanelForm onSubmit={this.handleSubmit} submitLabel="Contact">
         <Title>Contact Us</Title>
         <hr className="Overlay" />
         <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder="Full name" required />
