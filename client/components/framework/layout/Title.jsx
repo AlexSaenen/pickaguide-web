@@ -16,7 +16,7 @@ export class Title extends PropsComponent {
   render() {
     return (
       <div className="Title">
-        {this.state.children}
+        {this.props.children}
       </div>
     );
   }

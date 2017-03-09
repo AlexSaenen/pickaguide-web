@@ -14,7 +14,7 @@ export class MainLayout extends PropsComponent {
       <div>
         <Menu />
         <div className="MainContent">
-          {this.state.children}
+          {this.props.children}
         </div>
         <Footer />
       </div>

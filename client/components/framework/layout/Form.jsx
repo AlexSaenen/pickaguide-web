@@ -15,13 +15,25 @@ export class Form extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { layoutStyle: props.layoutStyle, message: props.message };
+    this.state = { layoutStyle: props.layoutStyle, message: this.emptyMessage() };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearMessage = this.clearMessage.bind(this);
+    this.displayMessage = this.displayMessage.bind(this);
+    this.setPendingMessage = this.setPendingMessage.bind(this);
+    this.pendingMessage = null;
   }
 
   componentWillUnmount() {
     FormActions.flush.defer();
+  }
+
+  componentWillReceiveProps(props) {
+    if (this.pendingMessage) {
+      this.displayMessage(this.pendingMessage);
+      this.pendingMessage = null;
+    }
+
+    super.componentWillReceiveProps(props);
   }
 
   handleSubmit(e) {
@@ -29,16 +41,29 @@ export class Form extends PropsComponent {
     const formChildren = Array.from(e.target.children);
     const submitElement = formChildren.slice(-1).pop();
     const submitName = submitElement.childNodes[0].value;
-    this.props.onSubmit(FormStore.getState().fields, submitName);
+    this.props.onSubmit(FormStore.getState().fields, submitName, this.setPendingMessage);
   }
 
-  clearMessage() {
+  emptyMessage() {
+    return ({ title: '', content: '', type: '' });
+  }
+
+  setPendingMessage(message) {
+    this.pendingMessage = message;
+  }
+
+  displayMessage(message) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.message = { title: '', content: '', type: '' };
+    stateCopy.message = message;
     this.updateState(stateCopy);
   }
 
+  clearMessage() {
+    this.displayMessage(this.emptyMessage());
+  }
+
   render() {
+    console.log('Form.render()', this.props);
     return (
       <Layout layoutStyle={this.state.layoutStyle}>
         <form className="FormWrapper" onSubmit={this.handleSubmit}>
@@ -52,11 +77,6 @@ export class Form extends PropsComponent {
 }
 
 Form.defaultProps = {
-  message: {
-    title: '',
-    content: '',
-    type: '',
-  },
   submitLabel: 'Submit',
   layoutStyle: 'LayoutDark',
 };

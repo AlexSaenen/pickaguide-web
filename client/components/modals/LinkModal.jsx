@@ -11,12 +11,21 @@ export class LinkModal extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.state = props;
+    this.state = {
+      title: props.title,
+      inputLabel: props.inputLabel,
+      inputHolder: props.inputHolder,
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    console.log('LinkModal.componentWillReceiveProps()', props);
+    super.componentWillReceiveProps(props);
   }
 
   render() {
     return (
-      <ModalForm {...this.state} modalStyle="Small">
+      <ModalForm {...this.props} modalStyle="Small">
         <Title>{this.state.title}</Title>
         <TextInput required label={this.state.inputLabel} placeholder={this.state.inputHolder} />
       </ModalForm>

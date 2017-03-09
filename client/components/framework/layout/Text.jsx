@@ -16,7 +16,7 @@ export class Text extends PropsComponent {
   render() {
     return (
       <div className="Text">
-        {this.state.children}
+        {this.props.children}
       </div>
     );
   }

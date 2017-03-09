@@ -16,7 +16,7 @@ export class SubTitle extends PropsComponent {
   render() {
     return (
       <div className="SubTitle">
-        {this.state.children}
+        {this.props.children}
       </div>
     );
   }

@@ -7,16 +7,11 @@ import 'scss/framework/layout.scss';
 
 export class Panel extends PropsComponent {
 
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = props;
-  }
-
   render() {
+    console.log('Panel.render()');
     return (
       <div className="Panel">
-        {this.state.children}
+        {this.props.children}
       </div>
     );
   }

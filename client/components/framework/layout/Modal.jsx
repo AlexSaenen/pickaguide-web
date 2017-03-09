@@ -12,15 +12,23 @@ export class Modal extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.state = props;
+    this.state = {
+      modalStyle: props.modalStyle,
+      onClose: props.onClose,
+      active: props.active,
+    };
+
     this.dismiss = this.dismiss.bind(this);
   }
 
   dismiss() {
-    this.state.onClose(this);
-    // const stateCopy = Object.assign({}, this.state);
-    // stateCopy.active = false;
-    // this.updateState(stateCopy);
+    if (this.state.onClose) {
+      this.state.onClose(this);
+    } else {
+      const stateCopy = Object.assign({}, this.state);
+      stateCopy.active = false;
+      this.updateState(stateCopy);
+    }
   }
 
   render() {
@@ -33,7 +41,7 @@ export class Modal extends PropsComponent {
     return (
       <div className={classNames}>
         <div className="ModalContent">
-          {this.state.children}
+          {this.props.children}
           <div className="ModalFooter">
             <Button label="Dismiss" onCallback={this.dismiss} />
           </div>
@@ -46,11 +54,10 @@ export class Modal extends PropsComponent {
 Modal.defaultProps = {
   modalStyle: 'LayoutDark',
   active: false,
-  onClose: () => {},
+  onClose: null,
 };
 
 Modal.propTypes = {
-  children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array]),
   modalStyle: React.PropTypes.string,
   active: React.PropTypes.bool,
   onClose: React.PropTypes.func,

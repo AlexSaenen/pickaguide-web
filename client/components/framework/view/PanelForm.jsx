@@ -7,17 +7,12 @@ import { Form } from 'layout/Form.jsx';
 
 export class PanelForm extends PropsComponent {
 
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = props;
-  }
-
   render() {
+    console.log('PanelForm.render()');
     return (
       <Panel>
-        <Form {...this.state} >
-          {this.state.children}
+        <Form {...this.props} >
+          {this.props.children}
         </Form>
       </Panel>
     );

@@ -26,7 +26,7 @@ export class InlineForm extends PropsComponent {
     return (
       <div className="InlineForm">
         <form className="FormWrapper" onSubmit={this.handleSubmit}>
-          {this.state.children}
+          {this.props.children}
           <SubmitButton className="FormElement" label={this.state.submitLabel} />
         </form>
       </div>

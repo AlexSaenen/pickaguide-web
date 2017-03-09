@@ -29,7 +29,7 @@ export class AuthDependent extends StoreObserverForChildren {
   render() {
     return (
       <div className={`${this.className}${this.state.isVisible ? '' : ' Hidden'}`}>
-        {this.state.children}
+        {this.props.children}
       </div>
     );
   }

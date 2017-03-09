@@ -15,7 +15,9 @@ export class PropsComponent extends StateComponent {
     const stateCopy = Object.assign({}, this.state);
 
     Object.keys(props).forEach((propKey) => {
-      stateCopy[propKey] = props[propKey];
+      if (stateCopy[propKey] !== undefined) {
+        stateCopy[propKey] = props[propKey];
+      }
     });
 
     this.updateState(stateCopy);

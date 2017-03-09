@@ -17,7 +17,7 @@ export class PanelLayout extends PropsComponent {
     return (
       <Panel>
         <Layout layoutStyle={this.state.layoutStyle}>
-          {this.state.children}
+          {this.props.children}
         </Layout>
       </Panel>
     );

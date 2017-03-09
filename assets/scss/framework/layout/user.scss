@@ -1,6 +1,6 @@
 @import '../../colors.scss';
 
-.EditPicture {
+.ClickablePicture {
   height: 10em;
 
   & img {
@@ -11,7 +11,7 @@
   }
 }
 
-.EditPicture img:hover {
+.ClickablePicture img:hover {
   cursor: pointer;
   opacity: 0.3;
 }
