@@ -15,13 +15,7 @@ export class ClickablePicture extends PropsComponent {
     };
   }
 
-  componentWillReceiveProps(props) {
-    console.log('ClickablePicture.componentWillReceiveProps()', props);
-    super.componentWillReceiveProps(props);
-  }
-
   render() {
-    console.log('ClickablePicture.render()', this.props);
     return (
       <div onClick={this.state.onClick} className="ClickablePicture">
         <Picture pictureName="Photo URL" {...this.props} />

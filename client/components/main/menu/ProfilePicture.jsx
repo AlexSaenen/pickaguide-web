@@ -39,6 +39,7 @@ export class ProfilePicture extends StoreObserver {
           <Link to="/settings/edit"><p>Settings</p></Link>
           <Link to="/account/edit"><p>Account</p></Link>
           <Link to="/profile/edit"><p>Profile</p></Link>
+          <Link to="/profile/adverts"><p>Adverts</p></Link>
         </div>
       </AuthDependent>
     );

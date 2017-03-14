@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { StateComponent } from 'base/StateComponent.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 import FormActions from 'actions/CurrentForm.js';
 
 import 'scss/framework/form.scss';
 
 
-export class Input extends StateComponent {
+export class Input extends PropsComponent {
 
   constructor(props, context) {
     super(props, context);
