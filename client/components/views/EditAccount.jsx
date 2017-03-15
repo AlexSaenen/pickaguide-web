@@ -37,7 +37,7 @@ export class EditAccount extends StateComponent {
   render() {
     return (
       <div>
-        <PanelLayout>
+        <PanelLayout panelStyle="Small">
           <Title>Edit your Account</Title>
           <hr className="Overlay" />
           <Button label="Change Password" onCallback={this.togglePasswordModal} />
