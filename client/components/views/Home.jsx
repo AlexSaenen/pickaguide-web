@@ -23,7 +23,12 @@ const Home = () => {
         <p>World</p>
       </Lister>
 
-      <PanelList wrapChildren={false}>
+      <Lister listStyle="ListStack">
+        <p>Hello</p>
+        <p>World</p>
+      </Lister>
+
+      <PanelList wrapChildren={false} panelStyle="Small">
         <Element>Hello</Element>
         <Element>World</Element>
       </PanelList>

@@ -7,15 +7,9 @@ import { Layout } from 'layout/Layout.jsx';
 
 export class PanelLayout extends PropsComponent {
 
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = props;
-  }
-
   render() {
     return (
-      <Panel>
+      <Panel {...this.props}>
         <Layout layoutStyle={this.state.layoutStyle}>
           {this.props.children}
         </Layout>

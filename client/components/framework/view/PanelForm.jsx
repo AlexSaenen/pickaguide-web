@@ -8,9 +8,8 @@ import { Form } from 'layout/Form.jsx';
 export class PanelForm extends PropsComponent {
 
   render() {
-    console.log('PanelForm.render()');
     return (
-      <Panel>
+      <Panel {...this.props}>
         <Form {...this.props} >
           {this.props.children}
         </Form>

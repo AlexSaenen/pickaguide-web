@@ -10,7 +10,7 @@ export class PanelList extends PropsComponent {
 
   render() {
     return (
-      <Panel>
+      <Panel {...this.props}>
         <Layout {...this.props}>
           <List {...this.props} >
             {this.props.children}
