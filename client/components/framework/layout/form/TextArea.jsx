@@ -19,6 +19,7 @@ export class TextArea extends StateComponent {
       cols: props.cols,
       placeholder: props.placeholder || props.label,
       required: props.required,
+      className: props.className,
     };
 
     this.handleEdit = this.handleEdit.bind(this);
@@ -45,7 +46,7 @@ export class TextArea extends StateComponent {
     }
 
     return (
-      <div>
+      <div className={this.state.className}>
         <textarea {...props} /><br /><br />
       </div>
     );
@@ -58,9 +59,11 @@ TextArea.defaultProps = {
   rows: '10',
   cols: '50',
   required: false,
+  className: '',
 };
 
 TextArea.propTypes = {
+  className: React.PropTypes.string,
   label: React.PropTypes.string,
   id: React.PropTypes.string,
   value: React.PropTypes.string,

@@ -13,7 +13,7 @@ import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
 
-export class EditProfile extends StoreObserver {
+export class Adverts extends StoreObserver {
 
   constructor(props, context) {
     super(props, context, ProfileStore);
@@ -74,32 +74,7 @@ export class EditProfile extends StoreObserver {
 
     return (
       <div>
-        <PanelForm onSubmit={this.handleSubmit} submitLabel="Save">
-          <Title>Update your profile</Title>
-          <ClickablePicture url={profile.photoUrl} onClick={this.toggleModal} />
-          <hr className="Overlay" />
-
-          <TextInput value={profile.firstName} label="firstName" placeholder="First name" required />
-          <TextInput value={profile.lastName} label="lastName" placeholder="Last name" required />
-
-          <hr className="Divider" />
-
-          <TextInput value={profile.phone} label="phone" />
-          <TextInput value={profile.city} label="city" />
-          <TextInput value={profile.country} label="country" />
-          <TextArea value={profile.description} label="description" />
-          <TextArea value={profile.interests[0]} label="interests" />
-          <Button label="Devenir Guide" onCallback={this.toggleModalGuide} />
-        </PanelForm>
-
-        <EditPicture
-          active={this.state.modalState}
-          onClose={this.toggleModal}
-        />
-        <Guide
-          active={this.state.modalStateGuide}
-          onClose={this.toggleModalGuide}
-        />
+        <h1>ADVERTS</h1>
       </div>
     );
   }
