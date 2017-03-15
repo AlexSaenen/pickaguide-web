@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { Modal } from 'layout/Modal.jsx';
-import { Form } from 'layout/Form.jsx';
+import { Modal } from 'layout/containers/Modal.jsx';
+import { Form } from 'layout/form/Form.jsx';
 
 
 export class ModalForm extends PropsComponent {

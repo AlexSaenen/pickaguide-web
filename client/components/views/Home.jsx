@@ -2,8 +2,8 @@ import React from 'react';
 
 import { ModalList } from 'view/ModalList.jsx';
 import { PanelList } from 'view/PanelList.jsx';
-import { Element } from 'layout/Element.jsx';
-import { Lister } from 'layout/Lister.jsx';
+import { Element } from 'layout/list/Element.jsx';
+import { Lister } from 'layout/containers/Lister.jsx';
 
 // Lister est une liste seule a afficher au lieu d'un Panel (les elements sont libres)
 // PanelList est une liste dans un Panel

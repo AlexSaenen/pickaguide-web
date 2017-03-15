@@ -3,7 +3,7 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
-import { Title } from 'layout/Title.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import AccountActions from 'actions/Account.js';
 import AccountStore from 'stores/Account.js';
 

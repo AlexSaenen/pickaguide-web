@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { Panel } from 'layout/Panel.jsx';
-import { Form } from 'layout/Form.jsx';
+import { Panel } from 'layout/containers/Panel.jsx';
+import { Form } from 'layout/form/Form.jsx';
 
 
 export class PanelForm extends PropsComponent {

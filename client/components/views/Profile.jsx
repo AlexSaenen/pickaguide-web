@@ -2,10 +2,10 @@ import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { PanelLayout } from 'view/PanelLayout.jsx';
-import { CheckMark } from 'layout/CheckMark.jsx';
-import { SubTitle } from 'layout/SubTitle.jsx';
-import { Picture } from 'layout/Picture.jsx';
-import { Text } from 'layout/Text.jsx';
+import { CheckMark } from 'layout/elements/CheckMark.jsx';
+import { SubTitle } from 'layout/elements/SubTitle.jsx';
+import { Picture } from 'layout/elements/Picture.jsx';
+import { Text } from 'layout/elements/Text.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from 'layout/Button.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 
 import 'scss/framework/modal.scss';

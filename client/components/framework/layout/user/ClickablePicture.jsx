@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { Picture } from 'layout/Picture.jsx';
+import { Picture } from 'layout/elements/Picture.jsx';
 
 import 'scss/framework/layout/user.scss';
 

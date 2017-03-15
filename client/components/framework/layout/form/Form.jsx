@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { SubmitButton } from 'form/SubmitButton.jsx';
-import { Message } from 'layout/Message.jsx';
+import { Message } from 'layout/elements/Message.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { Layout } from 'layout/Layout.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
 import FormStore from 'stores/CurrentForm.js';
 import FormActions from 'actions/CurrentForm.js';
 

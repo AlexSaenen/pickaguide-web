@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { Panel } from 'layout/Panel.jsx';
-import { List } from 'layout/List.jsx';
-import { Layout } from 'layout/Layout.jsx';
+import { Panel } from 'layout/containers/Panel.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
+import { List } from 'layout/list/List.jsx';
 
 
 export class PanelList extends PropsComponent {

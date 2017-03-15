@@ -1,10 +1,10 @@
 import React from 'react';
-import ProfileActions from 'actions/Profile.js';
+// import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
-import { Title } from 'layout/Title.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 
@@ -29,13 +29,13 @@ export class FormGuideModal extends StoreObserver {
   }
 
   render() {
-    let classes = [6];
-    classes[0] = this.state.profileInfo.firstName ? 'Hidden' : ''
-    classes[1] = this.state.profileInfo.lastName ? 'Hidden' : ''
-    classes[2] = this.state.profileInfo.phone ? 'Hidden' : ''
-    classes[3] = this.state.profileInfo.city ? 'Hidden' : ''
-    classes[4] = this.state.profileInfo.country ? 'Hidden' : ''
-    classes[5] = this.state.profileInfo.description ? 'Hidden' : ''
+    const classes = [6];
+    classes[0] = this.state.profileInfo.firstName ? 'Hidden' : '';
+    classes[1] = this.state.profileInfo.lastName ? 'Hidden' : '';
+    classes[2] = this.state.profileInfo.phone ? 'Hidden' : '';
+    classes[3] = this.state.profileInfo.city ? 'Hidden' : '';
+    classes[4] = this.state.profileInfo.country ? 'Hidden' : '';
+    classes[5] = this.state.profileInfo.description ? 'Hidden' : '';
 
     return (
       <ModalForm {...this.props} modalStyle="Large">

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { List } from 'layout/List.jsx';
+import { List } from 'layout/list/List.jsx';
 
 import 'scss/framework/list.scss';
 

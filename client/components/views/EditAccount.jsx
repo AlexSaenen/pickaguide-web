@@ -4,8 +4,8 @@ import { PanelLayout } from 'view/PanelLayout.jsx';
 import { EditPassword } from 'modals/EditPassword.jsx';
 import { EditEmail } from 'modals/EditEmail.jsx';
 import { StateComponent } from 'base/StateComponent.jsx';
-import { Title } from 'layout/Title.jsx';
-import { Button } from 'layout/Button.jsx';
+import { Title } from 'layout/elements/Title.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 
 
 export class EditAccount extends StateComponent {

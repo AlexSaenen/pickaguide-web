@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
-import { Title } from 'layout/Title.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 
 

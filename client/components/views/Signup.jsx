@@ -5,7 +5,7 @@ import { TextInput } from 'form/TextInput.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
 import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'layout/Title.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import SignupActions from 'actions/Signup.js';
 import SignupStore from 'stores/Signup.js';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { Modal } from 'layout/Modal.jsx';
-import { List } from 'layout/List.jsx';
-import { Layout } from 'layout/Layout.jsx';
+import { Modal } from 'layout/containers/Modal.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
+import { List } from 'layout/list/List.jsx';
 
 
 export class ModalList extends PropsComponent {
