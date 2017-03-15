@@ -1,11 +1,16 @@
 import React from 'react';
 
+import { PanelList } from 'view/PanelList.jsx';
+// import { List } from 'layout/List.jsx';
+
 
 const Home = () => {
   return (
     <div>
-      <p>This is the body my lord, i think all is working, tests Bilan technique</p>
-      <img src="/assets/images/favicon.ico" alt="" width="64px" height="64px" />
+      <PanelList wrapChildren={false} layoutStyle="LayoutLight">
+        <p>Hello</p>
+        <p>World</p>
+      </PanelList>
     </div>
   );
 };
