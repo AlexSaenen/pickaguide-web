@@ -52,7 +52,7 @@ export class Modal extends PropsComponent {
 }
 
 Modal.defaultProps = {
-  modalStyle: 'LayoutDark',
+  modalStyle: '',
   active: false,
   onClose: null,
 };

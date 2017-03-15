@@ -17,16 +17,24 @@ export class List extends PropsComponent {
   }
 
   render() {
+    const props = Object.assign({}, this.props);
+
+    if (props.children.constructor !== Array) {
+      props.children = [props.children];
+    }
+
     return (
       <div className={`List ${this.state.listStyle}`}>
         {
           this.wrapChildren ?
-          this.props.children.forEach(child =>
-            <Element>
-              {child}
-            </Element>
-          ) :
-          this.props.children
+          props.children.map((child, index) => {
+            return (
+              <Element key={index}>
+                {child}
+              </Element>
+            );
+          }) :
+          props.children
         }
       </div>
     );

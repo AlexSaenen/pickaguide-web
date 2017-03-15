@@ -10,7 +10,7 @@ export class Lister extends PropsComponent {
 
   render() {
     return (
-      <div className="Lister">
+      <div className="Lister ListContainer">
         <List {...this.props}>
           {this.props.children}
         </List>
