@@ -33,7 +33,7 @@ export class Profile extends StoreObserver {
     return (
       <div>
         <Layout>
-          <Title>{`${profile.firstName} ${profile.lastName.charAt(0).toUpperCase()}.`}</Title>
+          <Title>{`${profile.pseudo}`}</Title>
           <div>
             <img src={profile.photoUrl} alt="Profile" />
             <p>Date of Birth : {profile.birthdate}</p>
