@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { PropsComponent } from 'base/PropsComponent.jsx';
+
 import 'scss/framework/form.scss';
 
 
-export class SubmitButton extends React.Component {
+export class SubmitButton extends PropsComponent {
 
   constructor(props, context) {
     super(props, context);
