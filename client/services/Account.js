@@ -1,4 +1,5 @@
 import AccountActions from 'actions/Account.js';
+import PasswordActions from 'actions/Password.js';
 import PromiseApi from 'services/PromiseApi.js';
 import AuthStore from 'stores/Auth.js';
 
@@ -37,13 +38,13 @@ export default class AccountApi {
     PromiseApi.auth().put('/accounts/password', form)
       .then((res) => {
         if (res.error) {
-          AccountActions.updatePasswordError(res.error);
+          PasswordActions.error(res.error);
         } else {
-          AccountActions.updatePasswordSuccess(res);
+          PasswordActions.updateSuccess(res);
         }
       })
       .catch((err) => {
-        AccountActions.updatePasswordError(err);
+        PasswordActions.error(err);
       });
   }
 
@@ -51,13 +52,13 @@ export default class AccountApi {
     PromiseApi.auth().put('/accounts/mail', form)
       .then((res) => {
         if (res.error) {
-          AccountActions.updateMailError(res.error);
+          AccountActions.error(res.error);
         } else {
-          AccountActions.updateMailSuccess(res);
+          AccountActions.updateSuccess(res);
         }
       })
       .catch((err) => {
-        AccountActions.updateMailError(err);
+        AccountActions.error(err);
       });
   }
 }

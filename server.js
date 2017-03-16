@@ -11,7 +11,12 @@ const PORT = process.env.PORT || 5000;
 app.use('/assets', express.static(path.resolve(__dirname, './assets')));
 
 app.get('/', (request, response) => {
-    response.sendFile(`${__dirname}/index.html`);
+  response.sendFile(`${__dirname}/index.html`);
+});
+
+app.use(function(request, response) {
+  response.status(400);
+  response.sendFile(`${__dirname}/assets/html/404.html`);
 });
 
 http.createServer(app).listen(PORT);

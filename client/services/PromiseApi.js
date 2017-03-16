@@ -17,12 +17,19 @@ export default class PromiseApi {
 
   static _handleResponse(requestBuilder, callbacks) {
     requestBuilder.end((err, res) => {
-      console.log(err, res);
       if (err) {
         if (String(err).indexOf('Request has been terminated') !== -1) {
           callbacks.reject('Server seems to be down, please try again later');
         } else {
-          callbacks.reject(res.text ? JSON.parse(res.text).message : err.statusText);
+          let errorMessage = err.statusText;
+
+          try {
+            errorMessage = JSON.parse(res.text).message;
+          } catch (e) {
+            errorMessage = 'An unexpected error occured';
+          }
+
+          callbacks.reject(errorMessage);
         }
       } else {
         const jsonBody = JSON.parse(res.text);

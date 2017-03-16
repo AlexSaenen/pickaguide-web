@@ -1,0 +1,135 @@
+@import '../colors.scss';
+
+$layoutPadding: 2em;
+
+.Panel {
+  display: block;
+  width: 40em;
+  margin: 5em auto;
+  -moz-box-shadow: 0 0 6px black;
+	-webkit-box-shadow: 0 0 6px black;
+	box-shadow: 0 0 6px black;
+  border: 1px solid #555;
+  border-radius: 0.1em;
+}
+
+.Layout {
+  text-align: center;
+  font-family: bariol;
+  padding: $layoutPadding;
+
+  .Title {
+    margin: 0.5em 0 1.5em 0;
+    font-size: 1.8em;
+  }
+
+  .SubTitle {
+    margin: -0.3em 0 1.5em 0;
+    font-size: 1.2em;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  .Picture {
+    margin: auto;
+    height: inherit;
+
+    & > img {
+      margin: auto;
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+
+  }
+
+  .Text {
+    font-size: 1em;
+
+    & > p {
+      padding: 0.1em;
+    }
+  }
+
+  hr.Divider {
+    display: block;
+    clear: both;
+    margin: 2em -#{$layoutPadding};
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), $modalSecondaryColor, rgba(0, 0, 0, 0));
+  }
+
+  hr.Overlay {
+    display: block;
+    clear: both;
+    margin: 2em -#{$layoutPadding};
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -10px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.LayoutHeader {
+  width: 100%;
+  height: 4em;
+
+  .Title {
+    height: auto;
+    margin: 0;
+  }
+}
+
+$layoutPadding: 2em;
+
+.Tight {
+  padding: #{$layoutPadding / 2};
+
+  hr.Divider, hr.Overlay {
+    margin: 1em -#{$layoutPadding / 2};
+  }
+
+  input[type="submit"] {
+    margin: 0.6em;
+  }
+}
+
+.LayoutLight {
+  background-color: $modalLightColor;
+
+  .Title, .Text {
+    color: black;
+  }
+
+  .SubTitle {
+    color: $textDarkColor;
+  }
+
+  input, textarea {
+    color: black;
+  }
+
+  input[type="submit"] {
+    color: white;
+  }
+}
+
+.LayoutDark {
+  background-color: $modalDarkColor;
+
+  .Title, .Text {
+    color: white;
+  }
+
+  .SubTitle {
+    color: $textLightColor;
+  }
+
+  input, textarea {
+    color: white;
+  }
+
+  input[type="submit"] {
+    color: black;
+  }
+}

@@ -10,6 +10,6 @@
         'max-len':0,
         'no-param-reassign':0,
         'no-extend-native':0,
-        'import/no-unresolved':['error', { ignore:['^formFramework*', '^base*', '^menu*', '^components*', '^actions*', '^stores*', '^client*', '^services*', '^config*', '^scss*'] }],
+        'import/no-unresolved':['error', { ignore:['^framework*', '^form*', '^base*', '^main*', '^menu*', '^layout*', '^view*', '^modals*', '^components*', '^actions*', '^stores*', '^client*', '^services*', '^config*', '^scss*'] }],
     }
 }

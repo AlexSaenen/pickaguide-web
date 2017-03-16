@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { FormLayout } from 'formFramework/FormLayout.jsx';
-import { TextInput } from 'formFramework/TextInput.jsx';
+import { PanelForm } from 'view/PanelForm.jsx';
+import { TextInput } from 'form/TextInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'base/Title.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import SettingsActions from 'actions/Settings.js';
 import SettingsStore from 'stores/Settings.js';
 
@@ -13,8 +13,6 @@ export class Settings extends StoreObserver {
   constructor(props, context) {
     super(props, context, SettingsStore);
 
-    this.router = context.router;
-    console.log('---', SettingsStore.getState().settings);
     this.state = {
       settings: SettingsStore.getState().settings,
     };
@@ -26,23 +24,22 @@ export class Settings extends StoreObserver {
   onStoreChange() {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.settings = SettingsStore.getState().settings;
-    console.log(stateCopy.settings);
     this.updateState(stateCopy);
   }
 
   handleSubmit(form) {
-    console.log(form);
     SettingsActions.update(form);
   }
 
   render() {
     return (
       <div>
-        <FormLayout onSubmit={this.handleSubmit} submitLabel="Save">
+        <PanelForm onSubmit={this.handleSubmit} submitLabel="Save">
           <Title>General settings</Title>
+          <hr className="Overlay" />
           <TextInput label="firstName" placeholder="First name" />
           <TextInput label="lastName" placeholder="Last name" />
-        </FormLayout>
+        </PanelForm>
       </div>
     );
   }

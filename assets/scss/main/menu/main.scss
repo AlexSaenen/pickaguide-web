@@ -1,0 +1,32 @@
+@import "../../colors.scss";
+
+$menuHeight: 6em;
+
+p {
+  font-family: bariol !important;
+}
+
+.MainMenu {
+    width: 80%;
+    text-align: center;
+}
+
+.MainMenuWrapper {
+  height: $menuHeight;
+  background-color: $darkShadeColor;
+  -moz-box-shadow:    0px 1px 8px 0px $shadowColor;
+  -webkit-box-shadow: 0px 1px 8px 0px $shadowColor;
+  box-shadow:         0px 1px 8px 0px $shadowColor;
+}
+
+.MainMenuContentWrapper {
+    display: inline-block;
+    float: left;
+    height: inherit;
+}
+
+.MenuElement {
+  display: inline;
+  float: left;
+  height: 100%;
+}

@@ -1,10 +1,14 @@
 import React from 'react';
 
-import { FormLayout } from 'formFramework/FormLayout.jsx';
-import { TextInput } from 'formFramework/TextInput.jsx';
-import { TextArea } from 'formFramework/TextArea.jsx';
+import { PanelForm } from 'view/PanelForm.jsx';
+import { TextInput } from 'form/TextInput.jsx';
+import { TextArea } from 'form/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { Title } from 'base/Title.jsx';
+import { Title } from 'layout/elements/Title.jsx';
+import { Button } from 'layout/elements/Button.jsx';
+import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
+import { EditPicture } from 'modals/EditPicture.jsx';
+import { Guide } from 'modals/Guide.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/Profile.js';
 
@@ -16,13 +20,15 @@ export class EditProfile extends StoreObserver {
 
     this.state = {
       profile: ProfileStore.getState().profile,
-      isSuccess: null,
-      messageTitle: '',
-      messageContent: '',
+      modalState: false,
+      modalStateGuide: false,
     };
 
     this.onStoreChange = this.onStoreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.messageCallback = () => {};
+    this.toggleModal = this.toggleModal.bind(this);
+    this.toggleModalGuide = this.toggleModalGuide.bind(this);
   }
 
   onStoreChange(store) {
@@ -30,46 +36,70 @@ export class EditProfile extends StoreObserver {
     stateCopy.profile = store.profile;
 
     if (store.error) {
-      stateCopy.messageTitle = 'Some error occurred when updating your profile';
-      stateCopy.messageContent = String(store.error);
-      stateCopy.isSuccess = false;
+      this.messageCallback({
+        title: 'Some error occurred when updating your profile',
+        content: String(store.error),
+        type: 'Alert',
+      });
     } else {
-      stateCopy.messageTitle = 'Successful';
-      stateCopy.messageContent = 'Your informations have been updated';
-      stateCopy.isSuccess = true;
+      this.messageCallback({
+        title: 'Successful',
+        content: 'Your informations have been updated',
+        type: 'Success',
+      });
     }
+
     this.updateState(stateCopy);
   }
 
-  handleSubmit(form) {
-    console.log(form);
-    // maybe check if a value is empty => profileSettingsValidationError(form.firstName'value empty');
+  handleSubmit(form, submitName, messageCallback) {
+    this.messageCallback = messageCallback;
     ProfileActions.update(form);
+  }
+
+  toggleModal() {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.modalState = !this.state.modalState;
+    this.updateState(stateCopy);
+  }
+
+  toggleModalGuide() {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.modalStateGuide = !this.state.modalStateGuide;
+    this.updateState(stateCopy);
   }
 
   render() {
     const profile = this.state.profile || {};
-    const message = {
-      title: this.state.messageTitle,
-      content: this.state.messageContent,
-      type: (this.state.isSuccess ? 'Success' : 'Alert'),
-    };
 
     return (
       <div>
-        <FormLayout onSubmit={this.handleSubmit} submitLabel="Save" message={message}>
+        <PanelForm onSubmit={this.handleSubmit} submitLabel="Save">
           <Title>Update your profile</Title>
-          <TextInput value={profile.firstName} label="firstName" placeholder="Entrez votre prénom" />
-          <TextInput value={profile.lastName} label="lastName" placeholder="Entrez votre nom" />
-          <TextInput value={profile.phone} label="phone" placeholder="Entrez votre téléphone" />
-          <TextInput value={profile.city} label="city" placeholder="Entrez votre ville" />
-          <TextInput value={profile.country} label="country" placeholder="Entrez votre pays" />
-          <TextArea value={profile.description} label="description" placeholder="Entrez votre description" required />
-          <p>
-            <img src={profile.photoUrl} alt={profile.photoUrl} height="150" width="150" />
-          </p>
-          <TextArea value={profile.photoUrl} label="photoUrl" placeholder="Entrez votre photo" required />
-        </FormLayout>
+          <ClickablePicture url={profile.photoUrl} onClick={this.toggleModal} />
+          <hr className="Overlay" />
+
+          <TextInput value={profile.firstName} label="firstName" placeholder="First name" required />
+          <TextInput value={profile.lastName} label="lastName" placeholder="Last name" required />
+
+          <hr className="Divider" />
+
+          <TextInput value={profile.phone} label="phone" />
+          <TextInput value={profile.city} label="city" />
+          <TextInput value={profile.country} label="country" />
+          <TextArea value={profile.description} label="description" />
+          <TextArea value={profile.interests[0]} label="interests" />
+          <Button label="Devenir Guide" onCallback={this.toggleModalGuide} />
+        </PanelForm>
+
+        <EditPicture
+          active={this.state.modalState}
+          onClose={this.toggleModal}
+        />
+        <Guide
+          active={this.state.modalStateGuide}
+          onClose={this.toggleModalGuide}
+        />
       </div>
     );
   }

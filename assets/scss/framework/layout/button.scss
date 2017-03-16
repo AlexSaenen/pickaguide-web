@@ -1,0 +1,30 @@
+@import '../../colors.scss';
+
+.Button {
+  border: 0;
+  border-radius: 0.3em;
+  padding: 0.4em 1.5em;
+  min-width: 1em;
+  margin: 0.6em auto;
+  text-align: center;
+  cursor: pointer;
+  background-color: $secondaryElementColor;
+  font-family: bariol;
+  font-size: 1em;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+}
+
+.ShadowedButton {
+  @extend .Button;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ShadowedButton:hover {
+  -webkit-box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow:    0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+  box-shadow:         0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+}

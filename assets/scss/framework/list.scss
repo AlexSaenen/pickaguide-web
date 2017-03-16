@@ -1,0 +1,47 @@
+@import '../colors.scss';
+
+$wideListWidth: 80%;
+$compactListWidth: 60%;
+
+.ListContainer {
+  text-align: center;
+}
+
+.Lister {
+  margin: 4em 0;
+
+  .List {
+    width: $compactListWidth;
+  }
+}
+
+.List {
+  width: $wideListWidth;
+  margin: auto 0;
+  display: inline-block;
+
+  .Element {
+    margin: 0.8em 0;
+    padding: 1em;
+    width: auto;
+    background-color: $modalLightColor;
+    border-radius: 0.2em;
+    -moz-box-shadow: 0 0 4px black;
+  	-webkit-box-shadow: 0 0 4px black;
+  	box-shadow: 0 0 4px black;
+  }
+}
+
+.ListGrid {
+  .Element {
+    display: inline-block;
+    width: auto;
+    margin: 0.8em;
+  }
+}
+
+.ListStack {
+  .Element {
+    display: block;
+  }
+}

@@ -5,8 +5,6 @@ machine:
 dependencies:
   pre:
     - docker login -e "alexander.saenen@epitech.eu" -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - npm install -g webdriver-manager@11.1.1
-    - npm install -g protractor@4.0.14
 
   override:
     - echo "Overriding default dependencies"

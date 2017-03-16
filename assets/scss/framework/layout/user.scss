@@ -1,0 +1,17 @@
+@import '../../colors.scss';
+
+.ClickablePicture {
+  height: 10em;
+
+  & img {
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+    backface-visibility: hidden;
+  }
+}
+
+.ClickablePicture img:hover {
+  cursor: pointer;
+  opacity: 0.3;
+}

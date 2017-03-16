@@ -1,0 +1,13 @@
+@import "../colors.scss";
+
+.MainContent {
+  min-height: 100%;
+}
+
+$footerHeight: 10em;
+
+.Footer {
+  width: 100%;
+  height: $footerHeight;
+  background-color: $mediumDarkColor;
+}

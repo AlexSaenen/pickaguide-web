@@ -1,6 +1,6 @@
-@import './_fonts.scss';
-@import './components/footer.scss';
-@import './components/_home.scss';
+@import './fonts.scss';
+@import './main/menu/main.scss';
+@import './main/layout.scss';
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -48,6 +48,11 @@ table {
 a {
   cursor: pointer;
 }
+strong{
+ font-weight: bold;
+}
+
+// USER Styles
 
 html, body, #app {
   height: 100%;
@@ -57,18 +62,12 @@ html, body, #app {
   }
 }
 
-*:focus {
-  outline: none;
-}
-
-.Hidden {
-  display: none;
-}
-
-.HeightNone {
-  height: 0;
-}
-
-.HeightFull {
-  height: 100%;
-}
+*:focus { outline: none; }
+.Hidden { display: none !important; }
+.Inline { display: inline; }
+.Inline-Block { display: inline-block; }
+.HeightNone { height: 0; }
+.HeightFull { height: 100%; }
+.Left { text-align: left; }
+.Right { text-align: right; }
+.Center { text-align: center; }
