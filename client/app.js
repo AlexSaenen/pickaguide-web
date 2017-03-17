@@ -12,6 +12,7 @@ import { EditAccount } from 'views/EditAccount.jsx';
 import { EditProfile } from 'views/EditProfile.jsx';
 import { Adverts } from 'views/Adverts.jsx';
 import { Contact } from 'views/Contact.jsx';
+import { Search } from 'views/Search.jsx';
 import About from 'views/About.jsx';
 import 'services/Utils.js';
 
@@ -31,6 +32,7 @@ ReactDOM.render(
       <Route path="contact-us" component={Contact} />
       <Route path="about" component={About} />
       <Route path="profile/adverts" component={Adverts} />
+      <Route path="search" component={Search} />      
     </Route>
   </Router>
 
