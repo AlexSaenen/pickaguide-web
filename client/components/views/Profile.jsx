@@ -42,7 +42,7 @@ export class Profile extends StoreObserver {
           <div className="HeaderCheckMark"><CheckMark active /></div>
         </div>
 
-        <hr className="Overlay" />
+        <hr className="SpacedOverlay" />
 
         <SubTitle>Basic Info</SubTitle>
         <Text>
@@ -50,12 +50,12 @@ export class Profile extends StoreObserver {
           <p><strong>City:</strong> {profile.city ? profile.city : 'None'}</p>
         </Text>
 
-        <hr className="Divider" />
+        <hr className="SpacedDivider" />
 
         <SubTitle>Description</SubTitle>
         <Text>{profile.description ? profile.description : 'None'}</Text>
 
-        <hr className="Divider" />
+        <hr className="SpacedDivider" />
 
         <SubTitle>Interests</SubTitle>
         <Text>{profile.interests.length > 0 ?

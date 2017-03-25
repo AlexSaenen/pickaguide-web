@@ -77,12 +77,13 @@ export class EditProfile extends StoreObserver {
         <PanelForm onSubmit={this.handleSubmit} submitLabel="Save">
           <Title>Update your profile</Title>
           <ClickablePicture url={profile.photoUrl} onClick={this.toggleModal} />
-          <hr className="Overlay" />
+
+          <hr className="SpacedOverlay" />
 
           <TextInput value={profile.firstName} label="firstName" placeholder="First name" required />
           <TextInput value={profile.lastName} label="lastName" placeholder="Last name" required />
 
-          <hr className="Divider" />
+          <hr className="SpacedDivider" />
 
           <TextInput value={profile.phone} label="phone" />
           <TextInput value={profile.city} label="city" />

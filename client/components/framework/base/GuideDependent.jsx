@@ -4,12 +4,12 @@ import { StatusDependent } from 'base/StatusDependent.jsx';
 import AuthStore from 'stores/Auth.js';
 
 
-export class AuthDependent extends StatusDependent {
+export class GuideDependent extends StatusDependent {
 
   constructor(props, context) {
     const propsCopy = Object.assign({}, props);
-    propsCopy.activator = 'auth';
-    propsCopy.deactivator = 'unauth';
+    propsCopy.activator = 'guide';
+    propsCopy.deactivator = 'visitor';
 
     super(propsCopy, context, AuthStore);
 
@@ -28,12 +28,12 @@ export class AuthDependent extends StatusDependent {
   }
 }
 
-AuthDependent.defaultProps = {
-  auth: false,
-  unauth: false,
+GuideDependent.defaultProps = {
+  guide: false,
+  visitor: false,
 };
 
-AuthDependent.propTypes = {
-  auth: React.PropTypes.bool,
-  unauth: React.PropTypes.bool,
+GuideDependent.propTypes = {
+  guide: React.PropTypes.bool,
+  visitor: React.PropTypes.bool,
 };

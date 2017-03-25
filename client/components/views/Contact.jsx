@@ -73,7 +73,7 @@ export class Contact extends StoreObserver {
     return (
       <PanelForm onSubmit={this.handleSubmit} submitLabel="Contact">
         <Title>Contact Us</Title>
-        <hr className="Overlay" />
+        <hr className="SpacedOverlay" />
         <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder="Full name" required />
         <EmailInput value={account ? account.email : ''} required />
         <TelInput label="phone" value={profile ? profile.phone : ''} />

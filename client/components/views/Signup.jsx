@@ -56,10 +56,14 @@ export class Signup extends StoreObserver {
       <div>
         <PanelForm onSubmit={this.handleSubmit} submitLabel="Signup">
           <Title>Create an Account</Title>
-          <hr className="Overlay" />
+
+          <hr className="SpacedOverlay" />
+
           <TextInput label="firstName" placeholder="First name" required />
           <TextInput label="lastName" placeholder="Last name" required />
-          <hr className="Divider" />
+
+          <hr className="SpacedDivider" />
+
           <EmailInput required />
           <PasswordInput required />
           <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />

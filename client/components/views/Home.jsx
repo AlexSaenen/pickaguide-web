@@ -1,8 +1,10 @@
 import React from 'react';
 
-import { ModalList } from 'view/ModalList.jsx';
+// import { ModalList } from 'view/ModalList.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { Element } from 'layout/list/Element.jsx';
+import { Title } from 'layout/elements/Title.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
 import { Lister } from 'layout/containers/Lister.jsx';
 
 // Lister est une liste seule a afficher au lieu d'un Panel (les elements sont libres)
@@ -18,6 +20,11 @@ import { Lister } from 'layout/containers/Lister.jsx';
 const Home = () => {
   return (
     <div>
+      <Layout layoutStyle="LayoutDark">
+        <hr className="Overlay" />
+        <Title>Salut Home Page</Title>
+      </Layout>
+
       <Lister wrapChildren listStyle="ListGrid">
         <p>Hello</p>
         <p>World</p>
@@ -37,24 +44,7 @@ const Home = () => {
         <p>Hello</p>
         <p>World</p>
       </PanelList>
-
-      <ModalList active>
-        <p>Hello</p>
-        <p>World of my zbooba die doo</p>
-      </ModalList>
-
-      <ModalList active listStyle="ListGrid" modalStyle="Large">
-        <p>Hello</p>
-        <p>World of my zbooba die doo</p>
-        <p>Hello</p>
-        <p>World of my zbooba die doo</p>
-        <p>Hello</p>
-        <p>World of my zbooba die doo</p>
-        <p>Hello</p>
-        <p>World of my zbooba die doo</p>
-      </ModalList>
     </div>
   );
 };
-
 export default Home;

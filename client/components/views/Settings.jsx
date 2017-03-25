@@ -36,7 +36,7 @@ export class Settings extends StoreObserver {
       <div>
         <PanelForm onSubmit={this.handleSubmit} submitLabel="Save">
           <Title>General settings</Title>
-          <hr className="Overlay" />
+          <hr className="SpacedOverlay" />
           <TextInput label="firstName" placeholder="First name" />
           <TextInput label="lastName" placeholder="Last name" />
         </PanelForm>
