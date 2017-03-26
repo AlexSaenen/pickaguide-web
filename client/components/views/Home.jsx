@@ -25,15 +25,20 @@ const Home = () => {
         <Title>Salut Home Page</Title>
       </Layout>
 
-      <Lister wrapChildren listStyle="ListGrid">
-        <p>Hello</p>
-        <p>World</p>
-      </Lister>
+      <Layout layoutStyle="LayoutLight">
+        <hr className="Overlay" />
+        <Lister wrapChildren listStyle="ListGrid">
+          <p>Hello</p>
+          <p>World</p>
+        </Lister>
+      </Layout>
 
-      <Lister listStyle="ListStack">
-        <p>Hello</p>
-        <p>World</p>
-      </Lister>
+      <Layout layoutStyle="LayoutDark">
+        <Lister listStyle="ListStack">
+          <p>Hello</p>
+          <p>World</p>
+        </Lister>
+      </Layout>
 
       <PanelList wrapChildren={false} panelStyle="Small">
         <Element>Hello</Element>

@@ -1,5 +1,3 @@
-import ProfileActions from 'actions/Profile.js';
-import AccountActions from 'actions/Account.js';
 import AuthActions from 'actions/Auth.js';
 import PromiseApi from 'services/PromiseApi.js';
 import CookieApi from 'services/Cookie.js';

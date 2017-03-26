@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StatusDependent } from 'base/StatusDependent.jsx';
-import AuthStore from 'stores/Auth.js';
+import ProfileStore from 'stores/Profile.js';
 
 
 export class GuideDependent extends StatusDependent {
@@ -11,20 +11,20 @@ export class GuideDependent extends StatusDependent {
     propsCopy.activator = 'guide';
     propsCopy.deactivator = 'visitor';
 
-    super(propsCopy, context, AuthStore);
+    super(propsCopy, context, ProfileStore);
 
-    this.state.isVisible = this._isVisible(AuthStore.getState().credentials);
+    this.state.isVisible = this._isVisible(ProfileStore.getState().isGuide);
     this.onStoreChange = this.onStoreChange.bind(this);
   }
 
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.isVisible = this._isVisible(store.credentials);
+    stateCopy.isVisible = this._isVisible(store.isGuide);
     this.updateState(stateCopy);
   }
 
-  _isVisible(credentials) {
-    return (credentials === null ? (this.unactive || !this.active) : (this.active || !this.unactive));
+  _isVisible(isGuide) {
+    return (isGuide === false ? (this.unactive || !this.active) : (this.active || !this.unactive));
   }
 }
 

@@ -8,6 +8,7 @@ class ProfileStore {
   constructor() {
     this.error = null;
     this.profile = null;
+    this.isGuide = false;
     this.bindActions(ProfileActions);
   }
 
@@ -19,6 +20,15 @@ class ProfileStore {
   onGetSuccess(profile) {
     this.error = null;
     this.profile = profile;
+  }
+
+  onIsGuide(userId) {
+    ProfileApi.isGuide(userId);
+    return false;
+  }
+
+  onIsGuideSuccess(isGuide) {
+    this.isGuide = isGuide;
   }
 
   onError(error) {
@@ -38,6 +48,7 @@ class ProfileStore {
 
   onInvalidateProfile() {
     this.profile = null;
+    this.isGuide = false;
   }
 }
 

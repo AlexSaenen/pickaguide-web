@@ -35,4 +35,18 @@ export default class ProfileApi {
       });
   }
 
+  static isGuide(userId) {
+    PromiseApi.get(`/public/users/${userId}/isGuide`)
+      .then((res) => {
+        if (res.error) {
+          ProfileActions.error(res.error);
+        } else {
+          ProfileActions.isGuideSuccess(res.isGuide);
+        }
+      })
+      .catch((err) => {
+        ProfileActions.error(err);
+      });
+  }
+
 }

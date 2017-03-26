@@ -27,6 +27,7 @@ class AuthStore {
   onSync() {
     if (this.credentials) {
       ProfileActions.get.defer();
+      ProfileActions.isGuide.defer(this.credentials.id);
       AccountActions.get.defer();
     }
 
