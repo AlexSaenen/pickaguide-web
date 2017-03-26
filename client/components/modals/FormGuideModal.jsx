@@ -42,10 +42,10 @@ export class FormGuideModal extends StoreObserver {
         <Title>{this.state.title}</Title>
         <TextInput className={classes[0]} value={this.state.profileInfo.firstName} label="firstName" placeholder="First name" required />
         <TextInput className={classes[1]} value={this.state.profileInfo.lastName} label="lastName" placeholder="Last name" required />
-        <TextInput className={classes[2]} value={this.state.profileInfo.phone} label="phone" />
-        <TextInput className={classes[3]} value={this.state.profileInfo.city} label="city" />
-        <TextInput className={classes[4]} value={this.state.profileInfo.country} label="country" />
-        <TextArea className={classes[5]} value={this.state.profileInfo.description} label="description" />
+        <TextInput className={classes[2]} value={this.state.profileInfo.phone} label="phone" required />
+        <TextInput className={classes[3]} value={this.state.profileInfo.city} label="city" required />
+        <TextInput className={classes[4]} value={this.state.profileInfo.country} label="country" required />
+        <TextArea className={classes[5]} value={this.state.profileInfo.description} label="description" required />
       </ModalForm>
     );
   }

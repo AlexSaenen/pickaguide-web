@@ -27,6 +27,11 @@ class ProfileStore {
     return false;
   }
 
+  becomeGuide(formBecomeGuide) {
+    ProfileApi.becomeGuide(formBecomeGuide);
+    return false;
+  }
+
   onIsGuideSuccess(isGuide) {
     this.isGuide = isGuide;
   }

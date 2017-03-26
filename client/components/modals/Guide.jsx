@@ -38,7 +38,7 @@ export class Guide extends StoreObserver {
 
   handleSubmit(form, submitName, messageCallback) {
     this.messageCallback = messageCallback;
-    ProfileActions.update(form);
+    ProfileActions.becomeGuide(form);
   }
 
   render() {
