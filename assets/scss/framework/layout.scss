@@ -141,6 +141,10 @@ $layoutPadding: 2em;
 
   input, textarea {
     color: white;
+
+    &::-webkit-input-placeholder {
+      color: #999;
+    }
   }
 
   input[type="submit"] {

@@ -16,7 +16,6 @@ export class Layout extends PropsComponent {
   render() {
     const classNames = `Layout ${this.state.layoutStyle}`;
 
-    console.log('Layout.render()');
     return (
       <div className={classNames}>
         {this.props.children}

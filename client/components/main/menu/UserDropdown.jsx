@@ -10,7 +10,7 @@ import { StoreObserver } from 'base/StoreObserver.jsx';
 import 'scss/main/menu/main.scss';
 
 
-export class ProfilePicture extends StoreObserver {
+export class UserDropdown extends StoreObserver {
 
   constructor(props, context) {
     super(props, context, ProfileStore);
@@ -36,6 +36,7 @@ export class ProfilePicture extends StoreObserver {
         <Link to="/profile">
           <img src={this.state.url} alt="Profile" />
         </Link>
+
         <div className="Dropdown HeightNone">
           <Link to="/settings/edit"><p>Settings</p></Link>
           <Link to="/account/edit"><p>Account</p></Link>
@@ -43,11 +44,11 @@ export class ProfilePicture extends StoreObserver {
 
           <GuideDependent guide>
             <Link to="/guide/adverts"><p>Adverts</p></Link>
-            <Link to="/guide/quit"><p>Unguide</p></Link>
+            <Link to="/guide/quit"><p className="alert">Unguide</p></Link>
           </GuideDependent>
 
           <GuideDependent visitor>
-            <Link to="/guide/become"><p>Guide up</p></Link>
+            <Link to="/guide/become"><p className="action">Guide up</p></Link>
           </GuideDependent>
         </div>
       </AuthDependent>
