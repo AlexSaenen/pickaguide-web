@@ -9,7 +9,7 @@ import { PanelForm } from 'view/PanelForm.jsx';
 export class Search extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, [SearchStore]);
+    super(props, context, SearchStore);
 
     // this.state = {
     //   account: AccountStore.getState().account,
@@ -20,6 +20,7 @@ export class Search extends StoreObserver {
     // this.onContact = this.onContact.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
     // this.messageCallback = () => {};
+    // this.result = SearchStore.getState().search;
   }
 
   //onSearch(store) {
@@ -42,7 +43,7 @@ export class Search extends StoreObserver {
     // this.setState(stateCopy);
   //}
 
-  //onStoreChange(store) {
+  onStoreChange(store) {
   //   const stateCopy = Object.assign({}, this.state);
 
   //   if (store.account) {
@@ -57,7 +58,7 @@ export class Search extends StoreObserver {
   // handleSubmit(form, submitName, messageCallback) {
   //   this.messageCallback = messageCallback;
   //   ContactActions.contact(form);
-  //}
+  }
 
   render() {
     // const account = this.state.account;
@@ -65,10 +66,23 @@ export class Search extends StoreObserver {
 
     return (
       <div>
-        <PanelForm submitLabel="Save">
-          <Title>General settings</Title>
-        </PanelForm>
+       <h1>General settings</h1>
       </div>
     );
   }
 }
+
+
+
+// import React from 'react';
+
+
+// const About = () => {
+//   return (
+//     <div>
+//       <h1>Welcome, this is our about page</h1>
+//     </div>
+//   );
+// };
+
+// export default About;

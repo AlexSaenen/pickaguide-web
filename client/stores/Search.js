@@ -12,6 +12,7 @@ class SearchStore {
   }
 
   onSearch(form) {
+    print("ICICICICICICICICICICICICICICCICICICICICCICICICI");
     SearchApi.search(form);
     return false;
   }
