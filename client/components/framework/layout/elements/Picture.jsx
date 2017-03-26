@@ -14,7 +14,6 @@ export class Picture extends PropsComponent {
   }
 
   render() {
-    console.log('Picture.render()');
     return (
       <div className="Picture">
         <img alt={this.state.pictureName} src={this.state.url} />
