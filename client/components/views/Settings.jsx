@@ -5,7 +5,7 @@ import { TextInput } from 'form/TextInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import SettingsActions from 'actions/Settings.js';
-import SettingsStore from 'stores/Settings.js';
+import SettingsStore from 'stores/user/Settings.js';
 
 
 export class Settings extends StoreObserver {

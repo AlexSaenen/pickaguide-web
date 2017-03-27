@@ -7,15 +7,20 @@ import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import ProfileActions from 'actions/Profile.js';
-import ProfileStore from 'stores/Profile.js';
+import ProfileStore from 'stores/user/Profile.js';
+import AccountStore from 'stores/user/Account.js';
 
 
 export class Profile extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, ProfileStore);
+    super(props, context, [ProfileStore, AccountStore]);
 
-    this.state = { profile: ProfileStore.getState().profile };
+    this.state = {
+      profile: ProfileStore.getState().profile,
+      isConfirmed: AccountStore.getState().isConfirmed,
+    };
+
     this.onStoreChange = this.onStoreChange.bind(this);
   }
 
@@ -26,7 +31,13 @@ export class Profile extends StoreObserver {
 
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.profile = store.profile;
+
+    if (store.profile !== undefined) {
+      stateCopy.profile = store.profile;
+    } else {
+      stateCopy.isConfirmed = store.isConfirmed;
+    }
+
     this.updateState(stateCopy);
   }
 
@@ -39,7 +50,7 @@ export class Profile extends StoreObserver {
         <div className="LayoutHeader">
           <div className="HeaderPicture Inline-Block"><Picture url={profile.photoUrl} pictureName="Profile" /></div>
           <p className="HeaderText Title Inline-Block" >{`${profile.firstName} ${profile.lastName}`}</p>
-          <div className="HeaderCheckMark"><CheckMark active /></div>
+          <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
         </div>
 
         <hr className="SpacedOverlay" />

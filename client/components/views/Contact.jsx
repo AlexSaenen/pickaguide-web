@@ -8,9 +8,9 @@ import { EmailInput } from 'form/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import ContactActions from 'actions/Contact.js';
-import AccountStore from 'stores/Account.js';
-import ProfileStore from 'stores/Profile.js';
-import ContactStore from 'stores/Contact.js';
+import AccountStore from 'stores/user/Account.js';
+import ProfileStore from 'stores/user/Profile.js';
+import ContactStore from 'stores/user/Contact.js';
 
 
 export class Contact extends StoreObserver {

@@ -1,6 +1,6 @@
 import React from 'react';
 // import ProfileActions from 'actions/Profile.js';
-import ProfileStore from 'stores/Profile.js';
+import ProfileStore from 'stores/user/Profile.js';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';

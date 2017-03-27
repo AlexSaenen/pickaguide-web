@@ -29,6 +29,7 @@ class AuthStore {
       ProfileActions.get.defer();
       ProfileActions.isGuide.defer(this.credentials.id);
       AccountActions.get.defer();
+      AccountActions.isConfirmed.defer(this.credentials.id);
     }
 
     return false;

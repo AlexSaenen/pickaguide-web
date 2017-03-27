@@ -10,7 +10,7 @@ import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { EditPicture } from 'modals/EditPicture.jsx';
 import { Guide } from 'modals/Guide.jsx';
 import ProfileActions from 'actions/Profile.js';
-import ProfileStore from 'stores/Profile.js';
+import ProfileStore from 'stores/user/Profile.js';
 
 
 export class Adverts extends StoreObserver {

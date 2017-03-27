@@ -7,7 +7,7 @@ import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import SignupActions from 'actions/Signup.js';
-import SignupStore from 'stores/Signup.js';
+import SignupStore from 'stores/user/Signup.js';
 
 
 export class Signup extends StoreObserver {

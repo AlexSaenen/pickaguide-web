@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StatusDependent } from 'base/StatusDependent.jsx';
-import AuthStore from 'stores/Auth.js';
+import AuthStore from 'stores/user/Auth.js';
 
 
 export class AuthDependent extends StatusDependent {

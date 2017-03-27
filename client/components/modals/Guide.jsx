@@ -3,7 +3,7 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { FormGuideModal } from 'modals/FormGuideModal.jsx';
 import ProfileActions from 'actions/Profile.js';
-import ProfileStore from 'stores/Profile.js';
+import ProfileStore from 'stores/user/Profile.js';
 
 
 export class Guide extends StoreObserver {

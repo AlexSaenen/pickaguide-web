@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StatusDependent } from 'base/StatusDependent.jsx';
-import ProfileStore from 'stores/Profile.js';
+import ProfileStore from 'stores/user/Profile.js';
 
 
 export class GuideDependent extends StatusDependent {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import AuthActions from 'actions/Auth.js';
-import ProfileStore from 'stores/Profile.js';
+import ProfileStore from 'stores/user/Profile.js';
 import { AuthDependent } from 'base/AuthDependent.jsx';
 import { GuideDependent } from 'base/GuideDependent.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
@@ -44,11 +44,11 @@ export class UserDropdown extends StoreObserver {
 
           <GuideDependent guide>
             <Link to="/guide/adverts"><p>Adverts</p></Link>
-            <Link to="/guide/quit"><p className="alert">Unguide</p></Link>
+            <Link to="/guide/quit"><p className="alert">Retire</p></Link>
           </GuideDependent>
 
           <GuideDependent visitor>
-            <Link to="/guide/become"><p className="action">Guide up</p></Link>
+            <Link to="/guide/become"><p className="action">Be a guide</p></Link>
           </GuideDependent>
         </div>
       </AuthDependent>

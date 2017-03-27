@@ -1,7 +1,7 @@
 import AccountActions from 'actions/Account.js';
 import PasswordActions from 'actions/Password.js';
 import PromiseApi from 'services/PromiseApi.js';
-import AuthStore from 'stores/Auth.js';
+import AuthStore from 'stores/user/Auth.js';
 
 export default class AccountApi {
 
@@ -55,6 +55,20 @@ export default class AccountApi {
           AccountActions.error(res.error);
         } else {
           AccountActions.updateSuccess(res);
+        }
+      })
+      .catch((err) => {
+        AccountActions.error(err);
+      });
+  }
+
+  static isConfirmed(userId) {
+    PromiseApi.get(`/public/accounts/${userId}/isConfirmed`)
+      .then((res) => {
+        if (res.error) {
+          AccountActions.error(res.error);
+        } else {
+          AccountActions.isConfirmedSuccess(res.isConfirmed);
         }
       })
       .catch((err) => {

@@ -1,7 +1,7 @@
 import request from 'superagent';
 
 import { config } from 'client/config';
-import AuthStore from 'stores/Auth.js';
+import AuthStore from 'stores/user/Auth.js';
 
 
 export default class PromiseApi {
