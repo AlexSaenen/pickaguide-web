@@ -1,55 +1,60 @@
 import React from 'react';
 
-import { StoreObserver } from 'base/StoreObserver.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 import { PanelLayout } from 'view/PanelLayout.jsx';
 import { CheckMark } from 'layout/elements/CheckMark.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
-import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/user/Profile.js';
 import AccountStore from 'stores/user/Account.js';
+import SearchAccountStore from 'stores/search/Account.js';
+import SearchProfileStore from 'stores/search/Profile.js';
+import AuthStore from 'stores/user/Auth.js';
 
 
-export class Profile extends StoreObserver {
+export class Profile extends PropsComponent {
 
   constructor(props, context) {
-    super(props, context, [ProfileStore, AccountStore]);
+    super(props, context);
 
-    this.state = {
-      profile: ProfileStore.getState().profile,
-      isConfirmed: AccountStore.getState().isConfirmed,
-    };
-
-    this.onStoreChange = this.onStoreChange.bind(this);
+    this.populateState = this.populateState.bind(this);
+    this.populateState(props.params.id, this.state);
   }
 
-  componentDidMount() {
-    super.componentDidMount();
-    ProfileActions.get();
-  }
+  populateState(userId, nextState) {
+    const userCredentials = AuthStore.getState().credentials;
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
-
-    if (store.profile !== undefined) {
-      stateCopy.profile = store.profile;
+    if (userCredentials && userCredentials.id === userId) {
+      nextState.profile = ProfileStore.getState().profile;
+      nextState.isConfirmed = AccountStore.getState().isConfirmed;
     } else {
-      stateCopy.isConfirmed = store.isConfirmed;
+      const profileResults = SearchProfileStore.getState().results;
+      const accountResults = SearchAccountStore.getState().results;
+      nextState.profile = profileResults.find(result => result.id === userId).profile;
+      nextState.profile.interests = []; // find route, handler solution
+      nextState.isConfirmed = accountResults.find(result => result.id === userId).isConfirmed;
     }
+  }
 
+  componentWillReceiveProps(nextProps) {
+    const stateCopy = Object.assign({}, this.state);
+    this.populateState(nextProps.params.id, stateCopy);
     this.updateState(stateCopy);
   }
 
   render() {
-    const profile = this.state.profile || {};
+    const profile = this.state.profile;
     const birthDate = new Date(profile.birthdate);
+
+    const name = (profile.displayName ? profile.displayName : `${profile.firstName} ${profile.lastName.charAt(0)}.`);
+    // Name should be displayName or pseudo
 
     return (
       <PanelLayout layoutStyle="LayoutLight Tight">
         <div className="LayoutHeader">
           <div className="HeaderPicture Inline-Block"><Picture url={profile.photoUrl} pictureName="Profile" /></div>
-          <p className="HeaderText Title Inline-Block" >{`${profile.firstName} ${profile.lastName}`}</p>
+          <p className="HeaderText Title Inline-Block" >{name}</p>
           <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
         </div>
 
@@ -70,9 +75,13 @@ export class Profile extends StoreObserver {
 
         <SubTitle>Interests</SubTitle>
         <Text>{profile.interests.length > 0 ?
-            profile.interests.map(interest => React.createElement('p', null, interest)) : 'None'}
+            profile.interests.map((interest, index) => React.createElement('p', { key: index }, interest)) : 'None'}
         </Text>
       </PanelLayout>
     );
   }
 }
+
+Profile.propTypes = {
+  params: React.PropTypes.object,
+};

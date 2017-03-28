@@ -2,6 +2,8 @@ import React from 'react';
 
 import { InlineForm } from 'form/InlineForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
+import AccountActions from 'actions/SearchAccount.js';
+import ProfileActions from 'actions/SearchProfile.js';
 
 import 'scss/framework/form.scss';
 import 'scss/main/menu/entry.scss';
@@ -16,6 +18,8 @@ export class SearchBar extends React.Component {
   }
 
   handleSubmit(form) {
+    ProfileActions.search();
+    AccountActions.search.defer();
     console.log('Fck Yeah', form);
   }
 

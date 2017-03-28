@@ -17,6 +17,7 @@ import 'services/Utils.js';
 
 import 'scss/global.scss';
 
+
 ReactDOM.render(
 
   <Router history={browserHistory}>
@@ -25,7 +26,7 @@ ReactDOM.render(
       <Route path="signup" component={Signup} />
       <Route path="login" component={Login} />
       <Route path="settings/edit" component={Settings} />
-      <Route path="profile" component={Profile} />
+      <Route path="profiles/:id" component={Profile} />
       <Route path="profile/edit" component={EditProfile} />
       <Route path="account/edit" component={EditAccount} />
       <Route path="contact-us" component={Contact} />

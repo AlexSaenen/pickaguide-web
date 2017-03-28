@@ -14,19 +14,20 @@ export class CheckMark extends PropsComponent {
   }
 
   render() {
-    let drawPoints = '15,265 200,385 385,15';
-    let drawColor = '#2ECC71';
-
-    if (this.state.active === false) {
-      drawPoints = '-30,-30 430,430 -30,430 430,-30';
-      drawColor = '#F75C4C';
-    }
-
     return (
       <div className="CheckMark">
-        <svg width="100%" height="100%" viewBox="0 0 400 400">
-          <polyline points={drawPoints} fillOpacity="0" stroke={drawColor} strokeWidth="30" />
-        </svg>
+        {
+          (this.state.active === false ?
+            <svg width="100%" height="100%" viewBox="0 0 400 400">
+              <polyline points="15,15 385,385" fillOpacity="0" stroke="#F75C4C" strokeWidth="30" />
+              <polyline points="385,15 15,385" fillOpacity="0" stroke="#F75C4C" strokeWidth="30" />
+            </svg>
+            :
+            <svg width="100%" height="100%" viewBox="0 0 400 400">
+              <polyline points="15,265 200,385 385,15" fillOpacity="0" stroke="#2ECC71" strokeWidth="30" />
+            </svg>
+          )
+        }
       </div>
     );
   }
