@@ -1,18 +1,18 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { StateComponent } from 'base/StateComponent.jsx';
 import { Guide } from 'modals/Guide.jsx';
 import ProfileStore from 'stores/Profile.js';
 import ProfileActions from 'actions/Profile.js';
 
 
-export class Become extends StoreObserver {
+export class Become extends StateComponent {
 
   constructor(props, context) {
-    super(props, context, ProfileStore);
+    super(props, context);
 
     this.state = {
-      profile: ProfileStore.getState().profile,
       modalStateGuide: true,
     };
 
@@ -26,13 +26,12 @@ export class Become extends StoreObserver {
   }
 
   render() {
-    const profile = this.state.profile || {};
     return (
       <div>
-          <Guide
-            active={this.state.modalStateGuide}
-            onClose={this.toggleModalGuide}
-          />
+        <Guide
+          active={this.state.modalStateGuide}
+          onClose={this.toggleModalGuide}
+        />
       </div>
     );
   }

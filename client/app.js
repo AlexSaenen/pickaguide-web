@@ -10,10 +10,9 @@ import { Profile } from 'views/Profile.jsx';
 import { Settings } from 'views/Settings.jsx';
 import { EditAccount } from 'views/EditAccount.jsx';
 import { EditProfile } from 'views/EditProfile.jsx';
-import { Adverts } from 'views/Adverts.jsx';
 import { Contact } from 'views/Contact.jsx';
 import { Become } from 'views/guide/Become.jsx';
-import { GuideAdverts } from 'views/guide/Adverts.jsx';
+import { Adverts } from 'views/guide/Adverts.jsx';
 import { GuideQuit } from 'views/guide/Quit.jsx';
 import About from 'views/About.jsx';
 import 'services/Utils.js';
@@ -33,9 +32,8 @@ ReactDOM.render(
       <Route path="account/edit" component={EditAccount} />
       <Route path="contact-us" component={Contact} />
       <Route path="about" component={About} />
-      <Route path="profile/adverts" component={Adverts} />
       <Route path="guide/become" component={Become} />
-      <Route path="guide/adverts" component={GuideAdverts} />
+      <Route path="guide/adverts" component={Adverts} />
       <Route path="guide/quit" component={GuideQuit} />
     </Route>
   </Router>

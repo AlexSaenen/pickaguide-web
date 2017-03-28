@@ -4,6 +4,11 @@ import { PanelForm } from 'view/PanelForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { PanelList } from 'view/PanelList.jsx';
+import { Element } from 'layout/list/Element.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
+import { Button } from 'layout/elements/Button.jsx';
+import { AdCreation } from 'modals/AdCreation.jsx';
 import SettingsActions from 'actions/Settings.js';
 import SettingsStore from 'stores/Settings.js';
 
@@ -15,10 +20,11 @@ export class Adverts extends StoreObserver {
 
     this.state = {
       settings: SettingsStore.getState().settings,
+      adCreationModalState: false,
     };
 
+    this.toggleCreateAdModal = this.toggleCreateAdModal.bind(this);
     this.onStoreChange = this.onStoreChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   onStoreChange() {
@@ -27,14 +33,26 @@ export class Adverts extends StoreObserver {
     this.updateState(stateCopy);
   }
 
-  handleSubmit(form) {
-    SettingsActions.update(form);
+  toggleCreateAdModal() {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.adCreationModalState = !this.state.adCreationModalState;
+    this.updateState(stateCopy);
   }
 
   render() {
     return (
       <div>
-      <p>ADVERTS area, the guide will be able to create, edit, remove and see all his ads !</p>
+        <Layout layoutStyle="LayoutDark">
+          <hr className="Overlay" />
+          <Title>ADVERTS</Title>
+        </Layout>
+        <PanelList wrapChildren={false} panelStyle="Small">
+          <Element><Button label="Create ad" onCallback={this.toggleCreateAdModal} /></Element>
+        </PanelList>
+        <AdCreation
+          active={this.state.adCreationModalState}
+          onClose={this.toggleCreateAdModal}
+        />
       </div>
     );
   }
