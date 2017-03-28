@@ -5,10 +5,8 @@ import { TextInput } from 'form/TextInput.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
-import { Button } from 'layout/elements/Button.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { EditPicture } from 'modals/EditPicture.jsx';
-import { Guide } from 'modals/Guide.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/user/Profile.js';
 
@@ -21,14 +19,12 @@ export class EditProfile extends StoreObserver {
     this.state = {
       profile: ProfileStore.getState().profile,
       modalState: false,
-      modalStateGuide: false,
     };
 
     this.onStoreChange = this.onStoreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.messageCallback = () => {};
     this.toggleModal = this.toggleModal.bind(this);
-    this.toggleModalGuide = this.toggleModalGuide.bind(this);
   }
 
   onStoreChange(store) {
@@ -63,12 +59,6 @@ export class EditProfile extends StoreObserver {
     this.updateState(stateCopy);
   }
 
-  toggleModalGuide() {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.modalStateGuide = !this.state.modalStateGuide;
-    this.updateState(stateCopy);
-  }
-
   render() {
     const profile = this.state.profile || {};
 
@@ -90,16 +80,11 @@ export class EditProfile extends StoreObserver {
           <TextInput value={profile.country} label="country" />
           <TextArea value={profile.description} label="description" />
           <TextArea value={profile.interests[0]} label="interests" />
-          <Button label="Devenir Guide" onCallback={this.toggleModalGuide} />
         </PanelForm>
 
         <EditPicture
           active={this.state.modalState}
           onClose={this.toggleModal}
-        />
-        <Guide
-          active={this.state.modalStateGuide}
-          onClose={this.toggleModalGuide}
         />
       </div>
     );

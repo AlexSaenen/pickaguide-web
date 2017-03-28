@@ -66,4 +66,18 @@ export default class ProfileApi {
       });
   }
 
+  static becomeGuide(formBecomeGuide) {
+    PromiseApi.post('/accounts/become-guide', formBecomeGuide)
+      .then((res) => {
+        if (res.error) {
+          ProfileActions.error(res.error);
+        } else {
+          ProfileActions.isGuideSuccess(res.isGuide);
+        }
+      })
+      .catch((err) => {
+        ProfileActions.error(err);
+      });
+  }
+
 }
