@@ -1,10 +1,7 @@
 import React from 'react';
 
-import { StoreObserver } from 'base/StoreObserver.jsx';
 import { StateComponent } from 'base/StateComponent.jsx';
 import { Guide } from 'modals/Guide.jsx';
-import ProfileStore from 'stores/Profile.js';
-import ProfileActions from 'actions/Profile.js';
 
 
 export class Become extends StateComponent {

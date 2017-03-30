@@ -38,7 +38,6 @@ class ProfileStore {
 
   onError(error) {
     this.error = error;
-    this.profile = null;
   }
 
   onUpdate(form) {

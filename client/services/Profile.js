@@ -66,8 +66,9 @@ export default class ProfileApi {
       });
   }
 
-  static becomeGuide(formBecomeGuide) {
-    PromiseApi.post('/accounts/become-guide', formBecomeGuide)
+  static becomeGuide(updateProfileForm) {
+    ProfileApi.update(updateProfileForm);
+    PromiseApi.auth().post('/accounts/become-guide')
       .then((res) => {
         if (res.error) {
           ProfileActions.error(res.error);

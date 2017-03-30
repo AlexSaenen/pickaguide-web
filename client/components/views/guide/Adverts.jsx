@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { PanelForm } from 'view/PanelForm.jsx';
-import { TextInput } from 'form/TextInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { PanelList } from 'view/PanelList.jsx';
@@ -9,8 +7,7 @@ import { Element } from 'layout/list/Element.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { AdCreation } from 'modals/AdCreation.jsx';
-import SettingsActions from 'actions/Settings.js';
-import SettingsStore from 'stores/Settings.js';
+import SettingsStore from 'stores/user/Settings.js';
 
 
 export class Adverts extends StoreObserver {
