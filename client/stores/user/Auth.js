@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import alt from 'client/alt';
 import AuthActions from 'actions/Auth.js';
 import ProfileActions from 'actions/Profile.js';
+import UserActions from 'actions/User.js';
 import AccountActions from 'actions/Account.js';
 import AuthApi from 'services/Auth.js';
 import CookieApi from 'services/Cookie.js';
@@ -27,7 +28,7 @@ class AuthStore {
   onSync() {
     if (this.credentials) {
       ProfileActions.get.defer();
-      ProfileActions.isGuide.defer(this.credentials.id);
+      UserActions.isGuide.defer(this.credentials.id);
       AccountActions.get.defer();
       AccountActions.isConfirmed.defer(this.credentials.id);
     }

@@ -6,14 +6,15 @@ import { ModalForm } from 'view/ModalForm.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { TextArea } from 'form/TextArea.jsx';
-import ProfileActions from 'actions/Profile.js';
+import UserActions from 'actions/User.js';
 import ProfileStore from 'stores/user/Profile.js';
+import UserStore from 'stores/user/User.js';
 
 
 export class Guide extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, ProfileStore);
+    super(props, context, [ProfileStore, UserStore]);
     this.state = {
       profile: ProfileStore.getState().profile,
     };
@@ -26,7 +27,6 @@ export class Guide extends StoreObserver {
 
   onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.profile = store.profile;
 
     if (store.error) {
       this.messageCallback({
@@ -34,6 +34,8 @@ export class Guide extends StoreObserver {
         content: String(store.error),
         type: 'Alert',
       });
+    } else if (store.profile !== undefined) {
+      stateCopy.profile = store.profile;
     } else if (store.isGuide) {
       this.onClose();
     }
@@ -47,7 +49,7 @@ export class Guide extends StoreObserver {
 
   handleSubmit(form, submitName, messageCallback) {
     this.messageCallback = messageCallback;
-    ProfileActions.becomeGuide(Object.assign(form, this.state.profile));
+    UserActions.becomeGuide(Object.assign(form, this.state.profile));
   }
 
   render() {

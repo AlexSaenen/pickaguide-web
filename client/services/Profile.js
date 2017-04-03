@@ -52,33 +52,4 @@ export default class ProfileApi {
       .catch((err) => { SearchProfileActions.error.defer(err); });
   }
 
-  static isGuide(userId) {
-    PromiseApi.get(`/public/users/${userId}/isGuide`)
-      .then((res) => {
-        if (res.error) {
-          ProfileActions.error(res.error);
-        } else {
-          ProfileActions.isGuideSuccess(res.isGuide);
-        }
-      })
-      .catch((err) => {
-        ProfileActions.error(err);
-      });
-  }
-
-  static becomeGuide(updateProfileForm) {
-    ProfileApi.update(updateProfileForm);
-    PromiseApi.auth().post('/accounts/become-guide')
-      .then((res) => {
-        if (res.error) {
-          ProfileActions.error(res.error);
-        } else {
-          ProfileActions.isGuideSuccess(res.isGuide);
-        }
-      })
-      .catch((err) => {
-        ProfileActions.error(err);
-      });
-  }
-
 }

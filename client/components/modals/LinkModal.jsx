@@ -18,11 +18,6 @@ export class LinkModal extends PropsComponent {
     };
   }
 
-  componentWillReceiveProps(props) {
-    console.log('LinkModal.componentWillReceiveProps()', props);
-    super.componentWillReceiveProps(props);
-  }
-
   render() {
     return (
       <ModalForm {...this.props} modalStyle="Small">

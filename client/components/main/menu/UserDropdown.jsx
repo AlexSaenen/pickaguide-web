@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import AuthActions from 'actions/Auth.js';
+import UserActions from 'actions/User.js';
 import ProfileStore from 'stores/user/Profile.js';
 import AuthStore from 'stores/user/Auth.js';
 import { AuthDependent } from 'base/AuthDependent.jsx';
@@ -51,7 +52,7 @@ export class UserDropdown extends StoreObserver {
 
           <GuideDependent guide>
             <Link to="/guide/adverts"><p>Adverts</p></Link>
-            <Link to="/guide/quit"><p className="alert">Retire</p></Link>
+            <Link to="/guide/quit"><p className="alert" onClick={UserActions.retire}>Retire</p></Link>
           </GuideDependent>
 
           <GuideDependent visitor>

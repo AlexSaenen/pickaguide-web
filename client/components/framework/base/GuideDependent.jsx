@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StatusDependent } from 'base/StatusDependent.jsx';
-import ProfileStore from 'stores/user/Profile.js';
+import UserStore from 'stores/user/User.js';
 
 
 export class GuideDependent extends StatusDependent {
@@ -11,9 +11,9 @@ export class GuideDependent extends StatusDependent {
     propsCopy.activator = 'guide';
     propsCopy.deactivator = 'visitor';
 
-    super(propsCopy, context, ProfileStore);
+    super(propsCopy, context, UserStore);
 
-    this.state.isVisible = this._isVisible(ProfileStore.getState().isGuide);
+    this.state.isVisible = this._isVisible(UserStore.getState().isGuide);
     this.onStoreChange = this.onStoreChange.bind(this);
   }
 

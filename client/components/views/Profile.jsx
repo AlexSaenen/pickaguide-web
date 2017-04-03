@@ -47,7 +47,7 @@ export class Profile extends PropsComponent {
     const profile = this.state.profile;
     const birthDate = new Date(profile.birthdate);
 
-    const name = (profile.displayName ? profile.displayName : `${profile.firstName} ${profile.lastName.charAt(0)}.`);
+    const name = (profile.displayName ? profile.displayName : `${profile.firstName} ${profile.lastName}`);
     // Name should be displayName or pseudo
 
     return (
