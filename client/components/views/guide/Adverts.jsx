@@ -3,30 +3,32 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { PanelList } from 'view/PanelList.jsx';
-import { Element } from 'layout/list/Element.jsx';
+import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { AdCreation } from 'modals/AdCreation.jsx';
-import SettingsStore from 'stores/user/Settings.js';
+import AdvertsActions from 'actions/Adverts.js';
+import AdvertsStore from 'stores/user/Adverts.js';
 
 
 export class Adverts extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, SettingsStore);
+    super(props, context, AdvertsStore);
 
     this.state = {
-      settings: SettingsStore.getState().settings,
+      adverts: AdvertsStore.getState().adverts,
       adCreationModalState: false,
     };
 
     this.toggleCreateAdModal = this.toggleCreateAdModal.bind(this);
     this.onStoreChange = this.onStoreChange.bind(this);
+    AdvertsActions.get();
   }
 
-  onStoreChange() {
+  onStoreChange(store) {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy.settings = SettingsStore.getState().settings;
+    stateCopy.adverts = store.adverts;
     this.updateState(stateCopy);
   }
 
@@ -42,10 +44,20 @@ export class Adverts extends StoreObserver {
         <Layout layoutStyle="LayoutDark">
           <hr className="Overlay" />
           <Title>ADVERTS</Title>
+          <Button label="Create ad" buttonStyle="Auto" onCallback={this.toggleCreateAdModal} />
         </Layout>
-        <PanelList wrapChildren={false} panelStyle="Small">
-          <Element><Button label="Create ad" onCallback={this.toggleCreateAdModal} /></Element>
-        </PanelList>
+
+        {
+          this.state.adverts.length > 0 &&
+            <PanelList panelStyle="Wide" listStyle="ListGrid" elementStyle="Large Tight">
+            {
+              this.state.adverts.map((advert, index) => {
+                return <AdvertPreview {...advert} key={index} />;
+              })
+            }
+            </PanelList>
+        }
+
         <AdCreation
           active={this.state.adCreationModalState}
           onClose={this.toggleCreateAdModal}

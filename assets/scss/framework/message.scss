@@ -25,6 +25,16 @@
   }
 }
 
+.Info {
+  .MessageTitle {
+    background-color: $infoTitleColor;
+  }
+
+  .MessageContent {
+    background-color: $infoBodyColor;
+  }
+}
+
 .MessageTitle {
   padding: 0.7em;
   font-size: 1em;

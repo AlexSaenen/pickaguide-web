@@ -7,12 +7,12 @@ class AdvertsStore {
 
   constructor() {
     this.error = null;
-    this.adverts = null;
+    this.adverts = [];
     this.bindActions(AdvertsActions);
   }
 
   onGet() {
-    AdvertsApi.get();
+    AdvertsApi.getMine();
     return false;
   }
 
@@ -23,17 +23,11 @@ class AdvertsStore {
 
   onError(error) {
     this.error = error;
-    this.adverts = null;
   }
 
-  onCreate(from) {
+  onCreate(form) {
     AdvertsApi.create(form);
     return false;
-  }
-
-  onCreateSuccess(adverts) {
-    this.error = null;
-    this.adverts = adverts;
   }
 
 }

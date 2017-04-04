@@ -16,6 +16,10 @@
   transition-timing-function: ease-out;
 }
 
+.Button.Auto, .ShadowedButton.Auto {
+  display: inline-block;
+}
+
 .ShadowedButton {
   @extend .Button;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);

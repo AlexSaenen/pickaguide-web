@@ -22,14 +22,20 @@ $compactListWidth: 60%;
 
   .Element {
     margin: 0.8em 0;
+    overflow: hidden;
     padding: 1em;
-    width: auto;
     background-color: $modalLightColor;
     border-radius: 0.2em;
     -moz-box-shadow: 0 0 4px black;
   	-webkit-box-shadow: 0 0 4px black;
   	box-shadow: 0 0 4px black;
   }
+
+  .Element.Small { width: 20%; }
+  .Element.Medium { width: 30%; }
+  .Element.Large { width: 40%; }
+  .Element.Auto { width: auto; }
+  .Element.Tight { padding: 0; }
 }
 
 .ListGrid {

@@ -48,7 +48,7 @@ table {
 a {
   cursor: pointer;
 }
-strong{
+strong {
  font-weight: bold;
 }
 
@@ -61,6 +61,14 @@ html, body, #app {
     height: calc(100% - (#{$footerHeight} + #{$menuHeight}));
   }
 }
+
+p.Small { font-size: 1em; }
+p.Medium { font-size: 1.5em; }
+p.Large { font-size: 2em; }
+p.Bold { font-weight: bold; }
+p.LineSpaced { line-height: 2em; }
+p.Spaced { padding: 0.5em; }
+p.OverflowHidden { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 *:focus { outline: none; }
 .Hidden { display: none !important; }

@@ -43,6 +43,15 @@ $layoutPadding: 2em;
 
   }
 
+  .Picture.WidthLimited {
+    width: inherit;
+
+    & > img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
   .Text {
     font-size: 1em;
 
