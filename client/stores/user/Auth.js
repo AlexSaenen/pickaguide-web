@@ -5,6 +5,7 @@ import AuthActions from 'actions/Auth.js';
 import ProfileActions from 'actions/Profile.js';
 import UserActions from 'actions/User.js';
 import AccountActions from 'actions/Account.js';
+import AdvertsActions from 'actions/Adverts.js';
 import AuthApi from 'services/Auth.js';
 import CookieApi from 'services/Cookie.js';
 
@@ -31,6 +32,7 @@ class AuthStore {
       UserActions.isGuide.defer(this.credentials.id);
       AccountActions.get.defer();
       AccountActions.isConfirmed.defer(this.credentials.id);
+      AdvertsActions.get.defer(this.credentials.id);
     }
 
     return false;
@@ -55,6 +57,7 @@ class AuthStore {
     CookieApi.revoke();
     ProfileActions.invalidateProfile.defer();
     AccountActions.invalidateAccount.defer();
+    AdvertsActions.invalidateAdverts.defer();
     AuthApi.logout();
     this.credentials = null;
   }

@@ -11,6 +11,11 @@ class AdvertsStore {
     this.bindActions(AdvertsActions);
   }
 
+  onToggle(advertId) {
+    AdvertsApi.toggle(advertId);
+    return false;
+  }
+
   onGet() {
     AdvertsApi.getMine();
     return false;
@@ -28,6 +33,10 @@ class AdvertsStore {
   onCreate(form) {
     AdvertsApi.create(form);
     return false;
+  }
+
+  onInvalidateAdverts() {
+    this.adverts = [];
   }
 
 }

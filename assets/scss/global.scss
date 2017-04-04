@@ -69,6 +69,7 @@ p.Bold { font-weight: bold; }
 p.LineSpaced { line-height: 2em; }
 p.Spaced { padding: 0.5em; }
 p.OverflowHidden { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+p.Vertical { vertical-align: middle; }
 
 *:focus { outline: none; }
 .Hidden { display: none !important; }
