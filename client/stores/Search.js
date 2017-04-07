@@ -7,6 +7,8 @@ class SearchStore {
 
   constructor() {
     this.error = null;
+    this.resultSearch = {profil:[{name:"toto"}, {name:"titi"}],
+                         advert:[{city:"paris"}, {city:"madrid"}]};
     this.resultSearch = null;
     this.bindActions(SearchActions);
   }

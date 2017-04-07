@@ -11,10 +11,11 @@ export class Search extends StoreObserver {
   constructor(props, context) {
     super(props, context, SearchStore);
 
-    // this.state = {
-    //   account: AccountStore.getState().account,
-    //   profile: ProfileStore.getState().profile,
-    // };
+    this.state = {
+      results: SearchStore.getState().resultSearch,
+      // account: AccountStore.getState().account,
+      // profile: ProfileStore.getState().profile,
+    };
 
     // this.onStoreChange = this.onStoreChange.bind(this);
     // this.onContact = this.onContact.bind(this);
@@ -61,12 +62,33 @@ export class Search extends StoreObserver {
   }
 
   render() {
+    const results = this.state.results;
     // const account = this.state.account;
     // const profile = this.state.profile;
-
+    var profil = [];
+    if (results == null || results.profil == null)
+      profil.push(<h2>No profil found</h2>);
+    else {
+      profil.push(<h1>Profils finded</h1>);
+      for (var i = 0; i < results.profil.length; i++) {
+        profil.push(<h2>{results.profil[i].name}</h2>);
+      }      
+    }
+    var advert = [];
+    if (results == null || results.advert == null)
+      advert.push(<h2>No advert found</h2>);
+    else {
+      advert.push(<h1>Adverts finded</h1>);
+      for (var i = 0; i < results.advert.length; i++) {
+        advert.push(<h2>{results.advert[i].city}</h2>);
+      }
+    }
     return (
       <div>
-       <h1>General settings</h1>
+       
+       {profil}
+       <br/>
+       {advert}
       </div>
     );
   }
