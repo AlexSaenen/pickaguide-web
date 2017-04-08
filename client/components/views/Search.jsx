@@ -4,6 +4,10 @@ import { StoreObserver } from 'base/StoreObserver.jsx';
 import SearchActions from 'actions/Search.js';
 import SearchStore from 'stores/Search.js';
 import { PanelForm } from 'view/PanelForm.jsx';
+import { InlineForm } from 'form/InlineForm.jsx';
+import { TextInput } from 'form/TextInput.jsx';
+import { PanelList } from 'view/PanelList.jsx';
+import { Element } from 'layout/list/Element.jsx';
 
 
 export class Search extends StoreObserver {
@@ -13,52 +17,16 @@ export class Search extends StoreObserver {
 
     this.state = {
       results: SearchStore.getState().resultSearch,
-      // account: AccountStore.getState().account,
-      // profile: ProfileStore.getState().profile,
     };
-
-    // this.onStoreChange = this.onStoreChange.bind(this);
-    // this.onContact = this.onContact.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.messageCallback = () => {};
-    // this.result = SearchStore.getState().search;
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  //onSearch(store) {
-    // const stateCopy = Object.assign({}, this.state);
-
-    // if (store.error) {
-    //   this.messageCallback({
-    //     title: 'Some error occurred when contacting us',
-    //     content: String(store.error),
-    //     type: 'Alert',
-    //   });
-    // } else {
-    //   this.messageCallback({
-    //     title: 'Successful',
-    //     content: `You have successfully contacted us! Your contact id is '${store.contactId}'. One of our staff will answer you soon.`,
-    //     type: 'Success',
-    //   });
-    // }
-
-    // this.setState(stateCopy);
-  //}
+  handleSubmit(form) {
+    console.log(form);
+    SearchActions.search(form)
+  }
 
   onStoreChange(store) {
-  //   const stateCopy = Object.assign({}, this.state);
-
-  //   if (store.account) {
-  //     stateCopy.account = store.account;
-  //   } else if (store.profile) {
-  //     stateCopy.profile = store.profile;
-  //   }
-
-  //   this.updateState(stateCopy);
-  // }
-
-  // handleSubmit(form, submitName, messageCallback) {
-  //   this.messageCallback = messageCallback;
-  //   ContactActions.contact(form);
   }
 
   render() {
@@ -67,28 +35,38 @@ export class Search extends StoreObserver {
     // const profile = this.state.profile;
     var profil = [];
     if (results == null || results.profil == null)
-      profil.push(<h2>No profil found</h2>);
+      profil.push(<Element>No profil found</Element>);
     else {
       profil.push(<h1>Profils finded</h1>);
       for (var i = 0; i < results.profil.length; i++) {
-        profil.push(<h2>{results.profil[i].name}</h2>);
+        profil.push(<Element>name: {results.profil[i].name}<br/>age: {results.profil[i].age}</Element>);
       }      
     }
     var advert = [];
     if (results == null || results.advert == null)
-      advert.push(<h2>No advert found</h2>);
+      advert.push(<Element>No advert found</Element>);
     else {
       advert.push(<h1>Adverts finded</h1>);
       for (var i = 0; i < results.advert.length; i++) {
-        advert.push(<h2>{results.advert[i].city}</h2>);
+        advert.push(<Element>city: {results.advert[i].city}<br/>description: {results.advert[i].description}</Element>);
       }
     }
     return (
+
       <div>
-       
-       {profil}
-       <br/>
-       {advert}
+        <PanelList wrapChildren={false} panelStyle="Large">
+          <Element>
+            <InlineForm onSubmit={this.handleSubmit} submitLabel="Search">
+              <TextInput className="FormElement" placeholder="Search anything" inline />
+            </InlineForm>
+          </Element>
+        </PanelList>
+        <PanelList wrapChildren={false} panelStyle="Small">
+          {profil}
+        </PanelList>
+        <PanelList wrapChildren={false} panelStyle="Small">
+          {advert}
+        </PanelList>
       </div>
     );
   }

@@ -7,9 +7,9 @@ class SearchStore {
 
   constructor() {
     this.error = null;
-    this.resultSearch = {profil:[{name:"toto"}, {name:"titi"}],
-                         advert:[{city:"paris"}, {city:"madrid"}]};
-    this.resultSearch = null;
+    this.resultSearch = {profil:[{name:"toto", age:24}, {name:"titi", age:40}],
+                         advert:[{city:"paris", description:"visite de la tour eiffel"}, {city:"madrid", description:"visite de la ville"}]};
+    // this.resultSearch = null;
     this.bindActions(SearchActions);
   }
 
