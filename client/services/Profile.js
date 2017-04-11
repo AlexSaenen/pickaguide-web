@@ -37,7 +37,7 @@ export default class ProfileApi {
   }
 
   static search() {
-    // for now getAll
+    // FIXME: Alex: for now getAll
     PromiseApi.get('/public/profiles/')
       .then((res) => {
         const finalResults = res.ids.map((id, index) => {

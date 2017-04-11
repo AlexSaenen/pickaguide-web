@@ -1,31 +1,53 @@
 import React from 'react';
 
 import { Picture } from 'layout/elements/Picture.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
+import { ToggleCheckMark } from 'layout/user/ToggleCheckMark.jsx';
+import AdvertsActions from 'actions/Adverts.js';
+
+import 'scss/views/adverts.scss';
 
 
-export class AdvertPreview extends React.Component {
+export class AdvertPreview extends PropsComponent {
 
-  shouldComponentUpdate() {
-    return false;
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = props;
+    this.state = { active: props.active };
+    this.id = props._id;
+    this.clickHandler = props.onClick;
+    this.toggleAdvertState = this.toggleAdvertState.bind(this);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  toggleAdvertState(clickEvent) {
+    clickEvent.stopPropagation();
+    AdvertsActions.toggle(this.id);
+  }
+
+  onClick() {
+    this.clickHandler(this.id);
   }
 
   render() {
     return (
-      <div onClick={this.props.onClick} className="AdvertPreview">
+      <div onClick={this.onClick} className="AdvertPreview">
         <Picture url={this.props.photoUrl} pictureType="WidthLimited" />
-        <p className="Medium Bold LineSpaced Spaced Inline">{this.props.title}</p>
-        <p className="Bold Inline">{this.props.hourlyPrice}</p>
-        <p className="Spaced OverflowHidden">{this.props.description}</p>
+        <ToggleCheckMark className="Inline" active={this.state.active} onToggle={this.toggleAdvertState} />
+        <p className="Bold Inline Vertical Spaced">{this.props.hourlyPrice}</p>
+        <p className="Medium Bold">{this.props.title}</p>
+        <p className="Spaced OverflowHidden LineSpaced">{this.props.description}</p>
       </div>
     );
   }
 }
 
 AdvertPreview.propTypes = {
-  onClick: React.PropTypes.func,
-  // onClick: React.PropTypes.func.isRequired,
+  onClick: React.PropTypes.func.isRequired,
   title: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
   hourlyPrice: React.PropTypes.string.isRequired,
   photoUrl: React.PropTypes.string.isRequired,
+  active: React.PropTypes.bool.isRequired,
 };

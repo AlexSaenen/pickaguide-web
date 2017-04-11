@@ -36,6 +36,8 @@ export class AdCreation extends StoreObserver {
     if (this.modalTimeout) {
       clearTimeout(this.modalTimeout);
     }
+
+    super.componentWillUnmount();
   }
 
   onStoreChange(store) {

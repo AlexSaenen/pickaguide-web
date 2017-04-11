@@ -27,15 +27,32 @@ $compactListWidth: 60%;
     background-color: $modalLightColor;
     border-radius: 0.2em;
     -moz-box-shadow: 0 0 4px black;
-  	-webkit-box-shadow: 0 0 4px black;
-  	box-shadow: 0 0 4px black;
+    -webkit-box-shadow: 0 0 4px black;
+    box-shadow: 0 0 4px black;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      height: auto;
+    }
   }
 
+  .Element.Tiny { width: 10%; }
   .Element.Small { width: 20%; }
   .Element.Medium { width: 30%; }
   .Element.Large { width: 40%; }
-  .Element.Auto { width: auto; }
+  .Element.Auto { width: auto; max-width: 100%; }
   .Element.Tight { padding: 0; }
+  .Element.Tighter { padding: 0.3em; }
+  .Element.Clickable:hover {
+    -moz-box-shadow: 0 0 20px black;
+    -webkit-box-shadow: 0 0 20px black;
+    box-shadow: 0 0 20px black;
+  }
 }
 
 .ListGrid {

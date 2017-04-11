@@ -8,10 +8,31 @@
     transition-duration: 0.3s;
     transition-timing-function: ease-out;
     backface-visibility: hidden;
+    object-fit: cover;
   }
 }
 
 .ClickablePicture img:hover {
   cursor: pointer;
   opacity: 0.3;
+}
+
+$toggleCheckMarkSize: 1.5em;
+
+.ToggleCheckMark {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  backface-visibility: hidden;
+  height: $toggleCheckMarkSize;
+  width: $toggleCheckMarkSize;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.5em;
+}
+
+.ToggleCheckMark:hover {
+  cursor: pointer;
+  background-color: $modalSecondaryColor;
+  border-radius: $toggleCheckMarkSize;
 }

@@ -32,7 +32,7 @@ export class Profile extends PropsComponent {
       const profileResults = SearchProfileStore.getState().results;
       const accountResults = SearchAccountStore.getState().results;
       nextState.profile = profileResults.find(result => result.id === userId).profile;
-      nextState.profile.interests = []; // find route, handler solution
+      nextState.profile.interests = []; // TODO: Alex: find route, handler solution
       nextState.isConfirmed = accountResults.find(result => result.id === userId).isConfirmed;
     }
   }
@@ -48,7 +48,7 @@ export class Profile extends PropsComponent {
     const birthDate = new Date(profile.birthdate);
 
     const name = (profile.displayName ? profile.displayName : `${profile.firstName} ${profile.lastName}`);
-    // Name should be displayName or pseudo
+    // TODO: Alex: Name should be displayName or pseudo
 
     return (
       <PanelLayout layoutStyle="LayoutLight Tight">
