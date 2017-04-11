@@ -80,3 +80,6 @@ p.Vertical { vertical-align: middle; }
 .Left { text-align: left; }
 .Right { text-align: right; }
 .Center { text-align: center; }
+.NoTransition { transition-duration: 0s; }
+.NoRadius { border-radius: 0 !important; }
+.Clickable { cursor: pointer; }

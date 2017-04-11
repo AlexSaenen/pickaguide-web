@@ -8,6 +8,7 @@
     transition-duration: 0.3s;
     transition-timing-function: ease-out;
     backface-visibility: hidden;
+    object-fit: cover;
   }
 }
 
@@ -16,16 +17,22 @@
   opacity: 0.3;
 }
 
+$toggleCheckMarkSize: 1.5em;
+
 .ToggleCheckMark {
-  height: 1.5em;
-  width: 1.5em;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  backface-visibility: hidden;
+  height: $toggleCheckMarkSize;
+  width: $toggleCheckMarkSize;
   display: inline-block;
   vertical-align: middle;
-  padding: 0.3em;
+  padding: 0.5em;
 }
 
 .ToggleCheckMark:hover {
   cursor: pointer;
-  background-color: $highlightColor;
-  border-radius: 0.5em;
+  background-color: $modalSecondaryColor;
+  border-radius: $toggleCheckMarkSize;
 }

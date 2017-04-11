@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
@@ -8,6 +9,7 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { AdCreation } from 'modals/AdCreation.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
+import AdvertsActions from 'actions/Adverts.js';
 
 
 export class Adverts extends StoreObserver {
@@ -21,6 +23,7 @@ export class Adverts extends StoreObserver {
     };
 
     this.toggleCreateAdModal = this.toggleCreateAdModal.bind(this);
+    this.reviewAdvert = this.reviewAdvert.bind(this);
     this.onStoreChange = this.onStoreChange.bind(this);
   }
 
@@ -29,6 +32,11 @@ export class Adverts extends StoreObserver {
     stateCopy.adverts = store.adverts;
 
     this.updateState(stateCopy);
+  }
+
+  reviewAdvert(advertId) {
+    AdvertsActions.find(advertId);
+    browserHistory.push(`/guide/adverts/mine/${advertId}`);
   }
 
   toggleCreateAdModal() {
@@ -43,22 +51,25 @@ export class Adverts extends StoreObserver {
 
     return (
       <div>
-        <Layout layoutStyle="LayoutDark">
+        <Layout>
           <hr className="Overlay" />
           <Title>ADVERTS</Title>
           <Button label="Create ad" buttonStyle="Auto" onCallback={this.toggleCreateAdModal} />
         </Layout>
 
-        {
-          adverts.length > 0 &&
-            <PanelList panelStyle="Wide" listStyle="ListGrid" elementStyle="Large Tight">
-            {
-              adverts.map((advert, index) => {
-                return <AdvertPreview {...advert} key={index} />;
-              })
-            }
-            </PanelList>
-        }
+        <Layout layoutStyle="LayoutLight">
+          <hr className="Overlay" />
+          {
+            adverts.length > 0 &&
+              <PanelList panelStyle="Wide" listStyle="ListGrid" elementStyle="Large Tight Clickable">
+                {
+                  adverts.map((advert, index) => {
+                    return <AdvertPreview {...advert} key={index} onClick={this.reviewAdvert} />;
+                  })
+                }
+              </PanelList>
+          }
+        </Layout>
 
         <AdCreation
           active={this.state.adCreationModalState}

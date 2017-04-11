@@ -18,6 +18,20 @@ export default class AdvertsApi {
       });
   }
 
+  static find(advertId) {
+    PromiseApi.get(`/public/proposals/${advertId}`)
+      .then((res) => {
+        if (res.error) {
+          AdvertsActions.error(res.error);
+        } else {
+          AdvertsActions.findSuccess(res.advert);
+        }
+      })
+      .catch((err) => {
+        AdvertsActions.error(err);
+      });
+  }
+
   static getMine() {
     PromiseApi.auth().get('/proposals')
       .then((res) => {
@@ -25,6 +39,20 @@ export default class AdvertsApi {
           AdvertsActions.error(res.error);
         } else {
           AdvertsActions.getSuccess(res.adverts);
+        }
+      })
+      .catch((err) => {
+        AdvertsActions.error(err);
+      });
+  }
+
+  static update(advert) {
+    PromiseApi.auth().put(`/proposals/${advert._id}`, advert)
+      .then((res) => {
+        if (res.error) {
+          AdvertsActions.error(res.error);
+        } else {
+          AdvertsActions.updateSuccess(res.advert);
         }
       })
       .catch((err) => {

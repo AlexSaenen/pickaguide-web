@@ -19,14 +19,19 @@ export class ToggleCheckMark extends PropsComponent {
 
   render() {
     return (
-      <div onClick={this.onToggle} className="ToggleCheckMark">
+      <div onClick={this.onToggle} className={`ToggleCheckMark ${this.props.transition ? '' : 'NoTransition NoRadius'}`}>
         <CheckMark active={this.state.active} />
       </div>
     );
   }
 }
 
+ToggleCheckMark.defaultProps = {
+  transition: true,
+};
+
 ToggleCheckMark.propTypes = {
   onToggle: React.PropTypes.func.isRequired,
   active: React.PropTypes.bool.isRequired,
+  transition: React.PropTypes.bool,
 };
