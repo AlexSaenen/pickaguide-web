@@ -77,4 +77,15 @@ export default class PromiseApi {
       PromiseApi._handleResponse(requestBuilder, { resolve, reject });
     });
   }
+
+  static delete(url) {
+    return new Promise((resolve, reject) => {
+      const requestBuilder = request.delete(`${config.apiUrl}${url}`);
+
+      if (this.token) { requestBuilder.set('Authorization', `Bearer ${this.token}`); }
+
+      PromiseApi._handleResponse(requestBuilder, { resolve, reject });
+    });
+  }
+
 }

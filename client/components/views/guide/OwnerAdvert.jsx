@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
@@ -6,6 +7,7 @@ import { Title } from 'layout/elements/Title.jsx';
 import { ToggleCheckMark } from 'layout/user/ToggleCheckMark.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Element } from 'layout/list/Element.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { EditAdvertCover } from 'modals/EditAdvertCover.jsx';
 import { EditText } from 'modals/EditText.jsx';
@@ -36,6 +38,7 @@ export class OwnerAdvert extends StoreObserver {
     this.toggleModal = this.toggleModal.bind(this);
     this.onStoreChange = this.onStoreChange.bind(this);
     this.toggleAdvertState = this.toggleAdvertState.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   onStoreChange(store) {
@@ -72,6 +75,11 @@ export class OwnerAdvert extends StoreObserver {
     this.updateState(stateCopy);
   }
 
+  onDelete() {
+    AdvertsActions.remove(this.state.advert._id);
+    browserHistory.goBack();
+  }
+
   render() {
     const advert = this.state.advert;
 
@@ -85,6 +93,8 @@ export class OwnerAdvert extends StoreObserver {
         <Layout layoutStyle="LayoutLight">
           <hr className="Overlay" />
           <Title>{advert.title}</Title>
+          <Button label="Back" buttonStyle="Auto TextWhite Bold Spaced" onCallback={browserHistory.goBack} />
+          <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.onDelete} />
           <PanelList listStyle="ListGrid" wrapChildren={false}>
             <Element elementStyle="Auto Clickable">
               <p
@@ -106,10 +116,10 @@ export class OwnerAdvert extends StoreObserver {
                 }
               >{advert.hourlyPrice}</p>
             </Element>
-            <Element elementStyle="Auto Tight">
+            <Element elementStyle="Auto Tight Clickable">
               <ToggleCheckMark transition={false} active={advert.active} onToggle={this.toggleAdvertState} />
             </Element>
-            <Element elementStyle="Auto Tight">
+            <Element elementStyle="Auto Tight Clickable">
               <ClickablePicture
                 onClick={
                   function click() {

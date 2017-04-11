@@ -2,4 +2,11 @@
 
 .AdvertPreview {
   cursor: pointer;
+  position: relative;
+}
+
+.AdvertPreview:hover {
+  .DeleteAction {
+    display: block;
+  }
 }

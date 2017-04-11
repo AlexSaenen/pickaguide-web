@@ -74,4 +74,18 @@ export default class AdvertsApi {
       });
   }
 
+  static remove(advertId) {
+    PromiseApi.auth().delete(`/proposals/${advertId}`)
+      .then((res) => {
+        if (res.error) {
+          AdvertsActions.error(res.error);
+        } else {
+          AdvertsActions.getSuccess(res.adverts);
+        }
+      })
+      .catch((err) => {
+        AdvertsActions.error(err);
+      });
+  }
+
 }

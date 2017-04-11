@@ -56,6 +56,11 @@ class AdvertsStore {
     return false;
   }
 
+  onRemove(advertId) {
+    AdvertsApi.remove(advertId);
+    return false;
+  }
+
   onInvalidateAdverts() {
     this.adverts = [];
   }

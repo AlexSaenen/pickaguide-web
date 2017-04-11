@@ -29,15 +29,6 @@ export class AdCreation extends StoreObserver {
     this.toggleModal = this.toggleModal.bind(this);
 
     this.messageCallback = () => {};
-    this.modalTimeout = null;
-  }
-
-  componentWillUnmount() {
-    if (this.modalTimeout) {
-      clearTimeout(this.modalTimeout);
-    }
-
-    super.componentWillUnmount();
   }
 
   onStoreChange(store) {
@@ -66,24 +57,10 @@ export class AdCreation extends StoreObserver {
     this.updateState(stateCopy);
   }
 
-  updateCover(form, submitName, messageCallback) {
+  updateCover(form) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.advert.url = form.photoUrl;
-
-    messageCallback({
-      title: 'Successful',
-      content: 'Your picture has been updated',
-      type: 'Info',
-    });
-
-    this.modalTimeout = setTimeout(() => {
-      if (this.state.modalState) {
-        this.toggleModal();
-      }
-
-      this.modalTimeout = null;
-    }, 5000);
-
+    stateCopy.modalState = false;
     this.setState(stateCopy);
   }
 
@@ -99,7 +76,7 @@ export class AdCreation extends StoreObserver {
     return (
       <div>
         <ModalForm {...this.props} layoutStyle="LayoutDark Tight" modalStyle="Large" onSubmit={this.handleSubmit}>
-          <Title>Create an Ad</Title>
+          <Title>Create Ad</Title>
 
           <ClickablePicture url={advert.url} onClick={this.toggleModal} />
 

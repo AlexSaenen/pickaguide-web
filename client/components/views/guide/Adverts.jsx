@@ -51,17 +51,16 @@ export class Adverts extends StoreObserver {
 
     return (
       <div>
-        <Layout>
-          <hr className="Overlay" />
-          <Title>ADVERTS</Title>
-          <Button label="Create ad" buttonStyle="Auto" onCallback={this.toggleCreateAdModal} />
+        <Layout layoutStyle="LayoutLight">
+          <Title>Adverts</Title>
+          <Button label="New" buttonStyle="Auto Red TextWhite Bold" onCallback={this.toggleCreateAdModal} />
         </Layout>
 
-        <Layout layoutStyle="LayoutLight">
+        <Layout layoutStyle="LayoutDark">
           <hr className="Overlay" />
           {
             adverts.length > 0 &&
-              <PanelList panelStyle="Wide" listStyle="ListGrid" elementStyle="Large Tight Clickable">
+              <PanelList layoutStyle="LayoutLight" panelStyle="Wide" listStyle="ListGrid" elementStyle="Large Tight Clickable">
                 {
                   adverts.map((advert, index) => {
                     return <AdvertPreview {...advert} key={index} onClick={this.reviewAdvert} />;
