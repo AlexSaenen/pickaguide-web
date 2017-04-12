@@ -14,7 +14,6 @@ export class AdvertPreview extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.state = props;
     this.state = { active: props.active };
     this.id = props._id;
     this.clickHandler = props.onClick;

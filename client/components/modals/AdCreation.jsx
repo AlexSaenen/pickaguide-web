@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoreObserver } from 'base/StoreObserver.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
@@ -11,10 +11,10 @@ import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
 
 
-export class AdCreation extends StoreObserver {
+export class AdCreation extends PropsComponent {
 
   constructor(props, context) {
-    super(props, context, AdvertsStore);
+    super(props, context);
 
     this.state = {
       modalState: false,
@@ -41,11 +41,8 @@ export class AdCreation extends StoreObserver {
         type: 'Alert',
       });
     } else {
-      this.messageCallback({
-        title: 'Successful',
-        content: 'Your ad has been created',
-        type: 'Success',
-      });
+      AdvertsStore.unlisten(this.onStoreChange);
+      this.props.onClose();
     }
 
     this.setState(stateCopy);
@@ -67,6 +64,7 @@ export class AdCreation extends StoreObserver {
   handleSubmit(form, submitName, messageCallback) {
     this.messageCallback = messageCallback;
     form.photoUrl = this.state.advert.url;
+    AdvertsStore.listen(this.onStoreChange);
     AdvertsActions.create(form);
   }
 

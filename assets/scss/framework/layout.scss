@@ -137,6 +137,11 @@ $layoutPadding: 2em;
   }
 }
 
+.LayoutBlank {
+  @extend .LayoutLight;
+  background-color: white;
+}
+
 .LayoutDark {
   background-color: $modalDarkColor;
 
