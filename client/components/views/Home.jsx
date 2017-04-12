@@ -1,21 +1,9 @@
 import React from 'react';
 
-// import { ModalList } from 'view/ModalList.jsx';
-import { PanelList } from 'view/PanelList.jsx';
-import { Element } from 'layout/list/Element.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
-import { Lister } from 'layout/containers/Lister.jsx';
-
-// Lister est une liste seule a afficher au lieu d'un Panel (les elements sont libres)
-// PanelList est une liste dans un Panel
-// ModalList est une liste dans une Modal
-// Bien sur vous pouvez vous meme creer un Component Modal et manuellement y inserer une Liste,
-// ModalList et PanelList sont juste des shortcuts
-
-// listStyle => ListGrid (elements un a cote des autres) ou ListStack (elements de haut en bas, default)
-// wrapChildren => si true (default) la Liste va encapsuler chaque node HTML par Element, false signifie que
-// le user le fait manuellement, chaque fils HTML a au final besoin d'etre encapsule par Element
+import { PanelLayout } from 'view/PanelLayout.jsx';
 
 const Home = () => {
   return (
@@ -25,30 +13,20 @@ const Home = () => {
         <Title>Salut Home Page</Title>
       </Layout>
 
-      <Layout layoutStyle="LayoutLight">
-        <hr className="Overlay" />
-        <Lister wrapChildren listStyle="ListGrid">
-          <p>Hello</p>
-          <p>World</p>
-        </Lister>
-      </Layout>
-
-      <Layout layoutStyle="LayoutDark">
-        <Lister listStyle="ListStack">
-          <p>Hello</p>
-          <p>World</p>
-        </Lister>
-      </Layout>
-
-      <PanelList wrapChildren={false} panelStyle="Small">
-        <Element>Hello</Element>
-        <Element>World</Element>
-      </PanelList>
-
-      <PanelList wrapChildren listStyle="ListGrid">
-        <p>Hello</p>
-        <p>World</p>
-      </PanelList>
+      <PanelLayout>
+        <Information>
+          Hello my friends, this is information, I'm just showing off
+          this new component I'm designing, do you like it a bit then ?
+        </Information>
+        <Information infoStyle="Alert">
+          Hello my friends, this is information, I'm just showing off
+          this new component I'm designing, do you like it a bit then ?
+        </Information>
+        <Information infoStyle="Success">
+          Hello my friends, this is information, I'm just showing off
+          this new component I'm designing, do you like it a bit then ?
+        </Information>
+      </PanelLayout>
     </div>
   );
 };

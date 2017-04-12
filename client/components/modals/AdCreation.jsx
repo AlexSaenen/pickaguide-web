@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoreObserver } from 'base/StoreObserver.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
@@ -11,10 +11,10 @@ import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
 
 
-export class AdCreation extends StoreObserver {
+export class AdCreation extends PropsComponent {
 
   constructor(props, context) {
-    super(props, context, AdvertsStore);
+    super(props, context);
 
     this.state = {
       modalState: false,
@@ -29,15 +29,6 @@ export class AdCreation extends StoreObserver {
     this.toggleModal = this.toggleModal.bind(this);
 
     this.messageCallback = () => {};
-    this.modalTimeout = null;
-  }
-
-  componentWillUnmount() {
-    if (this.modalTimeout) {
-      clearTimeout(this.modalTimeout);
-    }
-
-    super.componentWillUnmount();
   }
 
   onStoreChange(store) {
@@ -50,11 +41,8 @@ export class AdCreation extends StoreObserver {
         type: 'Alert',
       });
     } else {
-      this.messageCallback({
-        title: 'Successful',
-        content: 'Your ad has been created',
-        type: 'Success',
-      });
+      AdvertsStore.unlisten(this.onStoreChange);
+      this.props.onClose();
     }
 
     this.setState(stateCopy);
@@ -66,30 +54,17 @@ export class AdCreation extends StoreObserver {
     this.updateState(stateCopy);
   }
 
-  updateCover(form, submitName, messageCallback) {
+  updateCover(form) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.advert.url = form.photoUrl;
-
-    messageCallback({
-      title: 'Successful',
-      content: 'Your picture has been updated',
-      type: 'Info',
-    });
-
-    this.modalTimeout = setTimeout(() => {
-      if (this.state.modalState) {
-        this.toggleModal();
-      }
-
-      this.modalTimeout = null;
-    }, 5000);
-
+    stateCopy.modalState = false;
     this.setState(stateCopy);
   }
 
   handleSubmit(form, submitName, messageCallback) {
     this.messageCallback = messageCallback;
     form.photoUrl = this.state.advert.url;
+    AdvertsStore.listen(this.onStoreChange);
     AdvertsActions.create(form);
   }
 
@@ -99,7 +74,7 @@ export class AdCreation extends StoreObserver {
     return (
       <div>
         <ModalForm {...this.props} layoutStyle="LayoutDark Tight" modalStyle="Large" onSubmit={this.handleSubmit}>
-          <Title>Create an Ad</Title>
+          <Title>Create Ad</Title>
 
           <ClickablePicture url={advert.url} onClick={this.toggleModal} />
 

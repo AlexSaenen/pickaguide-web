@@ -2,6 +2,7 @@
 
 $wideListWidth: 80%;
 $compactListWidth: 60%;
+$elementBorderRadius: 0.2em;
 
 .ListContainer {
   text-align: center;
@@ -25,7 +26,7 @@ $compactListWidth: 60%;
     overflow: hidden;
     padding: 1em;
     background-color: $modalLightColor;
-    border-radius: 0.2em;
+    border-radius: $elementBorderRadius;
     -moz-box-shadow: 0 0 4px black;
     -webkit-box-shadow: 0 0 4px black;
     box-shadow: 0 0 4px black;

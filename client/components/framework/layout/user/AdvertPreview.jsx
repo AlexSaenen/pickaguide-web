@@ -3,6 +3,7 @@ import React from 'react';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { ToggleCheckMark } from 'layout/user/ToggleCheckMark.jsx';
+import DeleteAction from 'layout/user/DeleteAction.jsx';
 import AdvertsActions from 'actions/Adverts.js';
 
 import 'scss/views/adverts.scss';
@@ -13,12 +14,12 @@ export class AdvertPreview extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.state = props;
     this.state = { active: props.active };
     this.id = props._id;
     this.clickHandler = props.onClick;
     this.toggleAdvertState = this.toggleAdvertState.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   toggleAdvertState(clickEvent) {
@@ -30,9 +31,15 @@ export class AdvertPreview extends PropsComponent {
     this.clickHandler(this.id);
   }
 
+  onDelete(clickEvent) {
+    clickEvent.stopPropagation();
+    AdvertsActions.remove(this.id);
+  }
+
   render() {
     return (
       <div onClick={this.onClick} className="AdvertPreview">
+        <DeleteAction onClick={this.onDelete} />
         <Picture url={this.props.photoUrl} pictureType="WidthLimited" />
         <ToggleCheckMark className="Inline" active={this.state.active} onToggle={this.toggleAdvertState} />
         <p className="Bold Inline Vertical Spaced">{this.props.hourlyPrice}</p>

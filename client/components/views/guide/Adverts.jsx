@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { Text } from 'layout/elements/Text.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
@@ -42,7 +43,6 @@ export class Adverts extends StoreObserver {
   toggleCreateAdModal() {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.adCreationModalState = !this.state.adCreationModalState;
-
     this.updateState(stateCopy);
   }
 
@@ -51,25 +51,29 @@ export class Adverts extends StoreObserver {
 
     return (
       <div>
-        <Layout>
-          <hr className="Overlay" />
-          <Title>ADVERTS</Title>
-          <Button label="Create ad" buttonStyle="Auto" onCallback={this.toggleCreateAdModal} />
+        <Layout layoutStyle="LayoutLight">
+          <Title>Adverts</Title>
+          <Button label="New" buttonStyle="Auto Red TextWhite Bold" onCallback={this.toggleCreateAdModal} />
         </Layout>
 
-        <Layout layoutStyle="LayoutLight">
-          <hr className="Overlay" />
-          {
-            adverts.length > 0 &&
-              <PanelList panelStyle="Wide" listStyle="ListGrid" elementStyle="Large Tight Clickable">
+        {
+          adverts.length > 0 ?
+            <Layout>
+              <hr className="Overlay" />
+              <PanelList layoutStyle="LayoutLight" panelStyle="Wide" listStyle="ListGrid" elementStyle="Large Tight Clickable">
                 {
                   adverts.map((advert, index) => {
                     return <AdvertPreview {...advert} key={index} onClick={this.reviewAdvert} />;
                   })
                 }
               </PanelList>
-          }
-        </Layout>
+            </Layout>
+          :
+            <Layout layoutStyle="LayoutBlank">
+              <hr className="Overlay" />
+              <Text>You have no Adverts yet ..</Text>
+            </Layout>
+        }
 
         <AdCreation
           active={this.state.adCreationModalState}

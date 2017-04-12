@@ -16,6 +16,10 @@
   transition-timing-function: ease-out;
 }
 
+.Button.Red { background-color: $redElementColor; }
+.Button.TextWhite { color: white; }
+.Button.Spaced { margin: 0 1em; }
+
 .Button.Auto, .ShadowedButton.Auto {
   display: inline-block;
 }
