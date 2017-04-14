@@ -11,14 +11,11 @@ import { Settings } from 'views/Settings.jsx';
 import { EditAccount } from 'views/EditAccount.jsx';
 import { EditProfile } from 'views/EditProfile.jsx';
 import { Contact } from 'views/Contact.jsx';
-<<<<<<< HEAD
 import { Search } from 'views/Search.jsx';
-=======
 import { Become } from 'views/guide/Become.jsx';
 import { Adverts } from 'views/guide/Adverts.jsx';
 import { OwnerAdvert } from 'views/guide/OwnerAdvert.jsx';
 import { GuideQuit } from 'views/guide/Quit.jsx';
->>>>>>> dev
 import About from 'views/About.jsx';
 
 import 'services/Utils.js';
