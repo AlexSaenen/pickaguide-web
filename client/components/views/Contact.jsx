@@ -11,6 +11,28 @@ import ContactActions from 'actions/Contact.js';
 import AccountStore from 'stores/user/Account.js';
 import ProfileStore from 'stores/user/Profile.js';
 import ContactStore from 'stores/user/Contact.js';
+import LocalizedStrings from 'react-localization';
+ 
+let strings = new LocalizedStrings({
+ en:{
+   contact_us:"Contact Us",
+   contact:"Contact",
+   name:"name",
+   fname:"Full name",
+   phone:"Phone",
+   message:"Message",
+   submit:"Contact"
+ },
+ fr: {
+   contact_us:"Contactez nous",
+   contact:"Contact",
+   name:"Nom",
+   fname:"Nom complet",
+   phone:"Téléphonne",
+   message:"Message",
+   submit:"Envoyer"
+ }
+});
 
 
 export class Contact extends StoreObserver {
@@ -71,13 +93,13 @@ export class Contact extends StoreObserver {
     const profile = this.state.profile;
 
     return (
-      <PanelForm onSubmit={this.handleSubmit} submitLabel="Contact">
-        <Title>Contact Us</Title>
+      <PanelForm onSubmit={this.handleSubmit} submitLabel={strings.submit}>
+        <Title>{strings.contact_us}</Title>
         <hr className="SpacedOverlay" />
-        <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder="Full name" required />
+        <TextInput label={strings.name} value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder={strings.fname} required />
         <EmailInput value={account ? account.email : ''} required />
-        <TelInput label="phone" value={profile ? profile.phone : ''} />
-        <TextArea label="message" required />
+        <TelInput label={strings.phone} value={profile ? profile.phone : ''} />
+        <TextArea label={strings.message} required />
       </PanelForm>
     );
   }
