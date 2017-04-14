@@ -29,8 +29,8 @@ a, p {
   padding: 0.4em 1.5em;
   margin: 1.4em auto;
   width: 10em;
-  border: 1px solid #E86153;
-  background-color: #F75C4C;
+  border: 1px solid #4D48FF;
+  background-color: #3973BF;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
   -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
   box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);

@@ -6,8 +6,9 @@ import { EmailInput } from 'form/EmailInput.jsx';
 import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import SignupActions from 'actions/Signup.js';
-import SignupStore from 'stores/Signup.js';
+import SignupStore from 'stores/user/Signup.js';
 
 
 export class Signup extends StoreObserver {
@@ -56,11 +57,16 @@ export class Signup extends StoreObserver {
       <div>
         <PanelForm onSubmit={this.handleSubmit} submitLabel="Signup">
           <Title>Create an Account</Title>
-          <hr className="Overlay" />
+
+          <hr className="SpacedOverlay" />
+
           <TextInput label="firstName" placeholder="First name" required />
           <TextInput label="lastName" placeholder="Last name" required />
-          <hr className="Divider" />
+
+          <hr className="SpacedDivider" />
+
           <EmailInput required />
+          <Information>You will receive a confirmation email on the adress you provide here</Information>
           <PasswordInput required />
           <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />
         </PanelForm>

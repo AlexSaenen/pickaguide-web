@@ -63,7 +63,6 @@ export class Form extends PropsComponent {
   }
 
   render() {
-    console.log('Form.render()', this.props);
     return (
       <Layout layoutStyle={this.state.layoutStyle}>
         <form className="FormWrapper" onSubmit={this.handleSubmit}>

@@ -1,4 +1,5 @@
 @import '../../colors.scss';
+@import '../list.scss';
 
 .ClickablePicture {
   height: 10em;
@@ -8,10 +9,50 @@
     transition-duration: 0.3s;
     transition-timing-function: ease-out;
     backface-visibility: hidden;
+    object-fit: cover;
   }
 }
 
 .ClickablePicture img:hover {
   cursor: pointer;
-  opacity: 0.3;
+  opacity: 0.6;
+}
+
+$toggleCheckMarkSize: 1.5em;
+
+.ToggleCheckMark {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  backface-visibility: hidden;
+  height: $toggleCheckMarkSize;
+  width: $toggleCheckMarkSize;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.5em;
+}
+
+.ToggleCheckMark:hover {
+  cursor: pointer;
+  background-color: $modalSecondaryColor;
+  border-radius: $toggleCheckMarkSize;
+}
+
+.DeleteAction {
+  z-index: 5;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  display: none;
+  width: 1.5em;
+  height: 1.5em;
+  background-color: $alertTitleColor;
+  position: absolute;
+  border-radius: 0 0 $elementBorderRadius 0;
+  stroke: white;
+}
+
+.DeleteAction:hover {
+  stroke: $alertTitleColor;
+  background-color: white;
 }

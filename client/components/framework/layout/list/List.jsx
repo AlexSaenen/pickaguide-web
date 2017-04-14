@@ -29,7 +29,7 @@ export class List extends PropsComponent {
           this.wrapChildren ?
           props.children.map((child, index) => {
             return (
-              <Element key={index}>
+              <Element key={index} elementStyle={this.props.elementStyle}>
                 {child}
               </Element>
             );

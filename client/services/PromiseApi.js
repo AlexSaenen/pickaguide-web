@@ -1,7 +1,7 @@
 import request from 'superagent';
 
 import { config } from 'client/config';
-import AuthStore from 'stores/Auth.js';
+import AuthStore from 'stores/user/Auth.js';
 
 
 export default class PromiseApi {
@@ -77,4 +77,15 @@ export default class PromiseApi {
       PromiseApi._handleResponse(requestBuilder, { resolve, reject });
     });
   }
+
+  static delete(url) {
+    return new Promise((resolve, reject) => {
+      const requestBuilder = request.delete(`${config.apiUrl}${url}`);
+
+      if (this.token) { requestBuilder.set('Authorization', `Bearer ${this.token}`); }
+
+      PromiseApi._handleResponse(requestBuilder, { resolve, reject });
+    });
+  }
+
 }

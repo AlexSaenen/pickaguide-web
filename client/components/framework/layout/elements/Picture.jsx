@@ -14,9 +14,10 @@ export class Picture extends PropsComponent {
   }
 
   render() {
-    console.log('Picture.render()');
+    const classNames = `Picture ${this.state.pictureType}`;
+
     return (
-      <div className="Picture">
+      <div className={classNames}>
         <img alt={this.state.pictureName} src={this.state.url} />
       </div>
     );
@@ -26,9 +27,11 @@ export class Picture extends PropsComponent {
 
 Picture.defaultProps = {
   pictureName: 'None',
+  pictureType: '',
 };
 
 Picture.propTypes = {
   pictureName: React.PropTypes.string,
   url: React.PropTypes.string.isRequired,
+  pictureType: React.PropTypes.string,
 };

@@ -6,7 +6,7 @@ import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import AuthActions from 'actions/Auth.js';
-import AuthStore from 'stores/Auth.js';
+import AuthStore from 'stores/user/Auth.js';
 
 
 export class Login extends StoreObserver {

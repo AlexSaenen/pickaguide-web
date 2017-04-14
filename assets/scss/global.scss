@@ -48,7 +48,7 @@ table {
 a {
   cursor: pointer;
 }
-strong{
+strong {
  font-weight: bold;
 }
 
@@ -62,6 +62,15 @@ html, body, #app {
   }
 }
 
+p.Small { font-size: 1em; }
+p.Medium { font-size: 1.5em; }
+p.Large { font-size: 2em; }
+.Bold { font-weight: bold; }
+p.LineSpaced { line-height: 2em; }
+p.Spaced { padding: 0.5em; }
+p.OverflowHidden { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+p.Vertical { vertical-align: middle; }
+
 *:focus { outline: none; }
 .Hidden { display: none !important; }
 .Inline { display: inline; }
@@ -71,3 +80,6 @@ html, body, #app {
 .Left { text-align: left; }
 .Right { text-align: right; }
 .Center { text-align: center; }
+.NoTransition { transition-duration: 0s; }
+.NoRadius { border-radius: 0 !important; }
+.Clickable { cursor: pointer; }

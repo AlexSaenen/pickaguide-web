@@ -1,6 +1,7 @@
 import ProfileActions from 'actions/Profile.js';
+import SearchProfileActions from 'actions/SearchProfile.js';
 import PromiseApi from 'services/PromiseApi.js';
-import AuthStore from 'stores/Auth.js';
+import AuthStore from 'stores/user/Auth.js';
 
 
 export default class ProfileApi {
@@ -33,6 +34,22 @@ export default class ProfileApi {
       .catch((err) => {
         ProfileActions.error(err);
       });
+  }
+
+  static search() {
+    // FIXME: Alex: for now getAll
+    PromiseApi.get('/public/profiles/')
+      .then((res) => {
+        const finalResults = res.ids.map((id, index) => {
+          return {
+            id,
+            profile: res.profiles[index],
+          };
+        });
+
+        SearchProfileActions.searchSuccess.defer(finalResults);
+      })
+      .catch((err) => { SearchProfileActions.error.defer(err); });
   }
 
 }

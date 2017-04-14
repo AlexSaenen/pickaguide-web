@@ -10,13 +10,21 @@ import { Profile } from 'views/Profile.jsx';
 import { Settings } from 'views/Settings.jsx';
 import { EditAccount } from 'views/EditAccount.jsx';
 import { EditProfile } from 'views/EditProfile.jsx';
-import { Adverts } from 'views/Adverts.jsx';
 import { Contact } from 'views/Contact.jsx';
+<<<<<<< HEAD
 import { Search } from 'views/Search.jsx';
+=======
+import { Become } from 'views/guide/Become.jsx';
+import { Adverts } from 'views/guide/Adverts.jsx';
+import { OwnerAdvert } from 'views/guide/OwnerAdvert.jsx';
+import { GuideQuit } from 'views/guide/Quit.jsx';
+>>>>>>> dev
 import About from 'views/About.jsx';
+
 import 'services/Utils.js';
 
 import 'scss/global.scss';
+
 
 ReactDOM.render(
 
@@ -26,13 +34,16 @@ ReactDOM.render(
       <Route path="signup" component={Signup} />
       <Route path="login" component={Login} />
       <Route path="settings/edit" component={Settings} />
-      <Route path="profile" component={Profile} />
+      <Route path="profiles/:id" component={Profile} />
       <Route path="profile/edit" component={EditProfile} />
       <Route path="account/edit" component={EditAccount} />
       <Route path="contact-us" component={Contact} />
       <Route path="about" component={About} />
-      <Route path="profile/adverts" component={Adverts} />
       <Route path="search" component={Search} />      
+      <Route path="guide/become" component={Become} />
+      <Route path="guide/adverts" component={Adverts} />
+      <Route path="guide/quit" component={GuideQuit} />
+      <Route path="guide/adverts/mine/:id" component={OwnerAdvert} />
     </Route>
   </Router>
 

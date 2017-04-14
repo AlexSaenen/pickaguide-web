@@ -39,7 +39,7 @@ export class EditAccount extends StateComponent {
       <div>
         <PanelLayout panelStyle="Small">
           <Title>Edit your Account</Title>
-          <hr className="Overlay" />
+          <hr className="SpacedOverlay" />
           <Button label="Change Password" onCallback={this.togglePasswordModal} />
           <Button label="Change Email" onCallback={this.toggleEmailModal} />
         </PanelLayout>

@@ -16,6 +16,14 @@
   transition-timing-function: ease-out;
 }
 
+.Button.Red { background-color: $redElementColor; }
+.Button.TextWhite { color: white; }
+.Button.Spaced { margin: 0 1em; }
+
+.Button.Auto, .ShadowedButton.Auto {
+  display: inline-block;
+}
+
 .ShadowedButton {
   @extend .Button;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);

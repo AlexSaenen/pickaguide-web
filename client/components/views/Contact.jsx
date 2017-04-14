@@ -8,9 +8,9 @@ import { EmailInput } from 'form/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import ContactActions from 'actions/Contact.js';
-import AccountStore from 'stores/Account.js';
-import ProfileStore from 'stores/Profile.js';
-import ContactStore from 'stores/Contact.js';
+import AccountStore from 'stores/user/Account.js';
+import ProfileStore from 'stores/user/Profile.js';
+import ContactStore from 'stores/user/Contact.js';
 
 
 export class Contact extends StoreObserver {
@@ -73,7 +73,7 @@ export class Contact extends StoreObserver {
     return (
       <PanelForm onSubmit={this.handleSubmit} submitLabel="Contact">
         <Title>Contact Us</Title>
-        <hr className="Overlay" />
+        <hr className="SpacedOverlay" />
         <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder="Full name" required />
         <EmailInput value={account ? account.email : ''} required />
         <TelInput label="phone" value={profile ? profile.phone : ''} />

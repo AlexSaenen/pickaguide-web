@@ -8,6 +8,7 @@ class AccountStore {
   constructor() {
     this.error = null;
     this.account = null;
+    this.isConfirmed = false;
     this.bindActions(AccountActions);
   }
 
@@ -23,6 +24,16 @@ class AccountStore {
 
   onError(error) {
     this.error = error;
+  }
+
+  onIsConfirmed(userId) {
+    AccountApi.isConfirmed(userId);
+    return false;
+  }
+
+  onIsConfirmedSuccess(isConfirmed) {
+    this.isConfirmed = isConfirmed;
+    this.error = null;
   }
 
   onUpdate(form) {
@@ -42,7 +53,10 @@ class AccountStore {
 
   onInvalidateAccount() {
     this.account = null;
+    this.isConfirmed = false;
+    this.error = null;
   }
+
 }
 
 export default alt.createStore(AccountStore, 'AccountStore');

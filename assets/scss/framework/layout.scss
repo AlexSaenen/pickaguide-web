@@ -19,7 +19,7 @@ $layoutPadding: 2em;
   padding: $layoutPadding;
 
   .Title {
-    margin: 0.5em 0 1.5em 0;
+    margin: 0.5em 0;
     font-size: 1.8em;
   }
 
@@ -43,6 +43,15 @@ $layoutPadding: 2em;
 
   }
 
+  .Picture.WidthLimited {
+    width: inherit;
+
+    & > img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
   .Text {
     font-size: 1em;
 
@@ -52,21 +61,31 @@ $layoutPadding: 2em;
   }
 
   hr.Divider {
+    margin: -#{$layoutPadding} -#{$layoutPadding} $layoutPadding -#{$layoutPadding};
     display: block;
     clear: both;
-    margin: 2em -#{$layoutPadding};
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), $modalSecondaryColor, rgba(0, 0, 0, 0));
   }
 
   hr.Overlay {
+    margin: -#{$layoutPadding} -#{$layoutPadding} $layoutPadding -#{$layoutPadding};
     display: block;
     clear: both;
-    margin: 2em -#{$layoutPadding};
     height: 12px;
     border: 0;
     box-shadow: inset 0 12px 12px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  hr.SpacedDivider {
+    @extend hr.Divider;
+    margin: 2em -#{$layoutPadding};
+  }
+
+  hr.SpacedOverlay {
+    @extend hr.Overlay;
+    margin: 2em -#{$layoutPadding};
   }
 }
 
@@ -85,8 +104,12 @@ $layoutPadding: 2em;
 .Tight {
   padding: #{$layoutPadding / 2};
 
-  hr.Divider, hr.Overlay {
+  hr.SpacedDivider, hr.SpacedOverlay {
     margin: 1em -#{$layoutPadding / 2};
+  }
+
+  hr.Divider, hr.Overlay {
+    margin: -#{$layoutPadding / 2} -#{$layoutPadding / 2};
   }
 
   input[type="submit"] {
@@ -114,6 +137,11 @@ $layoutPadding: 2em;
   }
 }
 
+.LayoutBlank {
+  @extend .LayoutLight;
+  background-color: white;
+}
+
 .LayoutDark {
   background-color: $modalDarkColor;
 
@@ -127,6 +155,10 @@ $layoutPadding: 2em;
 
   input, textarea {
     color: white;
+
+    &::-webkit-input-placeholder {
+      color: #999;
+    }
   }
 
   input[type="submit"] {
