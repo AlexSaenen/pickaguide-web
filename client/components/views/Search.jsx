@@ -3,7 +3,6 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import SearchActions from 'actions/Search.js';
 import SearchStore from 'stores/Search.js';
-import { PanelForm } from 'view/PanelForm.jsx';
 import { InlineForm } from 'form/InlineForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { PanelList } from 'view/PanelList.jsx';
@@ -17,13 +16,15 @@ export class Search extends StoreObserver {
 
     this.state = {
       results: SearchStore.getState().resultSearch,
+      searchTerms: "",
     };
+    console.log(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(form) {
     console.log(form);
-    SearchActions.search(form)
+    SearchActions.search(form);
   }
 
   onStoreChange(store) {
@@ -40,7 +41,7 @@ export class Search extends StoreObserver {
       profil.push(<h1>Profils finded</h1>);
       for (var i = 0; i < results.profil.length; i++) {
         profil.push(<Element>name: {results.profil[i].name}<br/>age: {results.profil[i].age}</Element>);
-      }      
+      }
     }
     var advert = [];
     if (results == null || results.advert == null)
@@ -57,7 +58,7 @@ export class Search extends StoreObserver {
         <PanelList wrapChildren={false} panelStyle="Large">
           <Element>
             <InlineForm onSubmit={this.handleSubmit} submitLabel="Search">
-              <TextInput className="FormElement" placeholder="Search anything" inline />
+              <TextInput className="FormElement" placeholder="Search anything" value={this.state.searchTerms} inline />
             </InlineForm>
           </Element>
         </PanelList>
@@ -71,18 +72,3 @@ export class Search extends StoreObserver {
     );
   }
 }
-
-
-
-// import React from 'react';
-
-
-// const About = () => {
-//   return (
-//     <div>
-//       <h1>Welcome, this is our about page</h1>
-//     </div>
-//   );
-// };
-
-// export default About;

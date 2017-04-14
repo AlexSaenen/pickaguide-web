@@ -18,7 +18,7 @@ export class SearchBar extends React.Component {
   }
 
   handleSubmit(form) {
-    this.context.router.push('/search');
+    this.context.router.push('/search', form);
   }
 
   render() {
