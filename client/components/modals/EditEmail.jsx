@@ -56,7 +56,7 @@ export class EditEmail extends StoreObserver {
   }
 
   render() {
-    const account = this.state.account;
+    const account = this.state.account || {};
 
     return (
       <ModalForm {...this.props} layoutStyle="LayoutDark Tight" onSubmit={this.handleSubmit}>

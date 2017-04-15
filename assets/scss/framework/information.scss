@@ -8,11 +8,11 @@ $headerWidth: 5em;
   width: 100%;
   border-radius: 0.4em;
   color: white;
-  margin: 0.6em 0;
+  margin: 1em 0;
 
   .Header {
     display: inline-flex;
-    padding: 1em 0;
+    padding: 0.1em 0;
     float: left;
     width: $headerWidth;
 
@@ -21,8 +21,8 @@ $headerWidth: 5em;
       cursor: pointer;
       color: $textDarkColor;
       border: 1px solid $textDarkColor;
-      padding: 0.3em 0.5em;
-      border-radius: 0.2em;
+      padding: 0.3em 0.4em;
+      border-radius: 0.5em;
     }
 
     & > span:hover {
@@ -41,6 +41,7 @@ $headerWidth: 5em;
 
     p {
       margin: 0.8em;
+      font-style: italic;
       line-height: 1.3em;
       font-size: 0.9em;
     }

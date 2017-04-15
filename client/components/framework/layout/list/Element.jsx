@@ -11,7 +11,7 @@ export class Element extends PropsComponent {
     const classNames = `Element ${this.props.elementStyle}`;
 
     return (
-      <div className={classNames}>
+      <div className={classNames} onClick={this.props.onClick}>
         {this.props.children}
       </div>
     );
@@ -20,8 +20,10 @@ export class Element extends PropsComponent {
 
 Element.defaultProps = {
   elementStyle: 'Auto',
+  onClick: () => {},
 };
 
 Element.propTypes = {
   elementStyle: React.PropTypes.string,
+  onClick: React.PropTypes.func,
 };

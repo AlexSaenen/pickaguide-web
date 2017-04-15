@@ -6,6 +6,7 @@ import { TextArea } from 'form/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
+import { EditableInterests } from 'layout/user/EditableInterests.jsx';
 import { EditPicture } from 'modals/EditPicture.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/user/Profile.js';
@@ -45,11 +46,12 @@ export class EditProfile extends StoreObserver {
       });
     }
 
-    this.updateState(stateCopy);
+    this.setState(stateCopy);
   }
 
   handleSubmit(form, submitName, messageCallback) {
     this.messageCallback = messageCallback;
+    form.interests = this.state.profile.interests;
     ProfileActions.update(form);
   }
 
@@ -60,7 +62,7 @@ export class EditProfile extends StoreObserver {
   }
 
   render() {
-    const profile = this.state.profile || {};
+    const profile = this.state.profile || { interests: [] };
 
     return (
       <div>
@@ -79,7 +81,10 @@ export class EditProfile extends StoreObserver {
           <TextInput value={profile.city} label="city" />
           <TextInput value={profile.country} label="country" />
           <TextArea value={profile.description} label="description" />
-          <TextArea value={profile.interests[0]} label="interests" />
+
+          <hr className="SpacedDivider" />
+
+          <EditableInterests interests={profile.interests} />
         </PanelForm>
 
         <EditPicture

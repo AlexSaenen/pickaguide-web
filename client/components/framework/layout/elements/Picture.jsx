@@ -28,10 +28,11 @@ export class Picture extends PropsComponent {
 Picture.defaultProps = {
   pictureName: 'None',
   pictureType: '',
+  url: '',
 };
 
 Picture.propTypes = {
   pictureName: React.PropTypes.string,
-  url: React.PropTypes.string.isRequired,
+  url: React.PropTypes.string,
   pictureType: React.PropTypes.string,
 };
