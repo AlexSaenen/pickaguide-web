@@ -96,25 +96,25 @@ export class OwnerAdvert extends StoreObserver {
           <Button label="Back" buttonStyle="Auto TextWhite Bold Spaced" onCallback={browserHistory.goBack} />
           <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.onDelete} />
           <PanelList listStyle="ListGrid" wrapChildren={false}>
-            <Element elementStyle="Auto Clickable">
-              <p
-                className="Spaced OverflowHidden"
-                onClick={
-                  function click() {
-                    this.openTextEditor('description', 'Edit advert\'s description');
-                  }.bind(this)
-                }
-              >{advert.description}</p>
+            <Element
+              elementStyle="Auto Clickable"
+              onClick={
+                function click() {
+                  this.openTextEditor('description', 'Edit advert\'s description');
+                }.bind(this)
+              }
+            >
+              <p className="Spaced OverflowHidden">{advert.description}</p>
             </Element>
-            <Element elementStyle="Small Clickable">
-              <p
-                className="Bold Inline Vertical"
-                onClick={
-                  function click() {
-                    this.openTextEditor('hourlyPrice', 'Edit advert\'s hourly price');
-                  }.bind(this)
-                }
-              >{advert.hourlyPrice}</p>
+            <Element
+              elementStyle="Small Clickable"
+              onClick={
+                function click() {
+                  this.openTextEditor('hourlyPrice', 'Edit advert\'s hourly price');
+                }.bind(this)
+              }
+            >
+              <p className="Bold Inline Vertical">{advert.hourlyPrice}</p>
             </Element>
             <Element elementStyle="Auto Tight Clickable">
               <ToggleCheckMark transition={false} active={advert.active} onToggle={this.toggleAdvertState} />

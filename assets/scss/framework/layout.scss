@@ -165,3 +165,8 @@ $layoutPadding: 2em;
     color: black;
   }
 }
+
+.LayoutGray {
+  @extend .LayoutDark;
+  background-color: $modalSecondaryColor;
+}
