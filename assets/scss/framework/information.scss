@@ -1,0 +1,69 @@
+@import '../colors.scss';
+
+$headerWidth: 5em;
+
+.Information {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  border-radius: 0.4em;
+  color: white;
+  margin: 1em 0;
+
+  .Header {
+    display: inline-flex;
+    padding: 0.1em 0;
+    float: left;
+    width: $headerWidth;
+
+    & > span {
+      margin: auto;
+      cursor: pointer;
+      color: $textDarkColor;
+      border: 1px solid $textDarkColor;
+      padding: 0.3em 0.4em;
+      border-radius: 0.5em;
+    }
+
+    & > span:hover {
+      color: white;
+      border: 1px solid white;
+    }
+  }
+
+  .Content {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: calc(100% - #{$headerWidth});
+    flex: 1;
+
+    p {
+      margin: 0.8em;
+      font-style: italic;
+      line-height: 1.3em;
+      font-size: 0.9em;
+    }
+  }
+}
+
+.Information.Small { width: 20em; }
+.Information.Medium { width: 40em; }
+.Information.Large { width: 60em; }
+.Information.LineSpaced { margin: 2em auto; }
+
+.Information.Success {
+  .Content { background-color: $successBodyColor; }
+  .Header { background-color: $successTitleColor; }
+}
+
+.Information.Info {
+  .Content { background-color: $infoBodyColor; }
+  .Header { background-color: $infoTitleColor; }
+}
+
+.Information.Alert {
+  .Content { background-color: $alertBodyColor; }
+  .Header { background-color: $alertTitleColor; }
+}

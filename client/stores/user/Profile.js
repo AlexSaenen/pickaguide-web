@@ -24,7 +24,6 @@ class ProfileStore {
 
   onError(error) {
     this.error = error;
-    this.profile = null;
   }
 
   onUpdate(form) {
@@ -40,7 +39,9 @@ class ProfileStore {
 
   onInvalidateProfile() {
     this.profile = null;
+    this.error = null;
   }
+
 }
 
 export default alt.createStore(ProfileStore, 'ProfileStore');

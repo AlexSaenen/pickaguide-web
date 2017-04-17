@@ -1,16 +1,17 @@
 import React from 'react';
 
-import { StoreObserverForChildren } from 'base/StoreObserverForChildren.jsx';
-import AuthStore from 'stores/Auth.js';
+import { StatusDependent } from 'base/StatusDependent.jsx';
+import AuthStore from 'stores/user/Auth.js';
 
 
-export class AuthDependent extends StoreObserverForChildren {
+export class AuthDependent extends StatusDependent {
 
   constructor(props, context) {
-    super(props, context, AuthStore);
-    this.auth = props.auth;
-    this.unauth = props.unauth && !props.auth;
-    this.className = props.className;
+    const propsCopy = Object.assign({}, props);
+    propsCopy.activator = 'auth';
+    propsCopy.deactivator = 'unauth';
+
+    super(propsCopy, context, AuthStore);
 
     this.state.isVisible = this._isVisible(AuthStore.getState().credentials);
     this.onStoreChange = this.onStoreChange.bind(this);
@@ -23,15 +24,7 @@ export class AuthDependent extends StoreObserverForChildren {
   }
 
   _isVisible(credentials) {
-    return (credentials === null ? (this.unauth || !this.auth) : (this.auth || !this.unauth));
-  }
-
-  render() {
-    return (
-      <div className={`${this.className}${this.state.isVisible ? '' : ' Hidden'}`}>
-        {this.props.children}
-      </div>
-    );
+    return (credentials === null ? (this.unactive || !this.active) : (this.active || !this.unactive));
   }
 }
 
@@ -41,7 +34,6 @@ AuthDependent.defaultProps = {
 };
 
 AuthDependent.propTypes = {
-  className: React.PropTypes.string,
   auth: React.PropTypes.bool,
   unauth: React.PropTypes.bool,
 };

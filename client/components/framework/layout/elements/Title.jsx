@@ -15,7 +15,7 @@ export class Title extends PropsComponent {
 
   render() {
     return (
-      <div className="Title">
+      <div className="Title" onClick={this.props.onClick || function click() {}}>
         {this.props.children}
       </div>
     );

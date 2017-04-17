@@ -11,6 +11,8 @@ export class Message extends PropsComponent {
     super(props, context);
 
     this.state = props;
+    this.onDismiss = props.onDismiss;
+    this.timed = props.timed;
     this.messageTimeout = null;
   }
 
@@ -20,16 +22,24 @@ export class Message extends PropsComponent {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.title = nextProps.title;
+    stateCopy.content = nextProps.content;
+    stateCopy.type = nextProps.type;
+    this.updateState(stateCopy);
+  }
+
   dismiss() {
     this.state.onDismiss(this);
   }
 
   render() {
-    let classes = `Message ${this.state.type}`;
+    let classes = `Message ${this.state.type} ${this.props.messageStyle}`;
 
     if (this.state.content === '') {
       classes += ' Hidden';
-    } else {
+    } else if (this.timed) {
       if (this.messageTimeout) {
         clearTimeout(this.messageTimeout);
       }
@@ -40,6 +50,7 @@ export class Message extends PropsComponent {
       }, 5000);
     }
 
+
     return (
       <div className={classes}>
         <div className="MessageTitle" name="MessageTitle">{this.state.title}</div>
@@ -49,11 +60,17 @@ export class Message extends PropsComponent {
   }
 }
 
+Message.defaultProps = {
+  onDismiss: () => {},
+  timed: true,
+  messageStyle: '',
+};
+
 Message.propTypes = {
-  message: React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
-    content: React.PropTypes.string.isRequired,
-    type: React.PropTypes.string.isRequired,
-  }),
-  onDismiss: React.PropTypes.func.isRequired,
+  title: React.PropTypes.string.isRequired,
+  content: React.PropTypes.string.isRequired,
+  type: React.PropTypes.string.isRequired,
+  onDismiss: React.PropTypes.func,
+  timed: React.PropTypes.bool,
+  messageStyle: React.PropTypes.string,
 };

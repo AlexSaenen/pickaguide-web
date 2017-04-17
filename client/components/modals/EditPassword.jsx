@@ -5,7 +5,7 @@ import { ModalForm } from 'view/ModalForm.jsx';
 import { PasswordInput } from 'form/PasswordInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import PasswordActions from 'actions/Password.js';
-import PasswordStore from 'stores/Password.js';
+import PasswordStore from 'stores/user/Password.js';
 
 
 export class EditPassword extends StoreObserver {

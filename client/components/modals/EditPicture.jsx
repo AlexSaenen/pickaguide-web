@@ -3,7 +3,7 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { LinkModal } from 'modals/LinkModal.jsx';
 import ProfileActions from 'actions/Profile.js';
-import ProfileStore from 'stores/Profile.js';
+import ProfileStore from 'stores/user/Profile.js';
 
 
 export class EditPicture extends StoreObserver {

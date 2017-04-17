@@ -40,6 +40,16 @@
         transition-timing-function: ease-in-out;
         color: $textDarkColor;
 
+        .alert {
+            background-color: $redElementColor;
+            color: white;
+        }
+
+        .action {
+            background-color: $secondaryElementColor;
+            color: white;
+        }
+
         p {
             padding: 0.5em 2em;
         }

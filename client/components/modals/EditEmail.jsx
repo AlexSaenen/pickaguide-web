@@ -5,7 +5,7 @@ import { ModalForm } from 'view/ModalForm.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import AccountActions from 'actions/Account.js';
-import AccountStore from 'stores/Account.js';
+import AccountStore from 'stores/user/Account.js';
 
 
 export class EditEmail extends StoreObserver {
@@ -56,7 +56,7 @@ export class EditEmail extends StoreObserver {
   }
 
   render() {
-    const account = this.state.account;
+    const account = this.state.account || {};
 
     return (
       <ModalForm {...this.props} layoutStyle="LayoutDark Tight" onSubmit={this.handleSubmit}>

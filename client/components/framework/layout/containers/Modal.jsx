@@ -43,7 +43,7 @@ export class Modal extends PropsComponent {
         <div className="ModalContent">
           {this.props.children}
           <div className="ModalFooter">
-            <Button label="Dismiss" onCallback={this.dismiss} />
+            <Button label="Dismiss" buttonStyle="Red" onCallback={this.dismiss} />
           </div>
         </div>
       </div>

@@ -22,6 +22,10 @@ export class TextArea extends PropsComponent {
       className: props.className,
     };
 
+    if (this.state.value && this.state.value !== '') {
+      FormActions.updateValue({ label: this.state.label, value: this.state.value });
+    }
+
     this.handleEdit = this.handleEdit.bind(this);
   }
 

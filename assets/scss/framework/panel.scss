@@ -1,15 +1,6 @@
-.Panel.Small {
-  width: 20em;
-}
+.Panel.LessSpaced { margin: 1em auto; }
 
-.Panel.Medium {
-  width: 30em;
-}
-
-.Panel.Large {
-  width: 40em;
-}
-
-.Panel.Wide {
-  width: 50em;
-}
+.Panel.Small { width: 20em; }
+.Panel.Medium { width: 30em; }
+.Panel.Large { width: 40em; }
+.Panel.Wide { width: 50em; }

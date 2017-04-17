@@ -5,12 +5,11 @@ import { TextInput } from 'form/TextInput.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
-import { Button } from 'layout/elements/Button.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
+import { EditableInterests } from 'layout/user/EditableInterests.jsx';
 import { EditPicture } from 'modals/EditPicture.jsx';
-import { Guide } from 'modals/Guide.jsx';
 import ProfileActions from 'actions/Profile.js';
-import ProfileStore from 'stores/Profile.js';
+import ProfileStore from 'stores/user/Profile.js';
 
 
 export class EditProfile extends StoreObserver {
@@ -21,14 +20,12 @@ export class EditProfile extends StoreObserver {
     this.state = {
       profile: ProfileStore.getState().profile,
       modalState: false,
-      modalStateGuide: false,
     };
 
     this.onStoreChange = this.onStoreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.messageCallback = () => {};
     this.toggleModal = this.toggleModal.bind(this);
-    this.toggleModalGuide = this.toggleModalGuide.bind(this);
   }
 
   onStoreChange(store) {
@@ -49,11 +46,12 @@ export class EditProfile extends StoreObserver {
       });
     }
 
-    this.updateState(stateCopy);
+    this.setState(stateCopy);
   }
 
   handleSubmit(form, submitName, messageCallback) {
     this.messageCallback = messageCallback;
+    form.interests = this.state.profile.interests;
     ProfileActions.update(form);
   }
 
@@ -63,42 +61,35 @@ export class EditProfile extends StoreObserver {
     this.updateState(stateCopy);
   }
 
-  toggleModalGuide() {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.modalStateGuide = !this.state.modalStateGuide;
-    this.updateState(stateCopy);
-  }
-
   render() {
-    const profile = this.state.profile || {};
+    const profile = this.state.profile || { interests: [] };
 
     return (
       <div>
         <PanelForm onSubmit={this.handleSubmit} submitLabel="Save">
           <Title>Update your profile</Title>
           <ClickablePicture url={profile.photoUrl} onClick={this.toggleModal} />
-          <hr className="Overlay" />
+
+          <hr className="SpacedOverlay" />
 
           <TextInput value={profile.firstName} label="firstName" placeholder="First name" required />
           <TextInput value={profile.lastName} label="lastName" placeholder="Last name" required />
 
-          <hr className="Divider" />
+          <hr className="SpacedDivider" />
 
           <TextInput value={profile.phone} label="phone" />
           <TextInput value={profile.city} label="city" />
           <TextInput value={profile.country} label="country" />
           <TextArea value={profile.description} label="description" />
-          <TextArea value={profile.interests[0]} label="interests" />
-          <Button label="Devenir Guide" onCallback={this.toggleModalGuide} />
+
+          <hr className="SpacedDivider" />
+
+          <EditableInterests interests={profile.interests} />
         </PanelForm>
 
         <EditPicture
           active={this.state.modalState}
           onClose={this.toggleModal}
-        />
-        <Guide
-          active={this.state.modalStateGuide}
-          onClose={this.toggleModalGuide}
         />
       </div>
     );
