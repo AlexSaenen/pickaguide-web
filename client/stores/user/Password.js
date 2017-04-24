@@ -15,7 +15,16 @@ class PasswordStore {
   }
 
   onUpdate(form) {
-    AccountApi.updatePassword(form);
+    if (form.password !== form.passwordConfirmation) {
+      PasswordActions.error.defer('The passwords do not match');
+    } else {
+      if (form.currentPassword === form.password) {
+        PasswordActions.error.defer('Your new password needs to be different');
+      } else {
+        AccountApi.updatePassword(form);
+      }
+    }
+
     return false;
   }
 

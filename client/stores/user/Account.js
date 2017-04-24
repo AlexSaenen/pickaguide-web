@@ -47,7 +47,16 @@ class AccountStore {
   }
 
   onUpdateMail(form) {
-    AccountApi.updateMail(form);
+    if (form.email !== form.emailConfirmation) {
+      AccountActions.error.defer('The emails do not match');
+    } else {
+      if (form.email === this.account.email) {
+        AccountActions.error.defer('Your new email needs to be different');
+      } else {
+        AccountApi.updateMail({ email: form.email });
+      }
+    }
+
     return false;
   }
 

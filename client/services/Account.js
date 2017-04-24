@@ -1,5 +1,5 @@
 import AccountActions from 'actions/Account.js';
-import SearchAccountActions from 'actions/SearchAccount.js';
+// import SearchAccountActions from 'actions/SearchAccount.js';
 import PasswordActions from 'actions/Password.js';
 import PromiseApi from 'services/PromiseApi.js';
 import AuthStore from 'stores/user/Auth.js';
@@ -21,28 +21,28 @@ export default class AccountApi {
     }
   }
 
-  static search() {
-    // for now getAll
-    PromiseApi.get('/public/accounts/')
-      .then((res) => {
-        const accountIds = res.ids.join(',');
-        PromiseApi.get(`/public/accounts/${accountIds}/areConfirmed`)
-          .then((confirmedRes) => {
-            const finalResults = res.accounts.map((account, index) => {
-              const confirmedIndex = confirmedRes.ids.indexOf(res.ids[index]);
-              return Object({
-                id: res.ids[index],
-                account: res.accounts[index],
-                isConfirmed: confirmedRes.areConfirmed[confirmedIndex],
-              });
-            });
-
-            SearchAccountActions.searchSuccess.defer(finalResults);
-          })
-          .catch((err) => { SearchAccountActions.error.defer(err); });
-      })
-      .catch((err) => { SearchAccountActions.error.defer(err); });
-  }
+  // static search() {
+  //   // for now getAll
+  //   PromiseApi.get('/public/accounts/')
+  //     .then((res) => {
+  //       const accountIds = res.ids.join(',');
+  //       PromiseApi.get(`/public/accounts/${accountIds}/areConfirmed`)
+  //         .then((confirmedRes) => {
+  //           const finalResults = res.accounts.map((account, index) => {
+  //             const confirmedIndex = confirmedRes.ids.indexOf(res.ids[index]);
+  //             return Object({
+  //               id: res.ids[index],
+  //               account: res.accounts[index],
+  //               isConfirmed: confirmedRes.areConfirmed[confirmedIndex],
+  //             });
+  //           });
+  //
+  //           SearchAccountActions.searchSuccess.defer(finalResults);
+  //         })
+  //         .catch((err) => { SearchAccountActions.error.defer(err); });
+  //     })
+  //     .catch((err) => { SearchAccountActions.error.defer(err); });
+  // }
 
   static update(form) {
     PromiseApi.auth().put('/accounts', form)

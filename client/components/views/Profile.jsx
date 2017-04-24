@@ -8,8 +8,6 @@ import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import ProfileStore from 'stores/user/Profile.js';
 import AccountStore from 'stores/user/Account.js';
-import SearchAccountStore from 'stores/search/Account.js';
-import SearchProfileStore from 'stores/search/Profile.js';
 import AuthStore from 'stores/user/Auth.js';
 
 
@@ -29,18 +27,18 @@ export class Profile extends PropsComponent {
       nextState.profile = ProfileStore.getState().profile;
       nextState.isConfirmed = AccountStore.getState().isConfirmed;
     } else {
-      const profileResults = SearchProfileStore.getState().results;
-      const accountResults = SearchAccountStore.getState().results;
-      nextState.profile = profileResults.find(result => result.id === userId).profile;
-      nextState.profile.interests = []; // TODO: Alex: find route, handler solution
-      nextState.isConfirmed = accountResults.find(result => result.id === userId).isConfirmed;
+      // const profileResults = SearchProfileStore.getState().results;
+      // const accountResults = SearchAccountStore.getState().results;
+      // nextState.profile = profileResults.find(result => result.id === userId).profile;
+      // nextState.profile.interests = []; // TODO: Alex: find route, handler solution
+      // nextState.isConfirmed = accountResults.find(result => result.id === userId).isConfirmed;
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const stateCopy = Object.assign({}, this.state);
-    this.populateState(nextProps.params.id, stateCopy);
-    this.updateState(stateCopy);
+    const newState = Object.assign({}, this.state);
+    this.populateState(nextProps.params.id, newState);
+    this.updateState(newState);
   }
 
   render() {

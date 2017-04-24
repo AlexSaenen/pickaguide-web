@@ -1,11 +1,51 @@
 @import "../colors.scss";
 
-.AdvertPreview {
-  cursor: pointer;
-  position: relative;
+.Title.Clickable {
+  display: inline-block;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0.4em;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
 }
 
-.AdvertPreview:hover {
+.Title.Clickable:hover {
+  cursor: pointer;
+  border-radius: 0.2em;
+  color: white;
+  background-color: $modalSecondaryColor;
+  -moz-box-shadow: 0 0 4px black;
+  -webkit-box-shadow: 0 0 4px black;
+  box-shadow: 0 0 4px black;
+}
+
+.AdvertPreview {
+  .CheckMark {
+    width: 1.5em;
+    margin-right: 1em;
+    vertical-align: sub;
+  }
+}
+
+.OwnerAdvertPreview, .AdvertPreview {
+  position: relative;
+
+  .CheckMark {
+    display: inline-block;
+  }
+
+  .DescriptionSection {
+    padding: 0.8em;
+
+    p {
+      margin: 0 0.2em;
+    }
+  }
+}
+
+.OwnerAdvertPreview:hover {
   .DeleteAction {
     display: block;
   }

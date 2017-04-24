@@ -52,6 +52,15 @@ $layoutPadding: 2em;
     }
   }
 
+  .Picture.HeightLimited {
+    height: inherit;
+
+    & > img {
+      height: 100%;
+      width: auto;
+    }
+  }
+
   .Text {
     font-size: 1em;
 
@@ -116,6 +125,8 @@ $layoutPadding: 2em;
     margin: 0.6em;
   }
 }
+
+.NoWrap { margin: 0 auto; padding: 0; }
 
 .LayoutLight {
   background-color: $modalLightColor;

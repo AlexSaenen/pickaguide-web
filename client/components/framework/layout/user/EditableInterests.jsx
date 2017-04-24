@@ -15,19 +15,19 @@ export class EditableInterests extends PropsComponent {
   }
 
   removeInterest(index) {
-    const stateCopy = Object.assign({}, this.state);
-    if (index >= 0 && index < stateCopy.interests.length) {
-      stateCopy.interests.splice(index, 1);
-      this.setState(stateCopy);
+    const newState = Object.assign({}, this.state);
+    if (index >= 0 && index < newState.interests.length) {
+      newState.interests.splice(index, 1);
+      this.setState(newState);
     }
   }
 
   onAdd() {
     const editor = document.getElementById('interestEditor');
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.interests.splice(0, 0, editor.value);
+    const newState = Object.assign({}, this.state);
+    newState.interests.splice(0, 0, editor.value);
     editor.value = '';
-    this.setState(stateCopy);
+    this.setState(newState);
   }
 
   render() {
@@ -64,7 +64,7 @@ export class EditableInterests extends PropsComponent {
                   </svg>
                 </div>
                 <div className="Content">
-                  <p className="OverflowHidden">{interest}</p>
+                  <p className="OverflowHidden TextOverflow">{interest}</p>
                 </div>
               </div>
             )

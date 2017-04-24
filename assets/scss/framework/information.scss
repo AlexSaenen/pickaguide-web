@@ -48,6 +48,11 @@ $headerWidth: 5em;
   }
 }
 
+.Information.Small { width: 20em; }
+.Information.Medium { width: 40em; }
+.Information.Large { width: 60em; }
+.Information.LineSpaced { margin: 2em auto; }
+
 .Information.Success {
   .Content { background-color: $successBodyColor; }
   .Header { background-color: $successTitleColor; }

@@ -14,13 +14,13 @@ export class GuideDependent extends StatusDependent {
     super(propsCopy, context, UserStore);
 
     this.state.isVisible = this._isVisible(UserStore.getState().isGuide);
-    this.onStoreChange = this.onStoreChange.bind(this);
+    this.onStore = this.onStore.bind(this);
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.isVisible = this._isVisible(store.isGuide);
-    this.updateState(stateCopy);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
+    newState.isVisible = this._isVisible(store.isGuide);
+    this.updateState(newState);
   }
 
   _isVisible(isGuide) {

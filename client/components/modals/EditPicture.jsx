@@ -11,34 +11,28 @@ export class EditPicture extends StoreObserver {
   constructor(props, context) {
     super(props, context, ProfileStore);
 
-    this.onStoreChange = this.onStoreChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.messageCallback = () => {};
+    this.ctrl = props.controller;
+    this.ctrl.attachSubmit(ProfileActions.update);
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
 
     if (store.error) {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Some error occurred when updating your profile picture',
         content: String(store.error),
         type: 'Alert',
       });
     } else {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Successful',
         content: 'Your picture has been updated',
         type: 'Success',
       });
     }
 
-    this.setState(stateCopy);
-  }
-
-  handleSubmit(form, submitName, messageCallback) {
-    this.messageCallback = messageCallback;
-    ProfileActions.update(form);
+    this.setState(newState);
   }
 
   render() {
@@ -49,7 +43,6 @@ export class EditPicture extends StoreObserver {
         title="Edit Profile Picture"
         inputHolder="New URL"
         inputLabel="photoUrl"
-        onSubmit={this.handleSubmit}
       />
     );
   }

@@ -22,15 +22,19 @@ export class TextArea extends PropsComponent {
       className: props.className,
     };
 
+    if (this.state.value && this.state.value !== '') {
+      FormActions.updateValue({ label: this.state.label, value: this.state.value });
+    }
+
     this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleEdit(e) {
     e.preventDefault();
     FormActions.updateValue({ label: e.target.name, value: e.target.value });
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.value = e.target.value;
-    this.updateState(stateCopy);
+    const newState = Object.assign({}, this.state);
+    newState.value = e.target.value;
+    this.updateState(newState);
   }
 
   render() {

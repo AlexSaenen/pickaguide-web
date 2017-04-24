@@ -4,6 +4,8 @@ import { PanelForm } from 'view/PanelForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { FormController } from 'base/FormController.jsx';
+import { ModalFormController } from 'base/ModalFormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { EditableInterests } from 'layout/user/EditableInterests.jsx';
@@ -17,48 +19,36 @@ export class EditProfile extends StoreObserver {
   constructor(props, context) {
     super(props, context, ProfileStore);
 
-    this.state = {
-      profile: ProfileStore.getState().profile,
-      modalState: false,
-    };
-
-    this.onStoreChange = this.onStoreChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.messageCallback = () => {};
-    this.toggleModal = this.toggleModal.bind(this);
+    this.state = { profile: ProfileStore.getState().profile };
+    this.ctrl = new FormController();
+    this.ctrl.attachSubmit(this.onSubmit.bind(this));
+    this.editPictureCtrl = new ModalFormController();
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.profile = store.profile;
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
+    newState.profile = store.profile;
 
     if (store.error) {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Some error occurred when updating your profile',
         content: String(store.error),
         type: 'Alert',
       });
     } else {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Successful',
         content: 'Your informations have been updated',
         type: 'Success',
       });
     }
 
-    this.setState(stateCopy);
+    this.setState(newState);
   }
 
-  handleSubmit(form, submitName, messageCallback) {
-    this.messageCallback = messageCallback;
+  onSubmit(form) {
     form.interests = this.state.profile.interests;
     ProfileActions.update(form);
-  }
-
-  toggleModal() {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.modalState = !this.state.modalState;
-    this.updateState(stateCopy);
   }
 
   render() {
@@ -66,9 +56,9 @@ export class EditProfile extends StoreObserver {
 
     return (
       <div>
-        <PanelForm onSubmit={this.handleSubmit} submitLabel="Save">
+        <PanelForm controller={this.ctrl} submitLabel="Save">
           <Title>Update your profile</Title>
-          <ClickablePicture url={profile.photoUrl} onClick={this.toggleModal} />
+          <ClickablePicture url={profile.photoUrl} onClick={this.editPictureCtrl.toggle} />
 
           <hr className="SpacedOverlay" />
 
@@ -87,10 +77,7 @@ export class EditProfile extends StoreObserver {
           <EditableInterests interests={profile.interests} />
         </PanelForm>
 
-        <EditPicture
-          active={this.state.modalState}
-          onClose={this.toggleModal}
-        />
+        <EditPicture controller={this.editPictureCtrl} />
       </div>
     );
   }

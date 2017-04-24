@@ -62,13 +62,20 @@ html, body, #app {
   }
 }
 
+p { line-height: 1.2em; }
+
+p.Tiny { font-size: 0.8em; }
+p.ExtraSmall { font-size: 0.9em; }
 p.Small { font-size: 1em; }
 p.Medium { font-size: 1.5em; }
 p.Large { font-size: 2em; }
 .Bold { font-weight: bold; }
+.Italic { font-style: italic; }
 p.LineSpaced { line-height: 2em; }
 p.Spaced { padding: 0.5em; }
-p.OverflowHidden { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+p.MultiLineTextOverflow { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+p.TextOverflow { text-overflow: ellipsis; white-space: nowrap; }
+p.OverflowHidden { overflow: hidden; }
 p.Vertical { vertical-align: middle; }
 
 *:focus { outline: none; }
@@ -83,3 +90,4 @@ p.Vertical { vertical-align: middle; }
 .NoTransition { transition-duration: 0s; }
 .NoRadius { border-radius: 0 !important; }
 .Clickable { cursor: pointer; }
+.MarginAuto { margin: auto; }

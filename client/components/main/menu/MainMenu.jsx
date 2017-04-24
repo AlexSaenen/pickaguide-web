@@ -16,6 +16,7 @@ const MainMenu = () => {
         <MenuLink href="/" title="Home" />
         <MenuLink href="/about" title="About" />
         <MenuLink href="/contact-us" title="Contact" />
+        <MenuLink href="/search/none" title="Search" />
       </div>
 
       <div className="MainMenuContentWrapper">
