@@ -29,6 +29,7 @@ class AdvertsStore {
 
   onFind(advertId) {
     AdvertsApi.find(advertId);
+    return false;
   }
 
   onFindSuccess(advert) {

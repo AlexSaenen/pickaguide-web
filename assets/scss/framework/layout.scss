@@ -2,6 +2,18 @@
 
 $layoutPadding: 2em;
 
+div.LineContainer.Small {
+  height: 2em;
+  margin: 1.5em;
+
+  .CheckMark {
+    display: inline-block;
+    height: inherit;
+    width: 2em;
+    vertical-align: sub;
+  }
+}
+
 .Panel {
   display: block;
   width: 40em;

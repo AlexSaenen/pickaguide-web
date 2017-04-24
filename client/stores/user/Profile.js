@@ -19,7 +19,7 @@ class ProfileStore {
   onGetSuccess(profile) {
     this.error = null;
     this.profile = profile;
-    this.profile.pseudo = `${profile.firstName.substring(0,6)}${profile.lastName.charAt(0).toUpperCase()}`;
+    this.profile.pseudo = `${profile.firstName.substring(0, 6)}${profile.lastName.charAt(0)}`;
   }
 
   onError(error) {
@@ -34,7 +34,7 @@ class ProfileStore {
   onUpdateSuccess(user) {
     this.error = null;
     this.profile = user.profile;
-    this.profile.pseudo = `${user.profile.firstName.substring(0,6)}${user.profile.lastName.charAt(0).toUpperCase()}`;
+    this.profile.pseudo = `${user.profile.firstName.substring(0, 6)}${user.profile.lastName.charAt(0)}`;
   }
 
   onInvalidateProfile() {

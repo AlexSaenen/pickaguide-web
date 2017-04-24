@@ -3,7 +3,11 @@ import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { Text } from 'layout/elements/Text.jsx';
+import { CheckMark } from 'layout/elements/CheckMark.jsx';
+import { Picture } from 'layout/elements/Picture.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
+import { Panel } from 'layout/containers/Panel.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 
 import 'scss/views/adverts.scss';
@@ -29,6 +33,7 @@ export class Advert extends StoreObserver {
     if (advert.photoUrl === undefined) {
       advert.photoUrl = 'http://www.freeiconspng.com/free-images/no-image-icon-23492';
       advert.active = false;
+      advert.owner = { profile: {} };
     }
 
     return (
@@ -37,6 +42,18 @@ export class Advert extends StoreObserver {
           <hr className="Overlay" />
 
           <Title>{advert.title}</Title>
+          <p className="Small Italic">by {advert.owner.displayName}</p>
+          <div className="LineContainer Small">
+            <CheckMark active={advert.active} />
+            <p className="Spaced Small Italic Bold Inline">for {advert.hourlyPrice}</p>
+          </div>
+          <Text>{advert.description}</Text>
+
+          <hr className="SpacedDivider" />
+
+          <Panel panelStyle="NoWrap">
+            <Picture pictureName="Advert Cover" pictureType="WidthLimited" url={advert.photoUrl} />
+          </Panel>
         </Layout>
       </div>
     );

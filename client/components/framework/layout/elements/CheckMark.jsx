@@ -24,7 +24,7 @@ export class CheckMark extends PropsComponent {
             </svg>
             :
             <svg width="100%" height="100%" viewBox="0 0 400 400">
-              <polyline points="15,265 200,385 385,15" fillOpacity="0" stroke="#2ECC71" strokeWidth="30" />
+              <polyline points="15,265 200,378 378,15" fillOpacity="0" stroke="#2ECC71" strokeWidth="30" />
             </svg>
           )
         }
