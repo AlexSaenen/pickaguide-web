@@ -11,25 +11,36 @@ export class EditText extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { value: props.value };
-    this.handleClose = this.handleClose.bind(this);
+    this.state = { value: props.value, title: props.title, label: props.label };
+    props.controller.attachFeeder(this.onFeed.bind(this));
   }
 
-  handleClose() {
-    this.props.onClose('text');
+  onFeed(set) {
+    const newState = Object.assign({}, this.state);
+    newState.value = set.value;
+    newState.title = set.title;
+    newState.label = set.label;
+    this.setState(newState);
   }
 
   render() {
     return (
-      <ModalForm {...this.props} layoutStyle="LayoutLight Tight" onClose={this.handleClose}>
-        <Title>{this.props.title}</Title>
-        <TextInput label={this.props.label} value={this.props.value} required />
+      <ModalForm {...this.props} layoutStyle="LayoutLight Tight">
+        <Title>{this.state.title}</Title>
+        <TextInput label={this.state.label} value={this.state.value} required />
       </ModalForm>
     );
   }
 }
 
+EditText.defaultProps = {
+  value: '',
+  title: 'Edit Text',
+  label: 'text',
+};
+
 EditText.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired,
-  onClose: React.PropTypes.func.isRequired,
+  value: React.PropTypes.string,
+  title: React.PropTypes.string,
+  label: React.PropTypes.string,
 };

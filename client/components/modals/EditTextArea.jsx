@@ -1,27 +1,37 @@
 import React from 'react';
 
-import { EditText } from 'modals/EditText.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 
 
-export class EditTextArea extends EditText {
+export class EditTextArea extends PropsComponent {
 
-  handleClose() {
-    this.props.onClose('textarea');
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = { value: props.value, title: props.title, label: props.label };
   }
 
   render() {
     return (
-      <ModalForm {...this.props} layoutStyle="LayoutLight Tight" onClose={this.handleClose}>
-        <Title>{this.props.title}</Title>
-        <TextArea label={this.props.label} value={this.props.value} required />
+      <ModalForm {...this.props} layoutStyle="LayoutLight Tight">
+        <Title>{this.state.title}</Title>
+        <TextArea label={this.state.label} value={this.state.value} required />
       </ModalForm>
     );
   }
 }
 
+EditTextArea.defaultProps = {
+  value: '',
+  title: 'Edit TextArea',
+  label: 'textarea',
+};
+
 EditTextArea.propTypes = {
-  onClose: React.PropTypes.func.isRequired,
+  value: React.PropTypes.string,
+  title: React.PropTypes.string,
+  label: React.PropTypes.string,
 };

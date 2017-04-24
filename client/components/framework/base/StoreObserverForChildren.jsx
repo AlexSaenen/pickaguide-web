@@ -11,13 +11,13 @@ export class StoreObserverForChildren extends PropsComponent {
 
   componentDidMount() {
     this.stores.forEach((store) => {
-      store.listen(this.onStoreChange);
+      store.listen(this.onStore);
     });
   }
 
   componentWillUnmount() {
     this.stores.forEach((store) => {
-      store.unlisten(this.onStoreChange);
+      store.unlisten(this.onStore);
     });
   }
 }

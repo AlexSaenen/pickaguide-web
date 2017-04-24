@@ -15,9 +15,9 @@ export class Information extends React.Component {
   }
 
   dismiss() {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.active = false;
-    this.setState(stateCopy);
+    const newState = Object.assign({}, this.state);
+    newState.active = false;
+    this.setState(newState);
   }
 
   render() {

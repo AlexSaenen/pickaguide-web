@@ -2,6 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { FormController } from 'base/FormController.jsx';
 import SearchActions from 'actions/Search.js';
 import SearchStore from 'stores/Search.js';
 import { InlineForm } from 'form/InlineForm.jsx';
@@ -12,6 +13,7 @@ import { Information } from 'layout/elements/Information.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { ProfilePreview } from 'layout/user/ProfilePreview.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
+import AdvertsActions from 'actions/Adverts.js';
 
 
 export class Search extends StoreObserver {
@@ -25,33 +27,34 @@ export class Search extends StoreObserver {
       searchTerms: props.params.terms === 'none' ? '' : props.params.terms,
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onStoreChange = this.onStoreChange.bind(this);
+    this.ctrl = new FormController();
+    this.ctrl.attachSubmit(SearchActions.search);
+    this.navigateToAdvert = this.navigateToAdvert.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.searchTerms = nextProps.params.terms === 'none' ? '' : nextProps.params.terms;
-    stateCopy.error = null;
-    this.updateState(stateCopy);
+    const newState = Object.assign({}, this.state);
+    newState.searchTerms = nextProps.params.terms === 'none' ? '' : nextProps.params.terms;
+    newState.error = null;
+    this.updateState(newState);
   }
 
-  handleSubmit(form) {
-    SearchActions.search(form);
-    browserHistory.push(`/search/${encodeURIComponent(form.text)}`);
-  }
-
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
 
     if (store.error) {
-      stateCopy.error = store.error;
+      newState.error = store.error;
     } else {
-      stateCopy.results = store.results;
-      stateCopy.error = null;
+      newState.results = store.results;
+      newState.error = null;
     }
 
-    this.updateState(stateCopy);
+    this.updateState(newState);
+  }
+
+  navigateToAdvert(advertId) {
+    AdvertsActions.find(advertId);
+    browserHistory.push(`/guide/adverts/${advertId}`);
   }
 
   render() {
@@ -79,7 +82,7 @@ export class Search extends StoreObserver {
       return (
         <div>
           <Layout layoutStyle="LayoutBlank">
-            <InlineForm onSubmit={this.handleSubmit} submitLabel="Search">
+            <InlineForm onSubmit={this.ctrl.submit} submitLabel="Search">
               <TextInput className="FormElement" placeholder="Search anything" value={this.state.searchTerms} inline />
             </InlineForm>
 
@@ -95,7 +98,7 @@ export class Search extends StoreObserver {
     return (
       <div>
         <Layout layoutStyle="LayoutBlank">
-          <InlineForm onSubmit={this.handleSubmit} submitLabel="Search">
+          <InlineForm onSubmit={this.ctrl.submit} submitLabel="Search">
             <TextInput className="FormElement" placeholder="Search anything" value={this.state.searchTerms} inline />
           </InlineForm>
         </Layout>
@@ -126,7 +129,13 @@ export class Search extends StoreObserver {
             <PanelList panelStyle="Wide" elementStyle="Tight Clickable">
               {
                 adverts.map((advert, index) => {
-                  return <AdvertPreview {...advert} key={index} />;
+                  return (
+                    <AdvertPreview
+                      {...advert}
+                      key={index}
+                      onClick={this.navigateToAdvert}
+                    />
+                  );
                 })
               }
             </PanelList>

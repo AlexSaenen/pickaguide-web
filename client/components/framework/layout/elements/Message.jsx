@@ -23,11 +23,11 @@ export class Message extends PropsComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.title = nextProps.title;
-    stateCopy.content = nextProps.content;
-    stateCopy.type = nextProps.type;
-    this.updateState(stateCopy);
+    const newState = Object.assign({}, this.state);
+    newState.title = nextProps.title;
+    newState.content = nextProps.content;
+    newState.type = nextProps.type;
+    this.updateState(newState);
   }
 
   dismiss() {

@@ -13,48 +13,33 @@ export class EditPassword extends StoreObserver {
   constructor(props, context) {
     super(props, context, PasswordStore);
 
-    this.onStoreChange = this.onStoreChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.messageCallback = () => {};
+    this.ctrl = props.controller;
+    this.ctrl.attachSubmit(PasswordActions.update);
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
 
     if (store.error) {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Some error occurred when updating your password',
         content: String(store.error),
         type: 'Alert',
       });
     } else {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Successful',
         content: 'Your password has been updated',
         type: 'Success',
       });
     }
 
-    this.setState(stateCopy);
-  }
-
-  handleSubmit(form, submitName, messageCallback) {
-    this.messageCallback = messageCallback;
-
-    if (form.password !== form.passwordConfirmation) {
-      PasswordActions.error('The passwords do not match');
-    } else {
-      if (form.currentPassword === form.password) {
-        PasswordActions.error('Your new password needs to be different');
-      } else {
-        PasswordActions.update(form);
-      }
-    }
+    this.setState(newState);
   }
 
   render() {
     return (
-      <ModalForm {...this.props} layoutStyle="LayoutDark Tight" onSubmit={this.handleSubmit}>
+      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutDark Tight">
         <Title>Update Password</Title>
         <PasswordInput label="currentPassword" placeholder="Current password" required />
         <PasswordInput placeholder="New password" required />

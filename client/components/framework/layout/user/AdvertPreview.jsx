@@ -12,13 +12,13 @@ export class AdvertPreview extends React.Component {
     super(props, context);
 
     this.id = props._id;
-    // this.clickHandler = props.onClick;
-    // this.onClick = this.onClick.bind(this);
+    this.clickHandler = props.onClick;
+    this.onClick = this.onClick.bind(this);
   }
 
-  // onClick() {
-  //   this.clickHandler(this.id);
-  // }
+  onClick() {
+    this.clickHandler(this.id);
+  }
 
   render() {
     return (
@@ -38,7 +38,7 @@ export class AdvertPreview extends React.Component {
 }
 
 AdvertPreview.propTypes = {
-  // onClick: React.PropTypes.func.isRequired,
+  onClick: React.PropTypes.func.isRequired,
   _id: React.PropTypes.string.isRequired,
   title: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,

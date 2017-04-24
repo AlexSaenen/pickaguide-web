@@ -30,18 +30,18 @@ export class SearchBar extends React.Component {
 
   onRouteChange(location) {
     const searchRouteRegex = /^\/search\//;
-    const stateCopy = Object.assign({}, this.state);
+    const newState = Object.assign({}, this.state);
     const matches = searchRouteRegex.exec(location.pathname);
 
-    if (stateCopy.visible && matches) {
-      stateCopy.visible = false;
-    } else if (stateCopy.visible === false && !matches) {
-      stateCopy.visible = true;
+    if (newState.visible && matches) {
+      newState.visible = false;
+    } else if (newState.visible === false && !matches) {
+      newState.visible = true;
     } else {
       return;
     }
 
-    this.setState(stateCopy);
+    this.setState(newState);
   }
 
   handleSubmit(form) {

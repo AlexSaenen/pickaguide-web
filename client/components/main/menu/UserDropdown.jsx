@@ -19,16 +19,15 @@ export class UserDropdown extends StoreObserver {
 
     const profile = ProfileStore.getState().profile || { photoUrl: '' };
     this.state = { url: profile.photoUrl };
-    this.onStoreChange = this.onStoreChange.bind(this);
     AuthActions.sync();
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
 
     if (store.profile) {
-      stateCopy.url = store.profile.photoUrl;
-      this.updateState(stateCopy);
+      newState.url = store.profile.photoUrl;
+      this.updateState(newState);
     }
   }
 
@@ -46,7 +45,6 @@ export class UserDropdown extends StoreObserver {
         </Link>
 
         <div className="Dropdown HeightNone">
-          <Link to="/settings/edit"><p>Settings</p></Link>
           <Link to="/account/edit"><p>Account</p></Link>
           <Link to="/profile/edit"><p>Profile</p></Link>
 

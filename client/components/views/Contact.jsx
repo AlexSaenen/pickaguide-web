@@ -23,14 +23,14 @@ export class Contact extends StoreObserver {
       profile: ProfileStore.getState().profile,
     };
 
-    this.onStoreChange = this.onStoreChange.bind(this);
+    this.onStore = this.onStore.bind(this);
     this.onContact = this.onContact.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.messageCallback = () => {};
   }
 
   onContact(store) {
-    const stateCopy = Object.assign({}, this.state);
+    const newState = Object.assign({}, this.state);
 
     if (store.error) {
       this.messageCallback({
@@ -46,19 +46,19 @@ export class Contact extends StoreObserver {
       });
     }
 
-    this.setState(stateCopy);
+    this.setState(newState);
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
 
     if (store.account) {
-      stateCopy.account = store.account;
+      newState.account = store.account;
     } else if (store.profile) {
-      stateCopy.profile = store.profile;
+      newState.profile = store.profile;
     }
 
-    this.updateState(stateCopy);
+    this.updateState(newState);
   }
 
   handleSubmit(form, submitName, messageCallback) {

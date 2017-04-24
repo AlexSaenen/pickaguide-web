@@ -8,8 +8,6 @@ import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import ProfileStore from 'stores/user/Profile.js';
 import AccountStore from 'stores/user/Account.js';
-// import SearchAccountStore from 'stores/search/Account.js';
-// import SearchProfileStore from 'stores/search/Profile.js';
 import AuthStore from 'stores/user/Auth.js';
 
 
@@ -38,9 +36,9 @@ export class Profile extends PropsComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const stateCopy = Object.assign({}, this.state);
-    this.populateState(nextProps.params.id, stateCopy);
-    this.updateState(stateCopy);
+    const newState = Object.assign({}, this.state);
+    this.populateState(nextProps.params.id, newState);
+    this.updateState(newState);
   }
 
   render() {

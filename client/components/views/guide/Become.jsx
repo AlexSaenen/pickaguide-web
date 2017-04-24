@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { StateComponent } from 'base/StateComponent.jsx';
+import { ModalFormController } from 'base/ModalFormController.jsx';
 import { Guide } from 'modals/Guide.jsx';
 
 
@@ -9,26 +10,13 @@ export class Become extends StateComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-      modalStateGuide: true,
-    };
-
-    this.toggleModalGuide = this.toggleModalGuide.bind(this);
-  }
-
-  toggleModalGuide() {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.modalStateGuide = !this.state.modalStateGuide;
-    this.updateState(stateCopy);
+    this.guideCtrl = new ModalFormController(true);
   }
 
   render() {
     return (
       <div>
-        <Guide
-          active={this.state.modalStateGuide}
-          onClose={this.toggleModalGuide}
-        />
+        <Guide controller={this.guideCtrl} />
       </div>
     );
   }

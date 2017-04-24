@@ -33,10 +33,10 @@ export class Input extends PropsComponent {
     e.preventDefault();
     FormActions.updateValue({ label: e.target.name, value: e.target.value });
 
-    const stateCopy = Object.assign({}, this.state);
+    const newState = Object.assign({}, this.state);
 
-    stateCopy.value = e.target.value;
-    this.updateState(stateCopy);
+    newState.value = e.target.value;
+    this.updateState(newState);
   }
 
   render() {

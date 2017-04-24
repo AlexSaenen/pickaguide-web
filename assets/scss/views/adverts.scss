@@ -1,26 +1,24 @@
 @import "../colors.scss";
 
-.OwnerAdvert {
-  .Title {
-    display: inline-block;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 0.4em;
-    transition-property: all;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-out;
-  }
+.Title.Clickable {
+  display: inline-block;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0.4em;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+}
 
-  .Title:hover {
-    cursor: pointer;
-    border-radius: 0.2em;
-    color: white;
-    background-color: $modalSecondaryColor;
-    -moz-box-shadow: 0 0 4px black;
-    -webkit-box-shadow: 0 0 4px black;
-    box-shadow: 0 0 4px black;
-  }
+.Title.Clickable:hover {
+  cursor: pointer;
+  border-radius: 0.2em;
+  color: white;
+  background-color: $modalSecondaryColor;
+  -moz-box-shadow: 0 0 4px black;
+  -webkit-box-shadow: 0 0 4px black;
+  box-shadow: 0 0 4px black;
 }
 
 .AdvertPreview {

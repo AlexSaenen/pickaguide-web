@@ -16,10 +16,11 @@ export class Form extends PropsComponent {
     super(props, context);
 
     this.state = { layoutStyle: props.layoutStyle, message: this.emptyMessage() };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearMessage = this.clearMessage.bind(this);
     this.displayMessage = this.displayMessage.bind(this);
-    this.setPendingMessage = this.setPendingMessage.bind(this);
+    this.setMessage = this.setMessage.bind(this);
     this.pendingMessage = null;
   }
 
@@ -38,24 +39,25 @@ export class Form extends PropsComponent {
 
   handleSubmit(e) {
     e.preventDefault();
-    const formChildren = Array.from(e.target.children);
-    const submitElement = formChildren.slice(-1).pop();
-    const submitName = submitElement.childNodes[0].value;
-    this.props.onSubmit(FormStore.getState().fields, submitName, this.setPendingMessage);
+    this.props.onSubmit(FormStore.getState().fields, this.setMessage);
   }
 
   emptyMessage() {
     return ({ title: '', content: '', type: '' });
   }
 
-  setPendingMessage(message) {
+  setMessage(message, isPending = true) {
     this.pendingMessage = message;
+
+    if (isPending === false) {
+      this.displayMessage(this.pendingMessage);
+    }
   }
 
   displayMessage(message) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.message = message;
-    this.updateState(stateCopy);
+    const newState = Object.assign({}, this.state);
+    newState.message = message;
+    this.updateState(newState);
   }
 
   clearMessage() {
@@ -63,6 +65,8 @@ export class Form extends PropsComponent {
   }
 
   render() {
+    console.log('Form.render()');
+
     return (
       <Layout layoutStyle={this.state.layoutStyle}>
         <form className="FormWrapper" onSubmit={this.handleSubmit}>

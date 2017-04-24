@@ -2,6 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { ModalFormController } from 'base/ModalFormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { PanelList } from 'view/PanelList.jsx';
@@ -18,21 +19,15 @@ export class Adverts extends StoreObserver {
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
-    this.state = {
-      adverts: AdvertsStore.getState().adverts,
-      adCreationModalState: false,
-    };
-
-    this.toggleCreateAdModal = this.toggleCreateAdModal.bind(this);
+    this.state.adverts = AdvertsStore.getState().adverts;
     this.reviewAdvert = this.reviewAdvert.bind(this);
-    this.onStoreChange = this.onStoreChange.bind(this);
+    this.adCreationCtrl = new ModalFormController();
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.adverts = store.adverts;
-
-    this.updateState(stateCopy);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
+    newState.adverts = store.adverts;
+    this.updateState(newState);
   }
 
   reviewAdvert(advertId) {
@@ -40,20 +35,20 @@ export class Adverts extends StoreObserver {
     browserHistory.push(`/guide/adverts/mine/${advertId}`);
   }
 
-  toggleCreateAdModal() {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.adCreationModalState = !this.state.adCreationModalState;
-    this.updateState(stateCopy);
-  }
-
   render() {
     const adverts = this.state.adverts || [];
 
     return (
       <div>
+        <AdCreation controller={this.adCreationCtrl} />
+
         <Layout layoutStyle="LayoutLight">
           <Title>Adverts</Title>
-          <Button label="New" buttonStyle="Auto Red TextWhite Bold" onCallback={this.toggleCreateAdModal} />
+          <Button
+            label="New"
+            buttonStyle="Auto Red TextWhite Bold"
+            onCallback={this.adCreationCtrl.toggle}
+          />
         </Layout>
 
         {
@@ -75,10 +70,6 @@ export class Adverts extends StoreObserver {
             </Layout>
         }
 
-        <AdCreation
-          active={this.state.adCreationModalState}
-          onClose={this.toggleCreateAdModal}
-        />
       </div>
     );
   }
