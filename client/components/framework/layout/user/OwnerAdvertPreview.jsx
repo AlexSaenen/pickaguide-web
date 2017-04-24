@@ -22,6 +22,11 @@ export class OwnerAdvertPreview extends PropsComponent {
     this.onDelete = this.onDelete.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.id = nextProps._id;
+    super.componentWillReceiveProps(nextProps);
+  }
+
   toggleAdvertState(clickEvent) {
     clickEvent.stopPropagation();
     AdvertsActions.toggle(this.id);

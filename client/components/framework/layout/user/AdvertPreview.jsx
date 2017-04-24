@@ -16,6 +16,10 @@ export class AdvertPreview extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.id = nextProps._id;
+  }
+
   onClick() {
     this.clickHandler(this.id);
   }
