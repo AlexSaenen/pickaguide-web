@@ -12,6 +12,7 @@ export class EditableInterests extends PropsComponent {
     this.state = { interests: props.interests };
     this.removeInterest = this.removeInterest.bind(this);
     this.onAdd = this.onAdd.bind(this);
+    this._handleKeyPress = this._handleKeyPress.bind(this);
   }
 
   removeInterest(index) {
@@ -30,6 +31,13 @@ export class EditableInterests extends PropsComponent {
     this.setState(newState);
   }
 
+  _handleKeyPress(clickEvent) {
+    if (clickEvent.key === 'Enter') {
+      clickEvent.preventDefault();
+      this.onAdd();
+    }
+  }
+
   render() {
     const interests = this.state.interests || [];
 
@@ -42,7 +50,7 @@ export class EditableInterests extends PropsComponent {
             <line strokeWidth="25" x1="200" y1="80" x2="200" y2="320" />
             <line strokeWidth="25" x1="80" y1="200" x2="320" y2="200" />
           </svg>
-          <input placeholder="Any interest" id="interestEditor" />
+          <input placeholder="Any interest" id="interestEditor" onKeyPress={this._handleKeyPress} />
         </div>
 
         {
