@@ -38,7 +38,8 @@ export class OwnerAdvertPreview extends PropsComponent {
 
   onDelete(clickEvent) {
     clickEvent.stopPropagation();
-    AdvertsActions.remove(this.id);
+    this.props.deleter.callerId = this.id;
+    this.props.deleter.toggle(true);
   }
 
   render() {

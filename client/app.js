@@ -15,7 +15,6 @@ import { Become } from 'views/guide/Become.jsx';
 import { Adverts } from 'views/guide/Adverts.jsx';
 import { OwnerAdvert } from 'views/guide/OwnerAdvert.jsx';
 import { Advert } from 'views/guide/Advert.jsx';
-import GuideQuit from 'views/guide/Quit.jsx';
 import About from 'views/About.jsx';
 
 import 'services/Utils.js';
@@ -40,7 +39,6 @@ ReactDOM.render(
       <Route path="guide/adverts" component={Adverts} />
       <Route path="guide/adverts/:id" component={Advert} />
       <Route path="guide/adverts/mine/:id" component={OwnerAdvert} />
-      <Route path="guide/quit" component={GuideQuit} />
     </Route>
   </Router>
 

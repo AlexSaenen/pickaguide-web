@@ -10,6 +10,8 @@ import { OwnerAdvertPreview } from 'layout/user/OwnerAdvertPreview.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { AdCreation } from 'modals/AdCreation.jsx';
+import { QueryModal } from 'modals/QueryModal.jsx';
+import { ModalController } from 'base/ModalController.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
 
@@ -21,6 +23,7 @@ export class Adverts extends StoreObserver {
 
     this.state.adverts = AdvertsStore.getState().adverts;
     this.reviewAdvert = this.reviewAdvert.bind(this);
+    this.deleteAdCtrl = new ModalController();
     this.adCreationCtrl = new ModalFormController();
   }
 
@@ -41,6 +44,15 @@ export class Adverts extends StoreObserver {
     return (
       <div>
         <AdCreation controller={this.adCreationCtrl} />
+        <QueryModal
+          controller={this.deleteAdCtrl}
+          query="Do you really wish to delete this Ad ?"
+          onConfirm={
+            function confirm() {
+              AdvertsActions.remove(this.deleteAdCtrl.callerId);
+            }.bind(this)
+          }
+        />
 
         <Layout layoutStyle="LayoutLight">
           <Title>Adverts</Title>
@@ -58,7 +70,7 @@ export class Adverts extends StoreObserver {
               <PanelList layoutStyle="LayoutLight" panelStyle="Wide" listStyle="ListGrid" elementStyle="Large Tight Clickable">
                 {
                   adverts.map((advert, index) => {
-                    return <OwnerAdvertPreview {...advert} key={index} onClick={this.reviewAdvert} />;
+                    return <OwnerAdvertPreview {...advert} key={index} onClick={this.reviewAdvert} deleter={this.deleteAdCtrl} />;
                   })
                 }
               </PanelList>

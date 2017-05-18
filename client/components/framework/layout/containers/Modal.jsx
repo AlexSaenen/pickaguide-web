@@ -19,6 +19,16 @@ export class Modal extends PropsComponent {
 
   render() {
     let classNames = `Modal ${this.state.modalStyle}`;
+    let modalButtons = this.props.buttons ||
+      (<Button
+        label="Dismiss"
+        buttonStyle="Red"
+        onCallback={
+          function callback() {
+            this.ctrl.close();
+          }.bind(this)
+        }
+      />);
 
     if (this.state.active === false) { classNames += ' Hidden'; }
 
@@ -27,15 +37,7 @@ export class Modal extends PropsComponent {
         <div className="ModalContent">
           {this.props.children}
           <div className="ModalFooter">
-            <Button
-              label="Dismiss"
-              buttonStyle="Red"
-              onCallback={
-                function callback() {
-                  this.ctrl.close();
-                }.bind(this)
-              }
-            />
+            {modalButtons}
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { FeedableModalFormController } from 'base/FeedableModalFormController.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
+import { ModalController } from 'base/ModalController.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { ToggleCheckMark } from 'layout/user/ToggleCheckMark.jsx';
@@ -14,6 +15,7 @@ import { PanelList } from 'view/PanelList.jsx';
 import { EditAdvertCover } from 'modals/EditAdvertCover.jsx';
 import { EditText } from 'modals/EditText.jsx';
 import { EditTextArea } from 'modals/EditTextArea.jsx';
+import { QueryModal } from 'modals/QueryModal.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
 
@@ -33,6 +35,7 @@ export class OwnerAdvert extends StoreObserver {
     this.textEditorCtrl = new FeedableModalFormController();
     this.areaEditorCtrl = new ModalFormController();
     this.coverEditorCtrl = new ModalFormController();
+    this.deleteCtrl = new ModalController();
     this.textEditorCtrl.attachSubmit(this.onUpdate);
     this.areaEditorCtrl.attachSubmit(this.onUpdate);
     this.coverEditorCtrl.attachSubmit(this.onUpdate);
@@ -74,6 +77,12 @@ export class OwnerAdvert extends StoreObserver {
 
     return (
       <div className="OwnerAdvert">
+        <QueryModal
+          controller={this.deleteCtrl}
+          query="Do you really wish to delete this Ad ?"
+          onConfirm={this.onDelete}
+        />
+
         <Layout layoutStyle="LayoutLight">
           <hr className="Overlay" />
 
@@ -90,7 +99,7 @@ export class OwnerAdvert extends StoreObserver {
 
           <div>
             <Button label="Back" buttonStyle="Auto TextWhite Bold Spaced" onCallback={browserHistory.goBack} />
-            <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.onDelete} />
+            <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.deleteCtrl.toggle} />
           </div>
 
           <PanelList listStyle="ListGrid" wrapChildren={false}>
