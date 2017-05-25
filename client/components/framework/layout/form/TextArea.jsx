@@ -2,6 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import FormActions from 'actions/CurrentForm.js';
+import FormStore from 'stores/CurrentForm.js';
 
 import 'scss/framework/form.scss';
 
@@ -44,6 +45,12 @@ export class TextArea extends PropsComponent {
       placeholder: this.state.placeholder.capitalize(),
       onChange: this.handleEdit,
     };
+
+    const savedFields = FormStore.getState().fields;
+
+    if (props.value === '' && savedFields[this.state.id]) {
+      props.value = savedFields[this.state.id];
+    }
 
     if (this.state.required) {
       props.required = 'required';
