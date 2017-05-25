@@ -12,6 +12,9 @@ import AccountStore from 'stores/user/Account.js';
 import ProfileStore from 'stores/user/Profile.js';
 import ContactStore from 'stores/user/Contact.js';
 import LocalizedStrings from 'react-localization';
+import Languages from './languages.js';
+
+// let string = new LocalizedStrings(Languages);
  
 let strings = new LocalizedStrings({
  en:{
