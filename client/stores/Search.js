@@ -9,13 +9,16 @@ class SearchStore {
 
   constructor() {
     this.error = null;
-    this.results = [];
+    this.results = {};
     this.bindActions(SearchActions);
   }
 
   onSearch(form) {
-    SearchApi.search(form);
-    browserHistory.push(`/search/${encodeURIComponent(form.text)}`);
+    if (form.text && form.text.length > 0) {
+      SearchApi.search(form);
+      browserHistory.push(`/search/${encodeURIComponent(form.text)}`);
+    }
+
     return false;
   }
 
@@ -26,7 +29,7 @@ class SearchStore {
 
   onError(error) {
     this.error = error;
-    this.results = [];
+    this.results = {};
   }
 }
 

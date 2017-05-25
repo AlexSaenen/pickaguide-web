@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 
 import AuthActions from 'actions/Auth.js';
 import ProfileStore from 'stores/user/Profile.js';
-import AuthStore from 'stores/user/Auth.js';
 import { AuthDependent } from 'base/AuthDependent.jsx';
 import { GuideDependent } from 'base/GuideDependent.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
@@ -36,21 +35,15 @@ export class UserDropdown extends StoreObserver {
   }
 
   render() {
-    let profileLink = '';
-
-    if (AuthStore.getState().credentials) {
-      profileLink = `/profiles/${AuthStore.getState().credentials.id}`;
-    }
-
     return (
       <AuthDependent className="AccountLogo" {...this.props}>
-        <Link to={profileLink}>
+        <Link to="/profiles/mine">
           <img src={this.state.url} alt="Profile" />
         </Link>
 
         <div className="Dropdown HeightNone">
-          <Link to="/account/edit"><p>Account</p></Link>
-          <Link to="/profile/edit"><p>Profile</p></Link>
+          <Link to="/accounts/mine/edit"><p>Account</p></Link>
+          <Link to="/profiles/mine/edit"><p>Profile</p></Link>
 
           <GuideDependent guide>
             <Link to="/guide/adverts"><p>Adverts</p></Link>

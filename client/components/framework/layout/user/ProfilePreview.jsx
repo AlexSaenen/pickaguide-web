@@ -12,18 +12,17 @@ export class ProfilePreview extends React.Component {
     super(props, context);
 
     this.id = props._id;
-    // this.clickHandler = props.onClick;
-    // this.onClick = this.onClick.bind(this);
+    this.clickHandler = props.onClick;
+    this.onClick = this.onClick.bind(this);
   }
 
-  // onClick() {
-  //   this.clickHandler(this.id);
-  // }
+  onClick() {
+    this.clickHandler(this.id);
+  }
 
   render() {
-    // <div onClick={this.onClick} className="AdvertPreview">
     return (
-      <div className="ProfilePreview">
+      <div onClick={this.onClick} className="ProfilePreview">
         <Picture url={this.props.photoUrl} pictureType="HeightLimited" />
         <div className="DescriptionSection">
           <div>
@@ -46,7 +45,7 @@ ProfilePreview.defaultProps = {
 
 ProfilePreview.propTypes = {
   _id: React.PropTypes.string.isRequired,
-  // onClick: React.PropTypes.func.isRequired,
+  onClick: React.PropTypes.func.isRequired,
   displayName: React.PropTypes.string.isRequired,
   country: React.PropTypes.string,
   city: React.PropTypes.string,

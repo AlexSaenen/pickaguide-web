@@ -45,8 +45,10 @@ export class SearchBar extends React.Component {
   }
 
   handleSubmit(form) {
-    SearchActions.search(form);
-    browserHistory.push(`/search/${encodeURIComponent(form.text)}`);
+    if (form.text && form.text.length > 0) {
+      SearchActions.search(form);
+      browserHistory.push(`/search/${encodeURIComponent(form.text)}`);
+    }
   }
 
   render() {

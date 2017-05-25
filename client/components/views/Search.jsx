@@ -30,6 +30,7 @@ export class Search extends StoreObserver {
     this.ctrl = new FormController();
     this.ctrl.attachSubmit(SearchActions.search);
     this.navigateToAdvert = this.navigateToAdvert.bind(this);
+    this.navigateToProfile = this.navigateToProfile.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,6 +58,15 @@ export class Search extends StoreObserver {
     browserHistory.push(`/guide/adverts/${advertId}`);
   }
 
+  navigateToProfile(profileId) {
+    if (this.state.results !== undefined) {
+      const profileIndex = this.state.results.ids.indexOf(profileId);
+      if (profileIndex !== -1) {
+        browserHistory.push(`/profiles/${profileId}`);
+      }
+    }
+  }
+
   render() {
     const results = this.state.results;
     const profiles = results.profiles || [];
@@ -67,7 +77,7 @@ export class Search extends StoreObserver {
     if (this.state.error) {
       const message = {
         title: 'Something unusual happened',
-        content: this.state.error,
+        content: String(this.state.error),
         type: 'Alert',
       };
 
@@ -114,6 +124,7 @@ export class Search extends StoreObserver {
                       _id={ids[index]}
                       isConfirmed={areConfirmed[index]}
                       key={index}
+                      onClick={this.navigateToProfile}
                     />
                   );
                 })

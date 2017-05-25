@@ -6,29 +6,29 @@ import { CheckMark } from 'layout/elements/CheckMark.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
-import SearchStore from 'stores/Search.js';
+import ProfileStore from 'stores/user/Profile.js';
+import AccountStore from 'stores/user/Account.js';
+import AuthStore from 'stores/user/Auth.js';
 
 
-export class Profile extends StateComponent {
+export class OwnerProfile extends StateComponent {
 
   constructor(props, context) {
     super(props, context);
 
     this.populateState = this.populateState.bind(this);
-    this.id = this.props.params.id;
     this.populateState(this.state);
   }
 
   populateState(nextState) {
-    const storeState = SearchStore.getState().results;
+    const userCredentials = AuthStore.getState().credentials;
 
-    if (storeState.ids !== undefined) {
-      const profileIndex = storeState.ids.indexOf(this.id);
-
-      if (profileIndex !== -1) {
-        nextState.profile = storeState.profiles[profileIndex];
-        nextState.isConfirmed = storeState.areConfirmed[profileIndex];
-      }
+    if (userCredentials) {
+      nextState.profile = ProfileStore.getState().profile;
+      nextState.isConfirmed = AccountStore.getState().isConfirmed;
+    } else {
+      nextState.profile = undefined;
+      nextState.isConfirmed = false;
     }
   }
 
@@ -42,8 +42,7 @@ export class Profile extends StateComponent {
     }
 
     const birthDate = new Date(profile.birthdate);
-    const name = profile.displayName;
-    // const name = `${profile.firstName} ${profile.lastName}`;
+    const name = `${profile.firstName} ${profile.lastName}`;
 
     return (
       <PanelLayout layoutStyle="LayoutLight Tight">
@@ -77,6 +76,6 @@ export class Profile extends StateComponent {
   }
 }
 
-Profile.propTypes = {
+OwnerProfile.propTypes = {
   params: React.PropTypes.object,
 };
