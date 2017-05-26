@@ -4,8 +4,6 @@ import { SubmitButton } from 'form/SubmitButton.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
-import FormStore from 'stores/CurrentForm.js';
-import FormActions from 'actions/CurrentForm.js';
 
 import 'scss/framework/form.scss';
 
@@ -24,10 +22,6 @@ export class Form extends PropsComponent {
     this.pendingMessage = null;
   }
 
-  componentWillUnmount() {
-    FormActions.flush.defer();
-  }
-
   componentWillReceiveProps(props) {
     if (this.pendingMessage) {
       this.displayMessage(this.pendingMessage);
@@ -39,7 +33,16 @@ export class Form extends PropsComponent {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit(FormStore.getState().fields, this.setMessage);
+    const inputs = e.target.querySelectorAll('input, textarea');
+    const fields = {};
+
+    inputs.forEach((el, index) => {
+      if (index < inputs.length - 1) {
+        fields[el.name] = el.value;
+      }
+    });
+
+    this.props.onSubmit(fields, this.setMessage);
   }
 
   emptyMessage() {

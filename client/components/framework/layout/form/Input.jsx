@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import FormActions from 'actions/CurrentForm.js';
-import FormStore from 'stores/CurrentForm.js';
 
 import 'scss/framework/form.scss';
 
@@ -21,23 +19,26 @@ export class Input extends PropsComponent {
       required: props.required,
       inline: props.inline,
       className: props.className,
+      defaultValue: props.defaultValue,
+      min: props.min,
+      max: props.max,
+      step: props.step,
     };
-
-    if (this.state.value && this.state.value !== '') {
-      FormActions.updateValue({ label: this.state.label, value: this.state.value });
-    }
 
     this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleEdit(e) {
     e.preventDefault();
-    FormActions.updateValue({ label: e.target.name, value: e.target.value });
 
     const newState = Object.assign({}, this.state);
-
     newState.value = e.target.value;
     this.updateState(newState);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.cache = this.state.value;
+    super.componentWillReceiveProps(nextProps);
   }
 
   render() {
@@ -45,19 +46,25 @@ export class Input extends PropsComponent {
       type: this.state.type,
       name: this.state.label,
       id: this.state.label,
-      value: this.state.value,
+      value: this.cache || this.state.value,
       placeholder: this.state.placeholder.capitalize(),
       onChange: this.handleEdit,
     };
 
-    const savedFields = FormStore.getState().fields;
-
-    if (props.value === '' && savedFields[this.state.id]) {
-      props.value = savedFields[this.state.id];
-    }
+    this.cache = null;
 
     if (this.state.required) {
       props.required = 'required';
+    }
+
+    ['min', 'max', 'step', 'defaultValue'].forEach((field) => {
+      if (this.state[field] !== undefined) {
+        props[field] = this.state[field];
+      }
+    });
+
+    if (props.defaultValue !== undefined && props.value === '') {
+      delete props.value;
     }
 
     return (
@@ -83,6 +90,9 @@ Input.propTypes = {
   label: React.PropTypes.string,
   id: React.PropTypes.string,
   value: React.PropTypes.string,
+  max: React.PropTypes.number,
+  min: React.PropTypes.number,
+  step: React.PropTypes.number,
   placeholder: React.PropTypes.string,
   required: React.PropTypes.bool,
   inline: React.PropTypes.bool,

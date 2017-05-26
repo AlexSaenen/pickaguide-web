@@ -36,13 +36,21 @@
     cursor: pointer;
   }
 
-  input[type="email"], input[type="password"], input[type="text"], input[type="tel"], textarea {
+  input[type="email"], input[type="password"], input[type="text"], input[type="tel"], input[type="number"], input[type="datetime-local"], textarea {
     width: 20em;
     max-width: 100%;
     background-color: rgba(0, 0, 0, 0);
     border: 0;
     border-bottom: 1px dashed $highlightColor;
     z-index: 1;
+  }
+
+  input[type="number"] {
+    width: 4em;
+  }
+
+  input[type="datetime-local"] {
+    width: 14em;
   }
 
   textarea {

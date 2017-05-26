@@ -1,13 +1,15 @@
 import React from 'react';
-// import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { ModalFormController } from 'base/ModalFormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { CheckMark } from 'layout/elements/CheckMark.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Panel } from 'layout/containers/Panel.jsx';
+import { VisitCreation } from 'modals/VisitCreation.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 
 import 'scss/views/adverts.scss';
@@ -19,6 +21,7 @@ export class Advert extends StoreObserver {
     super(props, context, AdvertsStore);
 
     this.state = { advert: AdvertsStore.getState().specificAdvert };
+    this.visitCreationCtrl = new ModalFormController();
   }
 
   onStore(store) {
@@ -38,6 +41,7 @@ export class Advert extends StoreObserver {
 
     return (
       <div className="Advert">
+        <VisitCreation controller={this.visitCreationCtrl} advertId={advert._id} />
         <Layout layoutStyle="LayoutLight">
           <hr className="Overlay" />
 
@@ -54,6 +58,14 @@ export class Advert extends StoreObserver {
           <Panel panelStyle="NoWrap">
             <Picture pictureName="Advert Cover" pictureType="WidthLimited" url={advert.photoUrl} />
           </Panel>
+
+          <hr className="SpacedDivider" />
+
+          <Button
+            label="Ask a visit"
+            buttonStyle="Auto Blue"
+            onCallback={this.visitCreationCtrl.toggle}
+          />
         </Layout>
       </div>
     );

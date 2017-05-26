@@ -2,7 +2,6 @@ import React from 'react';
 
 import { SubmitButton } from 'form/SubmitButton.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import FormStore from 'stores/CurrentForm.js';
 
 import 'scss/framework/form.scss';
 
@@ -18,7 +17,16 @@ export class InlineForm extends PropsComponent {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.state.onSubmit(FormStore.getState().fields);
+    const inputs = e.target.querySelectorAll('input, textarea');
+    const fields = {};
+
+    inputs.forEach((el, index) => {
+      if (index < inputs.length - 1) {
+        fields[el.name] = el.value;
+      }
+    });
+
+    this.state.onSubmit(fields);
   }
 
   render() {
