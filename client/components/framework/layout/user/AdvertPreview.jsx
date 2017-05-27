@@ -32,7 +32,10 @@ export class AdvertPreview extends React.Component {
           <div>
             <CheckMark active={this.props.active} />
             <p className="Medium Bold Inline">{this.props.title}</p>
-            <p className="Bold Inline LineSpaced">priced {this.props.hourlyPrice}</p>
+            <p className="Inline Italic">priced</p>
+            <p className="Bold Inline">{this.props.hourlyPrice}</p>
+            <p className="Inline Italic">by</p>
+            <p className="Bold Inline LineSpaced">{this.props.owner}</p>
           </div>
           <p className="ExtraSmall OverflowHidden MultiLineTextOverflow">{this.props.description}</p>
         </div>
