@@ -22,7 +22,6 @@ export class VisitCreation extends StoreObserver {
   }
 
   onStore(store) {
-    store.error = 'failed';
     if (store.error) {
       this.ctrl.messageCallback({
         title: 'Some error occurred when requesting your visit',

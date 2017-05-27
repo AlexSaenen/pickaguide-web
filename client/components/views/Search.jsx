@@ -114,7 +114,7 @@ export class Search extends StoreObserver {
         </Layout>
 
         {
-          profiles.length > 0 ?
+          profiles.length > 0 &&
             <PanelList panelStyle="Wide LessSpaced" elementStyle="Tight Clickable">
               {
                 profiles.map((profile, index) => {
@@ -130,13 +130,9 @@ export class Search extends StoreObserver {
                 })
               }
             </PanelList>
-          :
-            <Layout layoutStyle="LayoutBlank NoWrap">
-              <Information infoStyle="Info Small MarginAuto">No such profiles found :(</Information>
-            </Layout>
         }
         {
-          adverts.length > 0 ?
+          adverts.length > 0 &&
             <PanelList panelStyle="Wide" elementStyle="Tight Clickable">
               {
                 adverts.map((advert, index) => {
@@ -150,10 +146,6 @@ export class Search extends StoreObserver {
                 })
               }
             </PanelList>
-          :
-            <Layout layoutStyle="LayoutBlank">
-              <Information infoStyle="Info Small MarginAuto LineSpaced">No such visits found :(</Information>
-            </Layout>
         }
       </div>
     );
