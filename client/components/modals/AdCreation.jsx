@@ -68,7 +68,6 @@ export class AdCreation extends StoreObserver {
           <hr className="SpacedOverlay" />
 
           <TextInput label="title" value={advert.title} required />
-          <TextInput label="hourlyPrice" value={advert.hourlyPrice} placeholder="Hourly price" required />
           <TextArea label="description" value={advert.description} required />
         </ModalForm>
 

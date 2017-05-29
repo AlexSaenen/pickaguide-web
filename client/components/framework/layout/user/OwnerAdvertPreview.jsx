@@ -48,7 +48,6 @@ export class OwnerAdvertPreview extends PropsComponent {
         <DeleteAction onClick={this.onDelete} />
         <Picture url={this.props.photoUrl} pictureType="WidthLimited" />
         <ToggleCheckMark className="Inline" active={this.state.active} onToggle={this.toggleAdvertState} />
-        <p className="Bold Inline Vertical Spaced">{this.props.hourlyPrice}</p>
         <p className="Medium Bold">{this.props.title}</p>
         <p className="Spaced OverflowHidden TextOverflow LineSpaced">{this.props.description}</p>
       </div>
@@ -60,7 +59,6 @@ OwnerAdvertPreview.propTypes = {
   onClick: React.PropTypes.func.isRequired,
   title: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
-  hourlyPrice: React.PropTypes.string.isRequired,
   photoUrl: React.PropTypes.string.isRequired,
   active: React.PropTypes.bool.isRequired,
 };

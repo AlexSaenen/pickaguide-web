@@ -49,7 +49,6 @@ export class Advert extends StoreObserver {
           <p className="Small Italic">by {advert.owner.displayName}</p>
           <div className="LineContainer Small">
             <CheckMark active={advert.active} />
-            <p className="Spaced Small Italic Bold Inline">for {advert.hourlyPrice}</p>
           </div>
           <Text>{advert.description}</Text>
 

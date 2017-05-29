@@ -57,7 +57,7 @@ export class UserDropdown extends StoreObserver {
 
         <QueryModal
           controller={this.ctrl}
-          query="Do you really wish to retire from being a guide ?"
+          query="Do you really wish to retire from being a guide? All your adverts will be deactivated and ongoing visits cancelled"
           onConfirm={UserActions.retire}
         />
       </AuthDependent>

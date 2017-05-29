@@ -32,8 +32,6 @@ export class AdvertPreview extends React.Component {
           <div>
             <CheckMark active={this.props.active} />
             <p className="Medium Bold Inline">{this.props.title}</p>
-            <p className="Inline Italic">priced</p>
-            <p className="Bold Inline">{this.props.hourlyPrice}</p>
             <p className="Inline Italic">by</p>
             <p className="Bold Inline LineSpaced">{this.props.owner}</p>
           </div>
@@ -49,7 +47,6 @@ AdvertPreview.propTypes = {
   _id: React.PropTypes.string.isRequired,
   title: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
-  hourlyPrice: React.PropTypes.string.isRequired,
   photoUrl: React.PropTypes.string.isRequired,
   owner: React.PropTypes.string.isRequired,
   active: React.PropTypes.bool.isRequired,

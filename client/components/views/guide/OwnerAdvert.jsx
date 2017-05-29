@@ -107,18 +107,6 @@ export class OwnerAdvert extends StoreObserver {
               <p className="Spaced OverflowHidden TextOverflow">{advert.description}</p>
             </Element>
 
-            <Element
-              elementStyle="Small Clickable"
-              onClick={
-                function click() {
-                  this.textEditorCtrl.feed({ label: 'hourlyPrice', title: 'Edit advert\'s hourly price', value: advert.hourlyPrice });
-                  this.textEditorCtrl.toggle(true);
-                }.bind(this)
-              }
-            >
-              <p className="Bold Inline Vertical">{advert.hourlyPrice}</p>
-            </Element>
-
             <Element elementStyle="Auto Tight Clickable">
               <ToggleCheckMark transition={false} active={advert.active} onToggle={this.onToggle} />
             </Element>
