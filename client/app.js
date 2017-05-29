@@ -30,8 +30,8 @@ ReactDOM.render(
       <IndexRoute component={Home} />
       <Route path="signup" component={Signup} />
       <Route path="login" component={Login} />
-      <Route path="profiles/:id" component={Profile} />
       <Route path="profiles/mine" component={OwnerProfile} />
+      <Route path="profiles/:id" component={Profile} />
       <Route path="profiles/mine/edit" component={EditProfile} />
       <Route path="accounts/mine/edit" component={EditAccount} />
       <Route path="contact-us" component={Contact} />

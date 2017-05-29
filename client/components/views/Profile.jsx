@@ -43,7 +43,6 @@ export class Profile extends StateComponent {
 
     const birthDate = new Date(profile.birthdate);
     const name = profile.displayName;
-    // const name = `${profile.firstName} ${profile.lastName}`;
 
     return (
       <PanelLayout layoutStyle="LayoutLight Tight">
