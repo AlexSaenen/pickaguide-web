@@ -36,7 +36,8 @@
     cursor: pointer;
   }
 
-  input[type="email"], input[type="password"], input[type="text"], input[type="tel"], input[type="number"], input[type="datetime-local"], textarea {
+  input[type="email"], input[type="password"], input[type="text"], input[type="tel"],
+  input[type="number"], input[type="datetime-local"], input[type="date"], textarea {
     width: 20em;
     max-width: 100%;
     background-color: rgba(0, 0, 0, 0);
@@ -49,8 +50,17 @@
     width: 4em;
   }
 
+  input[type="file"] {
+    max-width: 100%;
+    width: 11.3em;
+  }
+
   input[type="datetime-local"] {
     width: 14em;
+  }
+
+  input[type="date"] {
+    width: 9em;
   }
 
   textarea {

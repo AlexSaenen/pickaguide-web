@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import AuthActions from 'actions/Auth.js';
-import ProfileStore from 'stores/user/Profile.js';
+import AvatarStore from 'stores/user/Avatar.js';
 import { AuthDependent } from 'base/AuthDependent.jsx';
 import { GuideDependent } from 'base/GuideDependent.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
@@ -17,10 +17,9 @@ import 'scss/main/menu/main.scss';
 export class UserDropdown extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, ProfileStore);
+    super(props, context, AvatarStore);
 
-    const profile = ProfileStore.getState().profile || { photoUrl: '' };
-    this.state = { url: profile.photoUrl };
+    this.state = { src: AvatarStore.getState().avatar };
     this.ctrl = new ModalController();
     AuthActions.sync();
   }
@@ -28,8 +27,8 @@ export class UserDropdown extends StoreObserver {
   onStore(store) {
     const newState = Object.assign({}, this.state);
 
-    if (store.profile) {
-      newState.url = store.profile.photoUrl;
+    if (store.avatar) {
+      newState.src = store.avatar;
       this.updateState(newState);
     }
   }
@@ -38,7 +37,7 @@ export class UserDropdown extends StoreObserver {
     return (
       <AuthDependent className="AccountLogo" {...this.props}>
         <Link to="/profiles/mine">
-          <img src={this.state.url} alt="Profile" />
+          <img src={this.state.src} alt="Profile" />
         </Link>
 
         <div className="Dropdown HeightNone">

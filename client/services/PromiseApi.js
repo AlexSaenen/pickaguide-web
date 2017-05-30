@@ -65,6 +65,46 @@ export default class PromiseApi {
     });
   }
 
+  static upload(url, body) {
+    return new Promise((resolve, reject) => {
+      const requestBuilder = request
+        .post(`${config.apiUrl}${url}`, body)
+        .set('Accept', 'application/json');
+
+      if (this.token) { requestBuilder.set('Authorization', `Bearer ${this.token}`); }
+
+      PromiseApi._handleResponse(requestBuilder, { resolve, reject });
+    });
+  }
+
+  static download(url) {
+    return new Promise((resolve, reject) => {
+      const req = new XMLHttpRequest();
+
+      const callback = () => {
+        if (req.status === 200) {
+          const blob = new Blob([req.response], { type: 'image/jpeg' });
+          const reader = new FileReader();
+          reader.onload = (dataLoad) => {
+            resolve(dataLoad.target.result);
+          };
+
+          reader.readAsDataURL(blob);
+        } else {
+          reject('Download failed');
+        }
+      };
+
+      req.addEventListener('load', callback);
+      req.open('GET', `${config.apiUrl}${url}`, true);
+
+      if (this.token) { req.setRequestHeader('Authorization', `Bearer ${this.token}`); }
+
+      req.responseType = 'arraybuffer';
+      req.send(null);
+    });
+  }
+
   static put(url, body) {
     return new Promise((resolve, reject) => {
       const requestBuilder = request

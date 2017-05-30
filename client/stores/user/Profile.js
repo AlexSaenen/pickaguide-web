@@ -3,6 +3,24 @@ import ProfileActions from 'actions/Profile.js';
 import ProfileApi from 'services/Profile.js';
 
 
+const formatProfile = (profile) => {
+  const formattedProfile = profile;
+  formattedProfile.pseudo = `${profile.firstName.substring(0, 6)}${profile.lastName.charAt(0)}`;
+  let birthdate = formattedProfile.birthdate;
+
+  if (birthdate) {
+    birthdate = new Date(birthdate);
+    let mm = birthdate.getMonth();
+    if (mm < 10) { mm = `0${mm}`; }
+    let dd = birthdate.getDate();
+    if (dd < 10) { dd = `0${dd}`; }
+
+    formattedProfile.birthdate = `${birthdate.getFullYear()}-${mm}-${dd}`;
+  }
+
+  return formattedProfile;
+};
+
 class ProfileStore {
 
   constructor() {
@@ -18,8 +36,7 @@ class ProfileStore {
 
   onGetSuccess(profile) {
     this.error = null;
-    this.profile = profile;
-    this.profile.pseudo = `${profile.firstName.substring(0, 6)}${profile.lastName.charAt(0)}`;
+    this.profile = formatProfile(profile);
   }
 
   onError(error) {
@@ -33,8 +50,7 @@ class ProfileStore {
 
   onUpdateSuccess(user) {
     this.error = null;
-    this.profile = user.profile;
-    this.profile.pseudo = `${user.profile.firstName.substring(0, 6)}${user.profile.lastName.charAt(0)}`;
+    this.profile = formatProfile(user.profile);
   }
 
   onInvalidateProfile() {

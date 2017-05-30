@@ -1,18 +1,18 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { LinkModal } from 'modals/LinkModal.jsx';
-import ProfileActions from 'actions/Profile.js';
-import ProfileStore from 'stores/user/Profile.js';
+import { FileModal } from 'modals/FileModal.jsx';
+import AvatarActions from 'actions/Avatar.js';
+import AvatarStore from 'stores/user/Avatar.js';
 
 
 export class EditPicture extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, ProfileStore);
+    super(props, context, AvatarStore);
 
     this.ctrl = props.controller;
-    this.ctrl.attachSubmit(ProfileActions.update);
+    this.ctrl.attachSubmit(AvatarActions.update);
   }
 
   onStore(store) {
@@ -37,12 +37,12 @@ export class EditPicture extends StoreObserver {
 
   render() {
     return (
-      <LinkModal
+      <FileModal
         {...this.props}
         layoutStyle="LayoutDark Tight"
         title="Edit Profile Picture"
-        inputHolder="New URL"
-        inputLabel="photoUrl"
+        inputHolder="New Picture"
+        inputLabel="picture"
       />
     );
   }

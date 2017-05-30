@@ -2,6 +2,7 @@ import React from 'react';
 
 import { PanelForm } from 'view/PanelForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
+import { DateInput, nowToInput } from 'form/DateInput.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { FormController } from 'base/FormController.jsx';
@@ -12,14 +13,19 @@ import { EditableInterests } from 'layout/user/EditableInterests.jsx';
 import { EditPicture } from 'modals/EditPicture.jsx';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/user/Profile.js';
+import AvatarStore from 'stores/user/Avatar.js';
 
 
 export class EditProfile extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, ProfileStore);
+    super(props, context, [ProfileStore, AvatarStore]);
 
-    this.state = { profile: ProfileStore.getState().profile };
+    this.state = {
+      profile: ProfileStore.getState().profile,
+      avatar: AvatarStore.getState().avatar
+    };
+
     this.ctrl = new FormController();
     this.ctrl.attachSubmit(this.onSubmit.bind(this));
     this.editPictureCtrl = new ModalFormController();
@@ -27,7 +33,6 @@ export class EditProfile extends StoreObserver {
 
   onStore(store) {
     const newState = Object.assign({}, this.state);
-    newState.profile = store.profile;
 
     if (store.error) {
       this.ctrl.messageCallback({
@@ -36,6 +41,12 @@ export class EditProfile extends StoreObserver {
         type: 'Alert',
       });
     } else {
+      if (store.profile) {
+        newState.profile = store.profile;
+      } else {
+        newState.avatar = store.avatar;
+      }
+
       this.ctrl.messageCallback({
         title: 'Successful',
         content: 'Your informations have been updated',
@@ -47,18 +58,20 @@ export class EditProfile extends StoreObserver {
   }
 
   onSubmit(form) {
+    console.log(form);
     form.interests = this.state.profile.interests;
     ProfileActions.update(form);
   }
 
   render() {
     const profile = this.state.profile || { interests: [] };
+    const avatar = this.state.avatar;
 
     return (
       <div>
         <PanelForm controller={this.ctrl} submitLabel="Save">
           <Title>Update your profile</Title>
-          <ClickablePicture url={profile.photoUrl} onClick={this.editPictureCtrl.toggle} />
+          <ClickablePicture url={avatar} onClick={this.editPictureCtrl.toggle} />
 
           <hr className="SpacedOverlay" />
 
@@ -67,6 +80,7 @@ export class EditProfile extends StoreObserver {
 
           <hr className="SpacedDivider" />
 
+          <DateInput value={profile.birthdate} label="birthdate" max={Date.now()} defaultValue={nowToInput()} />
           <TextInput value={profile.phone} label="phone" />
           <TextInput value={profile.city} label="city" />
           <TextInput value={profile.country} label="country" />

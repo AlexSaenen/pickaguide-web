@@ -38,7 +38,11 @@ export class Form extends PropsComponent {
 
     inputs.forEach((el, index) => {
       if (index < inputs.length - 1) {
-        fields[el.name] = el.value;
+        if (el.type === 'file') {
+          fields[el.name] = el.files[0];
+        } else {
+          fields[el.name] = el.value;
+        }
       }
     });
 

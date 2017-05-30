@@ -6,6 +6,7 @@ import ProfileActions from 'actions/Profile.js';
 import UserActions from 'actions/User.js';
 import AccountActions from 'actions/Account.js';
 import AdvertsActions from 'actions/Adverts.js';
+import AvatarActions from 'actions/Avatar.js';
 import AuthApi from 'services/Auth.js';
 import CookieApi from 'services/Cookie.js';
 
@@ -33,6 +34,7 @@ class AuthStore {
       AccountActions.get.defer();
       AccountActions.isConfirmed.defer(this.credentials.id);
       AdvertsActions.get.defer(this.credentials.id);
+      AvatarActions.get.defer(this.credentials.id);
     }
 
     return false;
@@ -58,6 +60,7 @@ class AuthStore {
     ProfileActions.invalidateProfile.defer();
     AccountActions.invalidateAccount.defer();
     AdvertsActions.invalidateAdverts.defer();
+    AvatarActions.invalidateAvatar.defer();
     AuthApi.logout();
     this.credentials = null;
   }

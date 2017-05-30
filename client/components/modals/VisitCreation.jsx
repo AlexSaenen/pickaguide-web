@@ -5,7 +5,7 @@ import { ModalForm } from 'view/ModalForm.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { NumInput } from 'form/NumInput.jsx';
-import { DateInput, nowToInput } from 'form/DateInput.jsx';
+import { DateTimeInput, nowToInput } from 'form/DateTimeInput.jsx';
 import VisitsStore from 'stores/user/Visits.js';
 import VisitsActions from 'actions/Visits.js';
 
@@ -51,7 +51,7 @@ export class VisitCreation extends StoreObserver {
           <Title>Request visit</Title>
           <hr className="SpacedOverlay" />
           <NumInput label="numberVisitors" min={1} max={100} step={1} placeholder="Visitors" required />
-          <DateInput label="when" min={Date.now()} defaultValue={nowToInput()} required />
+          <DateTimeInput label="when" min={Date.now()} defaultValue={nowToInput()} required />
           <TextArea label="special" placeholder="More information" />
         </ModalForm>
       </div>
