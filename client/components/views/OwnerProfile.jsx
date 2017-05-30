@@ -7,6 +7,7 @@ import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import ProfileStore from 'stores/user/Profile.js';
+import AvatarStore from 'stores/user/Avatar.js';
 import AccountStore from 'stores/user/Account.js';
 import AuthStore from 'stores/user/Auth.js';
 
@@ -25,9 +26,11 @@ export class OwnerProfile extends StateComponent {
 
     if (userCredentials) {
       nextState.profile = ProfileStore.getState().profile;
+      nextState.avatar = AvatarStore.getState().avatar;
       nextState.isConfirmed = AccountStore.getState().isConfirmed;
     } else {
       nextState.profile = undefined;
+      nextState.avatar = AvatarStore.getState().avatar;
       nextState.isConfirmed = false;
     }
   }
@@ -47,7 +50,7 @@ export class OwnerProfile extends StateComponent {
     return (
       <PanelLayout layoutStyle="LayoutLight Tight">
         <div className="LayoutHeader">
-          <div className="HeaderPicture Inline-Block"><Picture url={profile.photoUrl} pictureName="Profile" /></div>
+          <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" /></div>
           <p className="HeaderText Title Inline-Block" >{name}</p>
           <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
         </div>

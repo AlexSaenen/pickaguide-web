@@ -23,7 +23,7 @@ export class ProfilePreview extends React.Component {
   render() {
     return (
       <div onClick={this.onClick} className="ProfilePreview">
-        <Picture url={this.props.photoUrl} pictureType="HeightLimited" />
+        <Picture url={this.props.avatar} pictureType="HeightLimited" />
         <div className="DescriptionSection">
           <div>
             <CheckMark active={this.props.isConfirmed} />
@@ -50,6 +50,6 @@ ProfilePreview.propTypes = {
   country: React.PropTypes.string,
   city: React.PropTypes.string,
   description: React.PropTypes.string.isRequired,
-  photoUrl: React.PropTypes.string.isRequired,
+  avatar: React.PropTypes.string.isRequired,
   isConfirmed: React.PropTypes.bool.isRequired,
 };

@@ -70,6 +70,7 @@ export class Search extends StoreObserver {
   render() {
     const results = this.state.results;
     const profiles = results.profiles || [];
+    const avatars = results.avatars || [];
     const ids = results.ids || [];
     const areConfirmed = results.areConfirmed || [];
     const adverts = results.adverts || [];
@@ -121,6 +122,7 @@ export class Search extends StoreObserver {
                   return (
                     <ProfilePreview
                       {...profile}
+                      avatar={avatars[index]}
                       _id={ids[index]}
                       isConfirmed={areConfirmed[index]}
                       key={index}

@@ -27,6 +27,7 @@ export class Profile extends StateComponent {
 
       if (profileIndex !== -1) {
         nextState.profile = storeState.profiles[profileIndex];
+        nextState.avatar = storeState.avatars[profileIndex];
         nextState.isConfirmed = storeState.areConfirmed[profileIndex];
       }
     }
@@ -47,7 +48,7 @@ export class Profile extends StateComponent {
     return (
       <PanelLayout layoutStyle="LayoutLight Tight">
         <div className="LayoutHeader">
-          <div className="HeaderPicture Inline-Block"><Picture url={profile.photoUrl} pictureName="Profile" /></div>
+          <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" /></div>
           <p className="HeaderText Title Inline-Block" >{name}</p>
           <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
         </div>
