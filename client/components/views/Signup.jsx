@@ -7,6 +7,7 @@ import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
+import { strings } from './Singup_lang.js';
 import SignupActions from 'actions/Signup.js';
 import SignupStore from 'stores/user/Signup.js';
 
@@ -26,13 +27,13 @@ export class Signup extends StoreObserver {
 
     if (store.error) {
       this.messageCallback({
-        title: 'Some error occurred when creating your account',
+        title: String(strings.error),
         content: String(store.error),
         type: 'Alert',
       });
     } else {
       this.messageCallback({
-        title: 'Info',
+        title: String(strings.success),
         content: store.message,
         type: 'Success',
       });
@@ -45,7 +46,7 @@ export class Signup extends StoreObserver {
     this.messageCallback = messageCallback;
 
     if (form.password !== form.passwordConfirmation) {
-      SignupActions.error('The passwords do not match');
+      SignupActions.error(strings.passwd_error);
     } else {
       delete form.passwordConfirmation;
       SignupActions.signup(form);
@@ -55,20 +56,20 @@ export class Signup extends StoreObserver {
   render() {
     return (
       <div>
-        <PanelForm onSubmit={this.handleSubmit} submitLabel="Signup">
-          <Title>Create an Account</Title>
+        <PanelForm onSubmit={this.handleSubmit} submitLabel={strings.submit}>
+          <Title>{strings.title}</Title>
 
           <hr className="SpacedOverlay" />
 
-          <TextInput label="firstName" placeholder="First name" required />
-          <TextInput label="lastName" placeholder="Last name" required />
+          <TextInput label={strings.first_name} placeholder={strings.first_name} required />
+          <TextInput label={strings.last_name} placeholder={strings.last_name} required />
 
           <hr className="SpacedDivider" />
 
           <EmailInput required />
           <Information>You will receive a confirmation email on the adress you provide here</Information>
           <PasswordInput required />
-          <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />
+          <PasswordInput label={strings.password} placeholder={strings.password} required />
         </PanelForm>
       </div>
     );

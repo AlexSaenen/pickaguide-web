@@ -7,36 +7,11 @@ import { TelInput } from 'form/TelInput.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { strings } from './Contact_lang.js';
 import ContactActions from 'actions/Contact.js';
 import AccountStore from 'stores/user/Account.js';
 import ProfileStore from 'stores/user/Profile.js';
 import ContactStore from 'stores/user/Contact.js';
-import LocalizedStrings from 'react-localization';
-import Languages from './languages.js';
-
-// let string = new LocalizedStrings(Languages);
- 
-let strings = new LocalizedStrings({
- en:{
-   contact_us:"Contact Us",
-   contact:"Contact",
-   name:"name",
-   fname:"Full name",
-   phone:"Phone",
-   message:"Message",
-   submit:"Contact"
- },
- fr: {
-   contact_us:"Contactez nous",
-   contact:"Contact",
-   name:"Nom",
-   fname:"Nom complet",
-   phone:"Téléphonne",
-   message:"Message",
-   submit:"Envoyer"
- }
-});
-
 
 export class Contact extends StoreObserver {
 
@@ -59,14 +34,14 @@ export class Contact extends StoreObserver {
 
     if (store.error) {
       this.messageCallback({
-        title: 'Some error occurred when contacting us',
+        title: String(strings.error),
         content: String(store.error),
         type: 'Alert',
       });
     } else {
       this.messageCallback({
-        title: 'Successful',
-        content: `You have successfully contacted us! Your contact id is '${store.contactId}'. One of our staff will answer you soon.`,
+        title: String(strings.success),
+        content: String(strings.success_content),
         type: 'Success',
       });
     }
@@ -107,3 +82,4 @@ export class Contact extends StoreObserver {
     );
   }
 }
+
