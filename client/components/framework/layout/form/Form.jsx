@@ -4,8 +4,6 @@ import { SubmitButton } from 'form/SubmitButton.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
-import FormStore from 'stores/CurrentForm.js';
-import FormActions from 'actions/CurrentForm.js';
 
 import 'scss/framework/form.scss';
 
@@ -16,15 +14,12 @@ export class Form extends PropsComponent {
     super(props, context);
 
     this.state = { layoutStyle: props.layoutStyle, message: this.emptyMessage() };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearMessage = this.clearMessage.bind(this);
     this.displayMessage = this.displayMessage.bind(this);
-    this.setPendingMessage = this.setPendingMessage.bind(this);
+    this.setMessage = this.setMessage.bind(this);
     this.pendingMessage = null;
-  }
-
-  componentWillUnmount() {
-    FormActions.flush.defer();
   }
 
   componentWillReceiveProps(props) {
@@ -38,24 +33,38 @@ export class Form extends PropsComponent {
 
   handleSubmit(e) {
     e.preventDefault();
-    const formChildren = Array.from(e.target.children);
-    const submitElement = formChildren.slice(-1).pop();
-    const submitName = submitElement.childNodes[0].value;
-    this.props.onSubmit(FormStore.getState().fields, submitName, this.setPendingMessage);
+    const inputs = e.target.querySelectorAll('input, textarea');
+    const fields = {};
+
+    inputs.forEach((el, index) => {
+      if (index < inputs.length - 1) {
+        if (el.type === 'file') {
+          fields[el.name] = el.files[0];
+        } else {
+          fields[el.name] = el.value;
+        }
+      }
+    });
+
+    this.props.onSubmit(fields, this.setMessage);
   }
 
   emptyMessage() {
     return ({ title: '', content: '', type: '' });
   }
 
-  setPendingMessage(message) {
+  setMessage(message, isPending = true) {
     this.pendingMessage = message;
+
+    if (isPending === false) {
+      this.displayMessage(this.pendingMessage);
+    }
   }
 
   displayMessage(message) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.message = message;
-    this.updateState(stateCopy);
+    const newState = Object.assign({}, this.state);
+    newState.message = message;
+    this.updateState(newState);
   }
 
   clearMessage() {

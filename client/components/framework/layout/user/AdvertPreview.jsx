@@ -1,50 +1,42 @@
 import React from 'react';
 
 import { Picture } from 'layout/elements/Picture.jsx';
-import { PropsComponent } from 'base/PropsComponent.jsx';
-import { ToggleCheckMark } from 'layout/user/ToggleCheckMark.jsx';
-import DeleteAction from 'layout/user/DeleteAction.jsx';
-import AdvertsActions from 'actions/Adverts.js';
+import { CheckMark } from 'layout/elements/CheckMark.jsx';
 
 import 'scss/views/adverts.scss';
 
 
-export class AdvertPreview extends PropsComponent {
+export class AdvertPreview extends React.Component {
 
   constructor(props, context) {
     super(props, context);
 
-    this.state = { active: props.active };
     this.id = props._id;
     this.clickHandler = props.onClick;
-    this.toggleAdvertState = this.toggleAdvertState.bind(this);
     this.onClick = this.onClick.bind(this);
-    this.onDelete = this.onDelete.bind(this);
   }
 
-  toggleAdvertState(clickEvent) {
-    clickEvent.stopPropagation();
-    AdvertsActions.toggle(this.id);
+  componentWillReceiveProps(nextProps) {
+    this.id = nextProps._id;
   }
 
   onClick() {
     this.clickHandler(this.id);
   }
 
-  onDelete(clickEvent) {
-    clickEvent.stopPropagation();
-    AdvertsActions.remove(this.id);
-  }
-
   render() {
     return (
       <div onClick={this.onClick} className="AdvertPreview">
-        <DeleteAction onClick={this.onDelete} />
         <Picture url={this.props.photoUrl} pictureType="WidthLimited" />
-        <ToggleCheckMark className="Inline" active={this.state.active} onToggle={this.toggleAdvertState} />
-        <p className="Bold Inline Vertical Spaced">{this.props.hourlyPrice}</p>
-        <p className="Medium Bold">{this.props.title}</p>
-        <p className="Spaced OverflowHidden LineSpaced">{this.props.description}</p>
+        <div className="DescriptionSection">
+          <div>
+            <CheckMark active={this.props.active} />
+            <p className="Medium Bold Inline">{this.props.title}</p>
+            <p className="Inline Italic">by</p>
+            <p className="Bold Inline LineSpaced">{this.props.owner}</p>
+          </div>
+          <p className="ExtraSmall OverflowHidden MultiLineTextOverflow">{this.props.description}</p>
+        </div>
       </div>
     );
   }
@@ -52,9 +44,10 @@ export class AdvertPreview extends PropsComponent {
 
 AdvertPreview.propTypes = {
   onClick: React.PropTypes.func.isRequired,
+  _id: React.PropTypes.string.isRequired,
   title: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
-  hourlyPrice: React.PropTypes.string.isRequired,
   photoUrl: React.PropTypes.string.isRequired,
+  owner: React.PropTypes.string.isRequired,
   active: React.PropTypes.bool.isRequired,
 };

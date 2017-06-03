@@ -2,6 +2,9 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { FeedableModalFormController } from 'base/FeedableModalFormController.jsx';
+import { ModalFormController } from 'base/ModalFormController.jsx';
+import { ModalController } from 'base/ModalController.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { ToggleCheckMark } from 'layout/user/ToggleCheckMark.jsx';
@@ -11,8 +14,12 @@ import { Button } from 'layout/elements/Button.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { EditAdvertCover } from 'modals/EditAdvertCover.jsx';
 import { EditText } from 'modals/EditText.jsx';
+import { EditTextArea } from 'modals/EditTextArea.jsx';
+import { QueryModal } from 'modals/QueryModal.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
+
+import 'scss/views/adverts.scss';
 
 
 export class OwnerAdvert extends StoreObserver {
@@ -20,59 +27,39 @@ export class OwnerAdvert extends StoreObserver {
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
-    this.state = {
-      advert: AdvertsStore.getState().specificAdvert,
-      modalStates: {
-        cover: false,
-        text: false,
-      },
-      textEditor: {
-        label: 'text',
-        value: 'None',
-        title: 'Edit Text',
-      },
-    };
+    this.state = { advert: AdvertsStore.getState().specificAdvert };
 
-    this.update = this.update.bind(this);
-    this.openTextEditor = this.openTextEditor.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
-    this.onStoreChange = this.onStoreChange.bind(this);
-    this.toggleAdvertState = this.toggleAdvertState.bind(this);
+    this.onToggle = this.onToggle.bind(this);
     this.onDelete = this.onDelete.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
+    this.textEditorCtrl = new FeedableModalFormController();
+    this.areaEditorCtrl = new ModalFormController();
+    this.coverEditorCtrl = new ModalFormController();
+    this.deleteCtrl = new ModalController();
+    this.textEditorCtrl.attachSubmit(this.onUpdate);
+    this.areaEditorCtrl.attachSubmit(this.onUpdate);
+    this.coverEditorCtrl.attachSubmit(this.onUpdate);
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.advert = store.specificAdvert;
-    this.setState(stateCopy);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
+    newState.advert = store.specificAdvert;
+    this.setState(newState);
   }
 
-  toggleModal(which) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.modalStates[which] = !this.state.modalStates[which];
-    this.setState(stateCopy);
-  }
-
-  toggleAdvertState(clickEvent) {
+  onToggle(clickEvent) {
     clickEvent.stopPropagation();
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.advert.active = !stateCopy.advert.active;
-    this.update(stateCopy.advert);
+    const newState = Object.assign({}, this.state);
+    newState.advert.active = !newState.advert.active;
+    this.onUpdate(newState.advert);
   }
 
-  openTextEditor(editWhat, title) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.textEditor = { label: editWhat, value: this.state.advert[editWhat], title };
-    stateCopy.modalStates.text = true;
-    this.setState(stateCopy);
-  }
-
-  update(advert) {
+  onUpdate(advert) {
+    this.textEditorCtrl.close();
+    this.areaEditorCtrl.close();
+    this.coverEditorCtrl.close();
     advert._id = this.state.advert._id;
     AdvertsActions.update(advert);
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.modalStates = { text: false, cover: false };
-    this.updateState(stateCopy);
   }
 
   onDelete() {
@@ -89,60 +76,55 @@ export class OwnerAdvert extends StoreObserver {
     }
 
     return (
-      <div>
+      <div className="OwnerAdvert">
+        <QueryModal
+          controller={this.deleteCtrl}
+          query="Do you really wish to delete this Ad ?"
+          onConfirm={this.onDelete}
+        />
+
         <Layout layoutStyle="LayoutLight">
           <hr className="Overlay" />
-          <Title>{advert.title}</Title>
-          <Button label="Back" buttonStyle="Auto TextWhite Bold Spaced" onCallback={browserHistory.goBack} />
-          <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.onDelete} />
+
+          <Title
+            onClick={
+              function click() {
+                this.textEditorCtrl.feed({ label: 'title', title: 'Edit advert\'s title', value: advert.title });
+                this.textEditorCtrl.toggle(true);
+              }.bind(this)
+            }
+          >
+            {advert.title}
+          </Title>
+
+          <div>
+            <Button label="Back" buttonStyle="Auto TextWhite Bold Spaced" onCallback={browserHistory.goBack} />
+            <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.deleteCtrl.toggle} />
+          </div>
+
           <PanelList listStyle="ListGrid" wrapChildren={false}>
-            <Element elementStyle="Auto Clickable">
-              <p
-                className="Spaced OverflowHidden"
-                onClick={
-                  function click() {
-                    this.openTextEditor('description', 'Edit advert\'s description');
-                  }.bind(this)
-                }
-              >{advert.description}</p>
+            <Element elementStyle="Auto Clickable" onClick={this.areaEditorCtrl.toggle}>
+              <p className="Spaced OverflowHidden TextOverflow">{advert.description}</p>
             </Element>
-            <Element elementStyle="Small Clickable">
-              <p
-                className="Bold Inline Vertical"
-                onClick={
-                  function click() {
-                    this.openTextEditor('hourlyPrice', 'Edit advert\'s hourly price');
-                  }.bind(this)
-                }
-              >{advert.hourlyPrice}</p>
-            </Element>
+
             <Element elementStyle="Auto Tight Clickable">
-              <ToggleCheckMark transition={false} active={advert.active} onToggle={this.toggleAdvertState} />
+              <ToggleCheckMark transition={false} active={advert.active} onToggle={this.onToggle} />
             </Element>
+
             <Element elementStyle="Auto Tight Clickable">
-              <ClickablePicture
-                onClick={
-                  function click() {
-                    this.toggleModal('cover');
-                  }.bind(this)
-                }
-                url={advert.photoUrl}
-              />
+              <ClickablePicture onClick={this.coverEditorCtrl.toggle} url={advert.photoUrl} />
             </Element>
           </PanelList>
         </Layout>
 
-        <EditAdvertCover
-          active={this.state.modalStates.cover}
-          onClose={this.toggleModal}
-          onSubmit={this.update}
+        <EditText controller={this.textEditorCtrl} />
+        <EditTextArea
+          controller={this.areaEditorCtrl}
+          value={advert.description}
+          label="description"
+          title="Edit advert's description"
         />
-        <EditText
-          {...this.state.textEditor}
-          active={this.state.modalStates.text}
-          onClose={this.toggleModal}
-          onSubmit={this.update}
-        />
+        <EditAdvertCover controller={this.coverEditorCtrl} />
       </div>
     );
   }

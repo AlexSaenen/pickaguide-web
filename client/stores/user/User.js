@@ -31,6 +31,11 @@ class UserStore {
     return false;
   }
 
+  onDelete() {
+    UserApi.delete();
+    return false;
+  }
+
   onError(error) {
     this.error = error;
   }

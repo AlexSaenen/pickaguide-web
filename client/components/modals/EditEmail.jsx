@@ -14,52 +14,36 @@ export class EditEmail extends StoreObserver {
     super(props, context, AccountStore);
 
     this.state = { account: AccountStore.getState().account };
-
-    this.onStoreChange = this.onStoreChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.messageCallback = () => {};
+    this.ctrl = props.controller;
+    this.ctrl.attachSubmit(AccountActions.updateMail);
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.account = store.account;
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
+    newState.account = store.account;
 
     if (store.error) {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Some error occurred when updating your email',
         content: String(store.error),
         type: 'Alert',
       });
     } else {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Successful',
         content: 'Your email has been updated',
         type: 'Success',
       });
     }
 
-    this.setState(stateCopy);
-  }
-
-  handleSubmit(form, submitName, messageCallback) {
-    this.messageCallback = messageCallback;
-
-    if (form.email !== form.emailConfirmation) {
-      AccountActions.error('The emails do not match');
-    } else {
-      if (form.email === this.state.account.email) {
-        AccountActions.error('Your new email needs to be different');
-      } else {
-        AccountActions.updateMail({ email: form.email });
-      }
-    }
+    this.setState(newState);
   }
 
   render() {
-    const account = this.state.account;
+    const account = this.state.account || {};
 
     return (
-      <ModalForm {...this.props} layoutStyle="LayoutDark Tight" onSubmit={this.handleSubmit}>
+      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutDark Tight">
         <Title>Update Email</Title>
         <EmailInput placeholder={`New email (current: ${account.email})`} required />
         <EmailInput label="emailConfirmation" placeholder="Confirm email" required />

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import FormActions from 'actions/CurrentForm.js';
 
 import 'scss/framework/form.scss';
 
@@ -27,19 +26,25 @@ export class TextArea extends PropsComponent {
 
   handleEdit(e) {
     e.preventDefault();
-    FormActions.updateValue({ label: e.target.name, value: e.target.value });
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.value = e.target.value;
-    this.updateState(stateCopy);
+    const newState = Object.assign({}, this.state);
+    newState.value = e.target.value;
+    this.updateState(newState);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.cache = this.state.value;
+    super.componentWillReceiveProps(nextProps);
   }
 
   render() {
     const props = {
       name: this.state.label,
-      value: this.state.value,
+      value: this.cache || this.state.value,
       placeholder: this.state.placeholder.capitalize(),
       onChange: this.handleEdit,
     };
+
+    this.cache = null;
 
     if (this.state.required) {
       props.required = 'required';

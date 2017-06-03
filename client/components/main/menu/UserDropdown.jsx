@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import AuthActions from 'actions/Auth.js';
-import UserActions from 'actions/User.js';
-import ProfileStore from 'stores/user/Profile.js';
-import AuthStore from 'stores/user/Auth.js';
+import AvatarStore from 'stores/user/Avatar.js';
 import { AuthDependent } from 'base/AuthDependent.jsx';
 import { GuideDependent } from 'base/GuideDependent.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { QueryModal } from 'modals/QueryModal.jsx';
+import { ModalController } from 'base/ModalController.jsx';
+import UserActions from 'actions/User.js';
+
 
 import 'scss/main/menu/main.scss';
 
@@ -15,50 +17,48 @@ import 'scss/main/menu/main.scss';
 export class UserDropdown extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, ProfileStore);
+    super(props, context, AvatarStore);
 
-    const profile = ProfileStore.getState().profile || { photoUrl: '' };
-    this.state = { url: profile.photoUrl };
-    this.onStoreChange = this.onStoreChange.bind(this);
+    this.state = { src: AvatarStore.getState().avatar };
+    this.ctrl = new ModalController();
     AuthActions.sync();
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
 
-    if (store.profile) {
-      stateCopy.url = store.profile.photoUrl;
-      this.updateState(stateCopy);
+    if (store.avatar) {
+      newState.src = store.avatar;
+      this.updateState(newState);
     }
   }
 
   render() {
-    let profileLink = '';
-
-    if (AuthStore.getState().credentials) {
-      profileLink = `/profiles/${AuthStore.getState().credentials.id}`;
-    }
-
     return (
       <AuthDependent className="AccountLogo" {...this.props}>
-        <Link to={profileLink}>
-          <img src={this.state.url} alt="Profile" />
+        <Link to="/profiles/mine">
+          <img src={this.state.src} alt="Profile" />
         </Link>
 
         <div className="Dropdown HeightNone">
-          <Link to="/settings/edit"><p>Settings</p></Link>
-          <Link to="/account/edit"><p>Account</p></Link>
-          <Link to="/profile/edit"><p>Profile</p></Link>
+          <Link to="/accounts/mine/edit"><p>Account</p></Link>
+          <Link to="/profiles/mine/edit"><p>Profile</p></Link>
 
           <GuideDependent guide>
             <Link to="/guide/adverts"><p>Adverts</p></Link>
-            <Link to="/guide/quit"><p className="alert" onClick={UserActions.retire}>Retire</p></Link>
+            <Link><p className="alert Clickable" onClick={this.ctrl.toggle}>Retire</p></Link>
           </GuideDependent>
 
           <GuideDependent visitor>
             <Link to="/guide/become"><p className="action">Be a guide</p></Link>
           </GuideDependent>
         </div>
+
+        <QueryModal
+          controller={this.ctrl}
+          query="Do you really wish to retire from being a guide? All your adverts will be deactivated and ongoing visits cancelled"
+          onConfirm={UserActions.retire}
+        />
       </AuthDependent>
     );
   }

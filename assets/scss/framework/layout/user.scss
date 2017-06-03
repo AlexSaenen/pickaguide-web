@@ -13,7 +13,7 @@
   }
 }
 
-.ClickablePicture img:hover {
+.ClickablePicture:hover {
   cursor: pointer;
   opacity: 0.6;
 }
@@ -55,4 +55,106 @@ $toggleCheckMarkSize: 1.5em;
 .DeleteAction:hover {
   stroke: $alertTitleColor;
   background-color: white;
+}
+
+$interestHeight: 1.6em;
+
+.EditableInterests {
+  margin: 1em;
+
+
+  .Interest {
+    margin: 0.4em;
+    border-radius: 0.2em;
+    overflow: hidden;
+    display: inline-block;
+    min-width: 4em;
+    max-width: 12em;
+    width: auto;
+    height: $interestHeight;
+
+    .Header {
+      height: inherit;
+      width: $interestHeight;
+      display: inline-flex;
+      float: left;
+      background-color: $infoTitleColor;
+      transition-property: all;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-out;
+
+      & svg {
+        margin: auto;
+        stroke: $textDarkColor;
+        cursor: pointer;
+      }
+
+      & svg:hover {
+        stroke: $darkShadeColor;
+      }
+    }
+
+    .Header:hover { background-color: $alertTitleColor; }
+
+    .Content {
+      height: inherit;
+      color: white;
+      font-size: 1em;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background-color: $softMainColor;
+      width: calc(100% - #{$interestHeight});
+      flex: 1;
+
+      & p {
+        line-height: $interestHeight;
+        margin: 0 0.5em;
+      }
+    }
+  }
+
+  .Editor {
+    width: 13em;
+    margin: 0.8em auto;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+
+    & input {
+      display: inline-block;
+      width: 10em;
+      background-color: rgba(0, 0, 0, 0);
+      border: 0;
+      border-bottom: 1px dashed $highlightColor;
+    }
+
+    & svg {
+      display: inline-block;
+      vertical-align: middle;
+      overflow: visible;
+      height: 1.6em;
+      width: 1.6em;
+      margin: 0.5em;
+      -webkit-filter: drop-shadow(0 0 1px #222);
+      -moz-filter:    drop-shadow(0 0 1px #222);
+      filter:         drop-shadow(0 0 1px #222);
+      cursor: pointer;
+
+      line { stroke: #495C70; }
+
+      #hovered {
+        transition-property: all;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-out;
+        r: 0;
+      }
+    }
+
+    & svg:hover {
+      line { stroke: white; }
+      #hovered { r: 200; }
+    }
+  }
 }

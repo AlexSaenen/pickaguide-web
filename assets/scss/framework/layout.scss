@@ -2,6 +2,18 @@
 
 $layoutPadding: 2em;
 
+div.LineContainer.Small {
+  height: 2em;
+  margin: 1.5em;
+
+  .CheckMark {
+    display: inline-block;
+    height: inherit;
+    width: 2em;
+    vertical-align: sub;
+  }
+}
+
 .Panel {
   display: block;
   width: 40em;
@@ -49,6 +61,15 @@ $layoutPadding: 2em;
     & > img {
       height: auto;
       width: 100%;
+    }
+  }
+
+  .Picture.HeightLimited {
+    height: inherit;
+
+    & > img {
+      height: 100%;
+      width: auto;
     }
   }
 
@@ -117,6 +138,8 @@ $layoutPadding: 2em;
   }
 }
 
+.NoWrap { margin: 0 auto; padding: 0; }
+
 .LayoutLight {
   background-color: $modalLightColor;
 
@@ -164,4 +187,9 @@ $layoutPadding: 2em;
   input[type="submit"] {
     color: black;
   }
+}
+
+.LayoutGray {
+  @extend .LayoutDark;
+  background-color: $modalSecondaryColor;
 }

@@ -14,7 +14,13 @@ class SignupStore {
   }
 
   onSignup(form) {
-    SignupApi.signup(form);
+    if (form.password !== form.passwordConfirmation) {
+      SignupActions.error.defer('The passwords do not match');
+    } else {
+      delete form.passwordConfirmation;
+      SignupApi.signup(form);
+    }
+
     return false;
   }
 

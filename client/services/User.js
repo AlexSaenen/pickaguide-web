@@ -45,4 +45,18 @@ export default class UserApi {
       });
   }
 
+  static delete() {
+    PromiseApi.auth().delete('/users')
+      .then((res) => {
+        if (res.error) {
+          UserActions.error(res.error);
+        } else {
+          UserActions.invalidateUser();
+        }
+      })
+      .catch((err) => {
+        UserActions.error(err);
+      });
+  }
+
 }

@@ -12,38 +12,32 @@ export class Modal extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-      modalStyle: props.modalStyle,
-      onClose: props.onClose,
-      active: props.active,
-    };
-
-    this.dismiss = this.dismiss.bind(this);
-  }
-
-  dismiss() {
-    if (this.state.onClose) {
-      this.state.onClose(this);
-    } else {
-      const stateCopy = Object.assign({}, this.state);
-      stateCopy.active = false;
-      this.updateState(stateCopy);
-    }
+    this.state = { modalStyle: props.modalStyle, active: props.active || false };
+    this.ctrl = props.controller;
+    this.ctrl.attachView(this);
   }
 
   render() {
     let classNames = `Modal ${this.state.modalStyle}`;
+    let modalButtons = this.props.buttons ||
+      (<Button
+        label="Dismiss"
+        buttonStyle="Red"
+        onCallback={
+          function callback() {
+            this.ctrl.close();
+          }.bind(this)
+        }
+      />);
 
-    if (this.state.active === false) {
-      classNames += ' Hidden';
-    }
+    if (this.state.active === false) { classNames += ' Hidden'; }
 
     return (
       <div className={classNames}>
         <div className="ModalContent">
           {this.props.children}
           <div className="ModalFooter">
-            <Button label="Dismiss" buttonStyle="Red" onCallback={this.dismiss} />
+            {modalButtons}
           </div>
         </div>
       </div>
@@ -53,12 +47,10 @@ export class Modal extends PropsComponent {
 
 Modal.defaultProps = {
   modalStyle: '',
-  active: false,
-  onClose: null,
 };
 
 Modal.propTypes = {
   modalStyle: React.PropTypes.string,
+  controller: React.PropTypes.object,
   active: React.PropTypes.bool,
-  onClose: React.PropTypes.func,
 };

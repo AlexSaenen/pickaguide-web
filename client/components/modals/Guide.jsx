@@ -15,40 +15,36 @@ export class Guide extends StoreObserver {
 
   constructor(props, context) {
     super(props, context, [ProfileStore, UserStore]);
-    this.state = {
-      profile: ProfileStore.getState().profile,
-    };
 
-    this.onStoreChange = this.onStoreChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onClose = this.onClose.bind(this);
-    this.messageCallback = () => {};
+    this.state = { profile: ProfileStore.getState().profile };
+    this.ctrl = props.controller;
+    this.ctrl.attachSubmit(this.onSubmit.bind(this));
+    this.ctrl.attachClose(this.onClose.bind(this));
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
 
     if (store.error) {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Some error occurred when you want to become guide',
         content: String(store.error),
         type: 'Alert',
       });
     } else if (store.profile !== undefined) {
-      stateCopy.profile = store.profile;
+      newState.profile = store.profile;
     } else if (store.isGuide) {
-      this.onClose();
+      this.ctrl.close();
     }
 
-    this.setState(stateCopy);
+    this.setState(newState);
   }
 
   onClose() {
     browserHistory.goBack();
   }
 
-  handleSubmit(form, submitName, messageCallback) {
-    this.messageCallback = messageCallback;
+  onSubmit(form) {
     UserActions.becomeGuide(Object.assign(form, this.state.profile));
   }
 
@@ -57,7 +53,7 @@ export class Guide extends StoreObserver {
     const shouldDisplay = attribute => (attribute ? 'Hidden' : '');
 
     return (
-      <ModalForm {...this.props} layoutStyle="LayoutDark Tight" modalStyle="Large" onSubmit={this.handleSubmit} onClose={this.onClose}>
+      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutDark Tight" modalStyle="Large">
         <Title>Become Guide</Title>
         <TextInput className={shouldDisplay(profile.firstName)} value={profile.firstName} label="firstName" placeholder="First name" required />
         <TextInput className={shouldDisplay(profile.lastName)} value={profile.lastName} label="lastName" placeholder="Last name" required />

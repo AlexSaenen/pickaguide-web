@@ -7,17 +7,21 @@ export class StoreObserver extends StateComponent {
     super(props, context);
 
     this.stores = (stores.constructor === Array ? stores : [stores]);
+
+    if (typeof this.onStore === 'function') {
+      this.onStore = this.onStore.bind(this);
+    }
   }
 
   componentDidMount() {
     this.stores.forEach((store) => {
-      store.listen(this.onStoreChange);
+      store.listen(this.onStore);
     });
   }
 
   componentWillUnmount() {
     this.stores.forEach((store) => {
-      store.unlisten(this.onStoreChange);
+      store.unlisten(this.onStore);
     });
   }
 }

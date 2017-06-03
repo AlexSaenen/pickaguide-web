@@ -1,55 +1,48 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { LinkModal } from 'modals/LinkModal.jsx';
-import ProfileActions from 'actions/Profile.js';
-import ProfileStore from 'stores/user/Profile.js';
+import { FileModal } from 'modals/FileModal.jsx';
+import AvatarActions from 'actions/Avatar.js';
+import AvatarStore from 'stores/user/Avatar.js';
 
 
 export class EditPicture extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, ProfileStore);
+    super(props, context, AvatarStore);
 
-    this.onStoreChange = this.onStoreChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.messageCallback = () => {};
+    this.ctrl = props.controller;
+    this.ctrl.attachSubmit(AvatarActions.update);
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
 
     if (store.error) {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Some error occurred when updating your profile picture',
         content: String(store.error),
         type: 'Alert',
       });
     } else {
-      this.messageCallback({
+      this.ctrl.messageCallback({
         title: 'Successful',
         content: 'Your picture has been updated',
         type: 'Success',
       });
     }
 
-    this.setState(stateCopy);
-  }
-
-  handleSubmit(form, submitName, messageCallback) {
-    this.messageCallback = messageCallback;
-    ProfileActions.update(form);
+    this.setState(newState);
   }
 
   render() {
     return (
-      <LinkModal
+      <FileModal
         {...this.props}
         layoutStyle="LayoutDark Tight"
         title="Edit Profile Picture"
-        inputHolder="New URL"
-        inputLabel="photoUrl"
-        onSubmit={this.handleSubmit}
+        inputHolder="New Picture"
+        inputLabel="picture"
       />
     );
   }

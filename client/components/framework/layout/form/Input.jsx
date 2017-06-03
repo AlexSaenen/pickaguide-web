@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import FormActions from 'actions/CurrentForm.js';
 
 import 'scss/framework/form.scss';
 
@@ -20,6 +19,10 @@ export class Input extends PropsComponent {
       required: props.required,
       inline: props.inline,
       className: props.className,
+      defaultValue: props.defaultValue,
+      min: props.min,
+      max: props.max,
+      step: props.step,
     };
 
     this.handleEdit = this.handleEdit.bind(this);
@@ -27,12 +30,15 @@ export class Input extends PropsComponent {
 
   handleEdit(e) {
     e.preventDefault();
-    FormActions.updateValue({ label: e.target.name, value: e.target.value });
 
-    const stateCopy = Object.assign({}, this.state);
+    const newState = Object.assign({}, this.state);
+    newState.value = e.target.value;
+    this.updateState(newState);
+  }
 
-    stateCopy.value = e.target.value;
-    this.updateState(stateCopy);
+  componentWillReceiveProps(nextProps) {
+    this.cache = this.state.value;
+    super.componentWillReceiveProps(nextProps);
   }
 
   render() {
@@ -40,13 +46,25 @@ export class Input extends PropsComponent {
       type: this.state.type,
       name: this.state.label,
       id: this.state.label,
-      value: this.state.value,
+      value: this.cache || this.state.value,
       placeholder: this.state.placeholder.capitalize(),
       onChange: this.handleEdit,
     };
 
+    this.cache = null;
+
     if (this.state.required) {
       props.required = 'required';
+    }
+
+    ['min', 'max', 'step', 'defaultValue'].forEach((field) => {
+      if (this.state[field] !== undefined) {
+        props[field] = this.state[field];
+      }
+    });
+
+    if (props.defaultValue !== undefined && props.value === '') {
+      delete props.value;
     }
 
     return (
@@ -72,6 +90,9 @@ Input.propTypes = {
   label: React.PropTypes.string,
   id: React.PropTypes.string,
   value: React.PropTypes.string,
+  max: React.PropTypes.number,
+  min: React.PropTypes.number,
+  step: React.PropTypes.number,
   placeholder: React.PropTypes.string,
   required: React.PropTypes.bool,
   inline: React.PropTypes.bool,

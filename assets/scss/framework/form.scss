@@ -4,6 +4,9 @@
   text-align: center;
   font-family: bariol;
   display: inline;
+
+  input, textarea { color: white; }
+  input[type="submit"] { color: black; }
 }
 
 .Layout, .InlineForm {
@@ -33,13 +36,31 @@
     cursor: pointer;
   }
 
-  input[type="email"], input[type="password"], input[type="text"], input[type="tel"], textarea {
+  input[type="email"], input[type="password"], input[type="text"], input[type="tel"],
+  input[type="number"], input[type="datetime-local"], input[type="date"], textarea {
     width: 20em;
     max-width: 100%;
     background-color: rgba(0, 0, 0, 0);
     border: 0;
     border-bottom: 1px dashed $highlightColor;
     z-index: 1;
+  }
+
+  input[type="number"] {
+    width: 4em;
+  }
+
+  input[type="file"] {
+    max-width: 100%;
+    width: 11.3em;
+  }
+
+  input[type="datetime-local"] {
+    width: 14em;
+  }
+
+  input[type="date"] {
+    width: 9em;
   }
 
   textarea {

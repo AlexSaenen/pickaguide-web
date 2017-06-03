@@ -14,13 +14,13 @@ export class AuthDependent extends StatusDependent {
     super(propsCopy, context, AuthStore);
 
     this.state.isVisible = this._isVisible(AuthStore.getState().credentials);
-    this.onStoreChange = this.onStoreChange.bind(this);
+    this.onStore = this.onStore.bind(this);
   }
 
-  onStoreChange(store) {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy.isVisible = this._isVisible(store.credentials);
-    this.updateState(stateCopy);
+  onStore(store) {
+    const newState = Object.assign({}, this.state);
+    newState.isVisible = this._isVisible(store.credentials);
+    this.updateState(newState);
   }
 
   _isVisible(credentials) {

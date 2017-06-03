@@ -10,6 +10,7 @@ export class StateComponent extends React.Component {
     super(props, context);
 
     this.state = {};
+    this.updateState = this.updateState.bind(this);
   }
 
   updateState(newState) {
