@@ -7,7 +7,7 @@ import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { FormController } from 'base/FormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
-import { Information } from 'layout/elements/Information.jsx';
+import { InformationWithClose } from 'layout/elements/InformationWithClose.jsx';
 import SignupActions from 'actions/Signup.js';
 import SignupStore from 'stores/user/Signup.js';
 
@@ -55,7 +55,7 @@ export class Signup extends StoreObserver {
           <hr className="SpacedDivider" />
 
           <EmailInput required />
-          <Information>You will receive a confirmation email on the adress you provide here</Information>
+          <InformationWithClose>You will receive a confirmation email on the adress you provide here</InformationWithClose>
           <PasswordInput required />
           <PasswordInput label="passwordConfirmation" placeholder="Confirm password" required />
         </PanelForm>

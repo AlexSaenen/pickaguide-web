@@ -23,7 +23,7 @@ export class EditProfile extends StoreObserver {
 
     this.state = {
       profile: ProfileStore.getState().profile,
-      avatar: AvatarStore.getState().avatar
+      avatar: AvatarStore.getState().avatar,
     };
 
     this.ctrl = new FormController();
@@ -58,7 +58,6 @@ export class EditProfile extends StoreObserver {
   }
 
   onSubmit(form) {
-    console.log(form);
     form.interests = this.state.profile.interests;
     ProfileActions.update(form);
   }

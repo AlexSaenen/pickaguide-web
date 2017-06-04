@@ -18,4 +18,32 @@ export default class VisitsApi {
       });
   }
 
+  static get() {
+    PromiseApi.auth().get('/visits')
+      .then((res) => {
+        if (res.error) {
+          VisitsActions.error(res.error);
+        } else {
+          VisitsActions.getSuccess(res);
+        }
+      })
+      .catch((err) => {
+        VisitsActions.error(err);
+      });
+  }
+
+  static action(visitId, type, form) {
+    PromiseApi.auth().put(`/visits/${visitId}/${type}`, form)
+      .then((res) => {
+        if (res.error) {
+          VisitsActions.error(res.error);
+        } else {
+          VisitsActions.actionSuccess(res.visit);
+        }
+      })
+      .catch((err) => {
+        VisitsActions.error(err);
+      });
+  }
+
 }

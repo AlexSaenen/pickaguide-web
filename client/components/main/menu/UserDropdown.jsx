@@ -43,6 +43,7 @@ export class UserDropdown extends StoreObserver {
         <div className="Dropdown HeightNone">
           <Link to="/accounts/mine/edit"><p>Account</p></Link>
           <Link to="/profiles/mine/edit"><p>Profile</p></Link>
+          <Link to="/visits"><p>Visits</p></Link>
 
           <GuideDependent guide>
             <Link to="/guide/adverts"><p>Adverts</p></Link>
@@ -55,6 +56,7 @@ export class UserDropdown extends StoreObserver {
         </div>
 
         <QueryModal
+          modalStyle="Medium"
           controller={this.ctrl}
           query="Do you really wish to retire from being a guide? All your adverts will be deactivated and ongoing visits cancelled"
           onConfirm={UserActions.retire}

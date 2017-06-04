@@ -14,6 +14,7 @@ import { Contact } from 'views/Contact.jsx';
 import { Search } from 'views/Search.jsx';
 import { Become } from 'views/guide/Become.jsx';
 import { Adverts } from 'views/guide/Adverts.jsx';
+import { Visits } from 'views/Visits.jsx';
 import { OwnerAdvert } from 'views/guide/OwnerAdvert.jsx';
 import { Advert } from 'views/guide/Advert.jsx';
 import About from 'views/About.jsx';
@@ -39,6 +40,7 @@ ReactDOM.render(
       <Route path="search/:terms" component={Search} />
       <Route path="guide/become" component={Become} />
       <Route path="guide/adverts" component={Adverts} />
+      <Route path="visits" component={Visits} />
       <Route path="guide/adverts/:id" component={Advert} />
       <Route path="guide/adverts/mine/:id" component={OwnerAdvert} />
     </Route>

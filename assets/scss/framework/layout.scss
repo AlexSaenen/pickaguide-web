@@ -122,6 +122,10 @@ div.LineContainer.Small {
 
 $layoutPadding: 2em;
 
+.Panel.OuterTight {
+  margin: 1em auto;
+}
+
 .Tight {
   padding: #{$layoutPadding / 2};
 
