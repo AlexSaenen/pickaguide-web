@@ -11,6 +11,7 @@ import { ModalController } from 'base/ModalController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Button } from 'layout/elements/Button.jsx';
+import { strings } from './EditAccount_lang.js';
 import AccountStore from 'stores/user/Account.js';
 import UserActions from 'actions/User.js';
 import AuthActions from 'actions/Auth.js';
@@ -42,14 +43,14 @@ export class EditAccount extends StoreObserver {
       <div>
         <Panel panelStyle="Medium">
           <Layout layoutStyle="LayoutGray">
-            <Title>Edit your Account</Title>
+            <Title>{strings.title}</Title>
           </Layout>
           <Layout layoutStyle="LayoutLight">
             <hr className="Overlay" />
-            <Button buttonStyle="Blue Spaced Auto TextWhite" label="Change Password" onCallback={this.editPasswordCtrl.toggle} />
-            <Button buttonStyle="Blue Spaced Auto TextWhite" label="Change Email" onCallback={this.editEmailCtrl.toggle} />
-            <Information infoStyle="Alert" active={!this.state.isConfirmed}>You need to confirm your email</Information>
-            <Button buttonStyle="Red Spaced Auto TextWhite LineSpaced" label="Delete Account" onCallback={this.deleteCtrl.toggle} />
+            <Button buttonStyle="Blue Spaced Auto TextWhite" label={strings.btnPasswd} onCallback={this.editPasswordCtrl.toggle} />
+            <Button buttonStyle="Blue Spaced Auto TextWhite" label={strings.btnEmail} onCallback={this.editEmailCtrl.toggle} />
+            <Information infoStyle="Alert" active={!this.state.isConfirmed}>{strings.msgConfirmEmail}</Information>
+            <Button buttonStyle="Red Spaced Auto TextWhite LineSpaced" label={strings.btnDelete} onCallback={this.deleteCtrl.toggle} />
           </Layout>
         </Panel>
 
@@ -57,7 +58,7 @@ export class EditAccount extends StoreObserver {
         <EditEmail controller={this.editEmailCtrl} />
         <QueryModal
           controller={this.deleteCtrl}
-          query="Do you really wish to delete your account? All your information will be deleted"
+          query={strings.deleteConfirm}
           onConfirm={
             function confirm() {
               AuthActions.logout();

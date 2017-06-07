@@ -13,8 +13,8 @@ import { Information } from 'layout/elements/Information.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { ProfilePreview } from 'layout/user/ProfilePreview.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
+import { strings } from './Search_lang.js';
 import AdvertsActions from 'actions/Adverts.js';
-
 
 export class Search extends StoreObserver {
 
@@ -76,7 +76,7 @@ export class Search extends StoreObserver {
 
     if (this.state.error) {
       const message = {
-        title: 'Something unusual happened',
+        title: String(strings.error),
         content: String(this.state.error),
         type: 'Alert',
       };
@@ -92,13 +92,13 @@ export class Search extends StoreObserver {
       return (
         <div>
           <Layout layoutStyle="LayoutBlank">
-            <InlineForm onSubmit={this.ctrl.submit} submitLabel="Search">
-              <TextInput className="FormElement" placeholder="Search anything" value={this.state.searchTerms} inline />
+            <InlineForm onSubmit={this.ctrl.submit} submitLabel={strings.submit}>
+              <TextInput className="FormElement" placeholder={strings.placeholder} value={this.state.searchTerms} inline />
             </InlineForm>
 
             {
               this.state.searchTerms !== '' &&
-                <Information infoStyle="Info Small MarginAuto LineSpaced">No such results found :(</Information>
+                <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noResult}</Information>
             }
           </Layout>
         </div>
@@ -108,8 +108,8 @@ export class Search extends StoreObserver {
     return (
       <div>
         <Layout layoutStyle="LayoutBlank">
-          <InlineForm onSubmit={this.ctrl.submit} submitLabel="Search">
-            <TextInput className="FormElement" placeholder="Search anything" value={this.state.searchTerms} inline />
+          <InlineForm onSubmit={this.ctrl.submit} submitLabel={strings.submit}>
+            <TextInput className="FormElement" placeholder={strings.placeholder} value={this.state.searchTerms} inline />
           </InlineForm>
         </Layout>
 

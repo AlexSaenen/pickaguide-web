@@ -6,6 +6,7 @@ import { CheckMark } from 'layout/elements/CheckMark.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
+import { strings } from './Profile_lang.js';
 import SearchStore from 'stores/Search.js';
 
 
@@ -54,22 +55,22 @@ export class Profile extends StateComponent {
 
         <hr className="SpacedOverlay" />
 
-        <SubTitle>Basic Info</SubTitle>
+        <SubTitle>{strings.stitleBasucInfo}</SubTitle>
         <Text>
-          <p><strong>Date of Birth:</strong> {birthDate.toDateString()}</p>
-          <p><strong>City:</strong> {profile.city ? profile.city : 'None'}</p>
+          <p><strong>{strings.outputDateOfBirth}:</strong> {birthDate.toDateString()}</p>
+          <p><strong>{strings.outputCity}:</strong> {profile.city ? profile.city : String(strings.outputNoCity)}</p>
         </Text>
 
         <hr className="SpacedDivider" />
 
-        <SubTitle>Description</SubTitle>
-        <Text>{profile.description ? profile.description : 'None'}</Text>
+        <SubTitle>{strings.stitleDescription}</SubTitle>
+        <Text>{profile.description ? profile.description : String(strings.outputNoDescription)}</Text>
 
         <hr className="SpacedDivider" />
 
-        <SubTitle>Interests</SubTitle>
+        <SubTitle>{strings.stitleInterests}</SubTitle>
         <Text>{profile.interests.length > 0 ?
-            profile.interests.map((interest, index) => React.createElement('p', { key: index }, interest)) : 'None'}
+            profile.interests.map((interest, index) => React.createElement('p', { key: index }, interest)) : String(strings.outputNoInterests)}
         </Text>
       </PanelLayout>
     );
