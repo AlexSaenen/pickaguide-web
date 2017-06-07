@@ -1,10 +1,10 @@
 import React from 'react';
-
+import { strings } from './About_lang.js';
 
 const About = () => {
   return (
     <div>
-      <h1>Welcome, this is our about page</h1>
+      <h1>{strings.title}</h1>
     </div>
   );
 };

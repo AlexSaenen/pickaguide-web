@@ -4,13 +4,15 @@ import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { PanelLayout } from 'view/PanelLayout.jsx';
+import { strings } from './Home_lang.js';
+
 
 const Home = () => {
   return (
     <div>
       <Layout layoutStyle="LayoutDark">
         <hr className="Overlay" />
-        <Title>Salut Home Page</Title>
+        <Title>{strings.title}</Title>
       </Layout>
 
       <PanelLayout>
