@@ -11,6 +11,16 @@ import AvatarStore from 'stores/user/Avatar.js';
 import AccountStore from 'stores/user/Account.js';
 import AuthStore from 'stores/user/Auth.js';
 
+const displayBirthdate = (birthdate) => {
+  const monthMap = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ];
+
+  const splitDate = birthdate.split('-');
+  return `${splitDate[2]} ${monthMap[Number(splitDate[1])]} ${splitDate[0]}`;
+};
+
 
 export class OwnerProfile extends StateComponent {
 
@@ -44,7 +54,6 @@ export class OwnerProfile extends StateComponent {
       );
     }
 
-    const birthDate = new Date(profile.birthdate);
     const name = `${profile.firstName} ${profile.lastName}`;
 
     return (
@@ -59,7 +68,7 @@ export class OwnerProfile extends StateComponent {
 
         <SubTitle>Basic Info</SubTitle>
         <Text>
-          <p><strong>Date of Birth:</strong> {birthDate.toDateString()}</p>
+          <p><strong>Date of Birth:</strong> {displayBirthdate(profile.birthdate)}</p>
           <p><strong>City:</strong> {profile.city ? profile.city : 'None'}</p>
         </Text>
 
