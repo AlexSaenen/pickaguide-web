@@ -25,7 +25,7 @@ export default class UserApi {
           UserActions.error(res.error);
         } else {
           UserActions.isGuideSuccess(res.isGuide);
-          ProfileActions.getSuccess.defer(res);
+          ProfileActions.getSuccess.defer(res.profile);
         }
       })
       .catch((err) => {
