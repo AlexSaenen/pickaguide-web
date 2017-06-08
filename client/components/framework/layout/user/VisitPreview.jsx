@@ -15,8 +15,8 @@ export class VisitPreview extends PropsComponent {
     this.state = { status: props.status };
     this.id = props._id;
     this.ctrl = props.actionCtrl;
-    // this.clickHandler = props.onClick;
-    // this.onClick = this.onClick.bind(this);
+    this.clickHandler = props.onClick;
+    this.onClick = this.onClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,9 +24,9 @@ export class VisitPreview extends PropsComponent {
     super.componentWillReceiveProps(nextProps);
   }
 
-  // onClick() {
-  //   this.clickHandler(this.id);
-  // }
+  onClick() {
+    this.clickHandler(this.id, this.type);
+  }
 
   render() {
     const visit = this.props;
@@ -43,8 +43,6 @@ export class VisitPreview extends PropsComponent {
             onCallback={
               function callback() {
                 this.ctrl.feed({ callerId: this.id, actionType: nextStatus });
-                // this.ctrl.callerId = this.id;
-                // this.ctrl.actionType = nextStatus;
                 this.ctrl.toggle(true);
               }.bind(this)
             }
@@ -71,7 +69,7 @@ export class VisitPreview extends PropsComponent {
     const statusLabelStyle = `Bold Inline OverflowHidden TextOverflow ${isBad ? 'Red' : ''}${isGood ? 'Green' : ''}${isOkay ? 'Blue' : ''}`;
 
     return (
-      <div className="VisitPreview">
+      <div className="VisitPreview" onClick={this.onClick}>
         <Picture url={visit.about.photoUrl} pictureType="HeightLimited" />
 
         <div className="DescriptionSection">
@@ -91,5 +89,5 @@ export class VisitPreview extends PropsComponent {
 }
 
 VisitPreview.propTypes = {
-  // onClick: React.PropTypes.func.isRequired,
+  onClick: React.PropTypes.func.isRequired,
 };

@@ -7,8 +7,9 @@ class VisitsStore {
 
   constructor() {
     this.error = null;
-    this.myVisits = null;
-    this.theirVisits = null;
+    this.myVisits = [];
+    this.theirVisits = [];
+    this.specificVisit = null;
     this.bindActions(VisitsActions);
   }
 
@@ -33,6 +34,14 @@ class VisitsStore {
     return false;
   }
 
+  onFind(who) {
+    if (who.mine) {
+      VisitsApi.findMine(who.visitId, who.type);
+    } else {
+      VisitsApi.find(who.visitId);
+    }
+  }
+
   onGetSuccess(res) {
     this.error = null;
     this.myVisits = res.myVisits.map((visit) => {
@@ -44,6 +53,10 @@ class VisitsStore {
       visit.with = visit.byName;
       return visit;
     });
+  }
+
+  onFindSuccess(visit) {
+    this.specificVisit = visit;
   }
 
   onCancel(form) {
@@ -81,13 +94,19 @@ class VisitsStore {
       mustUpdate = true;
     }
 
+    if (this.specificVisit._id === newVisit._id) {
+      this.specificVisit.status = newVisit.status;
+      mustUpdate = true;
+    }
+
     return mustUpdate;
   }
 
   onInvalidateVisits() {
     this.error = null;
-    this.myVisits = null;
-    this.theirVisits = null;
+    this.myVisits = [];
+    this.theirVisits = [];
+    this.specificVisit = null;
   }
 
 }

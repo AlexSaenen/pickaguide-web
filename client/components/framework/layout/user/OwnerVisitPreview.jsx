@@ -12,6 +12,8 @@ export class OwnerVisitPreview extends VisitPreview {
       waiting: ['cancel'],
       accepted: ['cancel'],
     };
+
+    this.type = 'visitor';
   }
 
   componentWillReceiveProps(nextProps) {

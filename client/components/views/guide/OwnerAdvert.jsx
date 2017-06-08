@@ -7,6 +7,7 @@ import { ModalFormController } from 'base/ModalFormController.jsx';
 import { ModalController } from 'base/ModalController.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { Text } from 'layout/elements/Text.jsx';
 import { ToggleCheckMark } from 'layout/user/ToggleCheckMark.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Element } from 'layout/list/Element.jsx';
@@ -21,13 +22,20 @@ import AdvertsActions from 'actions/Adverts.js';
 
 import 'scss/views/adverts.scss';
 
+const getCache = (advertId) => {
+  const storeCache = AdvertsStore.getState().specificAdvert;
+
+  return (storeCache && storeCache._id === advertId ? storeCache : undefined);
+};
+
 
 export class OwnerAdvert extends StoreObserver {
 
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
-    this.state = { advert: AdvertsStore.getState().specificAdvert };
+    this.id = this.props.params.id;
+    this.state = { advert: getCache(this.id) };
 
     this.onToggle = this.onToggle.bind(this);
     this.onDelete = this.onDelete.bind(this);
@@ -41,10 +49,37 @@ export class OwnerAdvert extends StoreObserver {
     this.coverEditorCtrl.attachSubmit(this.onUpdate);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.id = nextProps.params.id;
+    const nextState = Object.assign({}, this.state);
+    nextState.advert = getCache(this.id);
+
+    this.setState(nextState);
+
+    if (nextState.advert === undefined) {
+      AdvertsActions.find(this.id);
+    }
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+    if (this.state.advert === undefined) {
+      AdvertsActions.find(this.id);
+    }
+  }
+
   onStore(store) {
-    const newState = Object.assign({}, this.state);
-    newState.advert = store.specificAdvert;
-    this.setState(newState);
+    const nextState = Object.assign({}, this.state);
+
+    if (store.error) {
+      return;
+    } else if (store.specificAdvert && store.specificAdvert._id === this.id) {
+      nextState.advert = store.specificAdvert;
+    } else {
+      nextState.advert = getCache(this.id);
+    }
+
+    this.setState(nextState);
   }
 
   onToggle(clickEvent) {
@@ -70,9 +105,12 @@ export class OwnerAdvert extends StoreObserver {
   render() {
     const advert = this.state.advert;
 
-    if (advert.photoUrl === undefined) {
-      advert.photoUrl = 'http://www.freeiconspng.com/free-images/no-image-icon-23492';
-      advert.active = false;
+    if (advert === undefined || advert === null) {
+      return (
+        <Layout layoutStyle="LayoutBlank">
+          <Text>No such advert found</Text>
+        </Layout>
+      );
     }
 
     return (

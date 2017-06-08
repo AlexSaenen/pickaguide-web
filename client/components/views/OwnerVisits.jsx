@@ -1,5 +1,5 @@
 import React from 'react';
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
@@ -15,7 +15,7 @@ import VisitsStore from 'stores/user/Visits.js';
 import VisitsActions from 'actions/Visits.js';
 
 
-export class Visits extends StoreObserver {
+export class OwnerVisits extends StoreObserver {
 
   constructor(props, context) {
     super(props, context, VisitsStore);
@@ -23,13 +23,12 @@ export class Visits extends StoreObserver {
     this.state.myVisits = [];
     this.state.theirVisits = [];
     this.actionCtrl = new FeedableModalFormController();
-    // this.goToVisit = this.goToVisit.bind(this);
+    this.goToVisit = this.goToVisit.bind(this);
   }
 
-  // goToVisit(visitId) {
-  //   AdvertsActions.find(advertId);
-  //   browserHistory.push(`/guide/adverts/mine/${advertId}`);
-  // }
+  goToVisit(visitId, type) {
+    browserHistory.push(`/visits/mine/${type}/${visitId}`);
+  }
 
   componentDidMount() {
     super.componentDidMount();
@@ -44,8 +43,8 @@ export class Visits extends StoreObserver {
   }
 
   render() {
-    const myVisits = this.state.myVisits || [];
-    const theirVisits = this.state.theirVisits || [];
+    const myVisits = this.state.myVisits;
+    const theirVisits = this.state.theirVisits;
 
     return (
       <div>
@@ -74,7 +73,7 @@ export class Visits extends StoreObserver {
               <PanelList layoutStyle="LayoutLight" panelStyle="Wide OuterTight" listStyle="ListGrid" elementStyle="Auto Tight Clickable">
                 {
                   myVisits.map((visit, index) => {
-                    return <OwnerVisitPreview {...visit} key={index} actionCtrl={this.actionCtrl} />;
+                    return <OwnerVisitPreview {...visit} key={index} actionCtrl={this.actionCtrl} onClick={this.goToVisit} />;
                   })
                 }
               </PanelList>
@@ -88,7 +87,7 @@ export class Visits extends StoreObserver {
               <PanelList layoutStyle="LayoutLight" panelStyle="Wide OuterTight" listStyle="ListGrid" elementStyle="Auto Tight Clickable">
                 {
                   theirVisits.map((visit, index) => {
-                    return <GuideVisitPreview {...visit} key={index} actionCtrl={this.actionCtrl} />;
+                    return <GuideVisitPreview {...visit} key={index} actionCtrl={this.actionCtrl} onClick={this.goToVisit} />;
                   })
                 }
               </PanelList>

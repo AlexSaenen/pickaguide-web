@@ -12,6 +12,8 @@ export class GuideVisitPreview extends VisitPreview {
       waiting: ['accept', 'deny'],
       accepted: ['finish', 'deny'],
     };
+
+    this.type = 'guide';
   }
 
   componentWillReceiveProps(nextProps) {

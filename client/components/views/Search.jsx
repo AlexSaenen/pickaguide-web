@@ -54,7 +54,6 @@ export class Search extends StoreObserver {
   }
 
   navigateToAdvert(advertId) {
-    AdvertsActions.find(advertId);
     browserHistory.push(`/guide/adverts/${advertId}`);
   }
 

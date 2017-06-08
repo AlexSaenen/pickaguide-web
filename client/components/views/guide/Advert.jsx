@@ -11,8 +11,15 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { Panel } from 'layout/containers/Panel.jsx';
 import { VisitCreation } from 'modals/VisitCreation.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
+import AdvertsActions from 'actions/Adverts.js';
 
 import 'scss/views/adverts.scss';
+
+const getCache = (advertId) => {
+  const storeCache = AdvertsStore.getState().specificAdvert;
+
+  return (storeCache && storeCache._id === advertId ? storeCache : undefined);
+};
 
 
 export class Advert extends StoreObserver {
@@ -20,23 +27,53 @@ export class Advert extends StoreObserver {
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
-    this.state = { advert: AdvertsStore.getState().specificAdvert };
+    this.id = this.props.params.id;
+    this.state = { advert: getCache(this.id) };
     this.visitCreationCtrl = new ModalFormController();
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.id = nextProps.params.id;
+    const nextState = Object.assign({}, this.state);
+    nextState.advert = getCache(this.id);
+
+    this.setState(nextState);
+
+    if (nextState.advert === undefined) {
+      AdvertsActions.find(this.id);
+    }
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+    if (this.state.advert === undefined) {
+      AdvertsActions.find(this.id);
+    }
+  }
+
   onStore(store) {
-    const newState = Object.assign({}, this.state);
-    newState.advert = store.specificAdvert;
-    this.setState(newState);
+    const nextState = Object.assign({}, this.state);
+
+    if (store.error) {
+      return;
+    } else if (store.specificAdvert && store.specificAdvert._id === this.id) {
+      nextState.advert = store.specificAdvert;
+    } else {
+      nextState.advert = getCache(this.id);
+    }
+
+    this.setState(nextState);
   }
 
   render() {
     const advert = this.state.advert;
 
-    if (advert.photoUrl === undefined) {
-      advert.photoUrl = 'http://www.freeiconspng.com/free-images/no-image-icon-23492';
-      advert.active = false;
-      advert.owner = { profile: {} };
+    if (advert === undefined || advert === null) {
+      return (
+        <Layout layoutStyle="LayoutBlank">
+          <Text>No such advert found</Text>
+        </Layout>
+      );
     }
 
     return (
