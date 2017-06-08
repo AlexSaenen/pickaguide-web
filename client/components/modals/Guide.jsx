@@ -45,7 +45,7 @@ export class Guide extends StoreObserver {
   }
 
   onSubmit(form) {
-    UserActions.becomeGuide(Object.assign(form, this.state.profile));
+    UserActions.becomeGuide(form);
   }
 
   render() {

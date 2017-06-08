@@ -1,4 +1,5 @@
 import UserActions from 'actions/User.js';
+import ProfileActions from 'actions/Profile.js';
 import PromiseApi from 'services/PromiseApi.js';
 
 export default class UserApi {
@@ -24,6 +25,7 @@ export default class UserApi {
           UserActions.error(res.error);
         } else {
           UserActions.isGuideSuccess(res.isGuide);
+          ProfileActions.getSuccess.defer(res);
         }
       })
       .catch((err) => {
