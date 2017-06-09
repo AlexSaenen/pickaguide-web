@@ -5,14 +5,20 @@ import { Information } from 'layout/elements/Information.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { PanelLayout } from 'view/PanelLayout.jsx';
 import { strings } from './Home_lang.js';
-
+import { Text } from 'layout/elements/Text.jsx';
 
 const Home = () => {
   return (
     <div>
-      <Layout layoutStyle="LayoutDark">
+      <Layout layoutstyle="LayoutDark">
         <hr className="Overlay" />
         <Title>{strings.title}</Title>
+      </Layout>
+      <Layout layoutStyle="LayoutHomeLeft">
+        <Title>Adverts</Title>
+      </Layout>
+      <Layout layoutStyle="LayoutHomeRight">
+        <Title>Maps</Title>
       </Layout>
 
       <PanelLayout>

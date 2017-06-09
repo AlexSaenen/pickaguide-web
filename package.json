@@ -22,6 +22,7 @@
     "express": "^4.13.4",
     "file-loader": "^0.9.0",
     "fluxxor": "^1.7.3",
+    "google-maps-react": "^1.0.19",
     "history": "^4.5.0",
     "jsx-loader": "^0.13.2",
     "node-sass": "^3.4.2",

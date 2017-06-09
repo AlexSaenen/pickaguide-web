@@ -9,13 +9,12 @@ export class Layout extends PropsComponent {
 
   constructor(props, context) {
     super(props, context);
-
     this.state = { layoutStyle: props.layoutStyle };
   }
 
   render() {
     const classNames = `Layout ${this.state.layoutStyle}`;
-
+    
     return (
       <div className={classNames}>
         {this.props.children}
