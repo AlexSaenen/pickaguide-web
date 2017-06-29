@@ -7,6 +7,10 @@ export default class Cookie {
   }
 
   static set(key, value) {
+    if (Cookie.get(key)) {
+      Cookie.revoke(key);
+    }
+
     document.cookie = `${key}=${value}`;
   }
 
@@ -19,13 +23,13 @@ export default class Cookie {
     });
   }
 
-  static revoke() {
-    const cookieSplitPairs = Cookie.toList();
+  static revoke(key) {
     const expirationCommand = `expires=${new Date(Date.now() - 1)}`;
+    document.cookie = `${key}=''; ${expirationCommand}; path=/`;
+  }
 
-    cookieSplitPairs.forEach((pair) => {
-      document.cookie = `${pair.key}=''; ${expirationCommand}; path=/`;
-    });
+  static revokeAll() {
+    Cookie.toList().forEach(pair => Cookie.revoke(pair.key));
   }
 
   static isEmpty() {
