@@ -33,7 +33,7 @@ export class VisitPreview extends PropsComponent {
     const visitStatus = visit.status.label;
     let changeStatus = null;
 
-    if (this.statusMapping[visitStatus] !== undefined) {
+    if (this.statusMapping[visitStatus] !== undefined && visit.about) {
       changeStatus = this.statusMapping[visitStatus].map((nextStatus, index) => {
         return (
           <Button
@@ -71,10 +71,15 @@ export class VisitPreview extends PropsComponent {
 
     return (
       <div className="VisitPreview" onClick={this.onClick}>
-        <Picture url={visit.about.photoUrl} pictureType="HeightLimited" />
+        <Picture url={visit.about ? visit.about.photoUrl : 'https://d30y9cdsu7xlg0.cloudfront.net/png/275465-200.png'} pictureType="HeightLimited" />
 
         <div className="DescriptionSection">
-          <p className="OverflowHidden TextOverflow Medium Bold">{visit.about.title}</p>
+          {
+            visit.about ?
+              <p className="OverflowHidden TextOverflow Medium Bold">{visit.about.title}</p>
+              :
+              <p className="OverflowHidden TextOverflow Small LineSpaced Bold Red">Advert was deleted</p>
+          }
           <p className="Italic Inline LineSpaced">with</p>
           <p className="Bold Inline OverflowHidden TextOverflow ">{visit.with}</p>
           <p className="Italic Inline">on</p>

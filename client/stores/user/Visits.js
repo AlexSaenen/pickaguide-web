@@ -44,8 +44,9 @@ class VisitsStore {
 
   onGetSuccess(res) {
     this.error = null;
+
     this.myVisits = res.myVisits.map((visit) => {
-      visit.with = visit.about.ownerName;
+      visit.with = visit.about ? visit.about.ownerName : 'Unknown';
       return visit;
     });
 
