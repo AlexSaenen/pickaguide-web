@@ -57,7 +57,7 @@ class AuthStore {
   }
 
   onLogout() {
-    CookieApi.revoke();
+    CookieApi.revokeAll();
     ProfileActions.invalidateProfile.defer();
     AccountActions.invalidateAccount.defer();
     AdvertsActions.invalidateAdverts.defer();
