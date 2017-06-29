@@ -34,7 +34,6 @@ export class Adverts extends StoreObserver {
   }
 
   reviewAdvert(advertId) {
-    AdvertsActions.find(advertId);
     browserHistory.push(`/guide/adverts/mine/${advertId}`);
   }
 

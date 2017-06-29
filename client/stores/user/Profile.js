@@ -6,16 +6,9 @@ import ProfileApi from 'services/Profile.js';
 const formatProfile = (profile) => {
   const formattedProfile = profile;
   formattedProfile.pseudo = `${profile.firstName.substring(0, 6)}${profile.lastName.charAt(0)}`;
-  let birthdate = formattedProfile.birthdate;
 
-  if (birthdate) {
-    birthdate = new Date(birthdate);
-    let mm = birthdate.getMonth();
-    if (mm < 10) { mm = `0${mm}`; }
-    let dd = birthdate.getDate();
-    if (dd < 10) { dd = `0${dd}`; }
-
-    formattedProfile.birthdate = `${birthdate.getFullYear()}-${mm}-${dd}`;
+  if (formattedProfile.birthdate) {
+    formattedProfile.birthdate = formattedProfile.birthdate.split('T')[0];
   }
 
   return formattedProfile;

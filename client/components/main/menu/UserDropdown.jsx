@@ -44,6 +44,7 @@ export class UserDropdown extends StoreObserver {
         <div className="Dropdown HeightNone">
           <Link to="/accounts/mine/edit"><p>{strings.account}</p></Link>
           <Link to="/profiles/mine/edit"><p>{strings.profile}</p></Link>
+          <Link to="/visits"><p>Visits</p></Link>
 
           <GuideDependent guide>
             <Link to="/guide/adverts"><p>{strings.adverts}</p></Link>
@@ -56,6 +57,7 @@ export class UserDropdown extends StoreObserver {
         </div>
 
         <QueryModal
+          modalStyle="Medium"
           controller={this.ctrl}
           query={strings.query}
           onConfirm={UserActions.retire}

@@ -9,6 +9,16 @@ import { Text } from 'layout/elements/Text.jsx';
 import { strings } from './Profile_lang.js';
 import SearchStore from 'stores/Search.js';
 
+const displayBirthdate = (birthdate) => {
+  const monthMap = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ];
+
+  const splitDate = birthdate.split('-');
+  return `${splitDate[2]} ${monthMap[Number(splitDate[1])]} ${splitDate[0]}`;
+};
+
 
 export class Profile extends StateComponent {
 
@@ -28,6 +38,7 @@ export class Profile extends StateComponent {
 
       if (profileIndex !== -1) {
         nextState.profile = storeState.profiles[profileIndex];
+        nextState.avatar = storeState.avatars[profileIndex];
         nextState.isConfirmed = storeState.areConfirmed[profileIndex];
       }
     }
@@ -42,13 +53,12 @@ export class Profile extends StateComponent {
       );
     }
 
-    const birthDate = new Date(profile.birthdate);
     const name = profile.displayName;
 
     return (
       <PanelLayout layoutStyle="LayoutLight Tight">
         <div className="LayoutHeader">
-          <div className="HeaderPicture Inline-Block"><Picture url={profile.photoUrl} pictureName="Profile" /></div>
+          <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" /></div>
           <p className="HeaderText Title Inline-Block" >{name}</p>
           <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
         </div>
@@ -57,7 +67,7 @@ export class Profile extends StateComponent {
 
         <SubTitle>{strings.stitleBasucInfo}</SubTitle>
         <Text>
-          <p><strong>{strings.outputDateOfBirth}:</strong> {birthDate.toDateString()}</p>
+          <p><strong>{strings.outputDateOfBirth}:</strong> {displayBirthdate(profile.birthdate)}</p>
           <p><strong>{strings.outputCity}:</strong> {profile.city ? profile.city : String(strings.outputNoCity)}</p>
         </Text>
 

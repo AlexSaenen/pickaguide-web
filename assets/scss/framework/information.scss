@@ -1,12 +1,14 @@
 @import '../colors.scss';
 
-$headerWidth: 5em;
+$headerWidth: 4em;
+$borderWidth: 0.5em;
+
 
 .Information {
   overflow: hidden;
   display: flex;
   width: 100%;
-  border-radius: 0.4em;
+  border-radius: 0.2em;
   color: white;
   margin: 1em 0;
 
@@ -14,21 +16,7 @@ $headerWidth: 5em;
     display: inline-flex;
     padding: 0.1em 0;
     float: left;
-    width: $headerWidth;
-
-    & > span {
-      margin: auto;
-      cursor: pointer;
-      color: $textDarkColor;
-      border: 1px solid $textDarkColor;
-      padding: 0.3em 0.4em;
-      border-radius: 0.5em;
-    }
-
-    & > span:hover {
-      color: white;
-      border: 1px solid white;
-    }
+    width: $borderWidth;
   }
 
   .Content {
@@ -36,7 +24,7 @@ $headerWidth: 5em;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    width: calc(100% - #{$headerWidth});
+    width: calc(100% - #{$borderWidth});
     flex: 1;
 
     p {
@@ -48,22 +36,48 @@ $headerWidth: 5em;
   }
 }
 
+.Information.WithClose {
+  .Header {
+    width: $headerWidth;
+
+    & > span {
+      margin: auto;
+      cursor: pointer;
+      color: $textDarkColor;
+      border: 1px solid $textDarkColor;
+      padding: 0.3em;
+      border-radius: 0.3em;
+    }
+
+    & > span:hover {
+      color: white;
+      border: 1px solid white;
+    }
+
+  }
+
+  .Content {
+    width: calc(100% - #{$headerWidth});
+  }
+}
+
 .Information.Small { width: 20em; }
 .Information.Medium { width: 40em; }
 .Information.Large { width: 60em; }
 .Information.LineSpaced { margin: 2em auto; }
+.Information.LineTight { margin: 0.4em auto; }
 
 .Information.Success {
-  .Content { background-color: $successBodyColor; }
-  .Header { background-color: $successTitleColor; }
+  .Content { background-color: $successTitleColor; }
+  .Header { background-color: $successBodyColor; }
 }
 
 .Information.Info {
-  .Content { background-color: $infoBodyColor; }
-  .Header { background-color: $infoTitleColor; }
+  .Content { background-color: $infoTitleColor; }
+  .Header { background-color: $infoBodyColor; }
 }
 
 .Information.Alert {
-  .Content { background-color: $alertBodyColor; }
-  .Header { background-color: $alertTitleColor; }
+  .Content { background-color: $alertTitleColor; }
+  .Header { background-color: $alertBodyColor; }
 }

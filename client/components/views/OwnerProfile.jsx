@@ -7,8 +7,19 @@ import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import ProfileStore from 'stores/user/Profile.js';
+import AvatarStore from 'stores/user/Avatar.js';
 import AccountStore from 'stores/user/Account.js';
 import AuthStore from 'stores/user/Auth.js';
+
+const displayBirthdate = (birthdate) => {
+  const monthMap = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ];
+
+  const splitDate = birthdate.split('-');
+  return `${splitDate[2]} ${monthMap[Number(splitDate[1])]} ${splitDate[0]}`;
+};
 
 
 export class OwnerProfile extends StateComponent {
@@ -25,9 +36,11 @@ export class OwnerProfile extends StateComponent {
 
     if (userCredentials) {
       nextState.profile = ProfileStore.getState().profile;
+      nextState.avatar = AvatarStore.getState().avatar;
       nextState.isConfirmed = AccountStore.getState().isConfirmed;
     } else {
       nextState.profile = undefined;
+      nextState.avatar = AvatarStore.getState().avatar;
       nextState.isConfirmed = false;
     }
   }
@@ -41,13 +54,12 @@ export class OwnerProfile extends StateComponent {
       );
     }
 
-    const birthDate = new Date(profile.birthdate);
     const name = `${profile.firstName} ${profile.lastName}`;
 
     return (
       <PanelLayout layoutStyle="LayoutLight Tight">
         <div className="LayoutHeader">
-          <div className="HeaderPicture Inline-Block"><Picture url={profile.photoUrl} pictureName="Profile" /></div>
+          <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" /></div>
           <p className="HeaderText Title Inline-Block" >{name}</p>
           <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
         </div>
@@ -56,7 +68,7 @@ export class OwnerProfile extends StateComponent {
 
         <SubTitle>Basic Info</SubTitle>
         <Text>
-          <p><strong>Date of Birth:</strong> {birthDate.toDateString()}</p>
+          <p><strong>Date of Birth:</strong> {displayBirthdate(profile.birthdate)}</p>
           <p><strong>City:</strong> {profile.city ? profile.city : 'None'}</p>
         </Text>
 

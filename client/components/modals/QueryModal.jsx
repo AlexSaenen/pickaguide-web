@@ -44,7 +44,7 @@ export class QueryModal extends PropsComponent {
         />];
 
     return (
-      <Modal {...this.props} modalStyle="Small" buttons={buttons}>
+      <Modal {...this.props} buttons={buttons}>
         <Layout>
           <Text>{this.state.query}</Text>
         </Layout>

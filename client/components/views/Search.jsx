@@ -14,7 +14,6 @@ import { PanelList } from 'view/PanelList.jsx';
 import { ProfilePreview } from 'layout/user/ProfilePreview.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { strings } from './Search_lang.js';
-import AdvertsActions from 'actions/Adverts.js';
 
 export class Search extends StoreObserver {
 
@@ -54,7 +53,6 @@ export class Search extends StoreObserver {
   }
 
   navigateToAdvert(advertId) {
-    AdvertsActions.find(advertId);
     browserHistory.push(`/guide/adverts/${advertId}`);
   }
 
@@ -70,6 +68,7 @@ export class Search extends StoreObserver {
   render() {
     const results = this.state.results;
     const profiles = results.profiles || [];
+    const avatars = results.avatars || [];
     const ids = results.ids || [];
     const areConfirmed = results.areConfirmed || [];
     const adverts = results.adverts || [];
@@ -121,6 +120,7 @@ export class Search extends StoreObserver {
                   return (
                     <ProfilePreview
                       {...profile}
+                      avatar={avatars[index]}
                       _id={ids[index]}
                       isConfirmed={areConfirmed[index]}
                       key={index}

@@ -17,7 +17,7 @@ export class ClickablePicture extends PropsComponent {
 
   render() {
     return (
-      <div onClick={this.state.onClick} className="ClickablePicture">
+      <div onClick={this.state.onClick} className={`ClickablePicture ${this.props.full ? 'FullSize' : ''}`}>
         <Picture pictureName="Photo URL" {...this.props} />
       </div>
     );
@@ -26,4 +26,5 @@ export class ClickablePicture extends PropsComponent {
 
 ClickablePicture.propTypes = {
   onClick: React.PropTypes.func.isRequired,
+  full: React.PropTypes.bool,
 };

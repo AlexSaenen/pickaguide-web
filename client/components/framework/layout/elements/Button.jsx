@@ -11,6 +11,12 @@ export class Button extends React.Component {
     this.state = props;
   }
 
+  componentWillReceiveProps(nextProps) {
+    const nextState = Object.assign({}, this.state);
+    nextState.label = nextProps.label;
+    this.setState(nextState);
+  }
+
   render() {
     const classNames = `ShadowedButton ${this.state.buttonStyle}`;
 

@@ -8,7 +8,7 @@ class AdvertsStore {
   constructor() {
     this.error = null;
     this.adverts = [];
-    this.specificAdvert = {};
+    this.specificAdvert = null;
     this.bindActions(AdvertsActions);
   }
 
@@ -64,6 +64,8 @@ class AdvertsStore {
 
   onInvalidateAdverts() {
     this.adverts = [];
+    this.specificAdvert = null;
+    this.error = null;
   }
 
 }
