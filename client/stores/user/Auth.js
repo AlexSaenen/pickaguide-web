@@ -34,7 +34,6 @@ class AuthStore {
       UserActions.isGuide.defer(this.credentials.id);
       AccountActions.get.defer();
       AccountActions.isConfirmed.defer(this.credentials.id);
-      AdvertsActions.get.defer(this.credentials.id);
       AvatarActions.get.defer(this.credentials.id);
     }
 

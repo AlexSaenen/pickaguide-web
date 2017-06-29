@@ -6,11 +6,13 @@ import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Panel } from 'layout/containers/Panel.jsx';
 import { Button } from 'layout/elements/Button.jsx';
+import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { FeedableModalFormController } from 'base/FeedableModalFormController.jsx';
 import { ChangeStatus } from 'modals/ChangeStatus.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import VisitsStore from 'stores/user/Visits.js';
 import VisitsActions from 'actions/Visits.js';
 
@@ -99,7 +101,7 @@ export class OwnerVisit extends StoreObserver {
 
     let changeStatus = null;
 
-    if (this.statusMapping[visitStatus] !== undefined) {
+    if (this.statusMapping[visitStatus] !== undefined && visit.about) {
       changeStatus = this.statusMapping[visitStatus].map((nextStatus, index) => {
         return (
           <Button
@@ -125,16 +127,31 @@ export class OwnerVisit extends StoreObserver {
       <Layout layoutStyle="LayoutLight">
         <hr className="Overlay" />
 
-        <Title>{visit.about.title}</Title>
+        {
+          visit.about === null &&
+            <Information infoStyle="Alert Small MarginAuto" active>The advert doesn't exist anymore</Information>
+        }
+
+
+        <Title>{visit.about ? visit.about.title : 'Title not available'}</Title>
         <p className="Small Italic Inline">with </p>
         <p className="Small Bold Inline">{visit.with}</p>
-        <p className="Small Italic"> for more information about the advert, click on the picture below</p>
+        {
+          visit.about &&
+            <p className="Small Italic"> for more information about the advert, click on the picture below</p>
+        }
 
+        <br />
         <Button buttonStyle="Auto TextWhite Bold LineSpaced" onCallback={browserHistory.goBack} label="Back" />
 
-        <Panel panelStyle="LessSpaced">
+        <Panel panelStyle={`LessSpaced ${visit.about ? '' : 'Small'}`}>
           <Layout layoutStyle="NoWrap">
-            <ClickablePicture url={visit.about.photoUrl} pictureName="Advert Cover" pictureType="WidthLimited" full onClick={this.goToAdvert} />
+            {
+              visit.about ?
+                <ClickablePicture url={visit.about.photoUrl} pictureName="Advert Cover" pictureType="WidthLimited" full onClick={this.goToAdvert} />
+                :
+                <Picture url="https://d30y9cdsu7xlg0.cloudfront.net/png/275465-200.png" pictureName="Deleted advert" pictureType="WidthLimited" full />
+            }
           </Layout>
         </Panel>
 

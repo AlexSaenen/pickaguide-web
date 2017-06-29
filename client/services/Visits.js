@@ -5,7 +5,7 @@ import PromiseApi from 'services/PromiseApi.js';
 export default class VisitsApi {
 
   static visit(advertId, form) {
-    PromiseApi.auth().put(`/proposals/${advertId}/visit`, form)
+    PromiseApi.auth().post(`/proposals/${advertId}/visit`, form)
       .then((res) => {
         if (res.error) {
           VisitsActions.error(res.error);

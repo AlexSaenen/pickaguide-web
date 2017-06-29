@@ -57,7 +57,7 @@ export class Signup extends StoreObserver {
           <hr className="SpacedDivider" />
 
           <EmailInput required />
-          <InformationWithClose>You will receive a confirmation email on the adress you provide here</InformationWithClose>
+          <InformationWithClose>{string.success_info}</InformationWithClose>
           <PasswordInput required />
           <PasswordInput label="passwordConfirmation" placeholder={strings.password} required />
         </PanelForm>
