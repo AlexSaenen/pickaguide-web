@@ -172,7 +172,14 @@ export class OwnerVisit extends StoreObserver {
                 <p className="Inline">On </p>
                 <p className="Bold Inline">{new Date(state.date).toDateString()}</p>
                 <p className="Inline"> to </p>
-                <p className="Bold Inline">{state.label}</p>
+                <p
+                  className={
+                    `Bold Inline OverflowHidden TextOverflow
+                    ${['denied', 'cancelled'].indexOf(state.label) !== -1 ? 'Red' : ''}
+                    ${state.label === 'finished' ? 'Green' : ''}
+                    ${state.label === 'accepted' ? 'Blue' : ''}`
+                  }
+                >{state.label}</p>
                 <p className="Inline"> because </p>
                 <p className="Bold Inline">{state.message}</p>
               </div>

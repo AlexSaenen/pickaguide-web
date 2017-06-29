@@ -41,8 +41,9 @@ export class VisitPreview extends PropsComponent {
             label={nextStatus.capitalize()}
             key={index}
             onCallback={
-              function callback() {
-                this.ctrl.feed({ callerId: this.id, actionType: nextStatus });
+              function callback(clickEvent) {
+                clickEvent.stopPropagation();
+                this.ctrl.feed({ callerId: this.id, actionType: clickEvent.target.innerHTML.toLowerCase() });
                 this.ctrl.toggle(true);
               }.bind(this)
             }

@@ -13,7 +13,6 @@ import { Information } from 'layout/elements/Information.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { ProfilePreview } from 'layout/user/ProfilePreview.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
-import AdvertsActions from 'actions/Adverts.js';
 
 
 export class Search extends StoreObserver {

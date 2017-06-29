@@ -64,6 +64,7 @@ export default class VisitsApi {
     PromiseApi.auth().put(`/visits/${visitId}/${type}`, form)
       .then((res) => {
         if (res.error) {
+          console.log(res.error);
           VisitsActions.error(res.error);
         } else {
           VisitsActions.actionSuccess(res.visit);

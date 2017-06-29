@@ -65,6 +65,7 @@ class AdvertsStore {
   onInvalidateAdverts() {
     this.adverts = [];
     this.specificAdvert = null;
+    this.error = null;
   }
 
 }

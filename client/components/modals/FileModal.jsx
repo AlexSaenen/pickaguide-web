@@ -22,7 +22,7 @@ export class FileModal extends PropsComponent {
     return (
       <ModalForm {...this.props} modalStyle="Small">
         <Title>{this.state.title}</Title>
-        <FileInput placeholder={this.state.inputHolder} label={this.state.inputLabel} />
+        <FileInput placeholder={this.state.inputHolder} label={this.state.inputLabel} required />
       </ModalForm>
     );
   }

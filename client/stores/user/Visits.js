@@ -94,7 +94,7 @@ class VisitsStore {
       mustUpdate = true;
     }
 
-    if (this.specificVisit._id === newVisit._id) {
+    if (this.specificVisit && this.specificVisit._id === newVisit._id) {
       this.specificVisit.status = newVisit.status;
       mustUpdate = true;
     }
