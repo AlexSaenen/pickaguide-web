@@ -27,6 +27,11 @@ class AdvertsStore {
     this.adverts = adverts;
   }
 
+  onFindAll() {
+    AdvertsApi.findAll();
+    return false;
+  }
+
   onFind(advertId) {
     AdvertsApi.find(advertId);
     return false;

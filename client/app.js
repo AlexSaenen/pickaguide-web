@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import { MainLayout } from 'main/MainLayout.jsx';
-import Home from 'views/Home.jsx';
+import { Home } from 'views/Home.jsx';
 import { Signup } from 'views/Signup.jsx';
 import { Login } from 'views/Login.jsx';
 import { Profile } from 'views/Profile.jsx';
