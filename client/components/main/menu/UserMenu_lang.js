@@ -2,7 +2,7 @@ import LocalizedStrings from 'react-localization';
 
 export let strings = new LocalizedStrings({
    en:{
-      signUp:"Sugn Up",
+      signUp:"Sign Up",
       signIn:"Sign In",
       logout:"Logout"
    },
