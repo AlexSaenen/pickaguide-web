@@ -51,15 +51,15 @@ export class Signup extends StoreObserver {
 
           <hr className="SpacedOverlay" />
 
-          <TextInput label={strings.first_name} placeholder={strings.first_name} required />
-          <TextInput label={strings.last_name} placeholder={strings.last_name} required />
+          <TextInput label="firstName" placeholder={strings.first_name} required />
+          <TextInput label="lastName" placeholder={strings.last_name} required />
 
           <hr className="SpacedDivider" />
 
           <EmailInput required />
           <InformationWithClose>You will receive a confirmation email on the adress you provide here</InformationWithClose>
           <PasswordInput required />
-          <PasswordInput label={strings.password} placeholder={strings.password} required />
+          <PasswordInput label="passwordConfirmation" placeholder={strings.password} required />
         </PanelForm>
       </div>
     );
