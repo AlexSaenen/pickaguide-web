@@ -7,7 +7,7 @@ import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { FormController } from 'base/FormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
-import { Information } from 'layout/elements/Information.jsx';
+import { InformationWithClose } from 'layout/elements/InformationWithClose.jsx';
 import { strings } from './Singup_lang.js';
 import SignupActions from 'actions/Signup.js';
 import SignupStore from 'stores/user/Signup.js';
@@ -51,15 +51,15 @@ export class Signup extends StoreObserver {
 
           <hr className="SpacedOverlay" />
 
-          <TextInput label={strings.first_name} placeholder={strings.first_name} required />
-          <TextInput label={strings.last_name} placeholder={strings.last_name} required />
+          <TextInput label="firstName" placeholder={strings.first_name} required />
+          <TextInput label="lastName" placeholder={strings.last_name} required />
 
           <hr className="SpacedDivider" />
 
           <EmailInput required />
-          <Information>{string.success_info}</Information>
+          <InformationWithClose>{string.success_info}</InformationWithClose>
           <PasswordInput required />
-          <PasswordInput label={strings.password} placeholder={strings.password} required />
+          <PasswordInput label="passwordConfirmation" placeholder={strings.password} required />
         </PanelForm>
       </div>
     );

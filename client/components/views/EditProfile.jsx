@@ -24,7 +24,7 @@ export class EditProfile extends StoreObserver {
 
     this.state = {
       profile: ProfileStore.getState().profile,
-      avatar: AvatarStore.getState().avatar
+      avatar: AvatarStore.getState().avatar,
     };
 
     this.ctrl = new FormController();
@@ -59,7 +59,6 @@ export class EditProfile extends StoreObserver {
   }
 
   onSubmit(form) {
-    console.log(form);
     form.interests = this.state.profile.interests;
     ProfileActions.update(form);
   }
@@ -76,16 +75,16 @@ export class EditProfile extends StoreObserver {
 
           <hr className="SpacedOverlay" />
 
-          <TextInput value={profile.firstName} label={strings.inputFirstName} placeholder={strings.inputFirstName} required />
-          <TextInput value={profile.lastName} label={strings.inputLastName} placeholder={strings.inputLastName} required />
+          <TextInput value={profile.firstName} label="firstName" placeholder={strings.inputFirstName} required />
+          <TextInput value={profile.lastName} label="lastName" placeholder={strings.inputLastName} required />
 
           <hr className="SpacedDivider" />
 
-          <DateInput value={profile.birthdate} label={strings.inputBirthdate} max={Date.now()} defaultValue={nowToInput()} />
-          <TextInput value={profile.phone} label={strings.inputPhone} />
-          <TextInput value={profile.city} label={strings.inputCity} />
-          <TextInput value={profile.country} label={strings.inputCountry} />
-          <TextArea value={profile.description} label={strings.inputDescription} />
+          <DateInput value={profile.birthdate} label="birthdate" max={Date.now()} defaultValue={nowToInput()} />
+          <TextInput value={profile.phone} label="phone" />
+          <TextInput value={profile.city} label="city" />
+          <TextInput value={profile.country} label="country" />
+          <TextArea value={profile.description} label="description" />
 
           <hr className="SpacedDivider" />
 

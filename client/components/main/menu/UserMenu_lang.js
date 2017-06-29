@@ -9,6 +9,6 @@ export let strings = new LocalizedStrings({
    fr:{
       signUp:"Inscription",
       signIn:"Connexion",
-      logout:"Deconection"
+      logout:"Déconnection"
    }
 });

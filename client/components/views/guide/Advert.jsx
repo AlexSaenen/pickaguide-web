@@ -3,40 +3,102 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { CheckMark } from 'layout/elements/CheckMark.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
+import { Comment } from 'layout/user/Comment.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Panel } from 'layout/containers/Panel.jsx';
 import { VisitCreation } from 'modals/VisitCreation.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
+import CommentsStore from 'stores/user/Comments.js';
+import AdvertsActions from 'actions/Adverts.js';
+import CommentsActions from 'actions/Comments.js';
+import CommentAvatarsActions from 'actions/CommentAvatars.js';
 
 import 'scss/views/adverts.scss';
+
+const getCache = (advertId) => {
+  const storeCache = AdvertsStore.getState().specificAdvert;
+
+  return (storeCache && storeCache._id === advertId ? storeCache : undefined);
+};
+
+const getCommentsCache = (advertId) => {
+  const storeCache = CommentsStore.getState();
+
+  return (storeCache.id === advertId ? storeCache.comments : []);
+};
 
 
 export class Advert extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, AdvertsStore);
+    super(props, context, [AdvertsStore, CommentsStore]);
 
-    this.state = { advert: AdvertsStore.getState().specificAdvert };
+    this.id = this.props.params.id;
+    this.state = { advert: getCache(this.id), comments: getCommentsCache(this.id) };
     this.visitCreationCtrl = new ModalFormController();
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.id = nextProps.params.id;
+    const nextState = Object.assign({}, this.state);
+    nextState.advert = getCache(this.id);
+    nextState.comments = getCommentsCache(this.id);
+
+    this.setState(nextState);
+
+    if (nextState.advert === undefined) {
+      AdvertsActions.find(this.id);
+      CommentsActions.get(this.id);
+    }
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+    if (this.state.advert === undefined) {
+      AdvertsActions.find(this.id);
+      CommentsActions.get(this.id);
+    }
+  }
+
   onStore(store) {
-    const newState = Object.assign({}, this.state);
-    newState.advert = store.specificAdvert;
-    this.setState(newState);
+    const nextState = Object.assign({}, this.state);
+
+    if (store.error) {
+      return;
+    } else if (store.specificAdvert && store.specificAdvert._id === this.id) {
+      nextState.advert = store.specificAdvert;
+    } else if (store.comments && store.id === this.id) {
+      nextState.comments = getCommentsCache(this.id);
+      const ids = [];
+      nextState.comments.forEach((comment) => {
+        if (ids.indexOf(comment.owner._id) === -1) {
+          ids.push(comment.owner._id);
+        }
+      });
+
+      CommentAvatarsActions.get.defer(ids);
+    } else {
+      nextState.advert = getCache(this.id);
+    }
+
+    this.setState(nextState);
   }
 
   render() {
     const advert = this.state.advert;
+    const comments = this.state.comments;
 
-    if (advert.photoUrl === undefined) {
-      advert.photoUrl = 'http://www.freeiconspng.com/free-images/no-image-icon-23492';
-      advert.active = false;
-      advert.owner = { profile: {} };
+    if (advert === undefined || advert === null) {
+      return (
+        <Layout layoutStyle="LayoutBlank">
+          <Text>No such advert found</Text>
+        </Layout>
+      );
     }
 
     return (
@@ -65,6 +127,20 @@ export class Advert extends StoreObserver {
             buttonStyle="Auto Blue"
             onCallback={this.visitCreationCtrl.toggle}
           />
+
+          {
+            comments.length !== 0 &&
+              <div>
+                <hr className="SpacedOverlay" />
+                <SubTitle>Comments</SubTitle>
+              </div>
+          }
+
+          {
+            comments.map((comment, index) => {
+              return <Comment key={index} {...comment} />;
+            })
+          }
         </Layout>
       </div>
     );

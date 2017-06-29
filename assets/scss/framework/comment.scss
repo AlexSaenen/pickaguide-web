@@ -1,0 +1,47 @@
+@import '../colors.scss';
+
+.Comment {
+  border-radius: 0.4em;
+  overflow: hidden;
+  width: auto;
+  max-width: 40em;
+  display: inline-block;
+  -moz-box-shadow:    0px 1px 8px 0px $shadowColor;
+  -webkit-box-shadow: 0px 1px 8px 0px $shadowColor;
+  box-shadow:         0px 1px 8px 0px $shadowColor;
+
+  .Post {
+    flex-grow: 100;
+    display: inline-block;
+    margin: 0 0 0 1em;
+  }
+
+  .CommentContent {
+    margin: 1em;
+    background-color: $modalLightColor;
+    color: $textDarkColor;
+    width: inherit;
+    overflow: hidden;
+    display: inline-flex;
+
+    .ClickablePicture {
+      width: 15%;
+      max-width: 8em;
+      height: auto;
+      float: left;
+
+      img {
+        -moz-box-shadow: 0 0 4px black;
+        -webkit-box-shadow: 0 0 4px black;
+        box-shadow: 0 0 4px black;
+        width: 100%;
+      }
+    }
+  }
+
+  .CommentMeta {
+    padding: 0.5em;
+    background-color: $modalSecondaryColor;
+    color: $textLightColor;
+  }
+}

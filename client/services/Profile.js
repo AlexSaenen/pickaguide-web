@@ -26,7 +26,7 @@ export default class ProfileApi {
     const credentials = AuthStore.getState().credentials;
 
     if (credentials) {
-      PromiseApi.auth().download(`/profiles/${credentials.id}/avatar`)
+      PromiseApi.download(`/public/profiles/${credentials.id}/avatar`)
         .then((res) => {
           AvatarActions.getSuccess.defer(res);
         })
