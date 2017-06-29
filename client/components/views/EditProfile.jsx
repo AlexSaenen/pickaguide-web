@@ -11,6 +11,7 @@ import { Title } from 'layout/elements/Title.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { EditableInterests } from 'layout/user/EditableInterests.jsx';
 import { EditPicture } from 'modals/EditPicture.jsx';
+import { strings } from './EditProfile_lang.js';
 import ProfileActions from 'actions/Profile.js';
 import ProfileStore from 'stores/user/Profile.js';
 import AvatarStore from 'stores/user/Avatar.js';
@@ -36,7 +37,7 @@ export class EditProfile extends StoreObserver {
 
     if (store.error) {
       this.ctrl.messageCallback({
-        title: 'Some error occurred when updating your profile',
+        title: String(strings.errorTitle),
         content: String(store.error),
         type: 'Alert',
       });
@@ -48,8 +49,8 @@ export class EditProfile extends StoreObserver {
       }
 
       this.ctrl.messageCallback({
-        title: 'Successful',
-        content: 'Your informations have been updated',
+        title: String(strings.successTitle),
+        content: String(strings.successContent),
         type: 'Success',
       });
     }
@@ -68,22 +69,22 @@ export class EditProfile extends StoreObserver {
 
     return (
       <div>
-        <PanelForm controller={this.ctrl} submitLabel="Save">
-          <Title>Update your profile</Title>
+        <PanelForm controller={this.ctrl} submitLabel={strings.submit}>
+          <Title>{strings.title}</Title>
           <ClickablePicture url={avatar} onClick={this.editPictureCtrl.toggle} />
 
           <hr className="SpacedOverlay" />
 
-          <TextInput value={profile.firstName} label="firstName" placeholder="First name" required />
-          <TextInput value={profile.lastName} label="lastName" placeholder="Last name" required />
+          <TextInput value={profile.firstName} label={strings.inputFirstName} placeholder={strings.inputFirstName} required />
+          <TextInput value={profile.lastName} label={strings.inputLastName} placeholder={strings.inputLastName} required />
 
           <hr className="SpacedDivider" />
 
-          <DateInput value={profile.birthdate} label="birthdate" max={Date.now()} defaultValue={nowToInput()} />
-          <TextInput value={profile.phone} label="phone" />
-          <TextInput value={profile.city} label="city" />
-          <TextInput value={profile.country} label="country" />
-          <TextArea value={profile.description} label="description" />
+          <DateInput value={profile.birthdate} label={strings.inputBirthdate} max={Date.now()} defaultValue={nowToInput()} />
+          <TextInput value={profile.phone} label={strings.inputPhone} />
+          <TextInput value={profile.city} label={strings.inputCity} />
+          <TextInput value={profile.country} label={strings.inputCountry} />
+          <TextArea value={profile.description} label={strings.inputDescription} />
 
           <hr className="SpacedDivider" />
 

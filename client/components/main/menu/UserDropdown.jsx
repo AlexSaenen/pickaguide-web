@@ -8,6 +8,7 @@ import { GuideDependent } from 'base/GuideDependent.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
 import { ModalController } from 'base/ModalController.jsx';
+import { strings } from './UserDropdown_lang.js';
 import UserActions from 'actions/User.js';
 
 
@@ -37,28 +38,28 @@ export class UserDropdown extends StoreObserver {
     return (
       <AuthDependent className="AccountLogo" {...this.props}>
         <Link to="/profiles/mine">
-          <img src={this.state.src} alt="Profile" />
+          <img src={this.state.src} alt={strings.imgAlt} />
         </Link>
 
         <div className="Dropdown HeightNone">
-          <Link to="/accounts/mine/edit"><p>Account</p></Link>
-          <Link to="/profiles/mine/edit"><p>Profile</p></Link>
+          <Link to="/accounts/mine/edit"><p>{strings.account}</p></Link>
+          <Link to="/profiles/mine/edit"><p>{strings.profile}</p></Link>
           <Link to="/visits"><p>Visits</p></Link>
 
           <GuideDependent guide>
-            <Link to="/guide/adverts"><p>Adverts</p></Link>
-            <Link><p className="alert Clickable" onClick={this.ctrl.toggle}>Retire</p></Link>
+            <Link to="/guide/adverts"><p>{strings.adverts}</p></Link>
+            <Link><p className="alert Clickable" onClick={this.ctrl.toggle}>{strings.retire}</p></Link>
           </GuideDependent>
 
           <GuideDependent visitor>
-            <Link to="/guide/become"><p className="action">Be a guide</p></Link>
+            <Link to="/guide/become"><p className="action">{strings.beAGuide}</p></Link>
           </GuideDependent>
         </div>
 
         <QueryModal
           modalStyle="Medium"
           controller={this.ctrl}
-          query="Do you really wish to retire from being a guide? All your adverts will be deactivated and ongoing visits cancelled"
+          query={strings.query}
           onConfirm={UserActions.retire}
         />
       </AuthDependent>

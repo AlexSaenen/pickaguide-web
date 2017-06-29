@@ -10,4 +10,28 @@ $footerHeight: 10em;
   width: 100%;
   height: $footerHeight;
   background-color: $mediumDarkColor;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .FollowUs {
+    ul {
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+    li {
+      display: inline;
+  	  list-style: none;
+      a {
+        display:inline-block;
+        margin: 0 5px;
+      }
+      a:hover {
+        background-color: $modalLightColor;
+      }
+    }
+  }
 }

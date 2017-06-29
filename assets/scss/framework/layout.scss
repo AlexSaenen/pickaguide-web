@@ -144,6 +144,118 @@ $layoutPadding: 2em;
 
 .NoWrap { margin: 0 auto; padding: 0; }
 
+.LayoutHomeLeft {
+  border: 3px solid black;
+  width: 45%;
+  height: auto;
+  float: left;
+
+  .Title, .Text {
+    color: gray;
+  }
+
+  .SubTitle {
+    color: $textDarkColor;
+  }
+
+  input, textarea {
+    color: gray;
+  }
+
+  input[type="submit"] {
+    color: blue;
+  }
+}
+
+.LayoutHomeRight {
+  border: 3px solid black;
+  width: 45%;
+  height: auto;
+  float: right;
+
+  .Title, .Text {
+    color: gray;
+  }
+
+  .SubTitle {
+    color: $textDarkColor;
+  }
+
+  input, textarea {
+    color: gray;
+  }
+
+  input[type="submit"] {
+    color: blue;
+  }
+}
+
+.LayoutFooterLeft {
+  width: 25%;
+  float: left;
+
+  .Title, .Text {
+    color: gray;
+  }
+
+  .SubTitle {
+    color: $textDarkColor;
+  }
+
+  input, textarea {
+    color: gray;
+  }
+
+  input[type="submit"] {
+    color: blue;
+  }
+}
+
+.LayoutFooterCenter {
+  width: 30%;
+  margin: auto;
+  border-left: 1px solid $modalLightColor;
+  border-right: 1px solid $modalLightColor;
+
+  .Title, .Text {
+    color: gray;
+  }
+
+  .SubTitle {
+    color: $textDarkColor;
+  }
+
+  input, textarea {
+    color: gray;
+  }
+
+  input[type="submit"] {
+    color: blue;
+  }
+}
+
+.LayoutFooterRight {
+  margin-top: -11%;
+  width: 25%;
+  float: right;
+
+  .Title, .Text {
+    color: gray;
+  }
+
+  .SubTitle {
+    color: $textDarkColor;
+  }
+
+  input, textarea {
+    color: gray;
+  }
+
+  input[type="submit"] {
+    color: blue;
+  }
+}
+
 .LayoutLight {
   background-color: $modalLightColor;
 

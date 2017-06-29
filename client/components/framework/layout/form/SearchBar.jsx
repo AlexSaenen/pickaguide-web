@@ -10,8 +10,8 @@ import 'scss/main/menu/entry.scss';
 
 
 export class SearchBar extends React.Component {
-
   constructor(props, context) {
+
     super(props, context);
 
     this.state = { visible: false };
