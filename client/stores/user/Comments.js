@@ -28,6 +28,16 @@ class CommentsStore {
     this.error = error;
   }
 
+  onRemove(removeObj) {
+    CommentsApi.remove(removeObj);
+    return false;
+  }
+
+  onCreate(post) {
+    CommentsApi.create(post);
+    return false;
+  }
+
   onInvalidateComments() {
     this.comments = [];
     this.error = null;

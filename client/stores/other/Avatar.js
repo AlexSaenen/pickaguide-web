@@ -25,6 +25,12 @@ class SearchAvatarStore {
   onError(error) {
     this.error = error;
   }
+
+  onInvalidate() {
+    this.error = null;
+    this.avatar = defaultAvatarUrl;
+  }
+
 }
 
 export default alt.createStore(SearchAvatarStore, 'SearchAvatarStore');

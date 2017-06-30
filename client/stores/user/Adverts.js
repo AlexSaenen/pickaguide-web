@@ -22,6 +22,11 @@ class AdvertsStore {
     return false;
   }
 
+  onGetFrom(userId) {
+    AdvertsApi.getFrom(userId);
+    return false;
+  }
+
   onGetSuccess(adverts) {
     this.error = null;
     this.adverts = adverts;

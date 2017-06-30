@@ -6,12 +6,16 @@ import { CheckMark } from 'layout/elements/CheckMark.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
+import { GuideAdvertsPreviews } from 'layout/user/GuideAdvertsPreviews.jsx';
 import { strings } from './Profile_lang.js';
 import SearchProfileStore from 'stores/other/Profile.js';
 import SearchAvatarStore from 'stores/other/Avatar.js';
 import SearchAccountStore from 'stores/other/Account.js';
+import SearchUserStore from 'stores/other/User.js';
 import ProfileActions from 'actions/SearchProfile.js';
 import AccountActions from 'actions/SearchAccount.js';
+import AvatarActions from 'actions/SearchAvatar.js';
+import UserActions from 'actions/SearchUser.js';
 
 const displayBirthdate = (birthdate) => {
   const monthMap = [
@@ -28,15 +32,16 @@ export class Profile extends StoreObserver {
 
   constructor(props, context, stores = []) {
     if (stores.constructor !== Array || stores.length === 0) {
-      stores = [SearchProfileStore, SearchAvatarStore, SearchAccountStore];
+      stores = [SearchProfileStore, SearchAvatarStore, SearchAccountStore, SearchUserStore];
     }
 
     super(props, context, stores);
 
     this.state = {
       profile: null,
-      avatar: SearchAvatarStore.getState().avatar,
+      avatar: '',
       isConfirmed: false,
+      isGuide: false,
     };
 
     this.isOwnerView = false;
@@ -46,8 +51,10 @@ export class Profile extends StoreObserver {
   componentDidMount() {
     super.componentDidMount();
     if (this.isOwnerView === false && this.state.profile === null) {
-      ProfileActions.get(this.id);
-      AccountActions.isConfirmed(this.id);
+      AvatarActions.invalidate.defer();
+      ProfileActions.get.defer(this.id);
+      AccountActions.isConfirmed.defer(this.id);
+      UserActions.isGuide.defer(this.id);
     }
   }
 
@@ -64,8 +71,10 @@ export class Profile extends StoreObserver {
       }
     } else if (store.avatar) {
       nextState.avatar = store.avatar;
-    } else {
+    } else if (store.isConfirmed !== undefined) {
       nextState.isConfirmed = store.isConfirmed;
+    } else {
+      nextState.isGuide = store.isGuide;
     }
 
     this.setState(nextState);
@@ -79,39 +88,45 @@ export class Profile extends StoreObserver {
     }
 
     return (
-      <PanelLayout layoutStyle="LayoutLight Tight">
-        <div className="LayoutHeader">
-          <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" /></div>
-          <p className="HeaderText Title Inline-Block" >{profile.displayName}</p>
-          <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
-        </div>
+      <div>
+        <PanelLayout layoutStyle="LayoutLight Tight">
+          <div className="LayoutHeader">
+            <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" /></div>
+            <p className="HeaderText Title Inline-Block" >{profile.displayName}</p>
+            <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
+          </div>
 
-        <hr className="SpacedOverlay" />
+          <hr className="SpacedOverlay" />
 
-        <SubTitle>{strings.stitleBasucInfo}</SubTitle>
-        <Text>
-          {
-            this.isOwnerView ?
-              <p><strong>{strings.outputBirthdate}:</strong> {displayBirthdate(profile.birthdate)}</p>
-              :
-              <p><strong>{strings.outputAge}:</strong> {profile.age} {strings.ageOld}</p>
-          }
-          <p><strong>{strings.outputCity}:</strong> {profile.city ? profile.city : String(strings.outputNoCity)}</p>
-          <p><strong>{strings.outputCountry}:</strong> {profile.country ? profile.country : String(strings.outputNoCountry)}</p>
-        </Text>
+          <SubTitle>{strings.stitleBasucInfo}</SubTitle>
+          <Text>
+            {
+              this.isOwnerView ?
+                <p><strong>{strings.outputBirthdate}:</strong> {displayBirthdate(profile.birthdate)}</p>
+                :
+                <p><strong>{strings.outputAge}:</strong> {profile.age} {strings.ageOld}</p>
+            }
+            <p><strong>{strings.outputCity}:</strong> {profile.city ? profile.city : String(strings.outputNoCity)}</p>
+            <p><strong>{strings.outputCountry}:</strong> {profile.country ? profile.country : String(strings.outputNoCountry)}</p>
+          </Text>
 
-        <hr className="SpacedDivider" />
+          <hr className="SpacedDivider" />
 
-        <SubTitle>{strings.stitleDescription}</SubTitle>
-        <Text>{profile.description ? profile.description : String(strings.outputNoDescription)}</Text>
+          <SubTitle>{strings.stitleDescription}</SubTitle>
+          <Text>{profile.description ? profile.description : String(strings.outputNoDescription)}</Text>
 
-        <hr className="SpacedDivider" />
+          <hr className="SpacedDivider" />
 
-        <SubTitle>{strings.stitleInterests}</SubTitle>
-        <Text>{profile.interests.length > 0 ?
+          <SubTitle>{strings.stitleInterests}</SubTitle>
+          <Text>{profile.interests.length > 0 ?
             profile.interests.map((interest, index) => React.createElement('p', { key: index }, interest)) : String(strings.outputNoInterests)}
-        </Text>
-      </PanelLayout>
+          </Text>
+        </PanelLayout>
+        {
+          this.state.isGuide &&
+            <GuideAdvertsPreviews userId={this.id} />
+        }
+      </div>
     );
   }
 }

@@ -8,7 +8,7 @@ const defaultAvatarUrl = 'https://www.learnmine.com/assets/img/medium-default-av
 export default class CommentsApi {
 
   static getFrom(advertId) {
-    PromiseApi.get(`/public/proposals/${advertId}/comments`)
+    PromiseApi.auth().get(`/proposals/${advertId}/comments`)
       .then((res) => {
         if (res.error) {
           CommentsActions.error(res.error);
@@ -47,4 +47,33 @@ export default class CommentsApi {
         CommentAvatarsActions.error(err);
       });
   }
+
+  static remove(obj) {
+    PromiseApi.auth().delete(`/proposals/${obj.advertId}/comments/${obj.id}`)
+      .then((res) => {
+        if (res.error) {
+          CommentsActions.error(res.error);
+        } else {
+          CommentsActions.getSuccess(res);
+        }
+      })
+      .catch((err) => {
+        CommentsActions.error(err);
+      });
+  }
+
+  static create(postObj) {
+    PromiseApi.auth().post(`/proposals/${postObj.advertId}/comments`, { post: postObj.post })
+      .then((res) => {
+        if (res.error) {
+          CommentsActions.error(res.error);
+        } else {
+          CommentsActions.getSuccess(res);
+        }
+      })
+      .catch((err) => {
+        CommentsActions.error(err);
+      });
+  }
+
 }

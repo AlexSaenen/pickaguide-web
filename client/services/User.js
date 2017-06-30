@@ -1,4 +1,5 @@
 import UserActions from 'actions/User.js';
+import SearchUserActions from 'actions/SearchUser.js';
 import ProfileActions from 'actions/Profile.js';
 import PromiseApi from 'services/PromiseApi.js';
 
@@ -15,6 +16,20 @@ export default class UserApi {
       })
       .catch((err) => {
         UserActions.error(err);
+      });
+  }
+
+  static isHeGuide(userId) {
+    PromiseApi.get(`/public/users/${userId}/isGuide`)
+      .then((res) => {
+        if (res.error) {
+          SearchUserActions.error(res.error);
+        } else {
+          SearchUserActions.isGuideSuccess(res.isGuide);
+        }
+      })
+      .catch((err) => {
+        SearchUserActions.error(err);
       });
   }
 

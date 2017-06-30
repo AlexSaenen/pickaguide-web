@@ -60,6 +60,20 @@ export default class AdvertsApi {
       });
   }
 
+  static getFrom(userId) {
+    PromiseApi.auth().get(`/public/users/${userId}/proposals`)
+      .then((res) => {
+        if (res.error) {
+          AdvertsActions.error(res.error);
+        } else {
+          AdvertsActions.getSuccess(res.adverts);
+        }
+      })
+      .catch((err) => {
+        AdvertsActions.error(err);
+      });
+  }
+
   static update(advert) {
     PromiseApi.auth().put(`/proposals/${advert._id}`, advert)
       .then((res) => {

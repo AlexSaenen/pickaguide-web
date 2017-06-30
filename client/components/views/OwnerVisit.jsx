@@ -96,6 +96,8 @@ export class OwnerVisit extends StoreObserver {
       );
     }
 
+    console.log(visit);
+
     const visitStatus = visit.status.slice(-1)[0].label;
     const whenDate = new Date(visit.when).toDateString();
 

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Picture } from 'layout/elements/Picture.jsx';
-import { CheckMark } from 'layout/elements/CheckMark.jsx';
 
 import 'scss/views/adverts.scss';
 
@@ -30,10 +29,15 @@ export class AdvertPreview extends React.Component {
         <Picture url={this.props.photoUrl} pictureType="WidthLimited" />
         <div className="DescriptionSection">
           <div>
-            <CheckMark active={this.props.active} />
             <p className="Medium Bold Inline">{this.props.title}</p>
-            <p className="Inline Italic">by</p>
-            <p className="Bold Inline LineSpaced">{this.props.owner}</p>
+            {
+              this.props.owner &&
+                <p className="Inline Italic">by</p>
+            }
+            {
+              this.props.owner &&
+                <p className="Bold Inline LineSpaced">{this.props.owner}</p>
+            }
           </div>
           <p className="ExtraSmall OverflowHidden MultiLineTextOverflow">{this.props.description}</p>
         </div>
@@ -48,6 +52,5 @@ AdvertPreview.propTypes = {
   title: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
   photoUrl: React.PropTypes.string.isRequired,
-  owner: React.PropTypes.string.isRequired,
-  active: React.PropTypes.bool.isRequired,
+  owner: React.PropTypes.string,
 };
