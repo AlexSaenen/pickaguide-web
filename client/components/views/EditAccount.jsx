@@ -49,7 +49,10 @@ export class EditAccount extends StoreObserver {
             <hr className="Overlay" />
             <Button buttonStyle="Blue Spaced Auto TextWhite" label={strings.btnPasswd} onCallback={this.editPasswordCtrl.toggle} />
             <Button buttonStyle="Blue Spaced Auto TextWhite" label={strings.btnEmail} onCallback={this.editEmailCtrl.toggle} />
-            <Information infoStyle="Alert" active={!this.state.isConfirmed}>{strings.msgConfirmEmail}</Information>
+            {
+              this.state.isConfirmed === false &&
+                <Information infoStyle="Alert">{strings.msgConfirmEmail}</Information>
+            }
             <Button buttonStyle="Red Spaced Auto TextWhite LineSpaced" label={strings.btnDelete} onCallback={this.deleteCtrl.toggle} />
           </Layout>
         </Panel>

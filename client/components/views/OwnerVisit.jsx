@@ -129,7 +129,7 @@ export class OwnerVisit extends StoreObserver {
 
         {
           visit.about === null &&
-            <Information infoStyle="Alert Small MarginAuto" active>The advert doesn't exist anymore</Information>
+            <Information infoStyle="Alert Small MarginAuto">The advert doesn't exist anymore</Information>
         }
 
 

@@ -10,16 +10,20 @@ export default class ProfileApi {
     const credentials = AuthStore.getState().credentials;
 
     if (credentials) {
-      PromiseApi.auth().get(`/profiles/${credentials.id}`)
-        .then((res) => {
-          ProfileActions.getSuccess.defer(res);
-        })
-        .catch((err) => {
-          ProfileActions.error.defer(err);
-        });
+      ProfileApi.find(credentials.id);
     } else {
       ProfileActions.error.defer('Need to be logged in for that');
     }
+  }
+
+  static find(id) {
+    PromiseApi.auth().get(`/profiles/${id}`)
+      .then((res) => {
+        ProfileActions.getSuccess.defer(res);
+      })
+      .catch((err) => {
+        ProfileActions.error.defer(err);
+      });
   }
 
   static getAvatar() {
