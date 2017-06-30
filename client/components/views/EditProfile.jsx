@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PanelForm } from 'view/PanelForm.jsx';
+import { PanelLayout } from 'view/PanelLayout.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { DateInput, nowToInput } from 'form/DateInput.jsx';
 import { TextArea } from 'form/TextArea.jsx';
@@ -30,6 +31,13 @@ export class EditProfile extends StoreObserver {
     this.ctrl = new FormController();
     this.ctrl.attachSubmit(this.onSubmit.bind(this));
     this.editPictureCtrl = new ModalFormController();
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+    if (this.state.profile === null) {
+      ProfileActions.get();
+    }
   }
 
   onStore(store) {
@@ -64,8 +72,12 @@ export class EditProfile extends StoreObserver {
   }
 
   render() {
-    const profile = this.state.profile || { interests: [] };
+    const profile = this.state.profile;
     const avatar = this.state.avatar;
+
+    if (profile === null) {
+      return (<PanelLayout layoutStyle="LayoutLight Tight" />);
+    }
 
     return (
       <div>
