@@ -11,7 +11,7 @@ export default class Cookie {
       Cookie.revoke(key);
     }
 
-    document.cookie = `${key}=${value};`;
+    document.cookie = `${key}=${value}; path=/`;
   }
 
   static toList() {
@@ -24,7 +24,7 @@ export default class Cookie {
   }
 
   static revoke(key) {
-    document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+    document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/`;
   }
 
   static revokeAll() {

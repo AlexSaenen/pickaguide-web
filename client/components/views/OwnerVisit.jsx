@@ -16,11 +16,6 @@ import { Information } from 'layout/elements/Information.jsx';
 import VisitsStore from 'stores/user/Visits.js';
 import VisitsActions from 'actions/Visits.js';
 
-const getCache = (visitId) => {
-  const storeCache = VisitsStore.getState().specificVisit;
-
-  return (storeCache && storeCache._id === visitId ? storeCache : undefined);
-};
 
 const getStatusMapping = (type) => {
   return (type === 'visitor' ? {
@@ -42,7 +37,7 @@ export class OwnerVisit extends StoreObserver {
     this.type = this.props.params.type;
     this.statusMapping = getStatusMapping(this.type);
     this.ctrl = new FeedableModalFormController();
-    this.state = { visit: getCache(this.id) };
+    this.state = { visit: null };
     this.goToAdvert = this.goToAdvert.bind(this);
   }
 
@@ -50,19 +45,12 @@ export class OwnerVisit extends StoreObserver {
     this.id = nextProps.params.id;
     this.type = nextProps.params.type;
     this.statusMapping = getStatusMapping(this.type);
-    const nextState = Object.assign({}, this.state);
-    nextState.visit = getCache(this.id);
-
-    this.setState(nextState);
-
-    if (nextState.visit === undefined) {
-      VisitsActions.find({ visitId: this.id, mine: true, type: this.type });
-    }
+    VisitsActions.find({ visitId: this.id, mine: true, type: this.type });
   }
 
   componentDidMount() {
     super.componentDidMount();
-    if (this.state.visit === undefined) {
+    if (this.state.visit === null) {
       VisitsActions.find({ visitId: this.id, mine: true, type: this.type });
     }
   }
@@ -75,7 +63,7 @@ export class OwnerVisit extends StoreObserver {
     } else if (store.specificVisit && store.specificVisit._id === this.id) {
       nextState.visit = store.specificVisit;
     } else {
-      nextState.visit = getCache(this.id);
+      nextState.visit = VisitsStore.getState().specificVisit;
     }
 
     this.setState(nextState);
@@ -95,8 +83,6 @@ export class OwnerVisit extends StoreObserver {
         </Layout>
       );
     }
-
-    console.log(visit);
 
     const visitStatus = visit.status.slice(-1)[0].label;
     const whenDate = new Date(visit.when).toDateString();
@@ -204,6 +190,19 @@ export class OwnerVisit extends StoreObserver {
               </div>
             );
           })
+        }
+
+        {
+          visit.contact &&
+            <div>
+              <br /><br /><br />
+              <SubTitle>Contact Info</SubTitle>
+              {
+                visit.contact.phone &&
+                  <p>{visit.contact.phone}</p>
+              }
+              <p>{visit.contact.email}</p>
+            </div>
         }
 
         {changeStatus}
