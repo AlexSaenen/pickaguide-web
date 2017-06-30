@@ -42,6 +42,10 @@ export default class ProfileApi {
     }
   }
 
+  static hasAvatar(userId) {
+    return PromiseApi.get(`/public/profiles/${userId}/avatar/available`);
+  }
+
   static updateAvatar(form) {
     if (form.picture.name.match(/.(jpg|jpeg|png|gif)$/i) === false) {
       AvatarActions.error('Need an image');

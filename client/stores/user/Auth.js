@@ -28,10 +28,10 @@ class AuthStore {
 
   onSync() {
     if (this.credentials) {
+      ProfileActions.get.defer();
       UserActions.isGuide.defer(this.credentials.id);
       AccountActions.get.defer();
       AccountActions.isConfirmed.defer(this.credentials.id);
-      AvatarActions.get.defer(this.credentials.id);
     }
 
     return false;

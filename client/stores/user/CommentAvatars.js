@@ -1,6 +1,7 @@
 import alt from 'client/alt';
 import CommentAvatarsActions from 'actions/CommentAvatars.js';
 import CommentsApi from 'services/Comments.js';
+import ProfileApi from 'services/Profile.js';
 
 const defaultAvatarUrl = 'https://www.learnmine.com/assets/img/medium-default-avatar.png';
 
@@ -13,7 +14,14 @@ class CommentAvatarsStore {
   }
 
   onGet(ids) {
-    CommentsApi.getAvatars(ids);
+    Promise.all(ids.map(id => ProfileApi.hasAvatar(id)))
+      .then((res) => {
+        CommentsApi.getAvatars(res);
+      })
+      .catch((error) => {
+        CommentAvatarsActions.error.defer(error);
+      });
+
     return false;
   }
 

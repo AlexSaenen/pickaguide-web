@@ -11,7 +11,6 @@ import SearchProfileStore from 'stores/other/Profile.js';
 import SearchAvatarStore from 'stores/other/Avatar.js';
 import SearchAccountStore from 'stores/other/Account.js';
 import ProfileActions from 'actions/SearchProfile.js';
-import AvatarActions from 'actions/SearchAvatar.js';
 import AccountActions from 'actions/SearchAccount.js';
 
 const displayBirthdate = (birthdate) => {
@@ -40,6 +39,7 @@ export class Profile extends StoreObserver {
       isConfirmed: false,
     };
 
+    this.isOwnerView = false;
     this.id = this.props.params.id;
   }
 
@@ -47,7 +47,6 @@ export class Profile extends StoreObserver {
     super.componentDidMount();
     if (this.isOwnerView === false && this.state.profile === null) {
       ProfileActions.get(this.id);
-      AvatarActions.get(this.id);
       AccountActions.isConfirmed(this.id);
     }
   }

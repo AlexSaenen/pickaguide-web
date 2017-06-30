@@ -2,6 +2,8 @@ import CommentsActions from 'actions/Comments.js';
 import CommentAvatarsActions from 'actions/CommentAvatars.js';
 import PromiseApi from 'services/PromiseApi.js';
 
+const defaultAvatarUrl = 'https://www.learnmine.com/assets/img/medium-default-avatar.png';
+
 
 export default class CommentsApi {
 
@@ -19,18 +21,23 @@ export default class CommentsApi {
       });
   }
 
-  static getAvatars(userIds) {
+  static getAvatars(userObjs) {
     const avatars = [];
 
     Promise
-      .all(userIds.map((userId) => {
+      .all(userObjs.map((userObj) => {
         return new Promise((resolve, reject) => {
-          PromiseApi.download(`/public/profiles/${userId}/avatar`)
-            .then((avatar) => {
-              avatars.push({ userId, avatar });
-              resolve();
-            })
-            .catch(err => reject(err));
+          if (userObj.hasAvatar) {
+            PromiseApi.download(`/public/profiles/${userObj.id}/avatar`)
+              .then((avatar) => {
+                avatars.push({ userId: userObj.id, avatar });
+                resolve();
+              })
+              .catch(err => reject(err));
+          } else {
+            avatars.push({ userId: userObj.id, avatar: defaultAvatarUrl });
+            resolve();
+          }
         });
       }))
       .then(() => {

@@ -4,23 +4,30 @@ import AccountActions from 'actions/SearchAccount.js';
 import AvatarActions from 'actions/SearchAvatar.js';
 import PromiseApi from 'services/PromiseApi.js';
 
+const defaultAvatarUrl = 'https://www.learnmine.com/assets/img/medium-default-avatar.png';
+
 
 export default class SearchApi {
 
-  static search(form) {
-    PromiseApi.get(`/public/search/filter/${encodeURIComponent(form.text)}`)
+  static search(term) {
+    PromiseApi.get(`/public/search/filter/${encodeURIComponent(term)}`)
       .then((res) => {
         res.avatars = [];
 
         Promise
           .all(res.ids.map((userId, index) => {
             return new Promise((resolve, reject) => {
-              PromiseApi.download(`/public/profiles/${userId}/avatar`)
-                .then((avatar) => {
-                  res.avatars[index] = avatar;
-                  resolve();
-                })
-                .catch(err => reject(err));
+              if (res.profiles[index].hasAvatar) {
+                PromiseApi.download(`/public/profiles/${userId}/avatar`)
+                  .then((avatar) => {
+                    res.avatars[index] = avatar;
+                    resolve();
+                  })
+                  .catch(err => reject(err));
+              } else {
+                res.avatars[index] = defaultAvatarUrl;
+                resolve();
+              }
             });
           }))
           .then(() => {

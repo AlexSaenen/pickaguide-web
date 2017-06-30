@@ -2,6 +2,7 @@ import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
+import { AuthDependent } from 'base/AuthDependent.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Text } from 'layout/elements/Text.jsx';
@@ -128,19 +129,25 @@ export class Advert extends StoreObserver {
             onCallback={this.visitCreationCtrl.toggle}
           />
 
-          {
-            comments.length !== 0 &&
-              <div>
-                <hr className="SpacedOverlay" />
-                <SubTitle>Comments</SubTitle>
-              </div>
-          }
+          <AuthDependent auth>
+            {
+              comments.length !== 0 &&
+                <div>
+                  <hr className="SpacedOverlay" />
+                  <SubTitle>Comments</SubTitle>
+                </div>
+            }
 
-          {
-            comments.map((comment, index) => {
-              return <Comment key={index} {...comment} />;
-            })
-          }
+            {
+              comments.map((comment, index) => {
+                return (
+                  <div>
+                    <Comment key={index} {...comment} />
+                  </div>
+                );
+              })
+            }
+          </AuthDependent>
         </Layout>
       </div>
     );

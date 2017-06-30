@@ -1,5 +1,3 @@
-import { browserHistory } from 'react-router';
-
 import alt from 'client/alt';
 import SearchActions from 'actions/Search.js';
 import SearchApi from 'services/Search.js';
@@ -14,11 +12,7 @@ class SearchStore {
   }
 
   onSearch(form) {
-    if (form.text && form.text.length > 0) {
-      SearchApi.search(form);
-      browserHistory.push(`/search/${encodeURIComponent(form.text)}`);
-    }
-
+    SearchApi.search(form.terms);
     return false;
   }
 

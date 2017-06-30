@@ -45,9 +45,8 @@ export class SearchBar extends React.Component {
   }
 
   handleSubmit(form) {
-    if (form.text && form.text.length > 0) {
-      SearchActions.search(form);
-      browserHistory.push(`/search/${encodeURIComponent(form.text)}`);
+    if (form.terms && form.terms.length > 0) {
+      browserHistory.push(`/search/${encodeURIComponent(form.terms)}`);
     }
   }
 
@@ -55,7 +54,7 @@ export class SearchBar extends React.Component {
     return (
       <div className={`MenuEntry ${this.state.visible ? '' : 'Hidden'}`}>
         <InlineForm onSubmit={this.handleSubmit} submitLabel="Search">
-          <TextInput className="FormElement" placeholder="Search anything" inline />
+          <TextInput label="terms" className="FormElement" placeholder="Search anything" inline />
         </InlineForm>
       </div>
     );
