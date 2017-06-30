@@ -1,13 +1,18 @@
 import React from 'react';
 
-import { StateComponent } from 'base/StateComponent.jsx';
+import { StoreObserver } from 'base/StoreObserver.jsx';
 import { PanelLayout } from 'view/PanelLayout.jsx';
 import { CheckMark } from 'layout/elements/CheckMark.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { strings } from './Profile_lang.js';
-import SearchStore from 'stores/Search.js';
+import SearchProfileStore from 'stores/other/Profile.js';
+import SearchAvatarStore from 'stores/other/Avatar.js';
+import SearchAccountStore from 'stores/other/Account.js';
+import ProfileActions from 'actions/SearchProfile.js';
+import AvatarActions from 'actions/SearchAvatar.js';
+import AccountActions from 'actions/SearchAccount.js';
 
 const displayBirthdate = (birthdate) => {
   const monthMap = [
@@ -20,46 +25,65 @@ const displayBirthdate = (birthdate) => {
 };
 
 
-export class Profile extends StateComponent {
+export class Profile extends StoreObserver {
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props, context, stores = []) {
+    if (stores.constructor !== Array || stores.length === 0) {
+      stores = [SearchProfileStore, SearchAvatarStore, SearchAccountStore];
+    }
 
-    this.populateState = this.populateState.bind(this);
+    super(props, context, stores);
+
+    this.state = {
+      profile: null,
+      avatar: SearchAvatarStore.getState().avatar,
+      isConfirmed: false,
+    };
+
     this.id = this.props.params.id;
-    this.populateState(this.state);
   }
 
-  populateState(nextState) {
-    const storeState = SearchStore.getState().results;
-
-    if (storeState.ids !== undefined) {
-      const profileIndex = storeState.ids.indexOf(this.id);
-
-      if (profileIndex !== -1) {
-        nextState.profile = storeState.profiles[profileIndex];
-        nextState.avatar = storeState.avatars[profileIndex];
-        nextState.isConfirmed = storeState.areConfirmed[profileIndex];
-      }
+  componentDidMount() {
+    super.componentDidMount();
+    if (this.isOwnerView === false && this.state.profile === null) {
+      ProfileActions.get(this.id);
+      AvatarActions.get(this.id);
+      AccountActions.isConfirmed(this.id);
     }
+  }
+
+  onStore(store) {
+    const nextState = Object.assign({}, this.state);
+
+    if (store.error) {
+      return;
+    } else if (store.profile) {
+      nextState.profile = store.profile;
+
+      if (this.isOwnerView) {
+        nextState.profile.displayName = `${store.profile.firstName} ${store.profile.lastName}`;
+      }
+    } else if (store.avatar) {
+      nextState.avatar = store.avatar;
+    } else {
+      nextState.isConfirmed = store.isConfirmed;
+    }
+
+    this.setState(nextState);
   }
 
   render() {
     const profile = this.state.profile;
 
-    if (profile === undefined || profile === null) {
-      return (
-        <Text>No such profile found</Text>
-      );
+    if (profile === null) {
+      return (<PanelLayout layoutStyle="LayoutLight Tight" />);
     }
-
-    const name = profile.displayName;
 
     return (
       <PanelLayout layoutStyle="LayoutLight Tight">
         <div className="LayoutHeader">
           <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" /></div>
-          <p className="HeaderText Title Inline-Block" >{name}</p>
+          <p className="HeaderText Title Inline-Block" >{profile.displayName}</p>
           <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
         </div>
 
@@ -67,8 +91,14 @@ export class Profile extends StateComponent {
 
         <SubTitle>{strings.stitleBasucInfo}</SubTitle>
         <Text>
-          <p><strong>{strings.outputDateOfBirth}:</strong> {displayBirthdate(profile.birthdate)}</p>
+          {
+            this.isOwnerView ?
+              <p><strong>{strings.outputBirthdate}:</strong> {displayBirthdate(profile.birthdate)}</p>
+              :
+              <p><strong>{strings.outputAge}:</strong> {profile.age} {strings.ageOld}</p>
+          }
           <p><strong>{strings.outputCity}:</strong> {profile.city ? profile.city : String(strings.outputNoCity)}</p>
+          <p><strong>{strings.outputCountry}:</strong> {profile.country ? profile.country : String(strings.outputNoCountry)}</p>
         </Text>
 
         <hr className="SpacedDivider" />

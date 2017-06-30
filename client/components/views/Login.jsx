@@ -9,8 +9,6 @@ import { Title } from 'layout/elements/Title.jsx';
 import { strings } from './Login_lang.js';
 import AuthActions from 'actions/Auth.js';
 import AuthStore from 'stores/user/Auth.js';
-import LocalizedStrings from 'react-localization';
-
 
 
 export class Login extends StoreObserver {
@@ -19,7 +17,7 @@ export class Login extends StoreObserver {
     super(props, context, AuthStore);
 
     this.ctrl = new FormController();
-    this.ctrl.attachSubmit(AuthActions.login);
+    this.ctrl.attachSubmit(AuthActions.login.defer);
   }
 
   onStore(store) {

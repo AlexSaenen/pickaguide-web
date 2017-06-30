@@ -9,16 +9,16 @@ export default class AuthApi {
     PromiseApi.post('/public/sign-in', form)
       .then((res) => {
         if (res.error) {
-          AuthActions.error(res.error);
+          AuthActions.error.defer(res.error);
         } else {
           CookieApi.set('userToken', res.token);
           CookieApi.set('userId', res.id);
-          AuthActions.loginSuccess(res);
-          AuthActions.sync();
+          AuthActions.loginSuccess.defer(res);
+          AuthActions.sync.defer();
         }
       })
       .catch((err) => {
-        AuthActions.error(err);
+        AuthActions.error.defer(err);
       });
   }
 
@@ -26,13 +26,13 @@ export default class AuthApi {
     PromiseApi.auth().put('/accounts/logout')
       .then((res) => {
         if (res.error) {
-          AuthActions.logoutError(res.error);
+          AuthActions.error.defer(res.error);
         } else {
-          AuthActions.logoutSuccess();
+          AuthActions.logoutSuccess.defer();
         }
       })
       .catch((err) => {
-        AuthActions.error(err);
+        AuthActions.error.defer(err);
       });
   }
 }
