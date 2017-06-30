@@ -40,6 +40,7 @@ export class OwnerAdvert extends StoreObserver {
     this.onToggle = this.onToggle.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
+    this.previewAdvert = this.previewAdvert.bind(this);
     this.textEditorCtrl = new FeedableModalFormController();
     this.areaEditorCtrl = new ModalFormController();
     this.coverEditorCtrl = new ModalFormController();
@@ -102,6 +103,10 @@ export class OwnerAdvert extends StoreObserver {
     browserHistory.goBack();
   }
 
+  previewAdvert() {
+    browserHistory.push(`/guide/adverts/${this.state.advert._id}`);
+  }
+
   render() {
     const advert = this.state.advert;
 
@@ -136,7 +141,8 @@ export class OwnerAdvert extends StoreObserver {
           </Title>
 
           <div>
-            <Button label="Back" buttonStyle="Auto TextWhite Bold Spaced" onCallback={browserHistory.goBack} />
+            <Button label="Back" buttonStyle="Auto TextWhite Bold" onCallback={browserHistory.goBack} />
+            <Button label="Preview" buttonStyle="Blue Auto TextWhite Bold Spaced" onCallback={this.previewAdvert} />
             <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.deleteCtrl.toggle} />
           </div>
 

@@ -21,10 +21,15 @@ export class Adverts extends StoreObserver {
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
-    this.state.adverts = AdvertsStore.getState().adverts;
+    this.state.adverts = [];
     this.reviewAdvert = this.reviewAdvert.bind(this);
     this.deleteAdCtrl = new ModalController();
     this.adCreationCtrl = new ModalFormController();
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+    AdvertsActions.get();
   }
 
   onStore(store) {
@@ -38,7 +43,7 @@ export class Adverts extends StoreObserver {
   }
 
   render() {
-    const adverts = this.state.adverts || [];
+    const adverts = this.state.adverts;
 
     return (
       <div>

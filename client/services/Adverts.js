@@ -33,7 +33,7 @@ export default class AdvertsApi {
   }
 
   static findAll() {
-    PromiseApi.get(`/public/proposals/`)
+    PromiseApi.get('/public/proposals/')
       .then((res) => {
         if (res.error) {
           AdvertsActions.error(res.error);
