@@ -167,29 +167,6 @@ $layoutPadding: 2em;
   }
 }
 
-.LayoutHomeRight {
-  border: 3px solid black;
-  width: 45%;
-  height: auto;
-  float: right;
-
-  .Title, .Text {
-    color: gray;
-  }
-
-  .SubTitle {
-    color: $textDarkColor;
-  }
-
-  input, textarea {
-    color: gray;
-  }
-
-  input[type="submit"] {
-    color: blue;
-  }
-}
-
 .LayoutFooterLeft {
   width: 25%;
   float: left;
@@ -308,4 +285,9 @@ $layoutPadding: 2em;
 .LayoutGray {
   @extend .LayoutDark;
   background-color: $modalSecondaryColor;
+}
+
+.LayoutFooter {
+  @extend .LayoutDark;
+  background-color: $darkShadeColor;
 }

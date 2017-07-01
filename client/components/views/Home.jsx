@@ -10,6 +10,7 @@ import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
 import { Element } from 'layout/list/Element.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
+import SimpleMap from 'layout/user/GoogleMap.jsx';
 
 import 'scss/views/home.scss';
 
@@ -19,9 +20,9 @@ export class Home extends StoreObserver {
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
-    this.state.adverts = [];
-    this.navigateToAdvert = this.navigateToAdvert.bind(this);
-  }
+      this.state.adverts = [];
+      this.navigateToAdvert = this.navigateToAdvert.bind(this);
+    }
 
   onStore(store) {
     const newState = Object.assign({}, this.state);
@@ -39,7 +40,7 @@ export class Home extends StoreObserver {
   componentDidMount() {
     super.componentDidMount();
     if (this.state.adverts.length === 0) {
-      AdvertsActions.findAll.defer();
+      AdvertsActions.findAll();
     }
   }
 
@@ -49,6 +50,7 @@ export class Home extends StoreObserver {
 
   render() {
     const adverts = this.state.adverts || [];
+    const coor = { lat: 43.79831666667667, lng: 0.625195 };
 
     return (
       <div className="HomeContainer">
@@ -76,10 +78,8 @@ export class Home extends StoreObserver {
                 </Layout>
             }
           </Element>
-          <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top">
-            <Layout layoutstyle="LayoutHomeRight">
-              <Title>Maps</Title>
-            </Layout>
+          <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top Clickable Height30">
+            <SimpleMap center={coor} zoom={9} />
           </Element>
         </List>
       </div>
