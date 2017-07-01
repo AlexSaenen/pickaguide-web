@@ -17,28 +17,18 @@ export default class MyPositionsGuidesWithControllableHover extends Component {
     const {text, zIndex} = this.props;
      const style = Object.assign({}, positionsGuidesStyle);
      style.zIndex = this.props.$hover ? 1000 : zIndex;
-
      const circleStyle = this.props.$hover ? positionsGuidesCircleStyleHover : positionsGuidesCircleStyle;
      const stickStyle = positionsGuidesStickStyle;
 
     return (
-       <div className="hint hint--html hint--info hint--top" style={style}>
+       <div style={style}>
           <div style={positionsGuidesStickStyleShadow} />
-          <div style={circleStyle}>
-            {text}
-            <Button
-              buttonStyle="Blue Auto AllSpaced"
-              label="Сlick me"
-              onCallback={
-                function callback() {
+          <div style={circleStyle} onClick={function(){
                   browserHistory.push(`/profiles/${this.props.userId}`);
-                }.bind(this)
-              }
-            />
+                }.bind(this)}>
+            {text}
           </div>
           <div style={stickStyle} />
-          <div style={{width: 80}} className="hint__content">
-          </div>
        </div>
     );
   }

@@ -77,7 +77,7 @@ class SimpleMap extends StoreObserver {
         })
       }
       const guides = guideCoordsFinal.map((guide, index) => {
-        console.log('--- text:', guideCoordsFinal[index].text, 'lat:', guideCoordsFinal[index].lat, 'lng:', guideCoordsFinal[index].lng, 'id:', guideCoordsFinal[index].userId);
+        // console.log('--- text:', guideCoordsFinal[index].text, 'lat:', guideCoordsFinal[index].lat, 'lng:', guideCoordsFinal[index].lng, 'id:', guideCoordsFinal[index].userId);
 
         return (
           <MyPositionsGuidesWithControllableHover
