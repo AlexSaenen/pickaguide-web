@@ -9,7 +9,8 @@ export let strings = new LocalizedStrings({
       passwd_error:"The passwords do not match",
       first_name:"First name",
       last_name:"Last name",
-      password:"Confirm password",
+      password:"Password",
+      passwordConfirm:"Confirm password",
       success_info:"You will receive a confirmation email on the adress you provide here"
    },
    fr: {
@@ -20,7 +21,8 @@ export let strings = new LocalizedStrings({
       passwd_error:"Les mots de passe ne correspondent pas",
       first_name:"Prénom",
       last_name:"Nom",
-      password:"Confirmer le mot de passe",
+      password:"Mot de passe",
+      passwordConfirm:"Confirmer le mot de passe",
       success_info:"Vous allez très vite recevoir un courriel de confirmation a l'adresse indiqué"
    }
 });

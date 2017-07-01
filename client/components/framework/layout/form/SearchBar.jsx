@@ -3,6 +3,8 @@ import { browserHistory } from 'react-router';
 
 import { InlineForm } from 'form/InlineForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
+import { strings } from '../../../views/Search_lang.js';
+
 import SearchActions from 'actions/Search.js';
 
 import 'scss/framework/form.scss';
@@ -53,8 +55,8 @@ export class SearchBar extends React.Component {
   render() {
     return (
       <div className={`MenuEntry ${this.state.visible ? '' : 'Hidden'}`}>
-        <InlineForm onSubmit={this.handleSubmit} submitLabel="Search">
-          <TextInput label="terms" className="FormElement" placeholder="Search anything" inline />
+        <InlineForm onSubmit={this.handleSubmit} submitLabel={strings.submit}>
+          <TextInput label="terms" className="FormElement" placeholder={strings.placeholder} inline />
         </InlineForm>
       </div>
     );
