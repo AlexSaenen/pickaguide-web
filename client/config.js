@@ -1,6 +1,7 @@
 function getApiUrl() {
   if (process.env.ENVIRONMENT === 'production') {
-    return 'https://pickaguide.fr:3000';
+    return 'https://pickaguide.fr:3030';
+    // return 'https://pickaguide.fr:3000';
   } else if (process.env.ENVIRONMENT === 'staging') {
     return 'http://pickaguide.fr:3030';
   }
