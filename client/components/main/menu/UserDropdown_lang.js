@@ -4,6 +4,7 @@ export let strings = new LocalizedStrings({
    en:{
       imgAlt:"Profile",
       account:"Account",
+      review:"Review",
       profile:"Profile",
       adverts:"Adverts",
       retire:"Retire",
@@ -13,6 +14,7 @@ export let strings = new LocalizedStrings({
    fr:{
       imgAlt:"Profile",
       account:"Compte",
+      review:"Noter",
       profile:"Profile",
       adverts:"Annonces",
       retire:"Arrêter d'être guide",

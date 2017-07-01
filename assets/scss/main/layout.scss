@@ -4,16 +4,17 @@
   min-height: 100%;
 }
 
-$footerHeight: 2em;
+$footerHeight: 11em;
 
 .Footer {
   width: 100%;
   height: $footerHeight;
-  background-color: red;
+  background-color: $modalDarkColor;
+  color: white;
 
   a {
     text-decoration: none;
-    color: black;
+    color: white;
   }
 
   .FollowUs {

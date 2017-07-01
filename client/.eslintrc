@@ -11,6 +11,8 @@
         'no-param-reassign':0,
         'no-extend-native':0,
         'react/jsx-no-bind':0,
+        'one-var':0,
+        'one-var-declaration-per-line':0,
         'import/no-unresolved':['error', { ignore:['^framework*', '^form*', '^base*', '^main*', '^menu*', '^layout*', '^view*', '^modals*', '^components*', '^actions*', '^stores*', '^client*', '^services*', '^config*', '^scss*'] }],
     }
 }

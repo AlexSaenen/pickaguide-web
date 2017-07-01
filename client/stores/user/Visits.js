@@ -34,6 +34,11 @@ class VisitsStore {
     return false;
   }
 
+  onGetUnreviewed() {
+    VisitsApi.getUnreviewed();
+    return false;
+  }
+
   onFind(who) {
     if (who.mine) {
       VisitsApi.findMine(who.visitId, who.type);

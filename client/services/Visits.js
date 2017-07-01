@@ -1,4 +1,7 @@
+import { browserHistory } from 'react-router';
+
 import VisitsActions from 'actions/Visits.js';
+import BlockActions from 'actions/Block.js';
 import PromiseApi from 'services/PromiseApi.js';
 
 
@@ -20,6 +23,20 @@ export default class VisitsApi {
 
   static get() {
     PromiseApi.auth().get('/visits')
+      .then((res) => {
+        if (res.error) {
+          VisitsActions.error(res.error);
+        } else {
+          VisitsActions.getSuccess(res);
+        }
+      })
+      .catch((err) => {
+        VisitsActions.error(err);
+      });
+  }
+
+  static getUnreviewed() {
+    PromiseApi.auth().get('/visits/review')
       .then((res) => {
         if (res.error) {
           VisitsActions.error(res.error);
@@ -64,10 +81,13 @@ export default class VisitsApi {
     PromiseApi.auth().put(`/visits/${visitId}/${type}`, form)
       .then((res) => {
         if (res.error) {
-          console.log(res.error);
           VisitsActions.error(res.error);
         } else {
           VisitsActions.actionSuccess(res.visit);
+          if (type === 'finish') {
+            browserHistory.push('/visits/review');
+            BlockActions.isBlocking.defer();
+          }
         }
       })
       .catch((err) => {

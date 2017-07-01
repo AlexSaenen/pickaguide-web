@@ -2,18 +2,18 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { Title } from 'layout/elements/Title.jsx';
-import { Information } from 'layout/elements/Information.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
-import { PanelLayout } from 'view/PanelLayout.jsx';
-import { strings } from './Home_lang.js';
 import { Text } from 'layout/elements/Text.jsx';
 import { List } from 'layout/list/List.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
-import { PanelList } from 'view/PanelList.jsx';
+import { Element } from 'layout/list/Element.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import SimpleMap from 'layout/user/GoogleMap.jsx';
+
+import 'scss/views/home.scss';
+
 
 export class Home extends StoreObserver {
 
@@ -53,35 +53,34 @@ export class Home extends StoreObserver {
     const coor = { lat: 43.79831666667667, lng: 0.625195 };
 
     return (
-      <div>
-        <List elementStyle="Tight" listStyle="ListGrid">
-          {
-            adverts.length > 0 ?
-            <PanelList elementStyle="Tight Clickable">
-              {
-                adverts.map((advert, index) => {
-                  return (
-                    <AdvertPreview
-                      {...advert}
-                      key={index}
-                      onClick={this.navigateToAdvert}
-                    />
-                  );
-                })
-              }
-            </PanelList>
-            :
-            <Layout layoutStyle="LayoutBlank">
-              <hr className="Overlay" />
-              <Text>No Adverts available for now ..</Text>
-            </Layout>
-          }
-          <Layout layoutstyle="LayoutHomeRight">
-            <Title>Maps</Title>
-              <div style={{width: '400px', height: '600px'}}>
-                <SimpleMap center={coor} zoom={9}/>
-              </div>
-          </Layout>
+      <div className="HomeContainer">
+        <List wrapChildren={false} listStyle="ListGrid">
+          <Element elementStyle="Tight Half Transparent NoWrap">
+            {
+              adverts.length > 0 ?
+                <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
+                  {
+                    adverts.map((advert, index) => {
+                      return (
+                        <AdvertPreview
+                          {...advert}
+                          key={index}
+                          onClick={this.navigateToAdvert}
+                        />
+                      );
+                    })
+                  }
+                </List>
+              :
+                <Layout layoutStyle="LayoutBlank">
+                  <hr className="Overlay" />
+                  <Text>No Adverts available for now ..</Text>
+                </Layout>
+            }
+          </Element>
+          <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top Clickable Height30">
+            <SimpleMap center={coor} zoom={9} />
+          </Element>
         </List>
       </div>
     );

@@ -16,26 +16,26 @@ export class Footer extends React.Component {
     return (
       <div className="Footer">
         <Layout layoutStyle="LayoutFooter NoWrap">
-            <Layout layoutStyle="LayoutFooterLeft">
-              <Title>Contact</Title>
-              <p><img src="/assets/images/phone.png" alt="phone" height="20" width="25"/> 0670628588</p>
-              <p><img src="/assets/images/mail.png" alt="mail" height="20" width="25"/><a href="mailto:contact@pickaguide.com">contact@pickaguide.com</a></p>
-            </Layout>
-            <Layout layoutStyle="LayoutFooterCenter">
-              <Title>Follow us</Title>
-              <ul className="FollowUs">
-                <li><a href="https://www.facebook.com" target="_blank"><img src="/assets/images/fb.png" alt="fb" height="30" width="30"/></a></li>
-                <li><a href="https://www.twitter.com" target="_blank"><img src="/assets/images/twitter.png" alt="twitter" height="30" width="30"/></a></li>
-                <li><a href="https://www.instagram.com" target="_blank"><img src="/assets/images/insta.png" alt="insta" height="30" width="30"/></a></li>
-              </ul>
-            </Layout>
-            <Layout layoutStyle="LayoutFooterRight">
-              <Title>Information</Title>
-              <ul className="Info">
-                <li><a href="https://www.google.com" target="_blank">About</a></li>
-                <li><a href="https://www.google.com" target="_blank">Legal Notice - CGU</a></li>
-              </ul>
-            </Layout>
+          <Layout layoutStyle="LayoutFooterLeft">
+            <Title>Contact</Title>
+            <p>0670628588</p>
+            <p><a href="mailto:contact@pickaguide.com">contact@pickaguide.com</a></p>
+          </Layout>
+          <Layout layoutStyle="LayoutFooterCenter">
+            <Title>Follow us</Title>
+            <ul className="FollowUs">
+              <li><a href="https://www.facebook.com" target="_blank"><img src="/assets/images/fb.png" alt="fb" height="30" width="30"/></a></li>
+              <li><a href="https://www.twitter.com" target="_blank"><img src="/assets/images/twitter.png" alt="twitter" height="30" width="30"/></a></li>
+              <li><a href="https://www.instagram.com" target="_blank"><img src="/assets/images/insta.png" alt="insta" height="30" width="30"/></a></li>
+            </ul>
+          </Layout>
+          <Layout layoutStyle="LayoutFooterRight">
+            <Title>Information</Title>
+            <ul className="Info">
+              <li><a href="https://www.google.com" target="_blank">About</a></li>
+              <li><a href="https://www.google.com" target="_blank">Legal Notice - CGU</a></li>
+            </ul>
+          </Layout>
         </Layout>
       </div>
     );

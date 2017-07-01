@@ -46,9 +46,19 @@ $elementBorderRadius: 0.2em;
   .Element.Small { width: 20%; }
   .Element.Medium { width: 30%; }
   .Element.Large { width: 40%; }
+  .Element.Half { width: 50%; }
   .Element.Auto { width: auto; max-width: 100%; }
   .Element.Tight { padding: 0; }
   .Element.Tighter { padding: 0.3em; }
+  .Element.NoWrap { margin: 0; }
+  .Element.NoHorizontalWrap { margin-left: 0; margin-right: 0; }
+  .Element.Top { vertical-align: top; }
+  .Element.Transparent {
+    background-color: rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0 0 0 black;
+    -webkit-box-shadow: 0 0 0 black;
+    box-shadow: 0 0 0 black;
+  }
   .Element.Clickable:hover {
     -moz-box-shadow: 0 0 20px black;
     -webkit-box-shadow: 0 0 20px black;
@@ -68,4 +78,8 @@ $elementBorderRadius: 0.2em;
   .Element {
     display: block;
   }
+}
+
+.Height30 {
+  height: 30em;
 }

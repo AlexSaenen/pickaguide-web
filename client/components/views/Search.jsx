@@ -21,22 +21,39 @@ export class Search extends StoreObserver {
     super(props, context, SearchStore);
 
     this.state = {
-      results: SearchStore.getState().results,
+      results: null,
       error: null,
-      searchTerms: props.params.terms === 'none' ? '' : props.params.terms,
+      searchTerms: props.params.terms,
     };
 
     this.ctrl = new FormController();
-    this.ctrl.attachSubmit(SearchActions.search);
+    this.ctrl.attachSubmit((form) => {
+      if (form.terms && form.terms.length > 0) {
+        browserHistory.push(`/search/${encodeURIComponent(form.terms)}`);
+      }
+    });
+
     this.navigateToAdvert = this.navigateToAdvert.bind(this);
     this.navigateToProfile = this.navigateToProfile.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     const newState = Object.assign({}, this.state);
-    newState.searchTerms = nextProps.params.terms === 'none' ? '' : nextProps.params.terms;
+    newState.searchTerms = nextProps.params.terms;
+    newState.results = null;
     newState.error = null;
-    this.updateState(newState);
+    this.setState(newState);
+
+    if (newState.searchTerms !== '') {
+      SearchActions.search({ terms: newState.searchTerms });
+    }
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+    if (this.state.results === null && this.state.searchTerms !== '') {
+      SearchActions.search({ terms: this.state.searchTerms });
+    }
   }
 
   onStore(store) {
@@ -49,7 +66,7 @@ export class Search extends StoreObserver {
       newState.error = null;
     }
 
-    this.updateState(newState);
+    this.setState(newState);
   }
 
   navigateToAdvert(advertId) {
@@ -67,11 +84,15 @@ export class Search extends StoreObserver {
 
   render() {
     const results = this.state.results;
-    const profiles = results.profiles || [];
-    const avatars = results.avatars || [];
-    const ids = results.ids || [];
-    const areConfirmed = results.areConfirmed || [];
-    const adverts = results.adverts || [];
+    let profiles, avatars, ids, areConfirmed, adverts;
+
+    if (results) {
+      profiles = results.profiles || [];
+      avatars = results.avatars || [];
+      ids = results.ids || [];
+      areConfirmed = results.areConfirmed || [];
+      adverts = results.adverts || [];
+    }
 
     if (this.state.error) {
       const message = {
@@ -87,14 +108,17 @@ export class Search extends StoreObserver {
       );
     }
 
-    if (profiles.length === 0 && adverts.length === 0) {
+    const searchBar = (
+      <InlineForm onSubmit={this.ctrl.submit} submitLabel={strings.submit}>
+        <TextInput label="terms" className="FormElement" placeholder={strings.placeholder} value={this.state.searchTerms} inline />
+      </InlineForm>
+    );
+
+    if (results === null || profiles.length === 0 && adverts.length === 0) {
       return (
         <div>
           <Layout layoutStyle="LayoutBlank">
-            <InlineForm onSubmit={this.ctrl.submit} submitLabel={strings.submit}>
-              <TextInput className="FormElement" placeholder={strings.placeholder} value={this.state.searchTerms} inline />
-            </InlineForm>
-
+            {searchBar}
             {
               this.state.searchTerms !== '' &&
                 <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noResult}</Information>
@@ -107,9 +131,7 @@ export class Search extends StoreObserver {
     return (
       <div>
         <Layout layoutStyle="LayoutBlank">
-          <InlineForm onSubmit={this.ctrl.submit} submitLabel={strings.submit}>
-            <TextInput className="FormElement" placeholder={strings.placeholder} value={this.state.searchTerms} inline />
-          </InlineForm>
+          {searchBar}
         </Layout>
 
         {

@@ -28,6 +28,7 @@
     "jsx-loader": "^0.13.2",
     "node-sass": "^3.4.2",
     "npm": "^5.0.4",
+    "prop-types": "^15.5.10",
     "protractor": "^4.0.14",
     "react": "^0.14.8",
     "react-addons-shallow-compare": "^15.6.0",

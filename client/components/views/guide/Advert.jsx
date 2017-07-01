@@ -2,6 +2,9 @@ import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
+import { ModalController } from 'base/ModalController.jsx';
+import { QueryModal } from 'modals/QueryModal.jsx';
+import { AuthDependent } from 'base/AuthDependent.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Text } from 'layout/elements/Text.jsx';
@@ -9,6 +12,7 @@ import { CheckMark } from 'layout/elements/CheckMark.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Comment } from 'layout/user/Comment.jsx';
+import { CreateComment } from 'layout/user/CreateComment.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Panel } from 'layout/containers/Panel.jsx';
 import { VisitCreation } from 'modals/VisitCreation.jsx';
@@ -41,6 +45,7 @@ export class Advert extends StoreObserver {
     this.id = this.props.params.id;
     this.state = { advert: getCache(this.id), comments: getCommentsCache(this.id) };
     this.visitCreationCtrl = new ModalFormController();
+    this.deleteCommentCtrl = new ModalController();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -104,6 +109,15 @@ export class Advert extends StoreObserver {
     return (
       <div className="Advert">
         <VisitCreation controller={this.visitCreationCtrl} advertId={advert._id} />
+        <QueryModal
+          controller={this.deleteCommentCtrl}
+          query="Do you really wish to delete this comment ?"
+          onConfirm={
+            function confirm() {
+              CommentsActions.remove({ id: this.deleteCommentCtrl.callerId, advertId: this.deleteCommentCtrl.advertId });
+            }.bind(this)
+          }
+        />
         <Layout layoutStyle="LayoutLight">
           <hr className="Overlay" />
 
@@ -128,19 +142,26 @@ export class Advert extends StoreObserver {
             onCallback={this.visitCreationCtrl.toggle}
           />
 
-          {
-            comments.length !== 0 &&
-              <div>
-                <hr className="SpacedOverlay" />
-                <SubTitle>Comments</SubTitle>
-              </div>
-          }
+          <AuthDependent auth>
+            {
+              comments.length !== 0 &&
+                <div>
+                  <hr className="SpacedOverlay" />
+                  <SubTitle>Comments</SubTitle>
+                </div>
+            }
 
-          {
-            comments.map((comment, index) => {
-              return <Comment key={index} {...comment} />;
-            })
-          }
+            {
+              comments.map((comment, index) => {
+                return (
+                  <div key={index}>
+                    <Comment {...comment} deleter={this.deleteCommentCtrl} advertId={this.id} />
+                  </div>
+                );
+              })
+            }
+            <CreateComment advertId={this.id} />
+          </AuthDependent>
         </Layout>
       </div>
     );

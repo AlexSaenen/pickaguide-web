@@ -5,6 +5,7 @@ import AuthActions from 'actions/Auth.js';
 import AvatarStore from 'stores/user/Avatar.js';
 import { AuthDependent } from 'base/AuthDependent.jsx';
 import { GuideDependent } from 'base/GuideDependent.jsx';
+import { BlockDependent } from 'base/BlockDependent.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
 import { ModalController } from 'base/ModalController.jsx';
@@ -42,18 +43,24 @@ export class UserDropdown extends StoreObserver {
         </Link>
 
         <div className="Dropdown HeightNone">
-          <Link to="/accounts/mine/edit"><p>{strings.account}</p></Link>
-          <Link to="/profiles/mine/edit"><p>{strings.profile}</p></Link>
-          <Link to="/visits"><p>Visits</p></Link>
+          <BlockDependent free>
+            <Link to="/accounts/mine/edit"><p>{strings.account}</p></Link>
+            <Link to="/profiles/mine/edit"><p>{strings.profile}</p></Link>
+            <Link to="/visits"><p>Visits</p></Link>
 
-          <GuideDependent guide>
-            <Link to="/guide/adverts"><p>{strings.adverts}</p></Link>
-            <Link><p className="alert Clickable" onClick={this.ctrl.toggle}>{strings.retire}</p></Link>
-          </GuideDependent>
+            <GuideDependent guide>
+              <Link to="/guide/adverts"><p>{strings.adverts}</p></Link>
+              <Link><p className="alert Clickable" onClick={this.ctrl.toggle}>{strings.retire}</p></Link>
+            </GuideDependent>
 
-          <GuideDependent visitor>
-            <Link to="/guide/become"><p className="action">{strings.beAGuide}</p></Link>
-          </GuideDependent>
+            <GuideDependent visitor>
+              <Link to="/guide/become"><p className="action">{strings.beAGuide}</p></Link>
+            </GuideDependent>
+          </BlockDependent>
+
+          <BlockDependent block>
+            <Link to="/visits/review"><p className="action">{strings.review}</p></Link>
+          </BlockDependent>
         </div>
 
         <QueryModal
