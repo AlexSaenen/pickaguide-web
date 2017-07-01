@@ -43,7 +43,6 @@ class SimpleMap extends StoreObserver {
       newState.guideCoor = store.guideCoor;
       newState.error = null;
     }
-
     this.updateState(newState);
   }
 
