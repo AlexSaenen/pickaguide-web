@@ -309,3 +309,8 @@ $layoutPadding: 2em;
   @extend .LayoutDark;
   background-color: $modalSecondaryColor;
 }
+
+.LayoutFooter {
+  @extend .LayoutDark;
+  background-color: $darkShadeColor;
+}

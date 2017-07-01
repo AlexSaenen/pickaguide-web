@@ -13,15 +13,16 @@ import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
 import { PanelList } from 'view/PanelList.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
+import SimpleMap from 'layout/user/GoogleMap.jsx';
 
 export class Home extends StoreObserver {
 
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
-    this.state.adverts = [];
-    this.navigateToAdvert = this.navigateToAdvert.bind(this);
-  }
+      this.state.adverts = [];
+      this.navigateToAdvert = this.navigateToAdvert.bind(this);
+    }
 
   onStore(store) {
     const newState = Object.assign({}, this.state);
@@ -39,7 +40,7 @@ export class Home extends StoreObserver {
   componentDidMount() {
     super.componentDidMount();
     if (this.state.adverts.length === 0) {
-      AdvertsActions.findAll.defer();
+      AdvertsActions.findAll();
     }
   }
 
@@ -49,6 +50,7 @@ export class Home extends StoreObserver {
 
   render() {
     const adverts = this.state.adverts || [];
+    const coor = { lat: 43.79831666667667, lng: 0.625195 };
 
     return (
       <div>
@@ -76,6 +78,9 @@ export class Home extends StoreObserver {
           }
           <Layout layoutstyle="LayoutHomeRight">
             <Title>Maps</Title>
+              <div style={{width: '400px', height: '600px'}}>
+                <SimpleMap center={coor} zoom={9}/>
+              </div>
           </Layout>
         </List>
       </div>

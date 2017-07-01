@@ -43,7 +43,7 @@ module.exports = {
               loader: 'babel-loader',
               exclude: '/node_modules/',
               query: {
-                  presets: ['es2015', 'react', 'react-hmre'],
+                  presets: ['react', ["es2015", {"modules": false}], "react-hmre"]
               }
            },
         ],

@@ -15,7 +15,7 @@ export class Footer extends React.Component {
   render() {
     return (
       <div className="Footer">
-        <Layout layoutStyle="LayoutDark NoWrap">
+        <Layout layoutStyle="LayoutFooter NoWrap">
             <Layout layoutStyle="LayoutFooterLeft">
               <Title>Contact</Title>
               <p><img src="/assets/images/phone.png" alt="phone" height="20" width="25"/> 0670628588</p>
