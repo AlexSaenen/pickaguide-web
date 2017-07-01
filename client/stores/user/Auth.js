@@ -5,6 +5,7 @@ import AuthActions from 'actions/Auth.js';
 import ProfileActions from 'actions/Profile.js';
 import UserActions from 'actions/User.js';
 import AccountActions from 'actions/Account.js';
+import BlockActions from 'actions/Block.js';
 import AvatarActions from 'actions/Avatar.js';
 import AuthApi from 'services/Auth.js';
 import CookieApi from 'services/Cookie.js';
@@ -32,6 +33,7 @@ class AuthStore {
       UserActions.isGuide.defer(this.credentials.id);
       AccountActions.get.defer();
       AccountActions.isConfirmed.defer(this.credentials.id);
+      BlockActions.isBlocking.defer();
     }
 
     return false;

@@ -1,4 +1,5 @@
 import UserActions from 'actions/User.js';
+import BlockActions from 'actions/Block.js';
 import SearchUserActions from 'actions/SearchUser.js';
 import ProfileActions from 'actions/Profile.js';
 import PromiseApi from 'services/PromiseApi.js';
@@ -16,6 +17,20 @@ export default class UserApi {
       })
       .catch((err) => {
         UserActions.error(err);
+      });
+  }
+
+  static isBlocking() {
+    PromiseApi.auth().get('/users/isBlocking')
+      .then((res) => {
+        if (res.error) {
+          BlockActions.error(res.error);
+        } else {
+          BlockActions.isBlockingSuccess(res.isBlocking);
+        }
+      })
+      .catch((err) => {
+        BlockActions.error(err);
       });
   }
 
