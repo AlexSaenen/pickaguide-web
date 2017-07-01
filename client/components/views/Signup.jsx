@@ -57,8 +57,8 @@ export class Signup extends StoreObserver {
 
           <EmailInput required />
           <InformationWithClose>{strings.success_info}</InformationWithClose>
-          <PasswordInput required />
-          <PasswordInput label="passwordConfirmation" placeholder={strings.password} required />
+          <PasswordInput placeholder={strings.password} required />
+          <PasswordInput label="passwordConfirmation" placeholder={strings.passwordConfirm} required />
         </PanelForm>
       </div>
     );
