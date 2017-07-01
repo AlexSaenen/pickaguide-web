@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { GuideDependent } from 'base/GuideDependent.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
 import { ModalController } from 'base/ModalController.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
@@ -118,6 +119,7 @@ export class Advert extends StoreObserver {
             }.bind(this)
           }
         />
+
         <Layout layoutStyle="LayoutLight">
           <hr className="Overlay" />
 
@@ -134,13 +136,14 @@ export class Advert extends StoreObserver {
             <Picture pictureName="Advert Cover" pictureType="WidthLimited" url={advert.photoUrl} />
           </Panel>
 
-          <hr className="SpacedDivider" />
-
-          <Button
-            label="Ask a visit"
-            buttonStyle="Auto Blue"
-            onCallback={this.visitCreationCtrl.toggle}
-          />
+          <GuideDependent visitor>
+            <hr className="SpacedDivider" />
+            <Button
+              label="Ask a visit"
+              buttonStyle="Auto Blue"
+              onCallback={this.visitCreationCtrl.toggle}
+            />
+          </GuideDependent>
 
           <AuthDependent auth>
             {

@@ -13,7 +13,7 @@ class LocationStore {
   }
 
   onSendLocation(coor) {
-    coor = {x: coor.latitude, y: coor.longitude}
+    coor = { x: coor.latitude, y: coor.longitude };
     LocationApi.sendLocation(coor);
     return false;
   }

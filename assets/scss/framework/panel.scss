@@ -5,3 +5,8 @@
 .Panel.Medium { width: 30em; }
 .Panel.Large { width: 40em; }
 .Panel.Wide { width: 50em; }
+
+.Panel {
+  position: relative;
+  z-index: 1;
+}

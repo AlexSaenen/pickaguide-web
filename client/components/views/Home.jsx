@@ -20,9 +20,9 @@ export class Home extends StoreObserver {
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
-      this.state.adverts = [];
-      this.navigateToAdvert = this.navigateToAdvert.bind(this);
-    }
+    this.state.adverts = [];
+    this.navigateToAdvert = this.navigateToAdvert.bind(this);
+  }
 
   onStore(store) {
     const newState = Object.assign({}, this.state);
@@ -40,7 +40,7 @@ export class Home extends StoreObserver {
   componentDidMount() {
     super.componentDidMount();
     if (this.state.adverts.length === 0) {
-      AdvertsActions.findAll();
+      AdvertsActions.findAll.defer();
     }
   }
 

@@ -7,6 +7,9 @@ import { Form } from 'layout/form/Form.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Panel } from 'layout/containers/Panel.jsx';
 import { Pay } from 'layout/user/Pay.jsx';
+import UserStore from 'stores/user/User.js';
+import AuthStore from 'stores/user/Auth.js';
+import PaymentActions from 'actions/Payment.js';
 
 
 export class ReviewVisits extends StateComponent {
@@ -24,6 +27,10 @@ export class ReviewVisits extends StateComponent {
 
   rate() {
   // rate(form) {
+    if (UserStore.getState().isGuide) {
+      PaymentActions.pay(AuthStore.getState().credentials.id);
+    }
+
     const newState = Object.assign({}, this.state);
     newState.rated = true;
     this.setState(newState);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import shouldPureComponentUpdate from 'react-addons-shallow-compare';
 import GoogleMapReact from 'google-map-react';
 import controllable from 'react-controllables';
@@ -18,14 +18,15 @@ class SimpleMap extends StoreObserver {
       center: {lat: props.center.lat, lng: props.center.lng},
       zoom: props.zoom,
       ownLocation: [],
-      guideCoor: LocationActions.nearGuide(),
+      guideCoor: null,
     };
   }
 
   componentDidMount() {
     super.componentDidMount();
     navigator.geolocation.getCurrentPosition((position) => {
-       LocationActions.sendLocation(position.coords);
+       LocationActions.sendLocation.defer(position.coords);
+       LocationActions.nearGuide.defer();
      },(err) => {
        console.log('ERROR(' + err.code + '): ' + err.message);
      }, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
@@ -126,14 +127,14 @@ class SimpleMap extends StoreObserver {
 }
 
 SimpleMap.defaultProps = {
-  center: {lat: 59.95, lng: 30.33},
+  center: { lat: 59.95, lng: 30.33 },
   zoom: 9,
   guideCoor: [
-    {id: 'A', lat: 43.79831666666667, lng: 0.625095},
-    {id: 'B', lat: 43.79833266666667, lng: 0.625075},
-    {id: 'C', lat: 43.79732266666667, lng: 0.635096}
+    { id: 'A', lat: 43.79831666666667, lng: 0.625095 },
+    { id: 'B', lat: 43.79833266666667, lng: 0.625075 },
+    { id: 'C', lat: 43.79732266666667, lng: 0.635096 },
   ],
-  ownLocation: ['lat': 43.79839666666667, 'lng': 0.626995],
+  ownLocation: [43.79839666666667, 0.626995],
 };
 
 SimpleMap.propTypes = {

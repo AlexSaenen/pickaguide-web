@@ -8,6 +8,8 @@
     border-left: 1px dashed #666;
     background-color: $lightShadeColor;
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .UserMenuContentWrapper {
