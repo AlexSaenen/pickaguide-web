@@ -45,8 +45,8 @@ export class Login extends StoreObserver {
       <div>
         <PanelForm controller={this.ctrl} submitLabel={strings.submit}>
           <Title>{strings.submit}</Title>
-          <EmailInput required />
-          <PasswordInput required />
+          <EmailInput placeholder={strings.email} required />
+          <PasswordInput placeholder={strings.password} required />
         </PanelForm>
       </div>
     );
