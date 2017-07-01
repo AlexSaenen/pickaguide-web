@@ -81,6 +81,7 @@ p.Vertical { vertical-align: middle; }
 p.Red { color: $alertTitleColor; }
 p.Blue { color: $infoTitleColor; }
 p.Green { color: $successTitleColor; }
+p.White { color: white; }
 
 *:focus { outline: none; }
 .Hidden { display: none !important; }

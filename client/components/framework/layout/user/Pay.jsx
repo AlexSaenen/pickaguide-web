@@ -1,6 +1,11 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { List } from 'layout/list/List.jsx';
+import { CardPreview } from 'layout/user/CardPreview.jsx';
+import { NewCard } from 'layout/user/NewCard.jsx';
+import { QueryModal } from 'modals/QueryModal.jsx';
+import { ModalController } from 'base/ModalController.jsx';
 import PaymentStore from 'stores/user/Payment.js';
 import PaymentActions from 'actions/Payment.js';
 
@@ -13,8 +18,11 @@ export class Pay extends StoreObserver {
     super(props, context, PaymentStore);
 
     this.state = {
+      id: null,
       cards: [],
     };
+
+    this.payCtrl = new ModalController();
   }
 
   componentDidMount() {
@@ -29,21 +37,45 @@ export class Pay extends StoreObserver {
 
     if (store.error) {
       return;
-    } else if (store.cards) {
-      nextState.cards = store.cards;
+    } else if (store.infos) {
+      nextState.cards = store.infos.sources.data;
+      nextState.id = store.infos.id;
     }
 
     this.setState(nextState);
   }
 
   render() {
+    const cards = this.state.cards;
+
+    if (this.state.id === null) {
+      return (<div>Loading ..</div>);
+    }
+
     return (
       <div className="Pay">
-        hello
+        <QueryModal
+          controller={this.payCtrl}
+          query="This card will be used to pay 10 euros"
+          onConfirm={
+            function confirm() {
+              PaymentActions.pay(this.payCtrl.callerId);
+            }.bind(this)
+          }
+        />
+
+        <NewCard />
+        {
+          cards.length > 0 &&
+            <List elementStyle="Tight Clickable">
+              {
+                cards.map((card, index) => {
+                  return <CardPreview {...card} key={index} controller={this.payCtrl} />;
+                })
+              }
+            </List>
+        }
       </div>
     );
   }
 }
-
-Pay.propTypes = {
-};

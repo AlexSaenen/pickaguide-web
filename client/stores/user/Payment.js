@@ -7,7 +7,7 @@ class PaymentStore {
 
   constructor() {
     this.error = null;
-    this.cards = [];
+    this.infos = null;
     this.bindActions(PaymentActions);
   }
 
@@ -21,9 +21,18 @@ class PaymentStore {
   }
 
   onGetInfosSuccess(infos) {
-    console.log(infos);
     this.error = null;
-    this.cards = infos.cards;
+    this.infos = infos;
+  }
+
+  onNewCard(form) {
+    PaymentApi.newCard(form);
+    return false;
+  }
+
+  onPay() {
+    PaymentApi.pay();
+    return false;
   }
 
 }

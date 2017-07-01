@@ -3,3 +3,21 @@
 .Pay {
 
 }
+
+.CardPreview {
+  background-color: $modalDarkColor;
+  padding: 1em;
+}
+
+.NewCard {
+  background-color: $modalSecondaryColor;
+  padding: 0.5em;
+
+  .SubTitle {
+    color: $textLightColor;
+  }
+
+  input {
+    color: white;
+  }
+}

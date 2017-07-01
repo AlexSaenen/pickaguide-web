@@ -83,6 +83,10 @@ export class OwnerVisits extends StoreObserver {
         {
           theirVisits.length > 0 &&
             <Layout>
+              {
+                myVisits.length === 0 &&
+                  <hr className="Overlay" />
+              }
               <Title>Your visits with travelers ...</Title>
               <PanelList layoutStyle="LayoutLight" panelStyle="Wide OuterTight" listStyle="ListGrid" elementStyle="Auto Tight Clickable">
                 {

@@ -201,7 +201,14 @@ export class OwnerVisit extends StoreObserver {
                 visit.contact.phone &&
                   <p>{visit.contact.phone}</p>
               }
-              <p>{visit.contact.email}</p>
+              {
+                visit.contact.email &&
+                  <p>{visit.contact.email}</p>
+              }
+              {
+                !visit.contact.email && !visit.contact.phone &&
+                  <p>No contact info available</p>
+              }
             </div>
         }
 
