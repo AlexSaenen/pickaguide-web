@@ -77,17 +77,15 @@ export class Form extends PropsComponent {
       <Layout layoutStyle={this.state.layoutStyle}>
         <form className="FormWrapper" onSubmit={this.handleSubmit}>
           {this.props.children}
-          <div>
-            <Button
-              buttonStyle="Red Auto"
-              label="Reset"
-              onCallback={
-                function reset(clickEvent) {
-                  this.props.onReset(clickEvent.target.parentNode.parentNode);
-                }.bind(this)
-              }
-            />
-          </div>
+          <Button
+            buttonStyle="Red Auto Inline"
+            label="Reset"
+            onCallback={
+              function reset(clickEvent) {
+                this.props.onReset(clickEvent.target.parentNode.parentNode);
+              }.bind(this)
+            }
+          />
           <SubmitButton label={this.props.submitLabel} />
         </form>
         <Message {...this.state.message} onDismiss={this.clearMessage} />
