@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { SubmitButton } from 'form/SubmitButton.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
@@ -46,7 +47,7 @@ export class Form extends PropsComponent {
       }
     });
 
-    this.props.onSubmit(fields, this.setMessage);
+    this.props.onSubmit(fields, this.setMessage, inputs);
   }
 
   emptyMessage() {
@@ -76,6 +77,17 @@ export class Form extends PropsComponent {
       <Layout layoutStyle={this.state.layoutStyle}>
         <form className="FormWrapper" onSubmit={this.handleSubmit}>
           {this.props.children}
+          <div>
+            <Button
+              buttonStyle="Red Auto"
+              label="Reset"
+              onCallback={
+                function reset(clickEvent) {
+                  this.props.onReset(clickEvent.target.parentNode.parentNode);
+                }.bind(this)
+              }
+            />
+          </div>
           <SubmitButton label={this.props.submitLabel} />
         </form>
         <Message {...this.state.message} onDismiss={this.clearMessage} />
@@ -93,4 +105,6 @@ Form.propTypes = {
   children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array]),
   submitLabel: React.PropTypes.string,
   layoutStyle: React.PropTypes.string,
+  onReset: React.PropTypes.func.isRequired,
+  onSubmit: React.PropTypes.func.isRequired,
 };

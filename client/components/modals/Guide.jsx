@@ -34,7 +34,7 @@ export class Guide extends StoreObserver {
     } else if (store.profile !== undefined) {
       newState.profile = store.profile;
     } else if (store.isGuide) {
-      this.ctrl.close();
+      this.ctrl.closeAndReset();
     }
 
     this.setState(newState);

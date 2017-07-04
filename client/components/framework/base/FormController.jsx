@@ -9,6 +9,7 @@ export class FormController extends Controller {
     this.onSubmit = () => {};
     this.messageCallback = () => {};
     this.submit = this.submit.bind(this);
+    this.reset = this.reset.bind(this);
     this.attachSubmit = this.attachSubmit.bind(this);
   }
 
@@ -19,5 +20,15 @@ export class FormController extends Controller {
 
   attachSubmit(callback) {
     this.onSubmit = callback;
+  }
+
+  reset(form) {
+    form
+    .querySelectorAll('input, textarea')
+    .forEach((input) => {
+      if (input.type !== 'submit') {
+        input.value = '';
+      }
+    });
   }
 }

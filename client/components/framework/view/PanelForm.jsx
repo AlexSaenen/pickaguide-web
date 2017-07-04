@@ -11,7 +11,7 @@ export class PanelForm extends PropsComponent {
   render() {
     return (
       <Panel {...this.props}>
-        <Form {...this.props} onSubmit={this.props.controller.submit}>
+        <Form {...this.props} onSubmit={this.props.controller.submit} onReset={this.props.controller.reset}>
           {this.props.children}
         </Form>
       </Panel>

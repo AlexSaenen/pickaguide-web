@@ -39,7 +39,7 @@ export class ChangeStatus extends StoreObserver {
 
       this.setState(newState);
     } else {
-      this.ctrl.toggle(false);
+      this.ctrl.closeAndReset();
     }
   }
 
