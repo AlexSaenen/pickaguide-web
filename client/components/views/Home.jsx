@@ -60,7 +60,7 @@ export class Home extends StoreObserver {
               adverts.length > 0 ?
                 <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
                   {
-                    adverts.map((advert, index) => {
+                    adverts.reverse().map((advert, index) => {
                       return (
                         <AdvertPreview
                           {...advert}
