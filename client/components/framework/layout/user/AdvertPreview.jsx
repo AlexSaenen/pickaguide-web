@@ -32,11 +32,10 @@ export class AdvertPreview extends React.Component {
             <p className="Medium Bold Inline">{this.props.title}</p>
             {
               this.props.owner &&
-                <p className="Inline Italic">by</p>
-            }
-            {
-              this.props.owner &&
-                <p className="Bold Inline LineSpaced">{this.props.owner}</p>
+                <div className="Inline">
+                  <p className="Inline Italic">by</p>
+                  <p className="Bold Inline LineSpaced">{this.props.owner}</p>
+                </div>
             }
           </div>
           <p className="ExtraSmall OverflowHidden MultiLineTextOverflow">{this.props.description}</p>
