@@ -9,6 +9,7 @@ import { AuthDependent } from 'base/AuthDependent.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Text } from 'layout/elements/Text.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import { CheckMark } from 'layout/elements/CheckMark.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
@@ -136,22 +137,28 @@ export class Advert extends StoreObserver {
             <Picture pictureName="Advert Cover" pictureType="WidthLimited" url={advert.photoUrl} />
           </Panel>
 
-          <GuideDependent visitor>
-            <hr className="SpacedDivider" />
-            <Button
-              label="Ask a visit"
-              buttonStyle="Auto Blue"
-              onCallback={this.visitCreationCtrl.toggle}
-            />
-          </GuideDependent>
+          <AuthDependent auth>
+            <GuideDependent visitor>
+              <hr className="SpacedDivider" />
+              <Button
+                label="Ask a visit"
+                buttonStyle="Auto Blue"
+                onCallback={this.visitCreationCtrl.toggle}
+              />
+            </GuideDependent>
+          </AuthDependent>
+
+          <AuthDependent unauth>
+            <Information infoStyle="Info Small LineSpaced">You need to be logged in to ask a visit</Information>
+          </AuthDependent>
+
+          <hr className="SpacedOverlay" />
+
 
           <AuthDependent auth>
             {
               comments.length !== 0 &&
-                <div>
-                  <hr className="SpacedOverlay" />
-                  <SubTitle>Comments</SubTitle>
-                </div>
+                <SubTitle>Comments</SubTitle>
             }
 
             {
