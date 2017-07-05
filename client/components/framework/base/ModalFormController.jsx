@@ -16,8 +16,11 @@ export class ModalFormController extends ModalController {
     this.closeAndReset = this.closeAndReset.bind(this);
     this.toggle = this.toggle.bind(this);
     this.submittedInputs = null;
+
     this.onClose = (view) => {
-      this.reset(view);
+      if (view) {
+        this.reset(view);
+      }
     };
   }
 
@@ -33,7 +36,10 @@ export class ModalFormController extends ModalController {
 
   attachClose(callback) {
     this.onClose = (view) => {
-      this.reset(view);
+      if (view) {
+        this.reset(view);
+      }
+
       callback();
     };
   }
