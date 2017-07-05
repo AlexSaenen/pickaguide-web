@@ -10,11 +10,15 @@ export class ModalFormController extends ModalController {
     this.messageCallback = () => {};
     this.submit = this.submit.bind(this);
     this.attachSubmit = this.attachSubmit.bind(this);
-    this._invalidateForm = this._invalidateForm.bind(this);
+    this.attachClose = this.attachClose.bind(this);
+    this._invalidateInputs = this._invalidateInputs.bind(this);
+    this.reset = this.reset.bind(this);
     this.closeAndReset = this.closeAndReset.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.autoClear = (props && props.autoClear !== undefined ? props.autoClear : true);
     this.submittedInputs = null;
+    this.onClose = (view) => {
+      this.reset(view);
+    };
   }
 
   submit(form, messageCallback, inputs) {
@@ -27,15 +31,32 @@ export class ModalFormController extends ModalController {
     this.onSubmit = callback;
   }
 
-  _invalidateForm() {
-    if (this.autoClear) {
-      super.reset();
-    }
+  attachClose(callback) {
+    this.onClose = (view) => {
+      this.reset(view);
+      callback();
+    };
+  }
+
+  _invalidateInputs(inputs) {
+    inputs.forEach((input) => {
+      if (input.type !== 'submit') {
+        input.value = '';
+      }
+    });
   }
 
   closeAndReset() {
+    if (this.submittedInputs) {
+      this._invalidateInputs(this.submittedInputs);
+    }
+
     super.close();
-    this._invalidateForm();
     this.messageCallback({ title: '', content: '', type: 'Success' }, false);
+  }
+
+  reset(form) {
+    const inputs = form.querySelectorAll('input, textarea');
+    this._invalidateInputs(inputs);
   }
 }

@@ -24,8 +24,8 @@ export class Modal extends PropsComponent {
         label="Dismiss"
         buttonStyle="Red"
         onCallback={
-          function callback() {
-            this.ctrl.close();
+          function callback(clickEvent) {
+            this.ctrl.close(clickEvent.target.parentNode.parentNode.querySelectorAll('.FormWrapper')[0]);
           }.bind(this)
         }
       />);
