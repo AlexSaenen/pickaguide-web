@@ -17,6 +17,7 @@ export class Form extends PropsComponent {
     this.state = { layoutStyle: props.layoutStyle, message: this.emptyMessage() };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.reset = this.reset.bind(this);
     this.clearMessage = this.clearMessage.bind(this);
     this.displayMessage = this.displayMessage.bind(this);
     this.setMessage = this.setMessage.bind(this);
@@ -34,7 +35,7 @@ export class Form extends PropsComponent {
 
   handleSubmit(e) {
     e.preventDefault();
-    const inputs = e.target.querySelectorAll('input, textarea');
+    const inputs = this.form.querySelectorAll('input, textarea');
     const fields = {};
 
     inputs.forEach((el, index) => {
@@ -47,7 +48,7 @@ export class Form extends PropsComponent {
       }
     });
 
-    this.props.onSubmit(fields, this.setMessage, inputs);
+    this.props.onSubmit(fields, this.setMessage, this);
   }
 
   emptyMessage() {
@@ -72,19 +73,19 @@ export class Form extends PropsComponent {
     this.displayMessage(this.emptyMessage());
   }
 
+  reset() {
+    this.form.reset();
+  }
+
   render() {
     return (
       <Layout layoutStyle={this.state.layoutStyle}>
-        <form className="FormWrapper" onSubmit={this.handleSubmit}>
+        <form className="FormWrapper" onSubmit={this.handleSubmit} ref={(el) => { this.form = el; }}>
           {this.props.children}
           <Button
             buttonStyle="Red Auto Inline"
             label="Reset"
-            onCallback={
-              function reset(clickEvent) {
-                this.props.onReset(clickEvent.target.parentNode.parentNode);
-              }.bind(this)
-            }
+            onCallback={this.reset}
           />
           <SubmitButton label={this.props.submitLabel} />
         </form>
@@ -103,6 +104,5 @@ Form.propTypes = {
   children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array]),
   submitLabel: React.PropTypes.string,
   layoutStyle: React.PropTypes.string,
-  onReset: React.PropTypes.func.isRequired,
   onSubmit: React.PropTypes.func.isRequired,
 };

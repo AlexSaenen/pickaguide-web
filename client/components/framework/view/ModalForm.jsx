@@ -17,7 +17,7 @@ export class ModalForm extends PropsComponent {
   render() {
     return (
       <Modal {...this.props} controller={this.ctrl}>
-        <Form {...this.props} onSubmit={this.ctrl.submit} onReset={this.ctrl.reset}>
+        <Form {...this.props} onSubmit={this.ctrl.submit}>
           {this.props.children}
         </Form>
       </Modal>

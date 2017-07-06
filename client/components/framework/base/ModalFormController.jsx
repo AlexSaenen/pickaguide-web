@@ -11,22 +11,26 @@ export class ModalFormController extends ModalController {
     this.submit = this.submit.bind(this);
     this.attachSubmit = this.attachSubmit.bind(this);
     this.attachClose = this.attachClose.bind(this);
-    this._invalidateInputs = this._invalidateInputs.bind(this);
-    this.reset = this.reset.bind(this);
     this.closeAndReset = this.closeAndReset.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.submittedInputs = null;
+    this.target = null;
 
-    this.onClose = (view) => {
-      if (view) {
-        this.reset(view);
+    this.onClose = (target) => {
+      if (target) {
+        if (target.form) {
+          target.form.reset();
+        } else {
+          target.parentNode.parentNode.querySelectorAll('.FormWrapper').forEach(form => form.reset());
+        }
       }
+
+      this.target = null;
     };
   }
 
-  submit(form, messageCallback, inputs) {
+  submit(form, messageCallback, target) {
+    this.target = target;
     this.messageCallback = messageCallback;
-    this.submittedInputs = inputs;
     this.onSubmit(form);
   }
 
@@ -35,34 +39,14 @@ export class ModalFormController extends ModalController {
   }
 
   attachClose(callback) {
-    this.onClose = (view) => {
-      if (view) {
-        this.reset(view);
-      }
-
+    this.onClose = (target) => {
+      this.onClose(target);
       callback();
     };
   }
 
-  _invalidateInputs(inputs) {
-    inputs.forEach((input) => {
-      if (input.type !== 'submit') {
-        input.value = '';
-      }
-    });
-  }
-
   closeAndReset() {
-    if (this.submittedInputs) {
-      this._invalidateInputs(this.submittedInputs);
-    }
-
-    super.close();
+    super.close(this.target);
     this.messageCallback({ title: '', content: '', type: 'Success' }, false);
-  }
-
-  reset(form) {
-    const inputs = form.querySelectorAll('input, textarea');
-    this._invalidateInputs(inputs);
   }
 }
