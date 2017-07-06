@@ -37,7 +37,7 @@ export class AdCreation extends StoreObserver {
         title: 'Some error occurred when creating your ad',
         content: String(store.error),
         type: 'Alert',
-      });
+      }, false);
     } else {
       AdvertsStore.unlisten(this.onStore);
       this.ctrl.closeAndReset();
