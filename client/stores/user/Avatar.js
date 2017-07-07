@@ -9,16 +9,19 @@ class AvatarStore {
   constructor() {
     this.error = null;
     this.avatar = defaultAvatarUrl;
+    this.isLoaded = false;
     this.bindActions(AvatarActions);
   }
 
   onGet() {
+    this.isLoaded = false;
     ProfileApi.getAvatar();
     return false;
   }
 
   onGetSuccess(avatar) {
     this.error = null;
+    this.isLoaded = true;
     this.avatar = avatar;
   }
 
@@ -33,6 +36,7 @@ class AvatarStore {
 
   onInvalidateAvatar() {
     this.avatar = defaultAvatarUrl;
+    this.isLoaded = false;
     this.error = null;
   }
 

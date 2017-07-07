@@ -10,6 +10,7 @@ class SearchAvatarStore {
     this.error = null;
     this.avatar = defaultAvatarUrl;
     this.bindActions(AvatarActions);
+    this.id = null;
   }
 
   onGet(id) {
@@ -17,9 +18,10 @@ class SearchAvatarStore {
     return false;
   }
 
-  onGetSuccess(avatar) {
+  onGetSuccess(avatarObj) {
     this.error = null;
-    this.avatar = avatar;
+    this.avatar = avatarObj.avatar;
+    this.id = avatarObj.userId;
   }
 
   onError(error) {
@@ -29,6 +31,7 @@ class SearchAvatarStore {
   onInvalidate() {
     this.error = null;
     this.avatar = defaultAvatarUrl;
+    this.id = null;
   }
 
 }
