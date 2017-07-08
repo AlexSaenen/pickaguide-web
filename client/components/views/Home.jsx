@@ -20,7 +20,7 @@ export class Home extends StoreObserver {
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
-    this.state.adverts = [];
+    this.state.adverts = null;
     this.navigateToAdvert = this.navigateToAdvert.bind(this);
   }
 
@@ -39,7 +39,7 @@ export class Home extends StoreObserver {
 
   componentDidMount() {
     super.componentDidMount();
-    if (this.state.adverts.length === 0) {
+    if (this.state.adverts === null) {
       AdvertsActions.findAll.defer();
     }
   }
@@ -49,35 +49,37 @@ export class Home extends StoreObserver {
   }
 
   render() {
-    const adverts = this.state.adverts || [];
+    const adverts = this.state.adverts;
     const coor = { lat: 43.79831666667667, lng: 0.625195 };
 
     return (
       <div className="HomeContainer">
         <List wrapChildren={false} listStyle="ListGrid">
-          <Element elementStyle="Tight Half Transparent NoWrap">
-            {
-              adverts.length > 0 ?
-                <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
-                  {
-                    adverts.reverse().map((advert, index) => {
-                      return (
-                        <AdvertPreview
-                          {...advert}
-                          key={index}
-                          onClick={this.navigateToAdvert}
-                        />
-                      );
-                    })
-                  }
-                </List>
-              :
-                <Layout layoutStyle="LayoutBlank">
-                  <hr className="Overlay" />
-                  <Text>No Adverts available for now ..</Text>
-                </Layout>
-            }
-          </Element>
+          {
+            (adverts === null || adverts.length > 0) &&
+              <Element elementStyle="Tight Half Transparent NoWrap">
+                {
+                  adverts ?
+                    <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
+                      {
+                        adverts.reverse().map((advert, index) => {
+                          return (
+                            <AdvertPreview
+                              {...advert}
+                              key={index}
+                              onClick={this.navigateToAdvert}
+                            />
+                          );
+                        })
+                      }
+                    </List>
+                  :
+                    <Layout layoutStyle="LayoutBlank">
+                      <Text>Loading ..</Text>
+                    </Layout>
+                }
+              </Element>
+          }
           <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top Clickable Height30">
             <SimpleMap center={coor} zoom={9} />
           </Element>
