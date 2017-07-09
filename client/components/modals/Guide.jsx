@@ -5,7 +5,6 @@ import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { TextInput } from 'form/TextInput.jsx';
-import { TextArea } from 'form/TextArea.jsx';
 import UserActions from 'actions/User.js';
 import ProfileStore from 'stores/user/Profile.js';
 import UserStore from 'stores/user/User.js';

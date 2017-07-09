@@ -39,9 +39,13 @@ export class ModalFormController extends ModalController {
   }
 
   attachClose(callback) {
+    const onCloseToWrap = this.onClose;
+    this.onClose = null;
     this.onClose = (target) => {
-      this.onClose(target);
-      callback();
+      setTimeout(() => {
+        onCloseToWrap(target);
+        callback();
+      }, 2000);
     };
   }
 
