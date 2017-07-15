@@ -32,8 +32,8 @@ class AdvertsStore {
     this.adverts = adverts;
   }
 
-  onFindAll() {
-    AdvertsApi.findAll();
+  onFindMain() {
+    AdvertsApi.findMain();
     return false;
   }
 

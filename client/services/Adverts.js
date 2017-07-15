@@ -46,6 +46,20 @@ export default class AdvertsApi {
       });
   }
 
+  static findMain() {
+    PromiseApi.get('/public/proposals/main')
+      .then((res) => {
+        if (res.error) {
+          AdvertsActions.error(res.error);
+        } else {
+          AdvertsActions.getSuccess(res.adverts);
+        }
+      })
+      .catch((err) => {
+        AdvertsActions.error(err);
+      });
+  }
+
   static getMine() {
     PromiseApi.auth().get('/proposals')
       .then((res) => {
