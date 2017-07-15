@@ -1,7 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 
-import { Title } from 'layout/elements/Title.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { List } from 'layout/list/List.jsx';
@@ -40,7 +39,7 @@ export class Home extends StoreObserver {
   componentDidMount() {
     super.componentDidMount();
     if (this.state.adverts === null) {
-      AdvertsActions.findAll.defer();
+      AdvertsActions.findMain.defer();
     }
   }
 

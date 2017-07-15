@@ -67,7 +67,7 @@ export class EditProfile extends StoreObserver {
   }
 
   onSubmit(form) {
-    form.interests = this.state.profile.interests;
+    form.interests = this.interestEditor.state.interests;
     ProfileActions.update(form);
   }
 
@@ -100,7 +100,7 @@ export class EditProfile extends StoreObserver {
 
           <hr className="SpacedDivider" />
 
-          <EditableInterests interests={profile.interests} />
+          <EditableInterests interests={profile.interests} ref={(el) => { this.interestEditor = el; }} />
         </PanelForm>
 
         <EditPicture controller={this.editPictureCtrl} />
