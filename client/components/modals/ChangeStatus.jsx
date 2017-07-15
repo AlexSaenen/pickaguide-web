@@ -32,14 +32,14 @@ export class ChangeStatus extends StoreObserver {
 
     if (store.error) {
       this.ctrl.messageCallback({
-        title: 'Some error occurred when updating your password',
+        title: 'Some error occurred when updating the visit',
         content: String(store.error),
         type: 'Alert',
       });
 
       this.setState(newState);
     } else {
-      this.ctrl.toggle(false);
+      this.ctrl.closeAndReset();
     }
   }
 
@@ -52,7 +52,7 @@ export class ChangeStatus extends StoreObserver {
     return (
       <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutDark Tight">
         <Title>{this.state.actionType.capitalize()} this visit</Title>
-        <TextInput label="reason" defaultValue="No extra comment" />
+        <TextInput label="reason" placeholder="Comment" required value="No extra comment" />
         <Information infoStyle="Info LineTight">This action cannot be undone</Information>
       </ModalForm>
     );

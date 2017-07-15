@@ -29,9 +29,15 @@ export class ProfilePreview extends React.Component {
             <CheckMark active={this.props.isConfirmed} />
             <p className="Spaced Medium Inline">{this.props.displayName}</p>
           </div>
-          <p className="Inline LineSpaced">{this.props.city}, </p>
-          <p className="Bold Inline">{this.props.country}</p>
-          <p className="ExtraSmall Italic OverflowHidden MultiLineTextOverflow">{this.props.description}</p>
+          {
+            this.props.city &&
+              <p className="Inline LineSpaced">{this.props.city}{this.props.country ? ', ' : ''}</p>
+          }
+          {
+            this.props.country &&
+              <p className={`Bold Inline ${this.props.city ? '' : 'LineSpaced'}`}>{this.props.country}</p>
+          }
+          <p className={`ExtraSmall Italic OverflowHidden MultiLineTextOverflow ${this.props.city && this.props.country ? '' : 'LineSpaced'}`}>{this.props.description}</p>
         </div>
       </div>
     );

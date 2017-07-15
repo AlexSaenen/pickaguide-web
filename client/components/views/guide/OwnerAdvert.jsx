@@ -91,9 +91,9 @@ export class OwnerAdvert extends StoreObserver {
   }
 
   onUpdate(advert) {
-    this.textEditorCtrl.close();
-    this.areaEditorCtrl.close();
-    this.coverEditorCtrl.close();
+    this.textEditorCtrl.closeAndReset();
+    this.areaEditorCtrl.closeAndReset();
+    this.coverEditorCtrl.closeAndReset();
     advert._id = this.state.advert._id;
     AdvertsActions.update(advert);
   }

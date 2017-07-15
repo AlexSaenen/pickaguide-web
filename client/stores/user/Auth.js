@@ -47,7 +47,7 @@ class AuthStore {
   onLoginSuccess(credentials) {
     this.error = null;
     this.credentials = credentials;
-    browserHistory.push('/');
+    browserHistory.goBack();
   }
 
   onError(error) {

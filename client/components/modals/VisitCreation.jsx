@@ -29,7 +29,7 @@ export class VisitCreation extends StoreObserver {
         type: 'Alert',
       }, false);
     } else {
-      this.ctrl.toggle(false);
+      this.ctrl.closeAndReset();
     }
   }
 

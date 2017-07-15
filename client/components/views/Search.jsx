@@ -10,6 +10,7 @@ import { TextInput } from 'form/TextInput.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { Information } from 'layout/elements/Information.jsx';
+import { Text } from 'layout/elements/Text.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { ProfilePreview } from 'layout/user/ProfilePreview.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
@@ -120,8 +121,12 @@ export class Search extends StoreObserver {
           <Layout layoutStyle="LayoutBlank">
             {searchBar}
             {
-              this.state.searchTerms !== '' &&
+              results && this.state.searchTerms !== '' &&
                 <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noResult}</Information>
+            }
+            {
+              results === null &&
+                <Text>Loading ..</Text>
             }
           </Layout>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { SubmitButton } from 'form/SubmitButton.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
@@ -16,6 +17,7 @@ export class Form extends PropsComponent {
     this.state = { layoutStyle: props.layoutStyle, message: this.emptyMessage() };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.reset = this.reset.bind(this);
     this.clearMessage = this.clearMessage.bind(this);
     this.displayMessage = this.displayMessage.bind(this);
     this.setMessage = this.setMessage.bind(this);
@@ -33,7 +35,7 @@ export class Form extends PropsComponent {
 
   handleSubmit(e) {
     e.preventDefault();
-    const inputs = e.target.querySelectorAll('input, textarea');
+    const inputs = this.form.querySelectorAll('input, textarea');
     const fields = {};
 
     inputs.forEach((el, index) => {
@@ -46,7 +48,7 @@ export class Form extends PropsComponent {
       }
     });
 
-    this.props.onSubmit(fields, this.setMessage);
+    this.props.onSubmit(fields, this.setMessage, this);
   }
 
   emptyMessage() {
@@ -71,11 +73,20 @@ export class Form extends PropsComponent {
     this.displayMessage(this.emptyMessage());
   }
 
+  reset() {
+    this.form.reset();
+  }
+
   render() {
     return (
       <Layout layoutStyle={this.state.layoutStyle}>
-        <form className="FormWrapper" onSubmit={this.handleSubmit}>
+        <form className="FormWrapper" onSubmit={this.handleSubmit} ref={(el) => { this.form = el; }}>
           {this.props.children}
+          <Button
+            buttonStyle="Red Auto Inline"
+            label="Reset"
+            onCallback={this.reset}
+          />
           <SubmitButton label={this.props.submitLabel} />
         </form>
         <Message {...this.state.message} onDismiss={this.clearMessage} />
@@ -93,4 +104,5 @@ Form.propTypes = {
   children: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.array]),
   submitLabel: React.PropTypes.string,
   layoutStyle: React.PropTypes.string,
+  onSubmit: React.PropTypes.func.isRequired,
 };

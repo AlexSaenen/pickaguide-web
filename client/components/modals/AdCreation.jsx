@@ -11,6 +11,8 @@ import { EditAdvertCover } from 'modals/EditAdvertCover.jsx';
 import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
 
+const defaultCoverUrl = 'http://www.newyorker.com/wp-content/uploads/2015/12/Veix-Goodbye-New-York-Color-1200.jpg';
+
 
 export class AdCreation extends StoreObserver {
 
@@ -19,7 +21,7 @@ export class AdCreation extends StoreObserver {
 
     this.state = {
       advert: {
-        url: 'http://www.newyorker.com/wp-content/uploads/2015/12/Veix-Goodbye-New-York-Color-1200.jpg',
+        url: defaultCoverUrl,
       },
     };
 
@@ -35,17 +37,20 @@ export class AdCreation extends StoreObserver {
         title: 'Some error occurred when creating your ad',
         content: String(store.error),
         type: 'Alert',
-      });
+      }, false);
     } else {
       AdvertsStore.unlisten(this.onStore);
-      this.ctrl.toggle(false);
+      this.ctrl.closeAndReset();
+      const newState = Object.assign({}, this.state);
+      newState.advert.url = defaultCoverUrl;
+      this.setState(newState);
     }
   }
 
   updateCover(form) {
     const newState = Object.assign({}, this.state);
     newState.advert.url = form.photoUrl;
-    this.editCoverCtrl.close();
+    this.editCoverCtrl.closeAndReset();
     this.setState(newState);
   }
 

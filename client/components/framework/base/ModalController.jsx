@@ -26,9 +26,9 @@ export class ModalController extends Controller {
     this._view.setState(newState);
   }
 
-  close() {
+  close(view) {
     this.toggle(false);
-    this.onClose();
+    this.onClose(view);
   }
 
   attachClose(callback) {

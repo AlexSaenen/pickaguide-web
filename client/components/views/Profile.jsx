@@ -14,8 +14,9 @@ import SearchAccountStore from 'stores/other/Account.js';
 import SearchUserStore from 'stores/other/User.js';
 import ProfileActions from 'actions/SearchProfile.js';
 import AccountActions from 'actions/SearchAccount.js';
-import AvatarActions from 'actions/SearchAvatar.js';
 import UserActions from 'actions/SearchUser.js';
+
+const defaultAvatarUrl = 'https://www.learnmine.com/assets/img/medium-default-avatar.png';
 
 const displayBirthdate = (birthdate) => {
   const monthMap = [
@@ -39,7 +40,7 @@ export class Profile extends StoreObserver {
 
     this.state = {
       profile: null,
-      avatar: '',
+      avatar: defaultAvatarUrl,
       isConfirmed: false,
       isGuide: false,
     };
@@ -51,7 +52,6 @@ export class Profile extends StoreObserver {
   componentDidMount() {
     super.componentDidMount();
     if (this.isOwnerView === false && this.state.profile === null) {
-      AvatarActions.invalidate.defer();
       ProfileActions.get.defer(this.id);
       AccountActions.isConfirmed.defer(this.id);
       UserActions.isGuide.defer(this.id);

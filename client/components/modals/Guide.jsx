@@ -5,7 +5,6 @@ import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { TextInput } from 'form/TextInput.jsx';
-import { TextArea } from 'form/TextArea.jsx';
 import UserActions from 'actions/User.js';
 import ProfileStore from 'stores/user/Profile.js';
 import UserStore from 'stores/user/User.js';
@@ -34,7 +33,7 @@ export class Guide extends StoreObserver {
     } else if (store.profile !== undefined) {
       newState.profile = store.profile;
     } else if (store.isGuide) {
-      this.ctrl.close();
+      this.ctrl.closeAndReset();
     }
 
     this.setState(newState);
@@ -50,17 +49,20 @@ export class Guide extends StoreObserver {
 
   render() {
     const profile = this.state.profile || {};
-    const shouldDisplay = attribute => (attribute ? 'Hidden' : '');
+    const neededAttrs = ['firstName', 'lastName', 'phone', 'city', 'country'];
+    const attrNameMapping = {
+      firstName: 'First name',
+      lastName: 'Last name',
+    };
+
+    const inputs = neededAttrs
+      .filter(attr => !profile[attr])
+      .map((attr, index) => <TextInput key={index} value={profile[attr]} label={attr} placeholder={attrNameMapping[attr] || attr} required />);
 
     return (
       <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutDark Tight" modalStyle="Large">
         <Title>Become Guide</Title>
-        <TextInput className={shouldDisplay(profile.firstName)} value={profile.firstName} label="firstName" placeholder="First name" required />
-        <TextInput className={shouldDisplay(profile.lastName)} value={profile.lastName} label="lastName" placeholder="Last name" required />
-        <TextInput className={shouldDisplay(profile.phone)} value={profile.phone} label="phone" required />
-        <TextInput className={shouldDisplay(profile.city)} value={profile.city} label="city" required />
-        <TextInput className={shouldDisplay(profile.country)} value={profile.country} label="country" required />
-        <TextArea className={shouldDisplay(profile.description)} value={profile.description} label="description" required />
+        {inputs}
       </ModalForm>
     );
   }
