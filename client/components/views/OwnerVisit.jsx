@@ -185,7 +185,7 @@ export class OwnerVisit extends StoreObserver {
                     ${state.label === 'accepted' ? 'Blue' : ''}`
                   }
                 >{state.label}</p>
-                <p className="Inline"> because </p>
+                <p className="Inline"> stating </p>
                 <p className="Bold Inline">{state.message}</p>
               </div>
             );

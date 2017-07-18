@@ -57,7 +57,7 @@ export class VisitPreview extends PropsComponent {
     } else {
       changeStatus = (
         <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-          <p className="Italic Inline LineSpaced">because</p>
+          <p className="Italic Inline LineSpaced">stating</p>
           <p className="Bold Inline OverflowHidden TextOverflow">{visit.status.message}</p>
         </div>
       );
