@@ -154,7 +154,6 @@ export class Advert extends StoreObserver {
 
           <hr className="SpacedOverlay" />
 
-
           <AuthDependent auth>
             {
               comments.length !== 0 &&

@@ -49,7 +49,7 @@ export default class UserApi {
   }
 
   static becomeGuide(updateProfileForm) {
-    PromiseApi.auth().post('/users/become-guide', updateProfileForm)
+    PromiseApi.auth().post('/users/becomeGuide', updateProfileForm)
       .then((res) => {
         if (res.error) {
           UserActions.error(res.error);
