@@ -26,6 +26,20 @@ import 'services/Utils.js';
 import 'scss/global.scss';
 
 
+document.addEventListener('click', (event) => {
+  if (event.target && event.target.className) {
+    if ((typeof event.target.className === 'string' && event.target.className.indexOf('Modal ') !== -1) || event.target.className === 'Modal') {
+      const footer = event.target.querySelector('.ModalFooter');
+      const modalActions = footer.querySelectorAll('.ShadowedButton');
+      modalActions.forEach((action) => {
+        if (action.textContent === 'Dismiss') {
+          action.click();
+        }
+      });
+    }
+  }
+});
+
 ReactDOM.render(
 
   <Router history={browserHistory}>
