@@ -49,7 +49,7 @@ export class ReviewVisits extends StateComponent {
             {
               this.state.rated === false ?
                 <Form submitLabel="Rate" onSubmit={this.rate}>
-                  <NumInput label="Rate" min={1} max={5} step={1} />
+                  <NumInput label="Rate" min={1} max={5} step={1} required />
                 </Form>
               :
                 <Pay />
