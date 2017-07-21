@@ -20,6 +20,13 @@ class AvatarCache {
     this.blocks.push({ id, block });
 
     Object.keys(block).forEach((userId) => {
+      const index = this.hashMap.indexOf(userId);
+
+      if (index !== -1) {
+        this.hashMap.splice(index, 1);
+        this.avatars.splice(index, 1);
+      }
+
       this.hashMap.push(userId);
       this.avatars.push(block[userId]);
     });
@@ -27,7 +34,7 @@ class AvatarCache {
 
     const ptr = setTimeout((idBlock) => {
       AvatarActions.cacheBlockTimeout(idBlock);
-    }, 1000 * 10, id);
+    }, 1000 * 60 * 1, id);
 
     this.timeouts.push({ id, ptr });
     return false;

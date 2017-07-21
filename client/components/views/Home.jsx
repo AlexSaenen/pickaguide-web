@@ -9,6 +9,7 @@ import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
 import { Element } from 'layout/list/Element.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
+import { Loader } from 'layout/elements/Loader.jsx';
 import SimpleMap from 'layout/user/GoogleMap.jsx';
 
 import 'scss/views/home.scss';
@@ -74,7 +75,7 @@ export class Home extends StoreObserver {
                     </List>
                   :
                     <Layout layoutStyle="LayoutBlank">
-                      <Text>Loading ..</Text>
+                      <Loader />
                     </Layout>
                 }
               </Element>

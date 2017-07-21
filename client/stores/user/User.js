@@ -1,3 +1,5 @@
+import { browserHistory } from 'react-router';
+
 import alt from 'client/alt';
 import UserActions from 'actions/User.js';
 import UserApi from 'services/User.js';
@@ -28,11 +30,12 @@ class UserStore {
 
   onRetire() {
     UserApi.retire();
+    browserHistory.push('/');
     return false;
   }
 
-  onDelete() {
-    UserApi.delete();
+  onDelete(form) {
+    UserApi.delete(form);
     return false;
   }
 

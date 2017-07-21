@@ -2,6 +2,7 @@ import alt from 'client/alt';
 import ProfileActions from 'actions/SearchProfile.js';
 import AvatarActions from 'actions/SearchAvatar.js';
 import SearchApi from 'services/Search.js';
+import AvatarApi from 'services/Avatar.js';
 
 
 class SearchProfileStore {
@@ -22,10 +23,7 @@ class SearchProfileStore {
   onGetSuccess(profile) {
     this.error = null;
     this.profile = profile;
-
-    if (profile.hasAvatar) {
-      AvatarActions.get.defer(this.id);
-    }
+    AvatarApi.getAvatar(this.id, AvatarActions, profile.hasAvatar);
   }
 
   onError(error) {

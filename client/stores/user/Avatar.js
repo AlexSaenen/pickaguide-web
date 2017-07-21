@@ -1,32 +1,32 @@
 import alt from 'client/alt';
 import AvatarActions from 'actions/Avatar.js';
-import ProfileApi from 'services/Profile.js';
+import AvatarApi from 'services/Avatar.js';
+import AuthStore from 'stores/user/Auth.js';
 
-const defaultAvatarUrl = 'https://www.learnmine.com/assets/img/medium-default-avatar.png';
 
 class AvatarStore {
 
   constructor() {
     this.error = null;
-    this.avatar = defaultAvatarUrl;
+    this.avatar = '';
     this.isLoaded = false;
     this.bindActions(AvatarActions);
   }
 
-  onGet() {
+  onGet(hasAvatar) {
     this.isLoaded = false;
-    ProfileApi.getAvatar();
+    AvatarApi.getAvatar(AuthStore.getState().credentials.id, AvatarActions, hasAvatar, true);
     return false;
   }
 
-  onGetSuccess(avatar) {
+  onGetSuccess(avatarObj) {
     this.error = null;
     this.isLoaded = true;
-    this.avatar = avatar;
+    this.avatar = avatarObj.avatar;
   }
 
   onUpdate(form) {
-    ProfileApi.updateAvatar(form);
+    AvatarApi.updateAvatar(form);
     return false;
   }
 
@@ -35,7 +35,7 @@ class AvatarStore {
   }
 
   onInvalidateAvatar() {
-    this.avatar = defaultAvatarUrl;
+    this.avatar = '';
     this.isLoaded = false;
     this.error = null;
   }

@@ -85,6 +85,7 @@ p.White { color: white; }
 
 *:focus { outline: none; }
 .Hidden { display: none !important; }
+.FullTransparent { opacity: 0; }
 .Inline { display: inline; }
 .Inline-Block { display: inline-block; }
 .Block { display: block !important; }

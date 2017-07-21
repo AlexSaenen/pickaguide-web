@@ -1,3 +1,3 @@
 import alt from 'client/alt';
 
-export default alt.generateActions('get', 'getSuccess', 'error', 'invalidate');
+export default alt.generateActions('getSuccess', 'error', 'invalidate');
