@@ -5,6 +5,7 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { EditPassword } from 'modals/EditPassword.jsx';
 import { EditEmail } from 'modals/EditEmail.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
+import { DeleteAccount } from 'modals/DeleteAccount.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
 import { ModalController } from 'base/ModalController.jsx';
@@ -13,6 +14,7 @@ import { Information } from 'layout/elements/Information.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { strings } from './EditAccount_lang.js';
 import AccountStore from 'stores/user/Account.js';
+import AuthStore from 'stores/user/Auth.js';
 import UserActions from 'actions/User.js';
 import AuthActions from 'actions/Auth.js';
 
@@ -25,7 +27,8 @@ export class EditAccount extends StoreObserver {
     this.state = { isConfirmed: AccountStore.getState().isConfirmed };
     this.editPasswordCtrl = new ModalFormController();
     this.editEmailCtrl = new ModalFormController();
-    this.deleteCtrl = new ModalController();
+    this.deleteCtrl = new ModalFormController();
+    this.queryCtrl = new ModalController();
   }
 
   onStore(store) {
@@ -53,19 +56,22 @@ export class EditAccount extends StoreObserver {
               this.state.isConfirmed === false &&
                 <Information infoStyle="Alert">{strings.msgConfirmEmail}</Information>
             }
-            <Button buttonStyle="Red Spaced Auto TextWhite LineSpaced" label={strings.btnDelete} onCallback={this.deleteCtrl.toggle} />
+            <Button buttonStyle="Red Spaced Auto TextWhite LineSpaced" label={strings.btnDelete} onCallback={this.queryCtrl.toggle} />
           </Layout>
         </Panel>
 
         <EditPassword controller={this.editPasswordCtrl} />
         <EditEmail controller={this.editEmailCtrl} />
         <QueryModal
-          controller={this.deleteCtrl}
+          controller={this.queryCtrl}
           query={strings.deleteConfirm}
-          onConfirm={
-            function confirm() {
-              AuthActions.logout();
-              UserActions.delete.defer();
+          onConfirm={this.deleteCtrl.toggle}
+        />
+        <DeleteAccount
+          controller={this.deleteCtrl}
+          onSubmit={
+            function confirm(form) {
+              UserActions.delete.defer(form);
             }
           }
         />

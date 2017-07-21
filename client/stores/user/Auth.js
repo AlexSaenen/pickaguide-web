@@ -54,13 +54,18 @@ class AuthStore {
     this.error = error;
   }
 
-  onLogout() {
+  onLogout(isDeleted = false) {
     browserHistory.push('/');
     CookieApi.revokeAll();
     ProfileActions.invalidateProfile.defer();
     AccountActions.invalidateAccount.defer();
     AvatarActions.invalidateAvatar.defer();
-    AuthApi.logout();
+    UserActions.invalidateUser.defer();
+
+    if (isDeleted === false) {
+      AuthApi.logout();
+    }
+
     this.credentials = null;
   }
 

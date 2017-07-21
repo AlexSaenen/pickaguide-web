@@ -6,11 +6,12 @@ import AuthStore from 'stores/user/Auth.js';
 
 export default class PromiseApi {
 
-  static auth() {
+  static auth(token = null) {
     const newInstance = Object.create(PromiseApi);
     const credentials = AuthStore.getState().credentials;
 
     if (credentials) { newInstance.token = credentials.token; }
+    if (token) { newInstance.token = token; }
 
     return newInstance;
   }

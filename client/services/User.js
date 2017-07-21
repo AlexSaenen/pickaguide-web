@@ -2,6 +2,7 @@ import UserActions from 'actions/User.js';
 import BlockActions from 'actions/Block.js';
 import SearchUserActions from 'actions/SearchUser.js';
 import ProfileActions from 'actions/Profile.js';
+import AuthActions from 'actions/Auth.js';
 import PromiseApi from 'services/PromiseApi.js';
 
 export default class UserApi {
@@ -77,13 +78,13 @@ export default class UserApi {
       });
   }
 
-  static delete() {
-    PromiseApi.auth().delete('/users')
+  static delete(form) {
+    PromiseApi.auth().put('/users/remove', form)
       .then((res) => {
         if (res.error) {
           UserActions.error(res.error);
         } else {
-          UserActions.invalidateUser();
+          AuthActions.logout(true);
         }
       })
       .catch((err) => {

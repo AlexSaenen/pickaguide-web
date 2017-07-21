@@ -34,8 +34,8 @@ class UserStore {
     return false;
   }
 
-  onDelete() {
-    UserApi.delete();
+  onDelete(form) {
+    UserApi.delete(form);
     return false;
   }
 
