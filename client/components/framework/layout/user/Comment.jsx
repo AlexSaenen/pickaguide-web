@@ -9,8 +9,6 @@ import AuthStore from 'stores/user/Auth.js';
 
 import 'scss/framework/comment.scss';
 
-const defaultAvatarUrl = 'https://www.learnmine.com/assets/img/medium-default-avatar.png';
-
 
 export class Comment extends StoreObserver {
 
@@ -48,10 +46,10 @@ export class Comment extends StoreObserver {
     const nextState = Object.assign({}, this.state);
 
     if (store.error) {
-      nextState.owner.avatar = defaultAvatarUrl;
+      nextState.owner.avatar = '';
     } else {
-      const newAvatar = store.avatars.find(avatarObj => avatarObj.userId === this.userId);
-      nextState.owner.avatar = (newAvatar && newAvatar.avatar ? newAvatar.avatar : defaultAvatarUrl);
+      const newAvatar = store.avatars.find(avatarObj => avatarObj.id === this.userId);
+      nextState.owner.avatar = (newAvatar && newAvatar.avatar ? newAvatar.avatar : '');
     }
 
     this.setState(nextState);

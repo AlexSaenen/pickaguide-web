@@ -2,7 +2,6 @@ import alt from 'client/alt';
 import ProfileActions from 'actions/Profile.js';
 import AvatarActions from 'actions/Avatar.js';
 import ProfileApi from 'services/Profile.js';
-import AuthStore from 'stores/user/Auth.js';
 
 
 const formatProfile = (profile) => {
@@ -32,10 +31,7 @@ class ProfileStore {
   onGetSuccess(profile) {
     this.error = null;
     this.profile = formatProfile(profile);
-
-    if (profile.hasAvatar) {
-      AvatarActions.get.defer(AuthStore.getState().credentials.id);
-    }
+    AvatarActions.get.defer(profile.hasAvatar);
   }
 
   onError(error) {

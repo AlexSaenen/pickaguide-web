@@ -31,7 +31,7 @@ export class UserDropdown extends StoreObserver {
 
     if (store.avatar) {
       newState.src = store.avatar;
-      this.updateState(newState);
+      this.setState(newState);
     }
   }
 
@@ -39,7 +39,7 @@ export class UserDropdown extends StoreObserver {
     return (
       <AuthDependent className="AccountLogo" {...this.props}>
         <Link to="/profiles/mine">
-          <img src={this.state.src} alt={strings.imgAlt} />
+          <img src={this.state.src} alt={strings.imgAlt} className={this.state.src === '' ? 'FullTransparent' : ''} />
         </Link>
 
         <div className="Dropdown HeightNone">

@@ -16,7 +16,6 @@ import ProfileActions from 'actions/SearchProfile.js';
 import AccountActions from 'actions/SearchAccount.js';
 import UserActions from 'actions/SearchUser.js';
 
-const defaultAvatarUrl = 'https://www.learnmine.com/assets/img/medium-default-avatar.png';
 
 const displayBirthdate = (birthdate) => {
   const monthMap = [
@@ -40,7 +39,7 @@ export class Profile extends StoreObserver {
 
     this.state = {
       profile: null,
-      avatar: defaultAvatarUrl,
+      avatar: '',
       isConfirmed: false,
       isGuide: false,
     };

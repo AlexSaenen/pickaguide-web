@@ -14,7 +14,7 @@ export class Picture extends PropsComponent {
   }
 
   render() {
-    const classNames = `Picture ${this.state.pictureType}`;
+    const classNames = `Picture ${this.state.pictureType} ${this.state.url === '' ? 'FullTransparent' : ''}`;
 
     return (
       <div className={classNames}>
