@@ -14,6 +14,7 @@ import { Text } from 'layout/elements/Text.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { ProfilePreview } from 'layout/user/ProfilePreview.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
+import { Loader } from 'layout/elements/Loader.jsx';
 import { strings } from './Search_lang.js';
 
 export class Search extends StoreObserver {
@@ -126,7 +127,7 @@ export class Search extends StoreObserver {
             }
             {
               results === null &&
-                <Text>Loading ..</Text>
+                <Loader />
             }
           </Layout>
         </div>

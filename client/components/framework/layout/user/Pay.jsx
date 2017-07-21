@@ -4,6 +4,7 @@ import { StoreObserver } from 'base/StoreObserver.jsx';
 import { List } from 'layout/list/List.jsx';
 import { CardPreview } from 'layout/user/CardPreview.jsx';
 import { NewCard } from 'layout/user/NewCard.jsx';
+import { Loader } from 'layout/elements/Loader.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
 import { ModalController } from 'base/ModalController.jsx';
 import PaymentStore from 'stores/user/Payment.js';
@@ -49,7 +50,7 @@ export class Pay extends StoreObserver {
     const cards = this.state.cards;
 
     if (this.state.id === null) {
-      return (<div>Loading ..</div>);
+      return (<Loader />);
     }
 
     return (
