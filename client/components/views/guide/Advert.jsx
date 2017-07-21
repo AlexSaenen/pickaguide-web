@@ -20,6 +20,7 @@ import { Panel } from 'layout/containers/Panel.jsx';
 import { VisitCreation } from 'modals/VisitCreation.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import CommentsStore from 'stores/user/Comments.js';
+import AuthStore from 'stores/user/Auth.js';
 import AdvertsActions from 'actions/Adverts.js';
 import CommentsActions from 'actions/Comments.js';
 import CommentAvatarsActions from 'actions/CommentAvatars.js';
@@ -68,7 +69,10 @@ export class Advert extends StoreObserver {
     super.componentDidMount();
     if (this.state.advert === undefined) {
       AdvertsActions.find(this.id);
-      CommentsActions.get(this.id);
+
+      if (AuthStore.getState().credentials) {
+        CommentsActions.get(this.id);
+      }
     }
   }
 
@@ -88,7 +92,9 @@ export class Advert extends StoreObserver {
         }
       });
 
-      CommentAvatarsActions.get.defer(ids);
+      if (AuthStore.getState().credentials) {
+        CommentAvatarsActions.get.defer(ids);
+      }
     } else {
       nextState.advert = getCache(this.id);
     }
@@ -149,7 +155,7 @@ export class Advert extends StoreObserver {
           </AuthDependent>
 
           <AuthDependent unauth>
-            <Information infoStyle="Info Small LineSpaced">You need to be logged in to ask a visit</Information>
+            <Information infoStyle="Info Small LineSpaced">You need to be logged in to ask a visit and access comments</Information>
           </AuthDependent>
 
           <hr className="SpacedOverlay" />
