@@ -144,14 +144,17 @@ export class Advert extends StoreObserver {
           </Panel>
 
           <AuthDependent auth>
-            <GuideDependent visitor>
-              <hr className="SpacedDivider" />
-              <Button
-                label="Ask a visit"
-                buttonStyle="Auto Blue"
-                onCallback={this.visitCreationCtrl.toggle}
-              />
-            </GuideDependent>
+            {
+              AuthStore.getState().credentials.id !== advert.owner._id &&
+                <div>
+                  <hr className="SpacedDivider" />
+                  <Button
+                    label="Ask a visit"
+                    buttonStyle="Auto Blue"
+                    onCallback={this.visitCreationCtrl.toggle}
+                  />
+                </div>
+            }
           </AuthDependent>
 
           <AuthDependent unauth>
