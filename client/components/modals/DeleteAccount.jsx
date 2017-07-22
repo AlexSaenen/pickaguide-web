@@ -1,19 +1,20 @@
 import React from 'react';
 
-import { PropsComponent } from 'base/PropsComponent.jsx';
+import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
 import { PasswordInput } from 'form/PasswordInput.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import AccountStore from 'stores/user/Account.js';
+import UserStore from 'stores/user/User.js';
 
-
-export class DeleteAccount extends PropsComponent {
+export class DeleteAccount extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context);
+    super(props, context, UserStore);
 
     this.ctrl = props.controller;
-    this.ctrl.attachSubmit(this.props.onSubmit);
+    this.ctrl.attachSubmit(this.handleSubmit.bind(this));
   }
 
   onStore(store) {
@@ -34,6 +35,20 @@ export class DeleteAccount extends PropsComponent {
     }
 
     this.setState(newState);
+  }
+
+  handleSubmit(form) {
+    const account = AccountStore.getState().account;
+
+    if (account && account.email === form.email) {
+      this.props.onSubmit(form);
+    } else {
+      this.ctrl.messageCallback({
+        title: 'Some error occurred when deleting your account',
+        content: 'Does not seem like your email address',
+        type: 'Alert',
+      }, false);
+    }
   }
 
   render() {
