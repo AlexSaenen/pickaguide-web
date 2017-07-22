@@ -18,7 +18,10 @@ export class Picture extends PropsComponent {
 
     return (
       <div className={classNames}>
-        <img alt={this.state.pictureName} title={this.state.pictureName} src={this.state.url} />
+        {
+          this.state.url !== '' &&
+            <img alt={this.state.pictureName} title={this.state.pictureName} src={this.state.url} />
+        }
       </div>
     );
   }
