@@ -10,7 +10,6 @@ import { TextInput } from 'form/TextInput.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { Information } from 'layout/elements/Information.jsx';
-import { Text } from 'layout/elements/Text.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { ProfilePreview } from 'layout/user/ProfilePreview.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
@@ -25,13 +24,13 @@ export class Search extends StoreObserver {
     this.state = {
       results: null,
       error: null,
-      searchTerms: props.params.terms,
+      searchTerms: props.params.terms.trim(),
     };
 
     this.ctrl = new FormController();
     this.ctrl.attachSubmit((form) => {
-      if (form.terms && form.terms.length > 0) {
-        browserHistory.push(`/search/${encodeURIComponent(form.terms)}`);
+      if (form.terms && form.terms.trim().length > 0) {
+        browserHistory.push(`/search/${encodeURIComponent(form.terms.trim())}`);
       }
     });
 
@@ -41,7 +40,7 @@ export class Search extends StoreObserver {
 
   componentWillReceiveProps(nextProps) {
     const newState = Object.assign({}, this.state);
-    newState.searchTerms = nextProps.params.terms;
+    newState.searchTerms = nextProps.params.terms.trim();
     newState.results = null;
     newState.error = null;
     this.setState(newState);
@@ -121,6 +120,10 @@ export class Search extends StoreObserver {
         <div>
           <Layout layoutStyle="LayoutBlank">
             {searchBar}
+            {
+              this.state.searchTerms.length < 3 &&
+                <Information infoStyle="Warning Small MarginAuto LineSpaced">{strings.longerTerms}</Information>
+            }
             {
               results && this.state.searchTerms !== '' &&
                 <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noResult}</Information>

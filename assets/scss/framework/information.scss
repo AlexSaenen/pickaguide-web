@@ -72,6 +72,11 @@ $borderWidth: 0.5em;
   .Header { background-color: $successBodyColor; }
 }
 
+.Information.Warning {
+  .Content { background-color: $warningTitleColor; }
+  .Header { background-color: $warningBodyColor; }
+}
+
 .Information.Info {
   .Content { background-color: $infoTitleColor; }
   .Header { background-color: $infoBodyColor; }
