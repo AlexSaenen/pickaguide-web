@@ -30,6 +30,8 @@ export class EditPicture extends StoreObserver {
         content: 'Your picture has been updated',
         type: 'Success',
       });
+
+      this.ctrl.toggle();
     }
 
     this.setState(newState);
