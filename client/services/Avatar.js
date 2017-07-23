@@ -118,7 +118,7 @@ export default class AvatarApi {
 
     PromiseApi.auth().upload('/profiles/avatar', fileUpload)
       .then(() => {
-        AvatarActions.get.defer();
+        AvatarActions.get.defer(true);
       })
       .catch((err) => {
         AvatarActions.error.defer(err);

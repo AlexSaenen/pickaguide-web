@@ -10,6 +10,7 @@ import { GuideVisitPreview } from 'layout/user/GuideVisitPreview.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { FeedableModalFormController } from 'base/FeedableModalFormController.jsx';
 import { Button } from 'layout/elements/Button.jsx';
+import { Loader } from 'layout/elements/Loader.jsx';
 import { ChangeStatus } from 'modals/ChangeStatus.jsx';
 import VisitsStore from 'stores/user/Visits.js';
 import VisitsActions from 'actions/Visits.js';
@@ -20,8 +21,8 @@ export class OwnerVisits extends StoreObserver {
   constructor(props, context) {
     super(props, context, VisitsStore);
 
-    this.state.myVisits = [];
-    this.state.theirVisits = [];
+    this.state.myVisits = null;
+    this.state.theirVisits = null;
     this.actionCtrl = new FeedableModalFormController();
     this.goToVisit = this.goToVisit.bind(this);
   }
@@ -58,15 +59,21 @@ export class OwnerVisits extends StoreObserver {
         </Layout>
 
         {
-          myVisits.length === 0 && theirVisits.length === 0 &&
+          myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0 &&
             <Layout layoutStyle="LayoutBlank">
               <hr className="Overlay" />
               <Text>You have no Visits at this time ..</Text>
             </Layout>
         }
-
         {
-          myVisits.length > 0 &&
+          (myVisits === null || theirVisits === null) &&
+            <Layout layoutStyle="LayoutBlank">
+              <hr className="Overlay" />
+              <Loader />
+            </Layout>
+        }
+        {
+          myVisits && myVisits.length > 0 &&
             <Layout>
               <hr className="Overlay" />
               <Title>Your visits as a traveler ...</Title>
@@ -79,9 +86,8 @@ export class OwnerVisits extends StoreObserver {
               </PanelList>
             </Layout>
         }
-
         {
-          theirVisits.length > 0 &&
+          theirVisits && theirVisits.length > 0 &&
             <Layout>
               {
                 myVisits.length === 0 &&

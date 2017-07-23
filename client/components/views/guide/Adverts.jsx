@@ -11,6 +11,7 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { AdCreation } from 'modals/AdCreation.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
+import { Loader } from 'layout/elements/Loader.jsx';
 import { ModalController } from 'base/ModalController.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
@@ -21,7 +22,7 @@ export class Adverts extends StoreObserver {
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
-    this.state.adverts = [];
+    this.state.adverts = null;
     this.reviewAdvert = this.reviewAdvert.bind(this);
     this.deleteAdCtrl = new ModalController();
     this.adCreationCtrl = new ModalFormController();
@@ -68,7 +69,7 @@ export class Adverts extends StoreObserver {
         </Layout>
 
         {
-          adverts.length > 0 ?
+          adverts && adverts.length > 0 ?
             <Layout>
               <hr className="Overlay" />
               <PanelList layoutStyle="LayoutLight" panelStyle="Wide" listStyle="ListGrid" elementStyle="Large Tight Clickable">
@@ -82,7 +83,12 @@ export class Adverts extends StoreObserver {
           :
             <Layout layoutStyle="LayoutBlank">
               <hr className="Overlay" />
-              <Text>You have no Adverts yet ..</Text>
+              {
+                adverts === null ?
+                  <Loader />
+                :
+                  <Text>You have no Adverts yet ..</Text>
+              }
             </Layout>
         }
 
