@@ -2,7 +2,6 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { Layout } from 'layout/containers/Layout.jsx';
-import { Text } from 'layout/elements/Text.jsx';
 import { List } from 'layout/list/List.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';

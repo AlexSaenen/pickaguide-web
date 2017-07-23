@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { GuideDependent } from 'base/GuideDependent.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
 import { ModalController } from 'base/ModalController.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
