@@ -5,8 +5,8 @@ import { Input } from 'form/Input.jsx';
 
 import 'scss/framework/form.scss';
 
-const nowToInput = () => {
-  const date = new Date(Date.now()).toISOString();
+const nowToInput = (delay = 0) => {
+  const date = new Date(Date.now() + delay).toISOString();
   return date.substring(0, date.lastIndexOf(':'));
 };
 
