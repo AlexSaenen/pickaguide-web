@@ -43,6 +43,10 @@ class ProfileStore {
     return false;
   }
 
+  onHasAvatar(hasAvatar) {
+    this.profile.hasAvatar = hasAvatar;
+  }
+
   onUpdateSuccess(user) {
     this.error = null;
     this.profile = formatProfile(user.profile);

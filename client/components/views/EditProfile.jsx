@@ -6,6 +6,7 @@ import { TextInput } from 'form/TextInput.jsx';
 import { DateInput, nowToInput } from 'form/DateInput.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 import { FormController } from 'base/FormController.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
@@ -14,6 +15,7 @@ import { EditableInterests } from 'layout/user/EditableInterests.jsx';
 import { EditPicture } from 'modals/EditPicture.jsx';
 import { strings } from './EditProfile_lang.js';
 import ProfileActions from 'actions/Profile.js';
+import AvatarActions from 'actions/Avatar.js';
 import ProfileStore from 'stores/user/Profile.js';
 import AvatarStore from 'stores/user/Avatar.js';
 
@@ -84,6 +86,14 @@ export class EditProfile extends StoreObserver {
         <PanelForm controller={this.ctrl} submitLabel={strings.submit}>
           <Title>{strings.title}</Title>
           <ClickablePicture url={avatar} onClick={this.editPictureCtrl.toggle} />
+          {
+            profile.hasAvatar &&
+              <Button
+                buttonStyle="Red Auto LineSpaced"
+                label="Remove"
+                onCallback={AvatarActions.remove}
+              />
+          }
 
           <hr className="SpacedOverlay" />
 

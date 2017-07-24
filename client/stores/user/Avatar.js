@@ -30,6 +30,11 @@ class AvatarStore {
     return false;
   }
 
+  onRemove() {
+    AvatarApi.remove();
+    return false;
+  }
+
   onError(error) {
     this.error = error;
   }

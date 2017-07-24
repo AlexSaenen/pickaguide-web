@@ -1,4 +1,5 @@
 import AvatarActions from 'actions/Avatar.js';
+import ProfileActions from 'actions/Profile.js';
 import CacheAvatarActions from 'actions/CacheAvatar.js';
 import PromiseApi from 'services/PromiseApi.js';
 import AvatarCache from 'stores/cache/Avatar.js';
@@ -97,12 +98,6 @@ export default class AvatarApi {
     });
   }
 
-  // static getDefaultAvatar(actions) {
-    // retrieveAvatar('default')
-    //   .then(avatar => actions.getSuccess.defer({ avatar }))
-    //   .catch(err => actions.error.defer(err));
-  // }
-
   static hasAvatar(userId) {
     return PromiseApi.get(`/public/profiles/${userId}/avatar/available`);
   }
@@ -119,6 +114,18 @@ export default class AvatarApi {
     PromiseApi.auth().upload('/profiles/avatar', fileUpload)
       .then(() => {
         AvatarActions.get.defer(true);
+        ProfileActions.hasAvatar.defer(true);
+      })
+      .catch((err) => {
+        AvatarActions.error.defer(err);
+      });
+  }
+
+  static remove() {
+    PromiseApi.auth().delete('/profiles/avatar')
+      .then(() => {
+        AvatarActions.get.defer(false);
+        ProfileActions.hasAvatar.defer(false);
       })
       .catch((err) => {
         AvatarActions.error.defer(err);

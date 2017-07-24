@@ -31,7 +31,7 @@ export class EditPicture extends StoreObserver {
         type: 'Success',
       });
 
-      this.ctrl.toggle();
+      this.ctrl.toggle(false);
     }
 
     this.setState(newState);
