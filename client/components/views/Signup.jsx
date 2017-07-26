@@ -19,7 +19,8 @@ export class Signup extends StoreObserver {
     super(props, context, SignupStore);
 
     this.ctrl = new FormController();
-    this.ctrl.attachSubmit(SignupActions.signup); }
+    this.ctrl.attachSubmit(SignupActions.signup);
+  }
 
   onStore(store) {
     const newState = Object.assign({}, this.state);
@@ -37,7 +38,6 @@ export class Signup extends StoreObserver {
         type: 'Success',
       });
     }
-
 
     this.setState(newState);
   }

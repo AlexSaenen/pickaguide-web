@@ -88,6 +88,7 @@ p.White { color: white; }
 .FullTransparent { opacity: 0; }
 .Inline { display: inline; }
 .Inline-Block { display: inline-block; }
+.Inline-BlockImportant { display: inline-block !important; }
 .Block { display: block !important; }
 .HeightNone { height: 0; }
 .HeightFull { height: 100%; }
