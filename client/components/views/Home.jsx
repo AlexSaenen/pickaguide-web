@@ -10,6 +10,7 @@ import { Element } from 'layout/list/Element.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import SimpleMap from 'layout/user/GoogleMap.jsx';
+import BlockStore from 'stores/user/Block.js';
 
 import 'scss/views/home.scss';
 
@@ -79,9 +80,12 @@ export class Home extends StoreObserver {
                 }
               </Element>
           }
-          <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top Clickable Height30">
-            <SimpleMap center={coor} zoom={9} />
-          </Element>
+          {
+            BlockStore.getState().isBlocking === false &&
+              <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top Clickable Height30">
+                <SimpleMap center={coor} zoom={9} />
+              </Element>
+          }
         </List>
       </div>
     );
