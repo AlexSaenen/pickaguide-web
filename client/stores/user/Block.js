@@ -7,7 +7,7 @@ class BlockStore {
 
   constructor() {
     this.error = null;
-    this.isBlocking = false;
+    this.isBlocking = null;
     this.bindActions(BlockActions);
   }
 
@@ -27,7 +27,7 @@ class BlockStore {
 
   onInvalidateBlock() {
     this.error = null;
-    this.isBlocking = false;
+    this.isBlocking = null;
   }
 
 }
