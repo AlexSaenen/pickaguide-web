@@ -14,12 +14,14 @@ export class CreateComment extends PropsComponent {
     this.advertId = props.advertId;
     this.onAdd = this.onAdd.bind(this);
     this._handleKeyPress = this._handleKeyPress.bind(this);
+    this.onSubmit = props.onSubmit || function onSubmit() {};
   }
 
   onAdd() {
     const editor = document.getElementById('commentEditor');
     CommentsActions.create({ post: editor.value, advertId: this.advertId });
     editor.value = '';
+    this.onSubmit();
   }
 
   _handleKeyPress(clickEvent) {

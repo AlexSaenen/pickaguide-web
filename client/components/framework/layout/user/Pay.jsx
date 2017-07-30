@@ -24,12 +24,13 @@ export class Pay extends StoreObserver {
     };
 
     this.payCtrl = new ModalController();
+    this.onPay = props.onPay || function onPay() {};
   }
 
   componentDidMount() {
     super.componentDidMount();
-    if (this.state.advert === undefined) {
-      PaymentActions.getInfos();
+    if (this.state.id === null) {
+      PaymentActions.getInfos.defer();
     }
   }
 
@@ -61,6 +62,7 @@ export class Pay extends StoreObserver {
           onConfirm={
             function confirm() {
               PaymentActions.pay(this.payCtrl.callerId);
+              this.onPay();
             }.bind(this)
           }
         />
