@@ -26,7 +26,7 @@ export class VisitToReview extends PropsComponent {
 
     return (
       <div className="VisitToReview" onClick={this.onClick}>
-        <Picture url={visit.about ? visit.about.photoUrl : 'https://d30y9cdsu7xlg0.cloudfront.net/png/275465-200.png'} pictureType="HeightLimited" />
+        <Picture url={visit.about ? visit.about.photoUrl : '/assets/images/deleted.png'} pictureType="HeightLimited" />
 
         <div className="DescriptionSection">
           {

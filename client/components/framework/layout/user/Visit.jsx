@@ -45,7 +45,7 @@ const Visit = (props) => {
           }
           {
             visit.about === null ?
-              <Picture url="https://d30y9cdsu7xlg0.cloudfront.net/png/275465-200.png" pictureName="Deleted advert" pictureType="WidthLimited" full />
+              <Picture url="/assets/images/deleted.png" pictureName="Deleted advert" pictureType="WidthLimited" full />
             :
               <Picture url={visit.about.photoUrl} pictureName="Advert Cover" pictureType="WidthLimited" full />
           }
