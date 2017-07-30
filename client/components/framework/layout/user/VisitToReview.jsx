@@ -3,9 +3,7 @@ import { browserHistory } from 'react-router';
 
 import { Picture } from 'layout/elements/Picture.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { CreateComment } from 'layout/user/CreateComment.jsx';
 import { Button } from 'layout/elements/Button.jsx';
-import AuthStore from 'stores/user/Auth.js';
 
 import 'scss/views/visits.scss';
 
@@ -41,17 +39,14 @@ export class VisitToReview extends PropsComponent {
           <p className="Italic Inline">with</p>
           <p className="Bold Inline OverflowHidden TextOverflow ">{visit.with}</p>
           <p className="Italic Inline">finished on</p>
-          <p className="Bold Inline OverflowHidden TextOverflow ">{new Date(visit.status.date).toDateString()}</p>
+          <p className="Bold Inline OverflowHidden TextOverflow ">{new Date(visit.finalStatus.date).toDateString()}</p>
           <br />
           <p className="Italic Inline">stating</p>
-          <p className="Bold Inline OverflowHidden TextOverflow">{visit.status.message}</p>
+          <p className="Bold Inline OverflowHidden TextOverflow">{visit.finalStatus.message}</p>
           <br />
-          {
-            visit.about && visit.about.owner !== AuthStore.getState().credentials.id &&
-              <CreateComment advertId={visit.about._id} />
-          }
+
           <Button
-            buttonStyle="Blue Auto Spaced"
+            buttonStyle="Blue Auto LineSpaced"
             label="Review"
             key={1}
             onCallback={
