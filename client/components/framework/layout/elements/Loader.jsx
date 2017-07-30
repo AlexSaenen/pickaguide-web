@@ -1,16 +1,11 @@
 import React from 'react';
 
-export class Loader extends React.Component {
+const Loader = () => {
+  return (
+    <div className="Loader">
+      <img className="MarginAuto" role="presentation" src="/assets/images/loader.gif" width="50" height="50" />
+    </div>
+  );
+};
 
-  shouldComponentUpdate() {
-    return false;
-  }
-
-  render() {
-    return (
-      <div className="Loader">
-        <img className="MarginAuto" role="presentation" src="/assets/images/loader.gif" width="30" height="30" />
-      </div>
-    );
-  }
-}
+module.exports = { Loader };
