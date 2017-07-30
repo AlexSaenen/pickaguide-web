@@ -25,12 +25,6 @@ export class EditPicture extends StoreObserver {
         type: 'Alert',
       });
     } else {
-      this.ctrl.messageCallback({
-        title: 'Successful',
-        content: 'Your picture has been updated',
-        type: 'Success',
-      });
-
       this.ctrl.toggle(false);
     }
 
