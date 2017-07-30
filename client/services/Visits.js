@@ -2,6 +2,7 @@ import { browserHistory } from 'react-router';
 
 import VisitsActions from 'actions/Visits.js';
 import BlockActions from 'actions/Block.js';
+import ReviewActions from 'actions/Review.js';
 import PromiseApi from 'services/PromiseApi.js';
 
 
@@ -92,6 +93,26 @@ export default class VisitsApi {
       })
       .catch((err) => {
         VisitsActions.error(err);
+      });
+  }
+
+  static review(form) {
+    PromiseApi.auth().put(`/visits/${form.visitId}/review`, { for: form.for, rate: form.rate })
+      .then((res) => {
+        if (res.error) {
+          ReviewActions.error(res.error);
+        } else {
+          VisitsActions.getSuccess.defer(res);
+
+          if (res.myVisits.length === 0 && res.theirVisits.length === 0) {
+            BlockActions.isBlocking.defer();
+          }
+
+          ReviewActions.reviewSuccess.defer();
+        }
+      })
+      .catch((err) => {
+        ReviewActions.error(err);
       });
   }
 

@@ -44,7 +44,10 @@ export class VisitsToReview extends StoreObserver {
       <div>
         <Layout layoutStyle="LayoutLight">
           <Title>Review your visits</Title>
-          <Information infoStyle="Medium MarginAuto Warning">You need to review all your visits to continue using our services</Information>
+          {
+            !(myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0) &&
+              <Information infoStyle="Medium MarginAuto Warning">You need to review all your visits to continue using our services</Information>
+          }
         </Layout>
 
         {

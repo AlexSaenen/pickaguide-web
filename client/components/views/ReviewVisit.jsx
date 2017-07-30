@@ -1,42 +1,61 @@
 import React from 'react';
 
-import { StoreObserver } from 'base/StoreObserver.jsx';
+import { PropsComponent } from 'base/PropsComponent.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
+import { Text } from 'layout/elements/Text.jsx';
+import Visit from 'layout/user/Visit.jsx';
+import { Review } from 'layout/user/Review.jsx';
+import VisitsStore from 'stores/user/Visits.js';
+import AuthStore from 'stores/user/Auth.js';
+
+const getVisitFromCache = (visitId) => {
+  const store = VisitsStore.getState();
+  const visits = store.theirVisits.concat(store.myVisits);
+  return visits.find(visit => visit._id === visitId);
+};
 
 
-//   PaymentActions.pay(AuthStore.getState().credentials.id);
-// this.state.rated === false ?
-//   <Form submitLabel="Rate" onSubmit={this.rate}>
-//     <NumInput label="Rate" min={1} max={5} step={1} required />
-//   </Form>
-// :
-//   <Pay />
-
-export class ReviewVisit extends StoreObserver {
+export class ReviewVisit extends PropsComponent {
 
   constructor(props, context) {
-    super(props, context, []);
+    super(props, context);
 
     this.id = props.params.id;
+    this.state.visit = getVisitFromCache(this.id);
   }
 
-  // componentDidMount() {
-  //   super.componentDidMount();
-  // }
-  //
-  // onStore(store) {
-  //   const newState = Object.assign({}, this.state);
-  //
-  //
-  //   this.setState(newState);
-  // }
-
-  // onSubmit(form) {
-  // }
+  componentWillReceiveProps(nextProps) {
+    this.id = nextProps.params.id;
+    this.setState({ visit: getVisitFromCache(this.id) });
+  }
 
   render() {
+    const visit = this.state.visit;
+
+    if (visit === null) {
+      return (
+        <Layout layoutStyle="LayoutBlank">
+          <Text>No such visit found</Text>
+        </Layout>
+      );
+    }
+
+    const me = AuthStore.getState().credentials.id;
+    const owner = visit.about && visit.about.owner ? visit.about.owner : null;
+    const forWhom = me === owner ? visit.by : owner;
 
     return (
-      <p>Hello</p>
+      <Layout layoutStyle="LayoutBlank">
+        <hr className="Overlay" />
+
+        <Visit visit={visit} clickable={false} />
+        <Review
+          visitId={visit._id}
+          advertId={visit.about ? visit.about._id : null}
+          canPay={owner !== me}
+          for={forWhom}
+        />
+      </Layout>
     );
   }
 }

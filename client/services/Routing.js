@@ -18,6 +18,7 @@ const goLogin = () => { browserHistory.push('/login'); };
 const connected = () => { return AuthStore.getState().credentials !== null; };
 const blocked = () => { return BlockStore.getState().isBlocking === true; };
 const guide = () => { return UserStore.getState().isGuide === true; };
+const reloadVisitReview = (location) => { return location.action === 'POP'; };
 
 const notForConnected = {
   routes: [new RegExp(/^\/signup$/), new RegExp(/^\/login$/)],
@@ -40,6 +41,15 @@ const onlyForConnected = {
   on: goLogin,
   when: connected,
   not: false,
+};
+
+const notForReviewing = {
+  routes: [
+    new RegExp(/^\/visits\/[a-z0-9]{24}\/review$/),
+  ],
+  on: goReview,
+  when: reloadVisitReview,
+  not: true,
 };
 
 const notForBlocked = {
@@ -68,16 +78,16 @@ const onlyForGuides = {
   not: false,
 };
 
-const blockingRoutes = { notForConnected, onlyForConnected, notForBlocked, onlyForGuides };
+const blockingRoutes = { notForConnected, onlyForConnected, notForBlocked, onlyForGuides, notForReviewing };
 
-export default (location, action) => {
+export default (location) => {
   const routeCheckers = Object.keys(blockingRoutes);
 
   routeCheckers.some((checkerType) => {
     const checker = blockingRoutes[checkerType];
     if (checker.routes.reduce((a, b) => a || RegExp(b).test(location.pathname), false) === true) {
-      if (!(checker.not ^ checker.when())) {
-        checker.on(action);
+      if (!(checker.not ^ checker.when(location))) {
+        checker.on(location.action);
         return true;
       }
     }

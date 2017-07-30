@@ -1,7 +1,4 @@
-import { browserHistory } from 'react-router';
-
 import PaymentActions from 'actions/Payment.js';
-import BlockActions from 'actions/Block.js';
 import PaymentStore from 'stores/user/Payment.js';
 import PromiseApi from 'services/PromiseApi.js';
 
@@ -38,33 +35,18 @@ export default class PaymentApi {
   }
 
   static pay() {
-    PromiseApi.auth().post('/payment/unblock')
-      .then((res) => {
-        if (res.error) {
-          PaymentActions.error(res.error);
-        } else {
-          browserHistory.push('/');
-          BlockActions.isBlockingSuccess(res.isBlocking);
-          // PaymentActions.paySuccess(PaymentStore.getState().infos);
-        }
-      })
-      .catch((err) => {
-        PaymentActions.error(err);
-      });
+    PaymentActions.paySuccess.defer(PaymentStore.getState().infos);
+    // PromiseApi.auth().post('/payment/pay')
+    //   .then((res) => {
+    //     if (res.error) {
+    //       PaymentActions.error(res.error);
+    //     } else {
+    //       PaymentActions.paySuccess(PaymentStore.getState().infos);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     PaymentActions.error(err);
+    //   });
   }
 
-  // static pay(form) {
-  //   PromiseApi.auth().post('/payment/pay', form)
-  //     .then((res) => {
-  //       if (res.error) {
-  //         PaymentActions.error(res.error);
-  //       } else {
-  //         PaymentActions.paySuccess(PaymentStore.getState().infos);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       PaymentActions.error(err);
-  //     });
-  // }
-  //
 }

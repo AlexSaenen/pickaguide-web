@@ -45,6 +45,7 @@ class VisitsStore {
     } else {
       VisitsApi.find(who.visitId);
     }
+    return false;
   }
 
   onGetSuccess(res) {
@@ -52,11 +53,13 @@ class VisitsStore {
 
     this.myVisits = res.myVisits.map((visit) => {
       visit.with = visit.about ? visit.about.ownerName : 'Unknown';
+      visit.finalStatus = visit.status[visit.status.length - 1];
       return visit;
     });
 
     this.theirVisits = res.theirVisits.map((visit) => {
       visit.with = visit.byName;
+      visit.finalStatus = visit.status[visit.status.length - 1];
       return visit;
     });
   }
