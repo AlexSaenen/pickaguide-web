@@ -11,6 +11,7 @@ import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import SimpleMap from 'layout/user/GoogleMap.jsx';
 import BlockStore from 'stores/user/Block.js';
+import AuthStore from 'stores/user/Auth.js';
 
 import 'scss/views/home.scss';
 
@@ -83,7 +84,7 @@ export class Home extends StoreObserver {
               </Element>
           }
           {
-            this.state.isBlocking === false &&
+            (AuthStore.getState().credentials === null || this.state.isBlocking === false) &&
               <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top Clickable Height30">
                 <SimpleMap center={coor} zoom={9} />
               </Element>
