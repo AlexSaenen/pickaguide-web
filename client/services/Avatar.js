@@ -23,7 +23,7 @@ const retrieveAvatar = (id, forceCache) => {
     if (avatar && forceCache !== true) {
       resolve(avatar);
     } else {
-      PromiseApi.download(`/public/profiles/${id === 'default' ? '' : `${id}/`}avatar`)
+      PromiseApi.download(`/public/profiles/${id}/avatar`)
         .then((res) => {
           const block = {};
           block[id] = res;
@@ -47,7 +47,7 @@ export default class AvatarApi {
         resolve(hasAvatar);
       }
     })
-      .then(userHasAvatar => retrieveAvatar(userHasAvatar ? id : 'default', forceCache))
+      .then(userHasAvatar => (userHasAvatar ? retrieveAvatar(id, forceCache) : Promise.resolve('/assets/images/avatar.png')))
       .then(avatar => actions.getSuccess.defer({ id, avatar }))
       .catch(err => actions.error.defer(err));
   }
@@ -65,9 +65,6 @@ export default class AvatarApi {
         }
       })
         .then((userHaveAvatars) => {
-          let isLoadingDefault = false;
-          let defaultAvatar = null;
-
           Promise
             .all(ids.map((id, index) => {
               const hasAvatar = userHaveAvatars[index];
@@ -76,22 +73,9 @@ export default class AvatarApi {
                 return retrieveAvatar(id);
               }
 
-              if (isLoadingDefault === false) {
-                isLoadingDefault = true;
-
-                return new Promise((resolveDefault, rejectDefault) => {
-                  retrieveAvatar('default')
-                    .then((avatar) => {
-                      defaultAvatar = avatar;
-                      resolveDefault(avatar);
-                    })
-                    .catch(err => rejectDefault(err));
-                });
-              }
-
-              return new Promise(resolveWaitingDefault => resolveWaitingDefault(null));
+              return Promise.resolve('/assets/images/avatar.png');
             }))
-            .then(avatars => resolve(avatars.map(avatar => avatar || defaultAvatar)))
+            .then(avatars => resolve(avatars))
             .catch(err => reject(err));
         })
         .catch(err => reject(err));

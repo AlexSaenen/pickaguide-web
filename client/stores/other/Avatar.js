@@ -13,7 +13,7 @@ class SearchAvatarStore {
 
   onGetSuccess(avatarObj) {
     this.error = null;
-    this.avatar = avatarObj.avatar;
+    this.avatar = avatarObj.avatar === '' ? '/assets/images/avatar.png' : avatarObj.avatar;
     this.id = avatarObj.id;
   }
 
