@@ -6,6 +6,7 @@ import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import DeleteAction from 'layout/user/DeleteAction.jsx';
 import CommentAvatarsStore from 'stores/user/CommentAvatars.js';
 import AuthStore from 'stores/user/Auth.js';
+import CommentsActions from 'actions/Comments.js';
 
 import 'scss/framework/comment.scss';
 
@@ -16,6 +17,7 @@ export class Comment extends StoreObserver {
     super(props, context, CommentAvatarsStore);
 
     this.onDelete = this.onDelete.bind(this);
+    this.onToggleLike = this.onToggleLike.bind(this);
     this.id = props._id;
     this.advertId = props.advertId;
     this.userId = props.owner._id;
@@ -33,6 +35,11 @@ export class Comment extends StoreObserver {
 
   navigateToProfile() {
     browserHistory.push(`/profiles/${this.userId}`);
+  }
+
+  onToggleLike(clickEvent) {
+    clickEvent.stopPropagation();
+    CommentsActions.toggleLike({ id: this.id, advertId: this.advertId });
   }
 
   onDelete(clickEvent) {
@@ -83,19 +90,19 @@ export class Comment extends StoreObserver {
           <p className="Bold Inline">{new Date(this.state.date).toDateString()}</p>
           <p className="Italic Inline"> at </p>
           <p className="Bold Inline">{new Date(this.state.date).toLocaleTimeString()}</p>
+          <div>
+            <p className="Bold Italic Inline LineSpaced">{this.state.likes.length} </p>
+            <p onClick={this.onToggleLike} className={`Clickable Inline ${this.state.likes.indexOf(myId) !== -1 ? 'Blue' : 'Underline'}`}>{this.state.likes.length === 1 ? 'Like' : 'Likes'}</p>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-/* <p className="Italic Inline"> with </p>
-<p className="Bold Inline">{this.state.like}</p>
-<p className="Italic Inline"> {this.state.like === 1 ? 'like' : 'likes'}</p> */
-
 Comment.propTypes = {
   _id: React.PropTypes.string.isRequired,
   date: React.PropTypes.string.isRequired,
   post: React.PropTypes.string.isRequired,
-  like: React.PropTypes.number.isRequired,
+  likes: React.PropTypes.any.isRequired,
 };

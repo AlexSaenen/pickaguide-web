@@ -1,6 +1,8 @@
 import request from 'superagent';
+import { browserHistory } from 'react-router';
 
 import { config } from 'client/config';
+import AuthActions from 'actions/Auth.js';
 import AuthStore from 'stores/user/Auth.js';
 
 
@@ -28,6 +30,14 @@ export default class PromiseApi {
             errorMessage = JSON.parse(res.text).message;
           } catch (e) {
             errorMessage = 'An unexpected error occured';
+          }
+
+          if (res.forbidden) {
+            browserHistory.push('/visits/review');
+          }
+
+          if (res.unauthorized) {
+            AuthActions.logout.defer();
           }
 
           callbacks.reject(errorMessage);

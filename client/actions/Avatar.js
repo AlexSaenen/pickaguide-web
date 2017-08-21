@@ -1,4 +1,4 @@
 import alt from 'client/alt';
 
-export default alt.generateActions('get', 'getSuccess', 'error', 'update',
+export default alt.generateActions('get', 'getSuccess', 'error', 'remove', 'update',
   'invalidateAvatar');

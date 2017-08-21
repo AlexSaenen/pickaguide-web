@@ -7,31 +7,31 @@
 
 .Success {
   .MessageTitle {
-    background-color: $successTitleColor;
+    background-color: $successLightColor;
   }
 
   .MessageContent {
-    background-color: $successBodyColor;
+    background-color: $successDarkColor;
   }
 }
 
 .Alert {
   .MessageTitle {
-    background-color: $alertTitleColor;
+    background-color: $alertLightColor;
   }
 
   .MessageContent {
-    background-color: $alertBodyColor;
+    background-color: $alertDarkColor;
   }
 }
 
 .Info {
   .MessageTitle {
-    background-color: $infoTitleColor;
+    background-color: $infoLightColor;
   }
 
   .MessageContent {
-    background-color: $infoBodyColor;
+    background-color: $infoDarkColor;
   }
 }
 

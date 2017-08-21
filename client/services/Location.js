@@ -20,7 +20,7 @@ export default class LocationApi {
   static nearGuide(range) {
     const credentials = AuthStore.getState().credentials;
     if (credentials) {
-      PromiseApi.auth().get("/profiles/geo/" + range)
+      PromiseApi.auth().get(`/profiles/geo/${range}`)
         .then((res) => {
           LocationActions.nearGuideSuccess(res);
         })

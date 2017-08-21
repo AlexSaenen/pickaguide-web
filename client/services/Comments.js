@@ -44,6 +44,20 @@ export default class CommentsApi {
       });
   }
 
+  static toggleLike(obj) {
+    PromiseApi.auth().put(`/proposals/${obj.advertId}/comments/${obj.id}/likes`)
+      .then((res) => {
+        if (res.error) {
+          CommentsActions.error(res.error);
+        } else {
+          CommentsActions.getSuccess(res);
+        }
+      })
+      .catch((err) => {
+        CommentsActions.error(err);
+      });
+  }
+
   static create(postObj) {
     PromiseApi.auth().post(`/proposals/${postObj.advertId}/comments`, { post: postObj.post })
       .then((res) => {

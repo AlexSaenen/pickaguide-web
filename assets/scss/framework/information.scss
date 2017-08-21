@@ -68,21 +68,21 @@ $borderWidth: 0.5em;
 .Information.LineTight { margin: 0.4em auto; }
 
 .Information.Success {
-  .Content { background-color: $successTitleColor; }
-  .Header { background-color: $successBodyColor; }
+  .Content { background-color: $successLightColor; }
+  .Header { background-color: $successDarkColor; }
 }
 
 .Information.Warning {
-  .Content { background-color: $warningTitleColor; }
-  .Header { background-color: $warningBodyColor; }
+  .Content { background-color: $warningLightColor; }
+  .Header { background-color: $warningDarkColor; }
 }
 
 .Information.Info {
-  .Content { background-color: $infoTitleColor; }
-  .Header { background-color: $infoBodyColor; }
+  .Content { background-color: $infoLightColor; }
+  .Header { background-color: $infoDarkColor; }
 }
 
 .Information.Alert {
-  .Content { background-color: $alertTitleColor; }
-  .Header { background-color: $alertBodyColor; }
+  .Content { background-color: $alertLightColor; }
+  .Header { background-color: $alertDarkColor; }
 }

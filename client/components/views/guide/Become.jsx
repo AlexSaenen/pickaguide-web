@@ -10,6 +10,7 @@ export class Become extends StateComponent {
   render() {
     return (
       <div>
+        <p>Hello, welcome to becoming a guide</p>
         <Guide controller={new ModalFormController(true)} />
       </div>
     );

@@ -3,6 +3,8 @@ import AvatarActions from 'actions/Avatar.js';
 import AvatarApi from 'services/Avatar.js';
 import AuthStore from 'stores/user/Auth.js';
 
+const MAX_AVATAR_SIZE = 2097151;
+
 
 class AvatarStore {
 
@@ -22,11 +24,21 @@ class AvatarStore {
   onGetSuccess(avatarObj) {
     this.error = null;
     this.isLoaded = true;
-    this.avatar = avatarObj.avatar;
+    this.avatar = avatarObj.avatar === '' ? '/assets/images/avatar.png' : avatarObj.avatar;
   }
 
   onUpdate(form) {
-    AvatarApi.updateAvatar(form);
+    if (form.picture.size > MAX_AVATAR_SIZE) {
+      AvatarActions.error.defer('File size exceeds 2mb');
+    } else {
+      AvatarApi.updateAvatar(form);
+    }
+
+    return false;
+  }
+
+  onRemove() {
+    AvatarApi.remove();
     return false;
   }
 

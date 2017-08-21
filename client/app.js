@@ -15,12 +15,14 @@ import { Search } from 'views/Search.jsx';
 import { Become } from 'views/guide/Become.jsx';
 import { Adverts } from 'views/guide/Adverts.jsx';
 import { OwnerVisits } from 'views/OwnerVisits.jsx';
-import { ReviewVisits } from 'views/ReviewVisits.jsx';
+import { VisitsToReview } from 'views/VisitsToReview.jsx';
+import { ReviewVisit } from 'views/ReviewVisit.jsx';
 import { OwnerVisit } from 'views/OwnerVisit.jsx';
 import { OwnerAdvert } from 'views/guide/OwnerAdvert.jsx';
 import { Advert } from 'views/guide/Advert.jsx';
 import About from 'views/About.jsx';
 
+import RoutesMiddleware from 'services/Routing.js';
 import 'services/Utils.js';
 
 import 'scss/global.scss';
@@ -40,6 +42,8 @@ document.addEventListener('click', (event) => {
   }
 });
 
+browserHistory.listen(RoutesMiddleware);
+
 ReactDOM.render(
 
   <Router history={browserHistory}>
@@ -54,11 +58,12 @@ ReactDOM.render(
       <Route path="contact-us" component={Contact} />
       <Route path="about" component={About} />
       <Route path="search/:terms" component={Search} />
+      <Route path="visits" component={OwnerVisits} />
+      <Route path="visits/review" component={VisitsToReview} />
+      <Route path="visits/:id/review" component={ReviewVisit} />
+      <Route path="visits/mine/:type/:id" component={OwnerVisit} />
       <Route path="guide/become" component={Become} />
       <Route path="guide/adverts" component={Adverts} />
-      <Route path="visits" component={OwnerVisits} />
-      <Route path="visits/review" component={ReviewVisits} />
-      <Route path="visits/mine/:type/:id" component={OwnerVisit} />
       <Route path="guide/adverts/:id" component={Advert} />
       <Route path="guide/adverts/mine/:id" component={OwnerAdvert} />
     </Route>

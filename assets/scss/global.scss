@@ -78,16 +78,18 @@ p.MultiLineTextOverflow { display: -webkit-box; -webkit-line-clamp: 2; -webkit-b
 p.TextOverflow { text-overflow: ellipsis; white-space: nowrap; }
 p.OverflowHidden { overflow: hidden; }
 p.Vertical { vertical-align: middle; }
-p.Red { color: $alertTitleColor; }
-p.Blue { color: $infoTitleColor; }
-p.Green { color: $successTitleColor; }
+p.Red { color: $alertLightColor; }
+p.Blue { color: $infoLightColor; }
+p.Green { color: $successLightColor; }
 p.White { color: white; }
+p.Underline { text-decoration: underline; }
 
 *:focus { outline: none; }
 .Hidden { display: none !important; }
 .FullTransparent { opacity: 0; }
 .Inline { display: inline; }
 .Inline-Block { display: inline-block; }
+.Inline-BlockImportant { display: inline-block !important; }
 .Block { display: block !important; }
 .HeightNone { height: 0; }
 .HeightFull { height: 100%; }

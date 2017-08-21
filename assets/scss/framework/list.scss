@@ -50,6 +50,8 @@ $elementBorderRadius: 0.2em;
   .Element.Auto { width: auto; max-width: 100%; }
   .Element.Tight { padding: 0; }
   .Element.Tighter { padding: 0.3em; }
+  .Element.AutoWidthContent { width: fit-content; }
+  .Element.MarginAuto { margin-left: auto; margin-right: auto; }
   .Element.NoWrap { margin: 0; }
   .Element.NoHorizontalWrap { margin-left: 0; margin-right: 0; }
   .Element.Top { vertical-align: top; }
@@ -65,6 +67,11 @@ $elementBorderRadius: 0.2em;
     box-shadow: 0 0 20px black;
   }
 }
+
+.List.Small { width: 40%; }
+.List.Medium { width: 50%; }
+.List.Large { width: 60%; }
+.List.Wide { width: 80%; }
 
 .ListGrid {
   .Element {

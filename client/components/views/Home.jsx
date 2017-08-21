@@ -10,6 +10,8 @@ import { Element } from 'layout/list/Element.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import SimpleMap from 'layout/user/GoogleMap.jsx';
+import BlockStore from 'stores/user/Block.js';
+import AuthStore from 'stores/user/Auth.js';
 
 import 'scss/views/home.scss';
 
@@ -17,9 +19,9 @@ import 'scss/views/home.scss';
 export class Home extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, AdvertsStore);
+    super(props, context, [BlockStore, AdvertsStore]);
 
-    this.state.adverts = null;
+    this.state = { adverts: null, isBlocking: BlockStore.getState().isBlocking };
     this.navigateToAdvert = this.navigateToAdvert.bind(this);
   }
 
@@ -28,12 +30,14 @@ export class Home extends StoreObserver {
 
     if (store.error) {
       newState.error = store.error;
-    } else {
+    } else if (store.adverts !== undefined) {
       newState.adverts = store.adverts;
       newState.error = null;
+    } else {
+      newState.isBlocking = store.isBlocking;
     }
 
-    this.updateState(newState);
+    this.setState(newState);
   }
 
   componentDidMount() {
@@ -79,9 +83,12 @@ export class Home extends StoreObserver {
                 }
               </Element>
           }
-          <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top Clickable Height30">
-            <SimpleMap center={coor} zoom={9} />
-          </Element>
+          {
+            (AuthStore.getState().credentials === null || this.state.isBlocking === false) &&
+              <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top Clickable Height30">
+                <SimpleMap center={coor} zoom={9} />
+              </Element>
+          }
         </List>
       </div>
     );

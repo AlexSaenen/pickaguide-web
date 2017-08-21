@@ -12,7 +12,7 @@ export class VisitPreview extends PropsComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { status: props.status };
+    this.state = { status: props.finalStatus };
     this.id = props._id;
     this.ctrl = props.actionCtrl;
     this.clickHandler = props.onClick;
@@ -21,6 +21,7 @@ export class VisitPreview extends PropsComponent {
 
   componentWillReceiveProps(nextProps) {
     this.id = nextProps._id;
+    this.setState({ status: nextProps.finalStatus });
     super.componentWillReceiveProps(nextProps);
   }
 
@@ -30,7 +31,7 @@ export class VisitPreview extends PropsComponent {
 
   render() {
     const visit = this.props;
-    const visitStatus = visit.status.label;
+    const visitStatus = this.state.status.label;
     let changeStatus = null;
 
     if (this.statusMapping[visitStatus] !== undefined && visit.about) {
@@ -58,7 +59,7 @@ export class VisitPreview extends PropsComponent {
       changeStatus = (
         <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
           <p className="Italic Inline LineSpaced">stating</p>
-          <p className="Bold Inline OverflowHidden TextOverflow">{visit.status.message}</p>
+          <p className="Bold Inline OverflowHidden TextOverflow">{this.state.status.message}</p>
         </div>
       );
     }
@@ -71,7 +72,7 @@ export class VisitPreview extends PropsComponent {
 
     return (
       <div className="VisitPreview" onClick={this.onClick}>
-        <Picture url={visit.about ? visit.about.photoUrl : 'https://d30y9cdsu7xlg0.cloudfront.net/png/275465-200.png'} pictureType="HeightLimited" />
+        <Picture url={visit.about ? visit.about.photoUrl : '/assets/images/deleted.png'} pictureType="HeightLimited" />
 
         <div className="DescriptionSection">
           {
@@ -86,7 +87,7 @@ export class VisitPreview extends PropsComponent {
           <p className="Bold Inline OverflowHidden TextOverflow">{new Date(visit.when).toDateString()}</p>
           <br />
           <p className="Italic Inline">with status</p>
-          <p className={statusLabelStyle}>{visit.status.label}</p>
+          <p className={statusLabelStyle}>{this.state.status.label}</p>
           {changeStatus}
         </div>
       </div>

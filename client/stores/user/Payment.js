@@ -35,6 +35,13 @@ class PaymentStore {
     return false;
   }
 
+  // TODO this looks like onGetInfosSuccess
+
+  onPaySuccess(infos) {
+    this.error = null;
+    this.infos = infos;
+  }
+
 }
 
 export default alt.createStore(PaymentStore, 'PaymentStore');

@@ -25,13 +25,7 @@ export class EditPicture extends StoreObserver {
         type: 'Alert',
       });
     } else {
-      this.ctrl.messageCallback({
-        title: 'Successful',
-        content: 'Your picture has been updated',
-        type: 'Success',
-      });
-
-      this.ctrl.toggle();
+      this.ctrl.toggle(false);
     }
 
     this.setState(newState);
@@ -45,6 +39,7 @@ export class EditPicture extends StoreObserver {
         title="Edit Profile Picture"
         inputHolder="New Picture"
         inputLabel="picture"
+        sizeWarning="Please verify your file does not exceed 2mb"
       />
     );
   }

@@ -50,14 +50,14 @@ $toggleCheckMarkSize: 1.5em;
   display: none;
   width: 1.5em;
   height: 1.5em;
-  background-color: $alertTitleColor;
+  background-color: $alertLightColor;
   position: absolute;
   border-radius: 0 0 $elementBorderRadius 0;
   stroke: white;
 }
 
 .DeleteAction:hover {
-  stroke: $alertTitleColor;
+  stroke: $alertLightColor;
   background-color: $modalLightColor;
 }
 
@@ -82,7 +82,7 @@ $interestHeight: 1.6em;
       width: $interestHeight;
       display: inline-flex;
       float: left;
-      background-color: $infoTitleColor;
+      background-color: $infoLightColor;
       transition-property: all;
       transition-duration: 0.3s;
       transition-timing-function: ease-out;
@@ -98,7 +98,7 @@ $interestHeight: 1.6em;
       }
     }
 
-    .Header:hover { background-color: $alertTitleColor; }
+    .Header:hover { background-color: $alertLightColor; }
 
     .Content {
       height: inherit;
