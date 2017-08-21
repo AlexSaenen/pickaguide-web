@@ -82,6 +82,7 @@ p.Red { color: $alertLightColor; }
 p.Blue { color: $infoLightColor; }
 p.Green { color: $successLightColor; }
 p.White { color: white; }
+p.Underline { text-decoration: underline; }
 
 *:focus { outline: none; }
 .Hidden { display: none !important; }

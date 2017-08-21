@@ -33,6 +33,11 @@ class CommentsStore {
     return false;
   }
 
+  onToggleLike(form) {
+    CommentsApi.toggleLike(form);
+    return false;
+  }
+
   onCreate(post) {
     CommentsApi.create(post);
     return false;
