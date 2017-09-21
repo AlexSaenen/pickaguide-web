@@ -66,7 +66,7 @@ export class VisitsToReview extends StoreObserver {
         }
         {
           myVisits && myVisits.length > 0 &&
-            <Layout>
+            <Layout layoutStyle="LayoutBlank">
               <hr className="Overlay" />
               <Title>Your visits as a traveler ...</Title>
               <List layoutStyle="LayoutLight" elementStyle="Tight AutoWidthContent MarginAuto">
@@ -80,7 +80,7 @@ export class VisitsToReview extends StoreObserver {
         }
         {
           theirVisits && theirVisits.length > 0 &&
-            <Layout>
+            <Layout layoutStyle="LayoutBlank">
               {
                 myVisits.length === 0 &&
                   <hr className="Overlay" />
