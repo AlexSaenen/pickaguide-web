@@ -12,6 +12,8 @@ const goBackOrHome = (action) => {
   }
 };
 
+
+const goHome = () => { browserHistory.push('/'); };
 const goReview = () => { browserHistory.push('/visits/review'); };
 const goLogin = () => { browserHistory.push('/login'); };
 
@@ -73,7 +75,7 @@ const onlyForGuides = {
     new RegExp(/^\/guide\/adverts$/),
     new RegExp(/^\/guide\/adverts\/mine\/[a-z0-9]{24}$/),
   ],
-  on: goBackOrHome,
+  on: goHome,
   when: guide,
   not: false,
 };
