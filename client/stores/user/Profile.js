@@ -31,7 +31,10 @@ class ProfileStore {
   onGetSuccess(profile) {
     this.error = null;
     this.profile = formatProfile(profile);
-    AvatarActions.get.defer(profile.hasAvatar);
+
+    if (profile.hasAvatar !== undefined) {
+      AvatarActions.get.defer(profile.hasAvatar);
+    }
   }
 
   onError(error) {
