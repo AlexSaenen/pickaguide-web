@@ -4,14 +4,6 @@ import AuthStore from 'stores/user/Auth.js';
 import BlockStore from 'stores/user/Block.js';
 import UserStore from 'stores/user/User.js';
 
-const goBackOrHome = (action) => {
-  if (action) {
-    browserHistory.goBack();
-  } else {
-    browserHistory.push('/');
-  }
-};
-
 
 const goHome = () => { browserHistory.push('/'); };
 const goReview = () => { browserHistory.push('/visits/review'); };
@@ -24,7 +16,7 @@ const reloadVisitReview = (location) => { return location.action === 'POP'; };
 
 const notForConnected = {
   routes: [new RegExp(/^\/signup$/), new RegExp(/^\/login$/)],
-  on: goBackOrHome,
+  on: goHome,
   when: connected,
   not: true,
 };
