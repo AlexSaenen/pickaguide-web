@@ -35,7 +35,7 @@ export class OwnerAdvert extends StoreObserver {
     super(props, context, AdvertsStore);
 
     this.id = this.props.params.id;
-    this.state = { advert: getCache(this.id) };
+    this.state = { advert: undefined };
 
     this.onToggle = this.onToggle.bind(this);
     this.onDelete = this.onDelete.bind(this);
@@ -52,18 +52,12 @@ export class OwnerAdvert extends StoreObserver {
 
   componentWillReceiveProps(nextProps) {
     this.id = nextProps.params.id;
-    const nextState = Object.assign({}, this.state);
-    nextState.advert = getCache(this.id);
-
-    this.setState(nextState);
-
-    if (nextState.advert === undefined) {
-      AdvertsActions.find(this.id);
-    }
+    AdvertsActions.find(this.id);
   }
 
   componentDidMount() {
     super.componentDidMount();
+
     if (this.state.advert === undefined) {
       AdvertsActions.find(this.id);
     }

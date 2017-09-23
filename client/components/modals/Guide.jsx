@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
@@ -18,7 +18,7 @@ export class Guide extends StoreObserver {
     this.state = { profile: ProfileStore.getState().profile };
     this.ctrl = props.controller;
     this.ctrl.attachSubmit(this.onSubmit.bind(this));
-    this.ctrl.attachClose(this.onClose.bind(this));
+    // this.ctrl.attachClose(this.onClose.bind(this));
   }
 
   onStore(store) {
@@ -39,9 +39,9 @@ export class Guide extends StoreObserver {
     this.setState(newState);
   }
 
-  onClose() {
-    browserHistory.goBack();
-  }
+  // onClose() {
+  //   browserHistory.goBack();
+  // }
 
   onSubmit(form) {
     UserActions.becomeGuide(form);

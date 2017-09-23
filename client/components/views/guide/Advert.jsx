@@ -60,18 +60,19 @@ export class Advert extends StoreObserver {
 
     if (nextState.advert === undefined) {
       AdvertsActions.find(this.id);
-      CommentsActions.get(this.id);
     }
+
+    CommentsActions.get(this.id);
   }
 
   componentDidMount() {
     super.componentDidMount();
     if (this.state.advert === undefined) {
       AdvertsActions.find(this.id);
+    }
 
-      if (AuthStore.getState().credentials) {
-        CommentsActions.get(this.id);
-      }
+    if (AuthStore.getState().credentials) {
+      CommentsActions.get(this.id);
     }
   }
 
