@@ -35,6 +35,18 @@
   }
 }
 
+.Notif {
+  .MessageTitle {
+    background-color: $modalSecondaryColor;
+    color: white;
+  }
+
+  .MessageContent {
+    background-color: $textDarkerColor;
+    color: white;
+  }
+}
+
 .Message.Small { width: 20em; }
 .Message.Medium { width: 40em; }
 .Message.Large { width: 60em; }

@@ -1,0 +1,47 @@
+version: 2
+
+jobs:
+  push:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Rebuild docker image and push to registry
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+            make pull
+            make build
+            make push
+  staging:
+    machine: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "3e:be:05:27:97:c4:1c:8e:6b:0e:a5:ed:2e:bf:aa:4f"
+      - run: ssh root@82.223.82.41 "bash -ic deploy-web-staging"
+  production:
+    machine: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "3e:be:05:27:97:c4:1c:8e:6b:0e:a5:ed:2e:bf:aa:4f"
+      - run: ssh root@82.223.82.41 "bash -ic deploy-web-production"
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - push:
+          filters:
+            branches:
+              only: dev
+      - staging:
+          requires:
+            - push
+          filters:
+            branches:
+              only: dev
+      - production:
+          filters:
+            branches:
+              only: master

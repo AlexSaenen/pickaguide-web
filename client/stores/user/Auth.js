@@ -7,6 +7,7 @@ import UserActions from 'actions/User.js';
 import AccountActions from 'actions/Account.js';
 import BlockActions from 'actions/Block.js';
 import AvatarActions from 'actions/Avatar.js';
+import NotificationsActions from 'actions/Notifications.js';
 import AuthApi from 'services/Auth.js';
 import CookieApi from 'services/Cookie.js';
 
@@ -16,6 +17,7 @@ class AuthStore {
   constructor() {
     this.error = null;
     this.credentials = null;
+    this.notifFetcher = null;
 
     this.bindActions(AuthActions);
 
@@ -34,6 +36,13 @@ class AuthStore {
       AccountActions.get.defer();
       AccountActions.isConfirmed.defer(this.credentials.id);
       BlockActions.isBlocking.defer();
+
+      if (this.notifFetcher) {
+        clearInterval(this.notifFetcher);
+      }
+
+      NotificationsActions.getUnread.defer();
+      this.notifFetcher = setInterval(NotificationsActions.getUnread.defer, 30 * 1000);
     }
 
     return false;
@@ -61,6 +70,11 @@ class AuthStore {
     AccountActions.invalidateAccount.defer();
     AvatarActions.invalidateAvatar.defer();
     UserActions.invalidateUser.defer();
+
+    if (this.notifFetcher) {
+      clearInterval(this.notifFetcher);
+      this.notifFetcher = null;
+    }
 
     if (isDeleted === false) {
       AuthApi.logout();
