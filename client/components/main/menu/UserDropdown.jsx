@@ -60,6 +60,7 @@ export class UserDropdown extends StoreObserver {
             <Link to="/profiles/mine/edit"><p>{strings.profile}</p></Link>
             <Link to="/visits"><p>Visits</p></Link>
             <Link to="/notifications"><p>Notifications</p></Link>
+            <Link to="/transactions"><p>Transactions</p></Link>
 
             <GuideDependent guide>
               <Link to="/guide/adverts"><p>{strings.adverts}</p></Link>
