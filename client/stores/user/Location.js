@@ -13,9 +13,6 @@ class LocationStore {
   }
 
   onSendLocation(coor) {
-    coor = { x: coor.latitude + (Math.random() * (0.05 - 0.0000001) + 0.0000001),
-             y: coor.longitude + (Math.random() * (0.05 - 0.0000001) + 0.0000001)
-           };
     LocationApi.sendLocation(coor);
     return false;
   }
