@@ -6,7 +6,9 @@ import { CardPreview } from 'layout/user/CardPreview.jsx';
 import { NewCard } from 'layout/user/NewCard.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
+import { AmountModal } from 'modals/AmountModal.jsx';
 import { ModalController } from 'base/ModalController.jsx';
+import { ModalFormController } from 'base/ModalFormController.jsx';
 import PaymentStore from 'stores/user/Payment.js';
 import PaymentActions from 'actions/Payment.js';
 
@@ -24,6 +26,7 @@ export class Pay extends StoreObserver {
     };
 
     this.payCtrl = new ModalController();
+    this.amountCtrl = new ModalFormController();
     this.onPay = props.onPay || function onPay() {};
   }
 
@@ -56,12 +59,23 @@ export class Pay extends StoreObserver {
 
     return (
       <div className="Pay">
+        <AmountModal
+          controller={this.amountCtrl}
+          onConfirm={
+            function confirm(form) {
+              this.payCtrl.amount = form.amount;
+              this.payCtrl.callerId = this.amountCtrl.callerId;
+              this.payCtrl.toggle(true);
+            }.bind(this)
+          }
+        />
+
         <QueryModal
           controller={this.payCtrl}
-          query="This card will be used to pay 10 euros"
+          query="This card will be used to pay"
           onConfirm={
             function confirm() {
-              PaymentActions.pay(this.payCtrl.callerId);
+              PaymentActions.pay({ idCard: this.payCtrl.callerId, amount: this.payCtrl.amount });
               this.onPay();
             }.bind(this)
           }
@@ -73,7 +87,7 @@ export class Pay extends StoreObserver {
             <List elementStyle="Tight Clickable">
               {
                 cards.map((card, index) => {
-                  return <CardPreview {...card} key={index} controller={this.payCtrl} />;
+                  return <CardPreview {...card} key={index} controller={this.amountCtrl} />;
                 })
               }
             </List>
