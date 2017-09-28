@@ -53,7 +53,6 @@ export class Home extends StoreObserver {
 
   render() {
     const adverts = this.state.adverts;
-    const coor = { lat: 43.79831666667667, lng: 0.625195 };
 
     return (
       <div className="HomeContainer">
@@ -84,9 +83,9 @@ export class Home extends StoreObserver {
               </Element>
           }
           {
-            (AuthStore.getState().credentials === null || this.state.isBlocking === false) &&
+            (AuthStore.getState().credentials !== null || this.state.isBlocking === false) &&
               <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top Clickable Height30">
-                <SimpleMap center={coor} zoom={9} />
+                <SimpleMap zoom={9} />
               </Element>
           }
         </List>

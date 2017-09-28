@@ -15,22 +15,26 @@ class SimpleMap extends StoreObserver {
   constructor(props, context) {
     super(props, context, LocationStore);
     this.state = {
-      center: {lat: props.center.lat, lng: props.center.lng},
+      center: { lat: null, lng: null },
       zoom: props.zoom,
       ownLocation: [],
       guideCoor: null,
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+      this.setState({ center: { lat: nextProps.center.lat, lng: nextProps.center.lng }, zoom: nextProps.zoom })
+  }
+
   componentDidMount() {
     super.componentDidMount();
     navigator.geolocation.getCurrentPosition((position) => {
+        this.setState({ center: { lat: position.coords.latitude, lng: position.coords.longitude } });
        LocationActions.sendLocation.defer(position.coords);
        LocationActions.nearGuide.defer();
-     },(err) => {
-       console.log('ERROR(' + err.code + '): ' + err.message);
-     }, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
-    );
+   },(err) => {
+       console.log('ERROR During getCurrentPosition (' + err.code + '): ' + err.message);
+   }, { maximumAge: 3000, timeout: 7000, enableHighAccuracy: true });
   }
 
   onStore(store) {
@@ -73,11 +77,9 @@ class SimpleMap extends StoreObserver {
           'lng': this.state.ownLocation.geo[1],
           'text': '0',
           'own': true,
-
         })
       }
       const guides = guideCoordsFinal.map((guide, index) => {
-        // console.log('--- text:', guideCoordsFinal[index].text, 'lat:', guideCoordsFinal[index].lat, 'lng:', guideCoordsFinal[index].lng, 'id:', guideCoordsFinal[index].userId);
 
         return (
           <MyPositionsGuidesWithControllableHover
