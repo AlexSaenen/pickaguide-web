@@ -30,8 +30,8 @@ class PaymentStore {
     return false;
   }
 
-  onPay() {
-    PaymentApi.pay();
+  onPay(form) {
+    PaymentApi.pay(form);
     return false;
   }
 

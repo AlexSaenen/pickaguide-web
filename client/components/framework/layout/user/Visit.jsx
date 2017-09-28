@@ -51,7 +51,7 @@ const Visit = (props) => {
               </div>
           }
           {
-            visit.about === null &&
+            visit.about === undefined &&
               <Picture url="/assets/images/deleted.png" pictureName="Deleted advert" pictureType="WidthLimited" full />
           }
         </Layout>
