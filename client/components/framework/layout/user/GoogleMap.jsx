@@ -30,7 +30,8 @@ class SimpleMap extends StoreObserver {
     super.componentDidMount();
     navigator.geolocation.getCurrentPosition((position) => {
         this.setState({ center: { lat: position.coords.latitude, lng: position.coords.longitude } });
-       LocationActions.sendLocation.defer(position.coords);
+        const coor = { x: position.coords.latitude, y: position.coords.longitude}
+       LocationActions.sendLocation.defer(coor);
        LocationActions.nearGuide.defer();
    },(err) => {
        console.log('ERROR During getCurrentPosition (' + err.code + '): ' + err.message);
@@ -73,8 +74,8 @@ class SimpleMap extends StoreObserver {
         }
         guideCoordsFinal.push({
           'userId': this.state.ownLocation.id,
-          'lat': this.state.ownLocation.geo[0],
-          'lng': this.state.ownLocation.geo[1],
+          'lat': this.state.ownLocation.geo[0] || this.state.center.lat,
+          'lng': this.state.ownLocation.geo[1] || this.state.center.lng,
           'text': '0',
           'own': true,
         })

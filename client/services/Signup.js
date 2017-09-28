@@ -1,7 +1,7 @@
 import PromiseApi from 'services/PromiseApi.js';
 import SignupActions from 'actions/Signup.js';
 import AuthActions from 'actions/Auth.js';
-
+import LocationActions from 'actions/Location.js';
 
 export default class SignupApi {
 
@@ -11,6 +11,14 @@ export default class SignupApi {
         if (res.error) {
           SignupActions.error(res.error);
         } else {
+
+            navigator.geolocation.getCurrentPosition((position) => {
+            const coor = { x: position.coords.latitude, y: position.coords.longitude}
+               LocationActions.sendLocation.defer(coor);
+           },(err) => {
+               console.log('ERROR During getCurrentPosition (' + err.code + '): ' + err.message);
+           }, { maximumAge: 3000, timeout: 7000, enableHighAccuracy: true });
+
           SignupActions.signupSuccess(res.message);
           AuthActions.login({
             email: form.email,
