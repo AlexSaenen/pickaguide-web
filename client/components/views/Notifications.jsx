@@ -31,10 +31,11 @@ export class Notifications extends StoreObserver {
     if (store.error) {
       this.setState({ notifs: [], error: store.error });
     } else {
-      this.setState({ notifs: store.notifs, error: null });
       if (store.notifs.filter(notif => notif.readAt === null).length > 0) {
         NotificationsActions.readAll.defer();
       }
+
+      this.setState({ notifs: store.notifs, error: null });
     }
   }
 

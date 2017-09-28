@@ -40,14 +40,19 @@ const Visit = (props) => {
       <Panel panelStyle={`LessSpaced ${visit.about ? '' : 'Small'}`}>
         <Layout layoutStyle="NoWrap">
           {
-            visit.about && props.clickable &&
-              <ClickablePicture url={visit.about.photoUrl} pictureName="Advert Cover" pictureType="WidthLimited" full onClick={() => { goToAdvert(props.type, visit.about._id); }} />
+            visit.about &&
+              <div>
+                {
+                  props.clickable ?
+                    <ClickablePicture url={visit.about.photoUrl} pictureName="Advert Cover" pictureType="WidthLimited" full onClick={() => { goToAdvert(props.type, visit.about._id); }} />
+                  :
+                    <Picture url={visit.about.photoUrl} pictureName="Advert Cover" pictureType="WidthLimited" full />
+                }
+              </div>
           }
           {
-            visit.about === null ?
+            visit.about === null &&
               <Picture url="/assets/images/deleted.png" pictureName="Deleted advert" pictureType="WidthLimited" full />
-            :
-              <Picture url={visit.about.photoUrl} pictureName="Advert Cover" pictureType="WidthLimited" full />
           }
         </Layout>
       </Panel>

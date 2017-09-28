@@ -20,7 +20,7 @@ class NotificationsStore {
   onGetSuccess(notifs) {
     this.error = null;
     this.notifs = notifs;
-    this.hasUnread = notifs.length > 0;
+    this.hasUnread = notifs.filter(notif => notif.readAt === null).length > 0;
   }
 
   onError(error) {

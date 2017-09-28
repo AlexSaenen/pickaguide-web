@@ -21,8 +21,8 @@ export class VisitPreview extends PropsComponent {
 
   componentWillReceiveProps(nextProps) {
     this.id = nextProps._id;
-    this.setState({ status: nextProps.finalStatus });
     super.componentWillReceiveProps(nextProps);
+    this.setState({ status: nextProps.finalStatus });
   }
 
   onClick() {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 import { PanelForm } from 'view/PanelForm.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
@@ -6,6 +7,7 @@ import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { FormController } from 'base/FormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 import { strings } from './Login_lang.js';
 import AuthActions from 'actions/Auth.js';
 import AuthStore from 'stores/user/Auth.js';
@@ -45,9 +47,11 @@ export class Login extends StoreObserver {
       <div>
         <PanelForm controller={this.ctrl} submitLabel={strings.submit}>
           <Title>{strings.submit}</Title>
+          <Button label="Or create an account" buttonStyle="MarginAuto Blue Auto LineSpaced" onCallback={() => { browserHistory.push('/signup'); }} />
           <EmailInput placeholder={strings.email} required />
           <PasswordInput placeholder={strings.password} required />
         </PanelForm>
+
       </div>
     );
   }

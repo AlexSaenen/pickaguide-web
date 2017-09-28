@@ -37,6 +37,8 @@ export default class NotificationsApi {
       .then((res) => {
         if (res.error) {
           NotificationsActions.error(res.error);
+        } else {
+          NotificationsActions.getSuccess(res.notifications);
         }
       })
       .catch((err) => {
