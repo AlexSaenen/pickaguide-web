@@ -93,18 +93,18 @@ class VisitsStore {
 
     let index = this.myVisits.findIndex(visit => visit._id === newVisit._id);
     if (index !== -1) {
-      this.myVisits[index].status = newVisit.status[newVisit.status.length - 1];
+      this.myVisits[index].finalStatus = newVisit.status[newVisit.status.length - 1];
       mustUpdate = true;
     }
 
     index = this.theirVisits.findIndex(visit => visit._id === newVisit._id);
     if (index !== -1) {
-      this.theirVisits[index].status = newVisit.status[newVisit.status.length - 1];
+      this.theirVisits[index].finalStatus = newVisit.status[newVisit.status.length - 1];
       mustUpdate = true;
     }
 
     if (this.specificVisit && this.specificVisit._id === newVisit._id) {
-      this.specificVisit.status = newVisit.status;
+      this.specificVisit.finalStatus = newVisit.status;
       mustUpdate = true;
     }
 
