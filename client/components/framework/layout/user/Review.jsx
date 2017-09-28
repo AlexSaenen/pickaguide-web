@@ -73,7 +73,7 @@ export class Review extends StoreObserver {
       <div className="Review">
 
         {
-          this.state.hideComment === false &&
+          this.state.hideComment === false && this.advertId &&
             <div>
               <hr className="SpacedDivider" />
               <CreateComment advertId={this.advertId} onSubmit={this.comment.bind(this)} />
