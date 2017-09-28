@@ -15,6 +15,7 @@ import { Search } from 'views/Search.jsx';
 import { Become } from 'views/guide/Become.jsx';
 import { Adverts } from 'views/guide/Adverts.jsx';
 import { Notifications } from 'views/Notifications.jsx';
+import { Transactions } from 'views/Transactions.jsx';
 import { OwnerVisits } from 'views/OwnerVisits.jsx';
 import { VisitsToReview } from 'views/VisitsToReview.jsx';
 import { ReviewVisit } from 'views/ReviewVisit.jsx';
@@ -60,6 +61,7 @@ ReactDOM.render(
       <Route path="about" component={About} />
       <Route path="search/:terms" component={Search} />
       <Route path="notifications" component={Notifications} />
+      <Route path="transactions" component={Transactions} />
       <Route path="visits" component={OwnerVisits} />
       <Route path="visits/review" component={VisitsToReview} />
       <Route path="visits/:id/review" component={ReviewVisit} />
