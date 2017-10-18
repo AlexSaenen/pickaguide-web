@@ -7,7 +7,6 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
-import { strings } from './Search_lang.js';
 
 export class Transactions extends StoreObserver {
 

@@ -5,7 +5,7 @@ import PromiseApi from 'services/PromiseApi.js';
 export default class TransactionsApi {
 
   static get() {
-    PromiseApi.auth().get('/payment/')
+    PromiseApi.auth().get('/payment/pay')
       .then((res) => {
         if (res.error) {
           TransactionsActions.error(res.error);
