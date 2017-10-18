@@ -56,6 +56,10 @@ export class Home extends StoreObserver {
 
     return (
       <div className="HomeContainer">
+        <List wrapChildren={false}>
+          <Element elementStyle="Tight Transparent NoWrap"><p>Hello my friend</p></Element>
+        </List>
+
         <List wrapChildren={false} listStyle="ListGrid">
           {
             (adverts === null || adverts.length > 0) &&
@@ -84,7 +88,7 @@ export class Home extends StoreObserver {
           }
           {
             (AuthStore.getState().credentials !== null || this.state.isBlocking === false) &&
-              <Element elementStyle="Tight Half Transparent NoHorizontalWrap Top Clickable Height30">
+              <Element elementStyle="Tight Half NoHorizontalWrap Top Clickable Height30">
                 <SimpleMap zoom={9} />
               </Element>
           }
