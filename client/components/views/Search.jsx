@@ -10,7 +10,8 @@ import { TextInput } from 'form/TextInput.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { Information } from 'layout/elements/Information.jsx';
-import { PanelList } from 'view/PanelList.jsx';
+import { List } from 'layout/list/List.jsx';
+import { Element } from 'layout/list/Element.jsx';
 import { ProfilePreview } from 'layout/user/ProfilePreview.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
@@ -138,46 +139,52 @@ export class Search extends StoreObserver {
     }
 
     return (
-      <div>
+      <div className="Center">
         <Layout layoutStyle="LayoutBlank">
           {searchBar}
         </Layout>
 
-        {
-          profiles.length > 0 &&
-            <PanelList panelStyle="Wide LessSpaced" elementStyle="Tight Clickable">
-              {
-                profiles.map((profile, index) => {
-                  return (
-                    <ProfilePreview
-                      {...profile}
-                      avatar={avatars[index]}
-                      _id={ids[index]}
-                      isConfirmed={areConfirmed[index]}
-                      key={index}
-                      onClick={this.navigateToProfile}
-                    />
-                  );
-                })
-              }
-            </PanelList>
-        }
-        {
-          adverts.length > 0 &&
-            <PanelList panelStyle="Wide" elementStyle="Tight Clickable">
-              {
-                adverts.map((advert, index) => {
-                  return (
-                    <AdvertPreview
-                      {...advert}
-                      key={index}
-                      onClick={this.navigateToAdvert}
-                    />
-                  );
-                })
-              }
-            </PanelList>
-        }
+        <List wrapChildren={false} listStyle="ListGrid Center">
+          {
+            (profiles.length > 0) &&
+              <Element key={0} elementStyle="Tight Half Transparent NoWrap">
+                <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
+                  {
+                    profiles.map((profile, index) => {
+                      return (
+                        <ProfilePreview
+                          {...profile}
+                          avatar={avatars[index]}
+                          _id={ids[index]}
+                          isConfirmed={areConfirmed[index]}
+                          key={index}
+                          onClick={this.navigateToProfile}
+                        />
+                      );
+                    })
+                  }
+                </List>
+              </Element>
+          }
+          {
+            (adverts.length > 0) &&
+              <Element key={1} elementStyle="Tight Half Transparent NoWrap Top">
+                <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
+                  {
+                    adverts.map((advert, index) => {
+                      return (
+                        <AdvertPreview
+                          {...advert}
+                          key={index}
+                          onClick={this.navigateToAdvert}
+                        />
+                      );
+                    })
+                  }
+                </List>
+              </Element>
+          }
+        </List>
       </div>
     );
   }
