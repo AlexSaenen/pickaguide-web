@@ -5,7 +5,7 @@ import PromiseApi from 'services/PromiseApi.js';
 export default class PaymentApi {
 
   static getInfos() {
-    PromiseApi.auth().get('/payment/getInfos')
+    PromiseApi.auth().get('/payment/')
       .then((res) => {
         if (res.error) {
           PaymentActions.error(res.error);
@@ -19,13 +19,11 @@ export default class PaymentApi {
   }
 
   static newCard(form) {
-    PromiseApi.auth().post('/payment/addCard', form)
+    PromiseApi.auth().post('/payment/card', form)
       .then((res) => {
         if (res.error) {
           PaymentActions.error(res.error);
         } else {
-          const cards = PaymentStore.getState().infos.sources.data;
-          cards.push(res);
           PaymentActions.getInfosSuccess(PaymentStore.getState().infos);
         }
       })

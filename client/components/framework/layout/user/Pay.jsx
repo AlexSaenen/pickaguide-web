@@ -75,7 +75,11 @@ export class Pay extends StoreObserver {
           query="This card will be used to pay"
           onConfirm={
             function confirm() {
-              PaymentActions.pay({ idCard: this.payCtrl.callerId, amount: this.payCtrl.amount });
+              PaymentActions.pay({
+                idCard: this.payCtrl.callerId,
+                amount: this.payCtrl.amount,
+                description: 'Tip for pickaguide visit',
+              });
               this.onPay();
             }.bind(this)
           }
