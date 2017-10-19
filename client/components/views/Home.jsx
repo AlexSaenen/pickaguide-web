@@ -54,11 +54,11 @@ export class Home extends StoreObserver {
   render() {
     const adverts = this.state.adverts;
 
+    // <List wrapChildren={false}>
+    //   <Element elementStyle="Tight Transparent NoWrap"><p>Hello my friend</p></Element>
+    // </List>
     return (
       <div className="HomeContainer">
-        <List wrapChildren={false}>
-          <Element elementStyle="Tight Transparent NoWrap"><p>Hello my friend</p></Element>
-        </List>
 
         <List wrapChildren={false} listStyle="ListGrid">
           {
