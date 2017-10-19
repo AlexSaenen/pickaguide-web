@@ -8,7 +8,7 @@ import MyPositionsGuidesWithControllableHover from 'layout/user/confHoverGoogleM
 import LocationActions from 'actions/Location.js';
 import LocationStore from 'stores/user/Location.js';
 
-import {K_CIRCLE_SIZE, K_STICK_SIZE} from 'layout/user/confGoogleMap.js';
+import { K_CIRCLE_SIZE, K_STICK_SIZE } from 'layout/user/confGoogleMap.js';
 
 class SimpleMap extends StoreObserver {
 
@@ -23,19 +23,25 @@ class SimpleMap extends StoreObserver {
   }
 
   componentWillReceiveProps(nextProps) {
-      this.setState({ center: { lat: nextProps.center.lat, lng: nextProps.center.lng }, zoom: nextProps.zoom })
+    this.setState({
+      center: {
+        lat: nextProps.center.lat,
+        lng: nextProps.center.lng,
+      },
+      zoom: nextProps.zoom,
+    });
   }
 
   componentDidMount() {
     super.componentDidMount();
     navigator.geolocation.getCurrentPosition((position) => {
-        this.setState({ center: { lat: position.coords.latitude, lng: position.coords.longitude } });
-        const coor = { x: position.coords.latitude, y: position.coords.longitude}
-       LocationActions.sendLocation.defer(coor);
-       LocationActions.nearGuide.defer();
-   },(err) => {
-       console.log('ERROR During getCurrentPosition (' + err.code + '): ' + err.message);
-   }, { maximumAge: 3000, timeout: 7000, enableHighAccuracy: true });
+      this.setState({ center: { lat: position.coords.latitude, lng: position.coords.longitude } });
+      const coor = { x: position.coords.latitude, y: position.coords.longitude };
+      LocationActions.sendLocation.defer(coor);
+      LocationActions.nearGuide.defer();
+    }, (err) => {
+      console.log(`ERROR During getCurrentPosition (${err.code}): ${err.message}`);
+    }, { maximumAge: 3000, timeout: 7000, enableHighAccuracy: true });
   }
 
   onStore(store) {
@@ -61,27 +67,29 @@ class SimpleMap extends StoreObserver {
 
   render() {
     if (this.state.guideCoor) {
-      var guideCoordsFinal = [];
-      if (this.state.ownLocation) {
-        for (var i = 0; i < this.state.guideCoor.length; i++) {
-          guideCoordsFinal.push({
-            'userId': this.state.guideCoor[i]._id,
-            'lat': this.state.guideCoor[i].profile.geo[0],
-            'lng': this.state.guideCoor[i].profile.geo[1],
-            'text': this.state.guideCoor[i].profile.firstName.charAt(0),
-            'own': false,
-          })
-        }
-        guideCoordsFinal.push({
-          'userId': this.state.ownLocation.id,
-          'lat': this.state.ownLocation.geo[0] || this.state.center.lat,
-          'lng': this.state.ownLocation.geo[1] || this.state.center.lng,
-          'text': '0',
-          'own': true,
-        })
-      }
-      const guides = guideCoordsFinal.map((guide, index) => {
+      const guideCoordsFinal = [];
 
+      if (this.state.ownLocation) {
+        for (let i = 0; i < this.state.guideCoor.length; i++) {
+          guideCoordsFinal.push({
+            userId: this.state.guideCoor[i]._id,
+            lat: this.state.guideCoor[i].location.coordinates[0],
+            lng: this.state.guideCoor[i].location.coordinates[1],
+            text: this.state.guideCoor[i].profile.firstName.charAt(0),
+            own: false,
+          });
+        }
+
+        guideCoordsFinal.push({
+          userId: this.state.ownLocation.id,
+          lat: this.state.ownLocation.geo[0] || this.state.center.lat,
+          lng: this.state.ownLocation.geo[1] || this.state.center.lng,
+          text: '0',
+          own: true,
+        });
+      }
+
+      const guides = guideCoordsFinal.map((guide, index) => {
         return (
           <MyPositionsGuidesWithControllableHover
             userId={guideCoordsFinal[index].userId}
@@ -92,10 +100,11 @@ class SimpleMap extends StoreObserver {
             text={guideCoordsFinal[index].text}
           />
         );
-      })
+      });
+
       return (
         <GoogleMapReact
-          bootstrapURLKeys={{key: "AIzaSyBE5bc1-R4JKw8qENkfQQg9VBM8sZ2GMlY"}}
+          bootstrapURLKeys={{ key: 'AIzaSyBE5bc1-R4JKw8qENkfQQg9VBM8sZ2GMlY' }}
           center={this.state.center}
           zoom={this.state.zoom}
           hoverDistance={K_CIRCLE_SIZE / 2}
@@ -104,27 +113,27 @@ class SimpleMap extends StoreObserver {
           onChildClick={this._onChildClick}
           onChildMouseEnter={this._onChildMouseEnter}
           onChildMouseLeave={this._onChildMouseLeave}
-          >
+        >
           {guides}
         </GoogleMapReact>
       );
-    } else {
-      return (
-        <GoogleMapReact
-          bootstrapURLKeys={{key: "AIzaSyBE5bc1-R4JKw8qENkfQQg9VBM8sZ2GMlY"}}
-          center={this.state.center}
-          zoom={this.state.zoom}
-          hoverDistance={K_CIRCLE_SIZE / 2}
-          distanceToMouse={this._distanceToMouse}
-          onChange={this._onChange}
-          onChildClick={this._onChildClick}
-          onChildMouseEnter={this._onChildMouseEnter}
-          onChildMouseLeave={this._onChildMouseLeave}
-          >
-          <MyPositionsGuidesWithControllableHover lat={43.79831666666667} lng={0.625095} text={'Z'}/>
-        </GoogleMapReact>
-      );
     }
+
+    return (
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: 'AIzaSyBE5bc1-R4JKw8qENkfQQg9VBM8sZ2GMlY' }}
+        center={this.state.center}
+        zoom={this.state.zoom}
+        hoverDistance={K_CIRCLE_SIZE / 2}
+        distanceToMouse={this._distanceToMouse}
+        onChange={this._onChange}
+        onChildClick={this._onChildClick}
+        onChildMouseEnter={this._onChildMouseEnter}
+        onChildMouseLeave={this._onChildMouseLeave}
+      >
+        <MyPositionsGuidesWithControllableHover lat={43.79831666666667} lng={0.625095} text={'Z'} />
+      </GoogleMapReact>
+    );
   }
 }
 
@@ -150,6 +159,6 @@ SimpleMap.propTypes = {
   ownLocation: React.PropTypes.array,
 };
 
-SimpleMap = controllable(SimpleMap, ['center', 'zoom', 'hoverKey', 'clickKey'])
+SimpleMap = controllable(SimpleMap, ['center', 'zoom', 'hoverKey', 'clickKey']); // eslint-disable-line
 export default SimpleMap;
 SimpleMap.prototype.shouldComponentUpdate = shouldPureComponentUpdate;
