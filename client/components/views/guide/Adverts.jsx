@@ -16,7 +16,6 @@ import { ModalController } from 'base/ModalController.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
 
-
 export class Adverts extends StoreObserver {
 
   constructor(props, context) {

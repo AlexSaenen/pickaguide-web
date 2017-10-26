@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { browserHistory } from 'react-router';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
 import { ModalController } from 'base/ModalController.jsx';
@@ -17,11 +18,14 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { Panel } from 'layout/containers/Panel.jsx';
 import { VisitCreation } from 'modals/VisitCreation.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
+import AvatarStore from 'stores/other/Avatar.js';
 import CommentsStore from 'stores/user/Comments.js';
 import AuthStore from 'stores/user/Auth.js';
 import AdvertsActions from 'actions/Adverts.js';
 import CommentsActions from 'actions/Comments.js';
 import CommentAvatarsActions from 'actions/CommentAvatars.js';
+import ProfileActions from 'actions/SearchProfile.js';
+
 
 import 'scss/views/adverts.scss';
 
@@ -37,14 +41,13 @@ const getCommentsCache = (advertId) => {
   return (storeCache.id === advertId ? storeCache.comments : []);
 };
 
-
 export class Advert extends StoreObserver {
 
   constructor(props, context) {
-    super(props, context, [AdvertsStore, CommentsStore]);
+    super(props, context, [AdvertsStore, CommentsStore, AvatarStore]);
 
     this.id = this.props.params.id;
-    this.state = { advert: getCache(this.id), comments: getCommentsCache(this.id) };
+    this.state = { advert: getCache(this.id), comments: getCommentsCache(this.id), avatar: '' };
     this.visitCreationCtrl = new ModalFormController();
     this.deleteCommentCtrl = new ModalController();
   }
@@ -82,6 +85,8 @@ export class Advert extends StoreObserver {
       return;
     } else if (store.specificAdvert && store.specificAdvert._id === this.id) {
       nextState.advert = store.specificAdvert;
+      this.ownerId = store.specificAdvert.owner._id;
+      ProfileActions.get.defer(this.ownerId);
     } else if (store.comments && store.id === this.id) {
       nextState.comments = getCommentsCache(this.id);
       const ids = [];
@@ -94,6 +99,8 @@ export class Advert extends StoreObserver {
       if (AuthStore.getState().credentials) {
         CommentAvatarsActions.get.defer(ids);
       }
+    } else if (store.avatar) {
+      nextState.avatar = store.avatar;
     } else {
       nextState.advert = getCache(this.id);
     }
@@ -103,6 +110,7 @@ export class Advert extends StoreObserver {
 
   render() {
     const advert = this.state.advert;
+    console.log('avatarrrr:', this.state);
     const comments = this.state.comments;
 
     if (advert === undefined || advert === null) {
@@ -130,6 +138,7 @@ export class Advert extends StoreObserver {
           <hr className="Overlay" />
 
           <Title>{advert.title}</Title>
+          <div className="ProfilePreview" onClick={function () { browserHistory.push(`/profiles/${this.ownerId}`); }.bind(this)}><Picture url={this.state.avatar} pictureType="HeightLimited" /></div>
           <p className="Small Italic Inline LineSpaced">by </p>
           <p className="Small Bold Inline">{advert.owner.displayName}</p>
           <p className="Small Italic Inline"> in </p>
