@@ -54,11 +54,11 @@ export class Home extends StoreObserver {
   render() {
     const adverts = this.state.adverts;
 
-    // <List wrapChildren={false}>
-    //   <Element elementStyle="Tight Transparent NoWrap"><p>Hello my friend</p></Element>
-    // </List>
     return (
       <div className="HomeContainer">
+        <List wrapChildren={false}>
+          <Element elementStyle="Tight Transparent NoWrap"><p>Hello my friend</p></Element>
+        </List>
 
         <List wrapChildren={false} listStyle="ListGrid">
           {
@@ -68,7 +68,7 @@ export class Home extends StoreObserver {
                   adverts ?
                     <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
                       {
-                        adverts.reverse().map((advert, index) => {
+                        adverts.map((advert, index) => {
                           return (
                             <AdvertPreview
                               {...advert}
@@ -87,7 +87,7 @@ export class Home extends StoreObserver {
               </Element>
           }
           {
-            (AuthStore.getState().credentials !== null || this.state.isBlocking === false) &&
+            (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
               <Element elementStyle="Tight Half NoHorizontalWrap Top Clickable Height30">
                 <SimpleMap zoom={9} />
               </Element>

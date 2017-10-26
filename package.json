@@ -30,7 +30,7 @@
     "npm": "^5.0.4",
     "prop-types": "^15.5.10",
     "protractor": "^4.0.14",
-    "react": "^0.14.8",
+    "react": "^0.14.9",
     "react-addons-shallow-compare": "^15.6.0",
     "react-bootstrap": "^0.30.6",
     "react-controllables": "^0.6.0",
