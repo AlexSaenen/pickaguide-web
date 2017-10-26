@@ -22,6 +22,7 @@ import { ReviewVisit } from 'views/ReviewVisit.jsx';
 import { OwnerVisit } from 'views/OwnerVisit.jsx';
 import { OwnerAdvert } from 'views/guide/OwnerAdvert.jsx';
 import { Advert } from 'views/guide/Advert.jsx';
+import { AllAdverts } from 'views/AllAdverts.jsx';
 import About from 'views/About.jsx';
 
 import RoutesMiddleware from 'services/Routing.js';
@@ -59,6 +60,7 @@ ReactDOM.render(
       <Route path="accounts/mine/edit" component={EditAccount} />
       <Route path="contact-us" component={Contact} />
       <Route path="about" component={About} />
+      <Route path="view-all-adverts" component={AllAdverts} />
       <Route path="search/:terms" component={Search} />
       <Route path="notifications" component={Notifications} />
       <Route path="transactions" component={Transactions} />
