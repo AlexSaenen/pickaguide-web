@@ -42,7 +42,7 @@ class AuthStore {
       }
 
       NotificationsActions.getUnread.defer();
-      this.notifFetcher = setInterval(NotificationsActions.getUnread.defer, 2 * 1000);
+      this.notifFetcher = setInterval(NotificationsActions.getUnread.defer, 30 * 1000);
     }
 
     return false;

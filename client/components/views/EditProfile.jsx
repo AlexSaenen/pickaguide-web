@@ -103,10 +103,10 @@ export class EditProfile extends StoreObserver {
           <hr className="SpacedDivider" />
 
           <DateInput value={profile.birthdate} label="birthdate" max={Date.now()} defaultValue={nowToInput()} />
-          <TextInput value={profile.phone} label="phone" />
-          <TextInput value={profile.city} label="city" />
-          <TextInput value={profile.country} label="country" />
-          <TextArea value={profile.description} label="description" />
+          <TextInput value={profile.phone || ''} label="phone" />
+          <TextInput value={profile.city || ''} label="city" />
+          <TextInput value={profile.country || ''} label="country" />
+          <TextArea value={profile.description || ''} label="description" />
 
           <hr className="SpacedDivider" />
 

@@ -29,7 +29,7 @@ class AdvertsStore {
 
   onGetSuccess(adverts) {
     this.error = null;
-    this.adverts = adverts;
+    this.adverts = adverts.reverse();
   }
 
   onFindMain() {
