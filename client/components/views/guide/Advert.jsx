@@ -10,7 +10,6 @@ import { Title } from 'layout/elements/Title.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { Information } from 'layout/elements/Information.jsx';
-import { CheckMark } from 'layout/elements/CheckMark.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Comment } from 'layout/user/Comment.jsx';
@@ -140,10 +139,12 @@ export class Advert extends StoreObserver {
 
           <Title>{advert.title}</Title>
           <div className="ProfilePreview" onClick={function () { browserHistory.push(`/profiles/${this.ownerId}`); }.bind(this)}><Picture url={this.state.avatar} pictureType="HeightLimited" /></div>
-          <p className="Small Italic">by {advert.owner.displayName}</p>
-          <div className="LineContainer Small">
-            <CheckMark active={advert.active} />
-          </div>
+          <p className="Small Italic Inline LineSpaced">by </p>
+          <p className="Small Bold Inline">{advert.owner.displayName}</p>
+          <p className="Small Italic Inline"> in </p>
+          <p className="Small Bold Inline">{advert.city}, {advert.country}</p>
+
+          <br /><br />
           <Text>{advert.description}</Text>
 
           <hr className="SpacedDivider" />

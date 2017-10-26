@@ -10,6 +10,7 @@ import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { EditAdvertCover } from 'modals/EditAdvertCover.jsx';
 import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
+import ProfileStore from 'stores/user/Profile.js';
 
 const defaultCoverUrl = 'http://www.newyorker.com/wp-content/uploads/2015/12/Veix-Goodbye-New-York-Color-1200.jpg';
 
@@ -19,9 +20,13 @@ export class AdCreation extends StoreObserver {
   constructor(props, context) {
     super(props, context, AdvertsStore);
 
+    const profile = ProfileStore.getState().profile;
+
     this.state = {
       advert: {
         url: defaultCoverUrl,
+        city: profile.city,
+        country: profile.country,
       },
     };
 
@@ -73,6 +78,8 @@ export class AdCreation extends StoreObserver {
           <hr className="SpacedOverlay" />
 
           <TextInput label="title" value={advert.title} required />
+          <TextInput label="city" value={advert.city} required />
+          <TextInput label="country" value={advert.country} required />
           <TextArea label="description" value={advert.description} required />
         </ModalForm>
 
