@@ -145,6 +145,30 @@ export class OwnerAdvert extends StoreObserver {
               <p className="Spaced OverflowHidden TextOverflow">{advert.description}</p>
             </Element>
 
+            <Element
+              elementStyle="Auto Clickable"
+              onClick={
+                function click() {
+                  this.textEditorCtrl.feed({ label: 'city', title: 'Edit advert\'s city', value: advert.city });
+                  this.textEditorCtrl.toggle(true);
+                }.bind(this)
+              }
+            >
+              <p className="Spaced OverflowHidden TextOverflow">{advert.city}</p>
+            </Element>
+
+            <Element
+              elementStyle="Auto Clickable"
+              onClick={
+                function click() {
+                  this.textEditorCtrl.feed({ label: 'country', title: 'Edit advert\'s country', value: advert.country });
+                  this.textEditorCtrl.toggle(true);
+                }.bind(this)
+              }
+            >
+              <p className="Spaced OverflowHidden TextOverflow">{advert.country}</p>
+            </Element>
+
             <Element elementStyle="Auto Tight Clickable">
               <ToggleCheckMark transition={false} active={advert.active} onToggle={this.onToggle} />
             </Element>

@@ -30,15 +30,21 @@ export class AdvertPreview extends React.Component {
         <div className="DescriptionSection">
           <div>
             <p className="Medium Bold Inline">{this.props.title}</p>
+
+            <p className="Inline Italic">in</p>
+            <p className="Bold Inline">{this.props.city}, {this.props.country}</p>
+
             {
               this.props.owner &&
-                <div className="Inline">
+                <div>
                   <p className="Inline Italic">by</p>
                   <p className="Bold Inline LineSpaced">{this.props.owner}</p>
                 </div>
             }
+
           </div>
-          <p className="ExtraSmall OverflowHidden MultiLineTextOverflow">{this.props.description}</p>
+
+          <p className="Small OverflowHidden MultiLineTextOverflow LineSpaced">{this.props.description}</p>
         </div>
       </div>
     );
@@ -49,6 +55,8 @@ AdvertPreview.propTypes = {
   onClick: React.PropTypes.func.isRequired,
   _id: React.PropTypes.string.isRequired,
   title: React.PropTypes.string.isRequired,
+  city: React.PropTypes.string.isRequired,
+  country: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
   photoUrl: React.PropTypes.string.isRequired,
   owner: React.PropTypes.string,
