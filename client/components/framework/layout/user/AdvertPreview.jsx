@@ -44,7 +44,7 @@ export class AdvertPreview extends React.Component {
 
           </div>
 
-          <p className="Small OverflowHidden MultiLineTextOverflow LineSpaced">{this.props.description}</p>
+          <p className="Small OverflowHidden MultiLineTextOverflow">{this.props.description}</p>
         </div>
       </div>
     );
