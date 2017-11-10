@@ -13,6 +13,7 @@ import { Information } from 'layout/elements/Information.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Comment } from 'layout/user/Comment.jsx';
+import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { CreateComment } from 'layout/user/CreateComment.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Panel } from 'layout/containers/Panel.jsx';
@@ -29,25 +30,13 @@ import ProfileActions from 'actions/SearchProfile.js';
 
 import 'scss/views/adverts.scss';
 
-const getCache = (advertId) => {
-  const storeCache = AdvertsStore.getState().specificAdvert;
-
-  return (storeCache && storeCache._id === advertId ? storeCache : undefined);
-};
-
-const getCommentsCache = (advertId) => {
-  const storeCache = CommentsStore.getState();
-
-  return (storeCache.id === advertId ? storeCache.comments : []);
-};
-
 export class Advert extends StoreObserver {
 
   constructor(props, context) {
     super(props, context, [AdvertsStore, CommentsStore, AvatarStore]);
 
     this.id = this.props.params.id;
-    this.state = { advert: getCache(this.id), comments: getCommentsCache(this.id), avatar: '' };
+    this.state = { advert: undefined, comments: [], avatar: '' };
     this.visitCreationCtrl = new ModalFormController();
     this.deleteCommentCtrl = new ModalController();
   }
@@ -55,8 +44,8 @@ export class Advert extends StoreObserver {
   componentWillReceiveProps(nextProps) {
     this.id = nextProps.params.id;
     const nextState = Object.assign({}, this.state);
-    nextState.advert = getCache(this.id);
-    nextState.comments = getCommentsCache(this.id);
+    nextState.advert = undefined;
+    nextState.comments = [];
 
     this.setState(nextState);
 
@@ -88,7 +77,7 @@ export class Advert extends StoreObserver {
       this.ownerId = store.specificAdvert.owner._id;
       ProfileActions.get.defer(this.ownerId);
     } else if (store.comments && store.id === this.id) {
-      nextState.comments = getCommentsCache(this.id);
+      nextState.comments = store.comments;
       const ids = [];
       nextState.comments.forEach((comment) => {
         if (ids.indexOf(comment.owner._id) === -1) {
@@ -102,7 +91,7 @@ export class Advert extends StoreObserver {
     } else if (store.avatar) {
       nextState.avatar = store.avatar;
     } else {
-      nextState.advert = getCache(this.id);
+      nextState.advert = undefined;
     }
 
     this.setState(nextState);
@@ -110,7 +99,6 @@ export class Advert extends StoreObserver {
 
   render() {
     const advert = this.state.advert;
-    console.log('avatarrrr:', this.state);
     const comments = this.state.comments;
 
     if (advert === undefined || advert === null) {
@@ -138,7 +126,16 @@ export class Advert extends StoreObserver {
           <hr className="Overlay" />
 
           <Title>{advert.title}</Title>
-          <div className="ProfilePreview" onClick={function () { browserHistory.push(`/profiles/${this.ownerId}`); }.bind(this)}><Picture url={this.state.avatar} pictureType="HeightLimited" /></div>
+          <ClickablePicture
+            url={this.state.avatar}
+            pictureType="HeightLimited"
+            onClick={
+              function goToProfile() {
+                browserHistory.push(`/profiles/${this.ownerId}`);
+              }.bind(this)
+            }
+          />
+
           <p className="Small Italic Inline LineSpaced">by </p>
           <p className="Small Bold Inline">{advert.owner.displayName}</p>
           <p className="Small Italic Inline"> in </p>
