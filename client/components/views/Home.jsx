@@ -10,6 +10,7 @@ import AdvertsActions from 'actions/Adverts.js';
 import { Element } from 'layout/list/Element.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 import SimpleMap from 'layout/user/GoogleMap.jsx';
 import BlockStore from 'stores/user/Block.js';
 import AuthStore from 'stores/user/Auth.js';
@@ -82,7 +83,7 @@ export class Home extends StoreObserver {
 
   renderMap() {
     return (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
-      <Element elementStyle="Tight NoWrap Clickable Height30">
+      <Element elementStyle="Tight NoHorizontalWrap Clickable Height30">
         <SimpleMap zoom={9} />
       </Element>;
   }
@@ -91,10 +92,13 @@ export class Home extends StoreObserver {
     browserHistory.push(`/guide/adverts/${advertId}`);
   }
 
+  navigateToAllAdverts() {
+    browserHistory.push('/view-all-adverts');
+  }
+
   render() {
     return (
       <div className="HomeContainer">
-
         <AuthDependent unauth>
           <List wrapChildren={false}>
             <Element elementStyle="Tight Transparent NoWrap">
@@ -112,8 +116,20 @@ export class Home extends StoreObserver {
 
           <Element elementStyle="W85 NoWrap Box Top Transparent">
             <List wrapChildren={false} listStyle="Tight NoWrap ListStack WidthFull">
+              {
+                (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
+                  <Element elementStyle="Tight Transparent NoWrap">
+                    <Layout layoutStyle="LayoutLight">
+                      <p>There might be some available visits around you, why don't you have a look on the Map below ?</p>
+                    </Layout>
+                  </Element>
+              }
               {this.renderMap()}
               {this.renderAdverts()}
+
+              <Element elementStyle="Auto Transparent Tight">
+                <Button label="Explore all adverts available" onCallback={this.navigateToAllAdverts} buttonStyle="Auto Blue TextWhite" />
+              </Element>
             </List>
           </Element>
         </List>

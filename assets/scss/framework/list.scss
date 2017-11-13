@@ -59,7 +59,9 @@ $elementBorderRadius: 0.2em;
   .Element.AutoWidthContent { width: fit-content; }
   .Element.MarginAuto { margin-left: auto; margin-right: auto; }
   .Element.NoWrap { margin: 0; }
+  .Element.SmallMargin { margin: 0.2em; }
   .Element.NoHorizontalWrap { margin-left: 0; margin-right: 0; }
+  .Element.MarginTop { margin-top: 0.8em; margin-bottom: 0; }
   .Element.Top { vertical-align: top; }
   .Element.Transparent {
     background-color: rgba(0, 0, 0, 0);

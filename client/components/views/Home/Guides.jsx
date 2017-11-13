@@ -55,30 +55,31 @@ export class Guides extends StoreObserver {
               <p>Check out these guides near you</p>
             </Layout>
           </Element>
+
+          {
+            guides ?
+              <List elementStyle="Tight MarginTop NoHorizontalWrap Auto Clickable" listStyle="WidthFull">
+                {
+                  guides.map((guide, index) => {
+                    return (
+                      <Guide
+                        _id={guide._id}
+                        firstName={guide.profile.firstName}
+                        description={guide.profile.description}
+                        avatar={avatars[index]}
+                        key={index}
+                        onClick={this.navigateToProfile}
+                      />
+                    );
+                  })
+                }
+              </List>
+            :
+              <Layout layoutStyle="LayoutBlank">
+                <Loader />
+              </Layout>
+          }
         </AuthDependent>
-        {
-          guides ?
-            <List elementStyle="Tight Auto NoHorizontalWrap Clickable" listStyle="WidthFull">
-              {
-                guides.map((guide, index) => {
-                  return (
-                    <Guide
-                      _id={guide._id}
-                      firstName={guide.profile.firstName}
-                      description={guide.profile.description}
-                      avatar={avatars[index]}
-                      key={index}
-                      onClick={this.navigateToProfile}
-                    />
-                  );
-                })
-              }
-            </List>
-          :
-            <Layout layoutStyle="LayoutBlank">
-              <Loader />
-            </Layout>
-        }
       </Element>;
   }
 }

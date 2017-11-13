@@ -25,6 +25,7 @@ const onlyForConnected = {
   routes: [
     new RegExp(/^\/(profiles|accounts)\/mine\/(edit)?$/),
     new RegExp(/^\/guide\/(become|adverts)$/),
+    new RegExp(/^\/guide\/adverts\/mine\/new$/),
     new RegExp(/^\/guide\/adverts\/mine\/[a-z0-9]{24}$/),
     new RegExp(/^\/visits$/),
     new RegExp(/^\/visits\/review$/),
@@ -50,6 +51,7 @@ const notForBlocked = {
     new RegExp(/^\/(profiles|accounts)\/mine\/(edit)?$/),
     new RegExp(/^\/guide\/(become|adverts)$/),
     new RegExp(/^\/guide\/adverts\/[a-z0-9]{24}$/),
+    new RegExp(/^\/guide\/adverts\/mine\/new$/),
     new RegExp(/^\/guide\/adverts\/mine\/[a-z0-9]{24}$/),
     new RegExp(/^\/visits$/),
     new RegExp(/^\/visits\/mine\/[a-z]+\/[a-z0-9]{24}$/),
@@ -64,6 +66,7 @@ const notForBlocked = {
 const onlyForGuides = {
   routes: [
     new RegExp(/^\/guide\/adverts$/),
+    new RegExp(/^\/guide\/adverts\/mine\/new$/),
     new RegExp(/^\/guide\/adverts\/mine\/[a-z0-9]{24}$/),
   ],
   on: goHome,

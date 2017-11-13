@@ -22,6 +22,7 @@ import { ReviewVisit } from 'views/ReviewVisit.jsx';
 import { OwnerVisit } from 'views/OwnerVisit.jsx';
 import { OwnerAdvert } from 'views/guide/OwnerAdvert.jsx';
 import { Advert } from 'views/guide/Advert.jsx';
+import { CreateAdvert } from 'views/guide/CreateAdvert.jsx';
 import { AllAdverts } from 'views/AllAdverts.jsx';
 import About from 'views/About.jsx';
 
@@ -71,6 +72,7 @@ ReactDOM.render(
       <Route path="guide/become" component={Become} />
       <Route path="guide/adverts" component={Adverts} />
       <Route path="guide/adverts/:id" component={Advert} />
+      <Route path="guide/adverts/mine/new" component={CreateAdvert} />
       <Route path="guide/adverts/mine/:id" component={OwnerAdvert} />
     </Route>
   </Router>
