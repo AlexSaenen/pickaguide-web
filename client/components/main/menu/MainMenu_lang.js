@@ -5,12 +5,14 @@ export let strings = new LocalizedStrings({
       home:"Home",
       about:"About",
       contact:"Contact",
-      search:"Search"
+      search:"Search",
+      adverts:"Adverts",
    },
    fr:{
       home:"Accueil",
       about:"A propos",
       contact:"Contact",
-      search:"Rechercher"
+      search:"Rechercher",
+      adverts:"Annonces",
    }
 });

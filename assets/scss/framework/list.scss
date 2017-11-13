@@ -43,10 +43,16 @@ $elementBorderRadius: 0.2em;
   }
 
   .Element.Tiny { width: 10%; }
+  .Element.W15 { width: 15%; }
   .Element.Small { width: 20%; }
   .Element.Medium { width: 30%; }
   .Element.Large { width: 40%; }
   .Element.Half { width: 50%; }
+  .Element.W60 { width: 60%; }
+  .Element.W70 { width: 70%; }
+  .Element.W80 { width: 80%; }
+  .Element.W85 { width: 85%; }
+  .Element.W90 { width: 90%; }
   .Element.Auto { width: auto; max-width: 100%; }
   .Element.Tight { padding: 0; }
   .Element.Tighter { padding: 0.3em; }

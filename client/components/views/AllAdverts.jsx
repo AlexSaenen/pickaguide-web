@@ -54,10 +54,10 @@ export class AllAdverts extends StoreObserver {
         <List wrapChildren={false} listStyle="ListGrid">
           {
             (adverts === null || adverts.length > 0) &&
-              <Element elementStyle="Tight Half Transparent NoWrap">
+              <Element elementStyle="W70 Transparent NoWrap Box">
                 {
                   adverts ?
-                    <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
+                    <List elementStyle="Tight Clickable WidthFullImportant Box NoHorizontalWrap" listStyle="WidthFull">
                       {
                         adverts.map((advert, index) => {
                           return (

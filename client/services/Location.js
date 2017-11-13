@@ -27,6 +27,8 @@ export default class LocationApi {
         .catch((err) => {
           LocationActions.error(err);
         });
+    } else {
+      LocationActions.nearGuideSuccess.defer([]);
     }
   }
 }

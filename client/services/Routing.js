@@ -25,7 +25,6 @@ const onlyForConnected = {
   routes: [
     new RegExp(/^\/(profiles|accounts)\/mine\/(edit)?$/),
     new RegExp(/^\/guide\/(become|adverts)$/),
-    new RegExp(/^\/guide\/adverts\/[a-z0-9]{24}$/),
     new RegExp(/^\/guide\/adverts\/mine\/[a-z0-9]{24}$/),
     new RegExp(/^\/visits$/),
     new RegExp(/^\/visits\/review$/),

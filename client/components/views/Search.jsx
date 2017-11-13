@@ -144,11 +144,17 @@ export class Search extends StoreObserver {
           {searchBar}
         </Layout>
 
-        <List wrapChildren={false} listStyle="ListGrid Center">
+        <List wrapChildren={false} listStyle="ListGrid Center WidthFull">
           {
             (profiles.length > 0) &&
-              <Element key={0} elementStyle="Tight Half Transparent NoWrap">
-                <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
+              <Element key={0} elementStyle="Small Transparent NoWrap">
+                <Element elementStyle="Tight WidthFullImportant Transparent NoWrap">
+                  <Layout layoutStyle="LayoutLight">
+                    <p>We found these awesome guides for you !</p>
+                  </Layout>
+                </Element>
+
+                <List elementStyle="Tight Clickable WidthFullImportant Box NoHorizontalWrap" listStyle="WidthFull">
                   {
                     profiles.map((profile, index) => {
                       return (
@@ -168,13 +174,20 @@ export class Search extends StoreObserver {
           }
           {
             (adverts.length > 0) &&
-              <Element key={1} elementStyle="Tight Half Transparent NoWrap Top">
-                <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
+              <Element key={1} elementStyle="Half Transparent NoWrap Top Box">
+                <Element elementStyle="Tight WidthFullImportant Transparent NoWrap">
+                  <Layout layoutStyle="LayoutLight">
+                    <p>These amazing visit opportunities are waiting for you !</p>
+                  </Layout>
+                </Element>
+
+                <List elementStyle="Tight Clickable WidthFullImportant Box NoHorizontalWrap" listStyle="WidthFull">
                   {
                     adverts.map((advert, index) => {
                       return (
                         <AdvertPreview
                           {...advert}
+                          ownerId=""
                           key={index}
                           onClick={this.navigateToAdvert}
                         />

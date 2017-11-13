@@ -152,7 +152,7 @@ export class Advert extends StoreObserver {
 
           <AuthDependent auth>
             {
-              AuthStore.getState().credentials.id !== advert.owner._id &&
+              AuthStore.getState().credentials && AuthStore.getState().credentials.id !== advert.owner._id &&
                 <div>
                   <hr className="SpacedDivider" />
                   <Button

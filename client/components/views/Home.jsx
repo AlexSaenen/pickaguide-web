@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory, Link } from 'react-router';
+import { browserHistory } from 'react-router';
 
 import { Layout } from 'layout/containers/Layout.jsx';
 import { List } from 'layout/list/List.jsx';
@@ -14,6 +14,8 @@ import SimpleMap from 'layout/user/GoogleMap.jsx';
 import BlockStore from 'stores/user/Block.js';
 import AuthStore from 'stores/user/Auth.js';
 
+import { Guides } from './Home';
+
 import 'scss/views/home.scss';
 
 
@@ -24,6 +26,8 @@ export class Home extends StoreObserver {
 
     this.state = { adverts: null, isBlocking: BlockStore.getState().isBlocking };
     this.navigateToAdvert = this.navigateToAdvert.bind(this);
+    this.renderAdverts = this.renderAdverts.bind(this);
+    this.renderMap = this.renderMap.bind(this);
   }
 
   onStore(store) {
@@ -48,58 +52,70 @@ export class Home extends StoreObserver {
     }
   }
 
+  renderAdverts() {
+    const adverts = this.state.adverts;
+
+    return (adverts === null || adverts.length > 0) &&
+      <Element elementStyle="Tight WidthFull AllowOverflow Transparent NoWrap">
+        {
+          adverts ?
+            <List elementStyle="Tight NoHorizontalWrap Auto Clickable" listStyle="WidthFull">
+              {
+                adverts.map((advert, index) => {
+                  return (
+                    <AdvertPreview
+                      {...advert}
+                      key={index}
+                      onClick={this.navigateToAdvert}
+                    />
+                  );
+                })
+              }
+            </List>
+          :
+            <Layout layoutStyle="LayoutBlank">
+              <Loader />
+            </Layout>
+        }
+      </Element>;
+  }
+
+  renderMap() {
+    return (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
+      <Element elementStyle="Tight NoWrap Clickable Height30">
+        <SimpleMap zoom={9} />
+      </Element>;
+  }
+
   navigateToAdvert(advertId) {
     browserHistory.push(`/guide/adverts/${advertId}`);
   }
 
   render() {
-    const adverts = this.state.adverts;
-
     return (
       <div className="HomeContainer">
 
-
         <AuthDependent unauth>
           <List wrapChildren={false}>
-            <Element elementStyle="Tight Transparent NoWrap"><Layout layoutStyle="LayoutLight"><p>Pickaguide is a service that allow you to discover a city, place through the eyes of a local.</p><p>Get a perfect local inhabitant wherever you are, whenever you want.</p><p>With Pickaguide, live a unique experience.</p></Layout></Element>
+            <Element elementStyle="Tight Transparent NoWrap">
+              <Layout layoutStyle="LayoutLight">
+                <p>Pickaguide is a service that allows you to genuinly discover a city or a place through the eyes of a local inhabitant.</p>
+                <p>Get a perfect visit wherever you are, whenever you want.</p>
+                <p>With Pickaguide, live a unique experience.</p>
+              </Layout>
+            </Element>
           </List>
         </AuthDependent>
 
         <List wrapChildren={false} listStyle="ListGrid">
-          {
-            (adverts === null || adverts.length > 0) &&
-              <Element elementStyle="Tight Half Transparent NoWrap">
-                <AuthDependent auth>
-                  <Element elementStyle="Tight WidthFull Transparent NoWrap"><Layout layoutStyle="LayoutLight"><Link style={{ textDecoration: 'none', color: 'black' }} to="/view-all-adverts">Click here to view all adverts</Link></Layout></Element>
-                </AuthDependent>
-                {
-                  adverts ?
-                    <List elementStyle="Tight Auto Clickable" listStyle="WidthFull">
-                      {
-                        adverts.map((advert, index) => {
-                          return (
-                            <AdvertPreview
-                              {...advert}
-                              key={index}
-                              onClick={this.navigateToAdvert}
-                            />
-                          );
-                        })
-                      }
-                    </List>
-                  :
-                    <Layout layoutStyle="LayoutBlank">
-                      <Loader />
-                    </Layout>
-                }
-              </Element>
-          }
-          {
-            (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
-              <Element elementStyle="Tight Half NoHorizontalWrap Top Clickable Height30">
-                <SimpleMap zoom={9} />
-              </Element>
-          }
+          <Guides />
+
+          <Element elementStyle="W85 NoWrap Box Top Transparent">
+            <List wrapChildren={false} listStyle="Tight NoWrap ListStack WidthFull">
+              {this.renderMap()}
+              {this.renderAdverts()}
+            </List>
+          </Element>
         </List>
       </div>
     );

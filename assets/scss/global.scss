@@ -76,8 +76,9 @@ p.Large { font-size: 2em; }
 p.LineSpaced { line-height: 2em; }
 p.Spaced { padding: 0.5em; }
 p.MultiLineTextOverflow { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+p.MultiLineLargeTextOverflow { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
 p.TextOverflow { text-overflow: ellipsis; white-space: nowrap; }
-p.OverflowHidden { overflow: hidden; }
+.OverflowHidden { overflow: hidden; }
 p.Vertical { vertical-align: middle; }
 p.Red { color: $alertLightColor; }
 p.Blue { color: $infoLightColor; }
@@ -85,7 +86,19 @@ p.Green { color: $successLightColor; }
 p.White { color: white; }
 p.Underline { text-decoration: underline; }
 
+.Box {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.H80 { height: 80% !important; }
+.H20 { height: 20% !important; }
+.W40E { width: 40em; }
+
+.AllowOverflow { overflow: visible !important; }
 *:focus { outline: none; }
+.Padding { padding: 0.5em !important; }
 .Hidden { display: none !important; }
 .FullTransparent { opacity: 0; }
 .Inline { display: inline; }
@@ -95,11 +108,14 @@ p.Underline { text-decoration: underline; }
 .HeightNone { height: 0; }
 .HeightFull { height: 100%; }
 .WidthFull { width: 100%; }
+.WidthFullImportant { width: 100% !important; }
 .Left { text-align: left; }
 .Right { text-align: right; }
 .Center { text-align: center; }
 .NoTransition { transition-duration: 0s; }
+.BorderRadius { border-radius: 0.4em; }
 .NoRadius { border-radius: 0 !important; }
 .Clickable { cursor: pointer; }
 .MarginAuto { margin: auto; }
+.Margin { margin: 0.5em !important; }
 .DecorationNone { text-decoration: none; }
