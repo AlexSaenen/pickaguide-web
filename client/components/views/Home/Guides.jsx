@@ -27,7 +27,7 @@ export class Guides extends StoreObserver {
 
   onStore(store) {
     if (store.guideCoor !== undefined) {
-      const guides = store.guideCoor.filter(guide => guide._id !== AuthStore.getState().credentials.id);
+      const guides = (store.guideCoor || []).filter(guide => guide._id !== AuthStore.getState().credentials.id);
       const ids = guides.map(guide => guide._id);
 
       AvatarApi.getAvatars(ids, [])

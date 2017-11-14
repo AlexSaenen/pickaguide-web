@@ -39,7 +39,7 @@ module.exports = {
             { test: /\.(png|jpg|ico)$/, loader: 'file-loader?name=[name].[ext]' },
             { test: /\.(eot|svg|ttf|woff|woff2|otf)$/, loader: 'file-loader?name=[name].[ext]' },
             { test: /\.(mp3)$/, loader: 'file-loader?name=[name].[ext]' },
-            { test: /\.jsx?$/,
+            { test: /\.(jsx?|json)$/,
               loader: 'babel-loader',
               exclude: '/node_modules/',
               query: {

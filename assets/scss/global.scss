@@ -96,10 +96,33 @@ p.Underline { text-decoration: underline; }
 .H20 { height: 20% !important; }
 .W40E { width: 40em; }
 
+
+.BackgroundMarker {
+  div {
+    margin: 0.5em;
+  }
+
+  background-color: black;
+  color: white;
+  opacity: 0.7;
+  font-size: 16px;
+  width: 20em !important;
+  max-height: 10em;
+  overflow: scroll;
+  display: inline-block;
+  z-index: 1200 !important;
+  top: -1em;
+  left: -1em;
+  position: relative;
+  text-align: center;
+}
+
+.DashedDivider { border-top: 1px dashed #828282; margin: 0 !important; }
 .AllowOverflow { overflow: visible !important; }
 *:focus { outline: none; }
 .Padding { padding: 0.5em !important; }
 .Hidden { display: none !important; }
+.SoftHidden { display: none; }
 .FullTransparent { opacity: 0; }
 .Inline { display: inline; }
 .Inline-Block { display: inline-block; }

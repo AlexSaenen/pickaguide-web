@@ -17,24 +17,24 @@ export default class MyPositionsGuidesWithControllableHover extends Component {
     const { text, zIndex } = this.props;
      const style = Object.assign({}, positionsGuidesStyle);
      style.zIndex = this.props.$hover ? 1000 : zIndex;
-      let hideBlockInfo = '';
+     let hideBlockInfo = 'BackgroundMarker BorderRadius';
      if (style.zIndex !== 1000) {
-       hideBlockInfo = ' Hidden';
+       hideBlockInfo = ' SoftHidden';
      }
-     const circleStyle = this.props.$hopoiuytver ? positionsGuidesCircleStyleHover : positionsGuidesCircleStyle;
+     const circleStyle = this.props.$hover ? positionsGuidesCircleStyleHover : positionsGuidesCircleStyle;
      const stickStyle = positionsGuidesStickStyle;
 
     return (
        <div style={style}>
           <div style={positionsGuidesStickStyleShadow} />
-          <div className={hideBlockInfo}>
+          <div className={hideBlockInfo} onClick={function() {
+            browserHistory.push(`/guide/adverts/${this.props.advertId}`);
+          }.bind(this)}>
             <div>{this.props.text}</div>
-            <div>{this.props.description}</div>
+            <div className="DashedDivider" />
+            <div style={{ fontStyle: 'italic' }}>{this.props.description}</div>
           </div>
-          <div style={circleStyle} onClick={function(){
-                  browserHistory.push(`/guide/adverts/${this.props.advertId}`);
-                }.bind(this)}>
-          </div>
+          <div style={circleStyle} />
           <div style={stickStyle} />
        </div>
     );
