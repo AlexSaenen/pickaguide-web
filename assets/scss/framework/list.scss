@@ -43,17 +43,25 @@ $elementBorderRadius: 0.2em;
   }
 
   .Element.Tiny { width: 10%; }
+  .Element.W15 { width: 15%; }
   .Element.Small { width: 20%; }
   .Element.Medium { width: 30%; }
   .Element.Large { width: 40%; }
   .Element.Half { width: 50%; }
+  .Element.W60 { width: 60%; }
+  .Element.W70 { width: 70%; }
+  .Element.W80 { width: 80%; }
+  .Element.W85 { width: 85%; }
+  .Element.W90 { width: 90%; }
   .Element.Auto { width: auto; max-width: 100%; }
   .Element.Tight { padding: 0; }
   .Element.Tighter { padding: 0.3em; }
   .Element.AutoWidthContent { width: fit-content; }
   .Element.MarginAuto { margin-left: auto; margin-right: auto; }
   .Element.NoWrap { margin: 0; }
+  .Element.SmallMargin { margin: 0.2em; }
   .Element.NoHorizontalWrap { margin-left: 0; margin-right: 0; }
+  .Element.MarginTop { margin-top: 0.8em; margin-bottom: 0; }
   .Element.Top { vertical-align: top; }
   .Element.Transparent {
     background-color: rgba(0, 0, 0, 0);
