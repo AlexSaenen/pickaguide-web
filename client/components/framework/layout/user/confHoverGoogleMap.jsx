@@ -14,19 +14,26 @@ export default class MyPositionsGuidesWithControllableHover extends Component {
   }
 
   render() {
-    const {text, zIndex} = this.props;
+    const { text, zIndex } = this.props;
      const style = Object.assign({}, positionsGuidesStyle);
      style.zIndex = this.props.$hover ? 1000 : zIndex;
-     const circleStyle = this.props.$hover ? positionsGuidesCircleStyleHover : positionsGuidesCircleStyle;
+      let hideBlockInfo = '';
+     if (style.zIndex !== 1000) {
+       hideBlockInfo = ' Hidden';
+     }
+     const circleStyle = this.props.$hopoiuytver ? positionsGuidesCircleStyleHover : positionsGuidesCircleStyle;
      const stickStyle = positionsGuidesStickStyle;
 
     return (
        <div style={style}>
           <div style={positionsGuidesStickStyleShadow} />
+          <div className={hideBlockInfo}>
+            <div>{this.props.text}</div>
+            <div>{this.props.description}</div>
+          </div>
           <div style={circleStyle} onClick={function(){
-                  browserHistory.push(`/profiles/${this.props.userId}`);
+                  browserHistory.push(`/guide/adverts/${this.props.advertId}`);
                 }.bind(this)}>
-            {text}
           </div>
           <div style={stickStyle} />
        </div>
@@ -40,8 +47,9 @@ MyPositionsGuidesWithControllableHover.propTypes = {
   $hover: React.PropTypes.bool,
   text: React.PropTypes.string,
   own: React.PropTypes.bool,
-  userId: React.PropTypes.string,
-  zIndex: React.PropTypes.number
+  advertId: React.PropTypes.string,
+  description: React.PropTypes.string,
+  zIndex: React.PropTypes.number,
 };
 
 MyPositionsGuidesWithControllableHover.prototype.shouldComponentUpdate = shouldPureComponentUpdate;

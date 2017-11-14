@@ -29,4 +29,19 @@ export default class LocationApi {
         });
     }
   }
+
+  static nearAds(range) {
+    const credentials = AuthStore.getState().credentials;
+    if (credentials) {
+      PromiseApi.auth().get(`/proposals/geo/${range}`)
+        .then((res) => {
+          console.log('res =>', res);
+          LocationActions.nearAdsSuccess(res);
+        })
+        .catch((err) => {
+          LocationActions.error(err);
+        });
+    }
+  }
+
 }

@@ -8,9 +8,11 @@ import { Title } from 'layout/elements/Title.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { EditAdvertCover } from 'modals/EditAdvertCover.jsx';
+import { Element } from 'layout/list/Element.jsx';
 import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
 import ProfileStore from 'stores/user/Profile.js';
+import SimpleMap from 'layout/user/GoogleMap.jsx';
 
 const defaultCoverUrl = 'http://www.newyorker.com/wp-content/uploads/2015/12/Veix-Goodbye-New-York-Color-1200.jpg';
 
@@ -81,7 +83,9 @@ export class AdCreation extends StoreObserver {
           <TextInput label="city" value={advert.city} required />
           <TextInput label="country" value={advert.country} required />
           <TextArea label="description" value={advert.description} required />
+          <TextInput label="location" placeholder="Street Address" value={advert.location} />
         </ModalForm>
+
 
         <EditAdvertCover controller={this.editCoverCtrl} />
       </div>

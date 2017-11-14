@@ -97,7 +97,7 @@ export class Home extends StoreObserver {
           {
             (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
               <Element elementStyle="Tight Half NoHorizontalWrap Top Clickable Height30">
-                <SimpleMap zoom={9} />
+                <SimpleMap zoom={12} />
               </Element>
           }
         </List>

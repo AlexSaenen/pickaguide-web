@@ -8,6 +8,7 @@ class LocationStore {
   constructor() {
     this.error = null;
     this.ownLocation = null;
+    this.adsCoor = null;
     this.guideCoor = null;
     this.bindActions(LocationActions);
   }
@@ -30,6 +31,16 @@ class LocationStore {
   onNearGuideSuccess(res) {
     this.error = null;
     this.guideCoor = res;
+  }
+
+  onNearAds() {
+    LocationApi.nearAds(0.9);
+    return false;
+  }
+
+  onNearAdsSuccess(res) {
+    this.error = null;
+    this.adsCoor = res;
   }
 
   onError(error) {

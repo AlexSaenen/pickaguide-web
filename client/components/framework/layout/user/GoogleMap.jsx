@@ -18,27 +18,23 @@ class SimpleMap extends StoreObserver {
       center: { lat: null, lng: null },
       zoom: props.zoom,
       ownLocation: [],
-      guideCoor: null,
+      adsCoor: null,
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      center: {
-        lat: nextProps.center.lat,
-        lng: nextProps.center.lng,
-      },
       zoom: nextProps.zoom,
     });
   }
-
+// load map with old position of the user
   componentDidMount() {
     super.componentDidMount();
     navigator.geolocation.getCurrentPosition((position) => {
       this.setState({ center: { lat: position.coords.latitude, lng: position.coords.longitude } });
       const coor = { x: position.coords.latitude, y: position.coords.longitude };
       LocationActions.sendLocation.defer(coor);
-      LocationActions.nearGuide.defer();
+      LocationActions.nearAds.defer();
     }, (err) => {
       console.log(`ERROR During getCurrentPosition (${err.code}): ${err.message}`);
     }, { maximumAge: 3000, timeout: 7000, enableHighAccuracy: true });
@@ -51,7 +47,7 @@ class SimpleMap extends StoreObserver {
       newState.error = store.error;
     } else {
       newState.ownLocation = store.ownLocation;
-      newState.guideCoor = store.guideCoor;
+      newState.adsCoor = store.adsCoor;
       newState.error = null;
     }
     this.updateState(newState);
@@ -66,22 +62,23 @@ class SimpleMap extends StoreObserver {
   }
 
   render() {
-    if (this.state.guideCoor) {
-      const guideCoordsFinal = [];
+    if (this.state.adsCoor) {
+      const guideAdsFinal = [];
 
       if (this.state.ownLocation) {
-        for (let i = 0; i < this.state.guideCoor.length; i++) {
-          guideCoordsFinal.push({
-            userId: this.state.guideCoor[i]._id,
-            lat: this.state.guideCoor[i].location.coordinates[0],
-            lng: this.state.guideCoor[i].location.coordinates[1],
-            text: this.state.guideCoor[i].profile.firstName.charAt(0),
+        for (let i = 0; i < this.state.adsCoor.length; i++) {
+          guideAdsFinal.push({
+            advertId: this.state.adsCoor[i]._id,
+            lat: this.state.adsCoor[i].location.coordinates[0],
+            lng: this.state.adsCoor[i].location.coordinates[1],
+            text: this.state.adsCoor[i].title,
+            description: this.state.adsCoor[i].description,
             own: false,
           });
         }
 
-        guideCoordsFinal.push({
-          userId: this.state.ownLocation.id,
+        guideAdsFinal.push({
+          advertId: this.state.ownLocation.id,
           lat: this.state.ownLocation.geo[0] || this.state.center.lat,
           lng: this.state.ownLocation.geo[1] || this.state.center.lng,
           text: '0',
@@ -89,15 +86,16 @@ class SimpleMap extends StoreObserver {
         });
       }
 
-      const guides = guideCoordsFinal.map((guide, index) => {
+      const guides = guideAdsFinal.map((guide, index) => {
         return (
           <MyPositionsGuidesWithControllableHover
-            userId={guideCoordsFinal[index].userId}
-            lat={guideCoordsFinal[index].lat}
-            lng={guideCoordsFinal[index].lng}
-            own={guideCoordsFinal[index].own}
+            advertId={guideAdsFinal[index].advertId}
+            lat={guideAdsFinal[index].lat}
+            lng={guideAdsFinal[index].lng}
+            own={guideAdsFinal[index].own}
             key={index}
-            text={guideCoordsFinal[index].text}
+            text={guideAdsFinal[index].text}
+            description={guideAdsFinal[index].description}
           />
         );
       });
@@ -137,16 +135,16 @@ class SimpleMap extends StoreObserver {
   }
 }
 
-SimpleMap.defaultProps = {
-  center: { lat: 59.95, lng: 30.33 },
-  zoom: 9,
-  guideCoor: [
-    { id: 'A', lat: 43.79831666666667, lng: 0.625095 },
-    { id: 'B', lat: 43.79833266666667, lng: 0.625075 },
-    { id: 'C', lat: 43.79732266666667, lng: 0.635096 },
-  ],
-  ownLocation: [43.79839666666667, 0.626995],
-};
+// SimpleMap.defaultProps = {
+//   center: { lat: 59.95, lng: 30.33 },
+//   zoom: 9,
+//   guideCoor: [
+//     { id: 'A', lat: 43.79831666666667, lng: 0.625095 },
+//     { id: 'B', lat: 43.79833266666667, lng: 0.625075 },
+//     { id: 'C', lat: 43.79732266666667, lng: 0.635096 },
+//   ],
+//   ownLocation: [43.79839666666667, 0.626995],
+// };
 
 SimpleMap.propTypes = {
   center: React.PropTypes.object,
