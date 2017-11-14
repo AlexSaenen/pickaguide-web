@@ -76,7 +76,7 @@ p.Large { font-size: 2em; }
 p.LineSpaced { line-height: 2em; }
 p.Spaced { padding: 0.5em; }
 p.MultiLineTextOverflow { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-p.MultiLineLargeTextOverflow { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+p.MultiLineLargeTextOverflow { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
 p.TextOverflow { text-overflow: ellipsis; white-space: nowrap; }
 .OverflowHidden { overflow: hidden; }
 p.Vertical { vertical-align: middle; }

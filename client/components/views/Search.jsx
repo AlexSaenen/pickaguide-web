@@ -187,7 +187,6 @@ export class Search extends StoreObserver {
                       return (
                         <AdvertPreview
                           {...advert}
-                          ownerId=""
                           key={index}
                           onClick={this.navigateToAdvert}
                         />

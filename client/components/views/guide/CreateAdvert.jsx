@@ -1,7 +1,9 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
+import { FormController } from 'base/FormController.jsx';
 import { PanelForm } from 'view/PanelForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
@@ -30,23 +32,21 @@ export class CreateAdvert extends StoreObserver {
       },
     };
 
+    this.ctrl = new FormController();
+    this.ctrl.attachSubmit(this.onSubmit.bind(this));
     this.editCoverCtrl = new ModalFormController();
     this.editCoverCtrl.attachSubmit(this.updateCover.bind(this));
   }
 
   onStore(store) {
     if (store.error) {
-      // this.ctrl.messageCallback({
-      //   title: 'Some error occurred when creating your ad',
-      //   content: String(store.error),
-      //   type: 'Alert',
-      // }, false);
+      this.ctrl.messageCallback({
+        title: 'Some error occurred when creating your ad',
+        content: String(store.error),
+        type: 'Alert',
+      }, false);
     } else {
-      AdvertsStore.unlisten(this.onStore);
-      // this.ctrl.closeAndReset();
-      const newState = Object.assign({}, this.state);
-      newState.advert.url = defaultCoverUrl;
-      this.setState(newState);
+      browserHistory.goBack();
     }
   }
 
@@ -59,7 +59,6 @@ export class CreateAdvert extends StoreObserver {
 
   onSubmit(form) {
     form.photoUrl = this.state.advert.url;
-    AdvertsStore.listen(this.onStore);
     AdvertsActions.create(form);
   }
 
@@ -68,7 +67,7 @@ export class CreateAdvert extends StoreObserver {
 
     return (
       <div>
-        <PanelForm layoutStyle="LayoutLight Tight" panelStyle="Large">
+        <PanelForm controller={this.ctrl} layoutStyle="LayoutLight Tight" panelStyle="Large">
           <Title>Create Ad</Title>
 
           <ClickablePicture url={advert.url} onClick={this.editCoverCtrl.toggle} />

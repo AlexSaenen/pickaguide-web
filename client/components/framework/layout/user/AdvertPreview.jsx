@@ -72,6 +72,11 @@ export class AdvertPreview extends React.Component {
 
             <p className="Inline Italic">in</p>
             <p className="Bold Inline">{this.props.city}, {this.props.country}</p>
+
+            {
+              this.props.amountVisits !== 0 &&
+                <p className="Italic">already visited {this.props.amountVisits > 1 ? `${this.props.amountVisits} times` : 'once'}</p>
+            }
           </div>
 
           <p className="Small OverflowHidden MultiLineLargeTextOverflow">{this.props.description}</p>
@@ -94,6 +99,11 @@ export class AdvertPreview extends React.Component {
   }
 }
 
+AdvertPreview.defaultProps = {
+  amountVisits: 0,
+  ownerId: '',
+};
+
 AdvertPreview.propTypes = {
   onClick: React.PropTypes.func.isRequired,
   _id: React.PropTypes.string.isRequired,
@@ -103,5 +113,6 @@ AdvertPreview.propTypes = {
   description: React.PropTypes.string.isRequired,
   photoUrl: React.PropTypes.string.isRequired,
   owner: React.PropTypes.string,
-  ownerId: React.PropTypes.string.isRequired,
+  ownerId: React.PropTypes.string,
+  amountVisits: React.PropTypes.number,
 };
