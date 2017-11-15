@@ -37,7 +37,6 @@ export default class LocationApi {
     if (credentials) {
       PromiseApi.auth().get(`/proposals/geo/${range}`)
         .then((res) => {
-          console.log('res =>', res);
           LocationActions.nearAdsSuccess(res);
         })
         .catch((err) => {

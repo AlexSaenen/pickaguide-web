@@ -14,7 +14,8 @@ export let strings = new LocalizedStrings({
       outputCountry:"Country",
       outputNoCountry:"None",
       outputNoDescription:"None",
-      outputNoInterests:"None"
+      outputNoInterests:"None",
+      notIndicated:"None"
    },
    fr:{
       title:"Profile",
@@ -29,6 +30,7 @@ export let strings = new LocalizedStrings({
       outputCountry:"Pays",
       outputNoCountry:"Indéfini",
       outputNoDescription:"Indéfini",
-      outputNoInterests:"Indéfini"
+      outputNoInterests:"Indéfini",
+      notIndicated:"Indéfini"
    }
 });

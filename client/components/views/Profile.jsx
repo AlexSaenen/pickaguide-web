@@ -103,7 +103,7 @@ export class Profile extends StoreObserver {
               this.isOwnerView ?
                 <p><strong>{strings.outputBirthdate}:</strong> {displayBirthdate(profile.birthdate)}</p>
                 :
-                <p><strong>{strings.outputAge}:</strong> {profile.age} {strings.ageOld}</p>
+                <p><strong>{strings.outputAge}:</strong> {(profile.age ? `${profile.age} ${strings.ageOld}` : strings.notIndicated) }</p>
             }
             <p><strong>{strings.outputCity}:</strong> {profile.city ? profile.city : String(strings.outputNoCity)}</p>
             <p><strong>{strings.outputCountry}:</strong> {profile.country ? profile.country : String(strings.outputNoCountry)}</p>

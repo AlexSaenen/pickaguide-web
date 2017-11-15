@@ -7,7 +7,6 @@ import { FormController } from 'base/FormController.jsx';
 import { PanelForm } from 'view/PanelForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
-import { Layout } from 'layout/containers/Layout.jsx';
 import { Element } from 'layout/list/Element.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';

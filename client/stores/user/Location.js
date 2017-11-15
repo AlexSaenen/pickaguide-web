@@ -24,7 +24,7 @@ class LocationStore {
   }
 
   onNearGuide() {
-    LocationApi.nearGuide(0.9);
+    LocationApi.nearGuide(0.01);
     return false;
   }
 
@@ -34,7 +34,7 @@ class LocationStore {
   }
 
   onNearAds() {
-    LocationApi.nearAds(0.9);
+    LocationApi.nearAds(0.01);
     return false;
   }
 
