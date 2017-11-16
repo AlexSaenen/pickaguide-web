@@ -30,7 +30,7 @@ export class Transactions extends StoreObserver {
     if (store.error) {
       this.setState({ transactions: [], error: store.error });
     } else {
-      this.setState({ transactions: store.transactions, error: null });
+      this.setState({ transactions: store.transactions.Payments, error: null });
     }
   }
 

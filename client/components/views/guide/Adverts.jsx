@@ -2,14 +2,12 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { ModalFormController } from 'base/ModalFormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { PanelList } from 'view/PanelList.jsx';
 import { OwnerAdvertPreview } from 'layout/user/OwnerAdvertPreview.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Button } from 'layout/elements/Button.jsx';
-import { AdCreation } from 'modals/AdCreation.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { ModalController } from 'base/ModalController.jsx';
@@ -24,7 +22,6 @@ export class Adverts extends StoreObserver {
     this.state.adverts = null;
     this.reviewAdvert = this.reviewAdvert.bind(this);
     this.deleteAdCtrl = new ModalController();
-    this.adCreationCtrl = new ModalFormController();
   }
 
   componentDidMount() {
@@ -42,12 +39,15 @@ export class Adverts extends StoreObserver {
     browserHistory.push(`/guide/adverts/mine/${advertId}`);
   }
 
+  navigateToAdCreation() {
+    browserHistory.push('/guide/adverts/mine/new');
+  }
+
   render() {
     const adverts = this.state.adverts;
 
     return (
       <div>
-        <AdCreation controller={this.adCreationCtrl} />
         <QueryModal
           controller={this.deleteAdCtrl}
           query="Do you really wish to delete this Ad ?"
@@ -63,7 +63,7 @@ export class Adverts extends StoreObserver {
           <Button
             label="New"
             buttonStyle="Auto Red TextWhite Bold"
-            onCallback={this.adCreationCtrl.toggle}
+            onCallback={this.navigateToAdCreation}
           />
         </Layout>
 

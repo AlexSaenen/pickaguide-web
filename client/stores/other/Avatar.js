@@ -12,7 +12,6 @@ class SearchAvatarStore {
   }
 
   onGetSuccess(avatarObj) {
-    console.log('YOLOOO', avatarObj);
     this.error = null;
     this.avatar = avatarObj.avatar === '' ? '/assets/images/avatar.png' : avatarObj.avatar;
     this.id = avatarObj.id;

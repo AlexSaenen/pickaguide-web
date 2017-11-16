@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { PanelList } from 'framework/view/PanelList.jsx';
+import { List } from 'layout/list/List.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
@@ -52,7 +52,7 @@ export class GuideAdvertsPreviews extends StoreObserver {
       <div>
         {
           adverts && adverts.length > 0 &&
-            <PanelList elementStyle="Tight Clickable">
+            <List elementStyle="Tight Clickable W40E MarginAuto" listStyle="WidthFull">
               {
                 adverts.map((advert, index) => {
                   return (
@@ -64,7 +64,7 @@ export class GuideAdvertsPreviews extends StoreObserver {
                   );
                 })
               }
-            </PanelList>
+            </List>
         }
       </div>
     );

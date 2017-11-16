@@ -27,6 +27,22 @@ export default class LocationApi {
         .catch((err) => {
           LocationActions.error(err);
         });
+    } else {
+      LocationActions.nearGuideSuccess.defer([]);
     }
   }
+
+  static nearAds(range) {
+    const credentials = AuthStore.getState().credentials;
+    if (credentials) {
+      PromiseApi.auth().get(`/proposals/geo/${range}`)
+        .then((res) => {
+          LocationActions.nearAdsSuccess(res);
+        })
+        .catch((err) => {
+          LocationActions.error(err);
+        });
+    }
+  }
+
 }

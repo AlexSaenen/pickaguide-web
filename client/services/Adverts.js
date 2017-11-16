@@ -1,7 +1,6 @@
 import AdvertsActions from 'actions/Adverts.js';
 import PromiseApi from 'services/PromiseApi.js';
 
-
 export default class AdvertsApi {
 
   static create(form) {

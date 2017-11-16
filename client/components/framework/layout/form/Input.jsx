@@ -26,13 +26,16 @@ export class Input extends PropsComponent {
     };
 
     this.handleEdit = this.handleEdit.bind(this);
+    this.editMiddleware = props.onChange || (() => {});
   }
 
   handleEdit(e) {
     e.preventDefault();
 
+
     const newState = Object.assign({}, this.state);
     newState.value = e.target.value;
+    this.editMiddleware(newState.value);
     this.updateState(newState);
   }
 
