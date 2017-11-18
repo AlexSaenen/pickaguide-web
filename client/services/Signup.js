@@ -13,7 +13,7 @@ export default class SignupApi {
         } else {
 
             navigator.geolocation.getCurrentPosition((position) => {
-            const coor = { x: position.coords.latitude, y: position.coords.longitude}
+            const coor = { lat: position.coords.latitude, lng: position.coords.longitude}
                LocationActions.sendLocation.defer(coor);
            },(err) => {
                console.log('ERROR During getCurrentPosition (' + err.code + '): ' + err.message);

@@ -32,7 +32,7 @@ class SimpleMap extends StoreObserver {
     super.componentDidMount();
     navigator.geolocation.getCurrentPosition((position) => {
       this.setState({ center: { lat: position.coords.latitude, lng: position.coords.longitude } });
-      const coor = { x: position.coords.latitude, y: position.coords.longitude };
+      const coor = { lat: position.coords.latitude, lng: position.coords.longitude };
       LocationActions.sendLocation.defer(coor);
       LocationActions.nearAds.defer();
     }, (err) => {
