@@ -69,8 +69,8 @@ class SimpleMap extends StoreObserver {
         for (let i = 0; i < this.state.adsCoor.length; i++) {
           guideAdsFinal.push({
             advertId: this.state.adsCoor[i]._id,
-            lat: this.state.adsCoor[i].location.coordinates[0],
-            lng: this.state.adsCoor[i].location.coordinates[1],
+            lat: this.state.adsCoor[i].location.coordinates[1],
+            lng: this.state.adsCoor[i].location.coordinates[0],
             text: this.state.adsCoor[i].title,
             description: this.state.adsCoor[i].description,
             own: false,
@@ -79,8 +79,8 @@ class SimpleMap extends StoreObserver {
 
         guideAdsFinal.push({
           advertId: this.state.ownLocation.id,
-          lat: this.state.ownLocation.geo[0] || this.state.center.lat,
-          lng: this.state.ownLocation.geo[1] || this.state.center.lng,
+          lat: this.state.ownLocation.geo[1] || this.state.center.lat,
+          lng: this.state.ownLocation.geo[0] || this.state.center.lng,
           text: '0',
           own: true,
         });
