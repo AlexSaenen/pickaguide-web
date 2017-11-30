@@ -38,7 +38,7 @@ export class AllAdverts extends StoreObserver {
   componentDidMount() {
     super.componentDidMount();
     if (this.state.adverts === null) {
-      AdvertsActions.findMain.defer();
+      AdvertsActions.findAll.defer();
     }
   }
 
