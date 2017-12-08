@@ -92,6 +92,8 @@ export class Profile extends StoreObserver {
           <div className="LayoutHeader">
             <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" /></div>
             <p className="HeaderText Title Inline-Block" >{profile.displayName}</p>
+            <div className="star-ratings-css-top" style={{ width: '25%' }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
             <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
           </div>
 
