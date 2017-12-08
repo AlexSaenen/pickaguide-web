@@ -81,6 +81,7 @@ p.MultiLineLargeTextOverflow { display: -webkit-box; -webkit-line-clamp: 3; -web
 p.TextOverflow { text-overflow: ellipsis; white-space: nowrap; }
 .OverflowHidden { overflow: hidden; }
 p.Vertical { vertical-align: middle; }
+.Vertical { vertical-align: middle; }
 p.Red { color: $alertLightColor; }
 p.Blue { color: $infoLightColor; }
 p.Green { color: $successLightColor; }
@@ -119,12 +120,12 @@ p.Underline { text-decoration: underline; }
 }
 
 .star-ratings-css {
+  display: inline-block;
   unicode-bidi: bidi-override;
   color: #c5c5c5;
   font-size: 25px;
   height: 25px;
-  width: 100px;
-  margin: 0 auto;
+  margin: 0 0.3em;
   position: relative;
   padding: 0;
   text-shadow: 0px 1px 0 #a2a2a2;
@@ -168,6 +169,7 @@ p.Underline { text-decoration: underline; }
 .BorderRadius { border-radius: 0.4em; }
 .NoRadius { border-radius: 0 !important; }
 .Clickable { cursor: pointer; }
+.NoMargin { margin: 0 !important; }
 .MarginAuto { margin: auto; }
 .Margin { margin: 0.5em !important; }
 .DecorationNone { text-decoration: none; }

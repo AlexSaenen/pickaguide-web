@@ -66,6 +66,7 @@ export class Guides extends StoreObserver {
                         _id={guide._id}
                         firstName={guide.profile.firstName}
                         description={guide.profile.description}
+                        rate={guide.profile.rate}
                         avatar={avatars[index]}
                         key={index}
                         onClick={this.navigateToProfile}
