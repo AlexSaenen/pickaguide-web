@@ -98,6 +98,25 @@ p.Underline { text-decoration: underline; }
 .H20 { height: 20% !important; }
 .W40E { width: 40em; }
 
+.arrow_box {
+	position: relative;
+	background: #3973BF;
+}
+
+.arrow_box:after {
+	left: 97%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(57, 115, 191, 0);
+	border-left-color: #3973BF;
+	border-width: 7px;
+	margin-top: -7px;
+}
 
 .BackgroundMarker {
   div {
