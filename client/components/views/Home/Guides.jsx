@@ -51,8 +51,8 @@ export class Guides extends StoreObserver {
       <Element elementStyle="W15 Transparent NoWrap Box">
         <AuthDependent auth>
           <Element elementStyle="Tight WidthFull Transparent NoWrap">
-            <Layout layoutStyle="LayoutLight">
-              <p>Check out these guides near you</p>
+            <Layout layoutStyle="LayoutRegular">
+              <p>Check out these <strong>guides</strong> near you</p>
             </Layout>
           </Element>
 

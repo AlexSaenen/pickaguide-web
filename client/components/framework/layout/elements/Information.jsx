@@ -33,6 +33,9 @@ Information.defaultProps = {
 
 Information.propTypes = {
   content: React.PropTypes.string,
-  children: React.PropTypes.string,
+  children: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.array,
+  ]),
   infoStyle: React.PropTypes.string,
 };

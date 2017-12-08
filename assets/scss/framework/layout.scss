@@ -164,6 +164,15 @@ $layoutPadding: 2em;
   }
 }
 
+.LayoutRegular {
+  @extend .LayoutLight;
+  background-color: #d1dbec;
+
+  strong {
+    color: $softMainColor;
+  }
+}
+
 .LayoutBlank {
   @extend .LayoutLight;
   background-color: white;
