@@ -32,6 +32,7 @@ export class CreateAdvert extends StoreObserver {
         city: profile.city,
         country: profile.country,
         location: '',
+        title: '',
       },
     };
 
@@ -107,6 +108,18 @@ export class CreateAdvert extends StoreObserver {
     }, 400);
   }
 
+  changeTitle(title) {
+    const advert = Object.assign({}, this.state.advert);
+    advert.title = title;
+    this.setState({ advert });
+  }
+
+  changeDescription(description) {
+    const advert = Object.assign({}, this.state.advert);
+    advert.description = description;
+    this.setState({ advert });
+  }
+
   render() {
     const advert = this.state.advert || {};
 
@@ -119,10 +132,10 @@ export class CreateAdvert extends StoreObserver {
 
           <hr className="SpacedOverlay" />
 
-          <TextInput label="title" value={advert.title} required />
+          <TextInput label="title" value={advert.title} required override onChange={this.changeTitle.bind(this)} />
           <TextInput label="city" value={advert.city} required onChange={this.changeCity.bind(this)} />
           <TextInput label="country" value={advert.country} required onChange={this.changeCountry.bind(this)} />
-          <TextArea label="description" value={advert.description} required />
+          <TextArea label="description" value={advert.description} required override onChange={this.changeDescription.bind(this)} />
           <TextInput label="location" placeholder="Street Address" value={advert.location} onChange={this.changeLocation.bind(this)} />
 
           <Element elementStyle="Tight NoHorizontalWrap Clickable Height20">

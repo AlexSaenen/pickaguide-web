@@ -3,6 +3,10 @@
 .Message {
   border-radius: 0.4em;
   overflow: hidden;
+
+  a {
+    color: $infoLightColor;
+  }
 }
 
 .Success {
