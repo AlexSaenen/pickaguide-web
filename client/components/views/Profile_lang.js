@@ -15,7 +15,11 @@ export let strings = new LocalizedStrings({
       outputNoCountry:"None",
       outputNoDescription:"None",
       outputNoInterests:"None",
-      notIndicated:"None"
+      notIndicated:"None",
+      monthMap:[
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+      ]
    },
    fr:{
       title:"Profile",
@@ -31,6 +35,10 @@ export let strings = new LocalizedStrings({
       outputNoCountry:"Indéfini",
       outputNoDescription:"Indéfini",
       outputNoInterests:"Indéfini",
-      notIndicated:"Indéfini"
+      notIndicated:"Indéfini",
+      monthMap:[
+      'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jun',
+      'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec',
+      ]
    }
 });

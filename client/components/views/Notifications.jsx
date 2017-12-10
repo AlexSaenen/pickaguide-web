@@ -8,6 +8,7 @@ import { Message } from 'layout/elements/Message.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { strings } from './Search_lang.js';
+import { stringsNotif } from './Notifications.lang.js';
 
 export class Notifications extends StoreObserver {
 
@@ -67,7 +68,7 @@ export class Notifications extends StoreObserver {
     if (notifs.length === 0) {
       return (
         <Layout layoutStyle="LayoutBlank">
-          <Information infoStyle="Info Small MarginAuto LineSpaced">No notifications yet</Information>
+          <Information infoStyle="Info Small MarginAuto LineSpaced">{stringsNotif.noNotifications}</Information>
         </Layout>
       );
     }

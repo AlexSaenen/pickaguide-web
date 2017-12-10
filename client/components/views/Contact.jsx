@@ -76,7 +76,7 @@ export class Contact extends StoreObserver {
         <hr className="SpacedOverlay" />
         <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder={strings.fname} required />
         <EmailInput value={account ? account.email : ''} required />
-        <TelInput label="phone" value={profile ? profile.phone : ''} />
+        <TelInput label="phone" value={profile ? profile.phone : ''} placeholder={strings.phone} />
         <TextArea label="message" required />
       </PanelForm>
     );

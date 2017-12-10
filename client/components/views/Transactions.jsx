@@ -7,6 +7,7 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
+import { strings } from './Transactions.lang.js';
 
 export class Transactions extends StoreObserver {
 
@@ -48,7 +49,7 @@ export class Transactions extends StoreObserver {
     if (transactions.length === 0) {
       return (
         <Layout layoutStyle="LayoutBlank">
-          <Information infoStyle="Info Small MarginAuto LineSpaced">No transactions yet</Information>
+          <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noTransaction}</Information>
         </Layout>
       );
     }
