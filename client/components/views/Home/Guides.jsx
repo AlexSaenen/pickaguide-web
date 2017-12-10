@@ -51,8 +51,8 @@ export class Guides extends StoreObserver {
       <Element elementStyle="W15 Transparent NoWrap Box">
         <AuthDependent auth>
           <Element elementStyle="Tight WidthFull Transparent NoWrap">
-            <Layout layoutStyle="LayoutLight">
-              <p>Check out these guides near you</p>
+            <Layout layoutStyle="LayoutRegular">
+              <p>Check out these <strong>guides</strong> near you</p>
             </Layout>
           </Element>
 
@@ -66,6 +66,7 @@ export class Guides extends StoreObserver {
                         _id={guide._id}
                         firstName={guide.profile.firstName}
                         description={guide.profile.description}
+                        rate={guide.profile.rate}
                         avatar={avatars[index]}
                         key={index}
                         onClick={this.navigateToProfile}

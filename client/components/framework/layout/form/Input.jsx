@@ -25,6 +25,7 @@ export class Input extends PropsComponent {
       step: props.step,
     };
 
+    this.overrideState = props.override;
     this.handleEdit = this.handleEdit.bind(this);
     this.editMiddleware = props.onChange || (() => {});
   }
@@ -32,15 +33,19 @@ export class Input extends PropsComponent {
   handleEdit(e) {
     e.preventDefault();
 
-
     const newState = Object.assign({}, this.state);
     newState.value = e.target.value;
     this.editMiddleware(newState.value);
-    this.updateState(newState);
+    if (this.override !== true) {
+      this.updateState(newState);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     this.cache = this.state.value;
+    if (this.overrideState) {
+      this.cache = undefined;
+    }
     super.componentWillReceiveProps(nextProps);
   }
 

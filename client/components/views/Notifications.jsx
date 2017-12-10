@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import NotificationsActions from 'actions/Notifications.js';
@@ -76,11 +77,16 @@ export class Notifications extends StoreObserver {
       <Layout layoutStyle="LayoutBlank">
         {
           notifs.map((notif, index) => {
+            const body = notif.body.split('.');
+            const html = (<p>
+              <Link to={`/profiles/${notif.by}`}>{body[0]}.</Link> {body[1]}
+            </p>);
+
             return (
               <div key={index}>
                 <Message
                   title={notif.title}
-                  content={notif.body}
+                  content={html}
                   type="Notif"
                   time={false}
                   messageStyle="Medium MarginAuto"

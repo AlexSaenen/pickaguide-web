@@ -77,13 +77,13 @@ class SimpleMap extends StoreObserver {
           });
         }
 
-        guideAdsFinal.push({
-          advertId: this.state.ownLocation.id,
-          lat: this.state.ownLocation.geo[1] || this.state.center.lat,
-          lng: this.state.ownLocation.geo[0] || this.state.center.lng,
-          text: '0',
-          own: true,
-        });
+        // guideAdsFinal.push({
+        //   advertId: this.state.ownLocation.id,
+        //   lat: this.state.ownLocation.geo[1] || this.state.center.lat,
+        //   lng: this.state.ownLocation.geo[0] || this.state.center.lng,
+        //   text: '0',
+        //   own: true,
+        // });
       }
 
       const guides = guideAdsFinal.map((guide, index) => {

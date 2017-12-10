@@ -24,7 +24,7 @@ const displayBirthdate = (birthdate) => {
   ];
 
   const splitDate = birthdate.split('-');
-  return `${splitDate[2]} ${monthMap[Number(splitDate[1])]} ${splitDate[0]}`;
+  return `${splitDate[2]} ${monthMap[Number(splitDate[1]) - 1]} ${splitDate[0]}`;
 };
 
 
@@ -92,7 +92,13 @@ export class Profile extends StoreObserver {
           <div className="LayoutHeader">
             <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" /></div>
             <p className="HeaderText Title Inline-Block" >{profile.displayName}</p>
-            <div className="HeaderCheckMark"><CheckMark active={this.state.isConfirmed} /></div>
+            {
+              profile.rate !== null && profile.rate !== undefined &&
+                <div className="star-ratings-css Vertical">
+                  <div className="star-ratings-css-top" style={{ width: `${profile.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                  <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                </div>
+            }
           </div>
 
           <hr className="SpacedOverlay" />
