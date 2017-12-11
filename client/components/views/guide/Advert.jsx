@@ -125,6 +125,13 @@ export class Advert extends StoreObserver {
         <Layout layoutStyle="LayoutLight">
           <hr className="Overlay" />
 
+          {
+            advert.rate !== undefined &&
+              <div className="star-ratings-css LineSpaced Margin">
+                <div className="star-ratings-css-top" style={{ width: `${advert.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+              </div>
+          }
           <Title>{advert.title}</Title>
           <ClickablePicture
             url={this.state.avatar}
