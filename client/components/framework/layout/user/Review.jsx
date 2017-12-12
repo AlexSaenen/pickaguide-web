@@ -7,7 +7,7 @@ import { Slider } from 'form/Slider.jsx';
 import { CreateComment } from 'layout/user/CreateComment.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Message } from 'layout/elements/Message.jsx';
-import { Panel } from 'layout/containers/Panel.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Pay } from 'layout/user/Pay.jsx';
 import ReviewStore from 'stores/user/Review.js';
@@ -61,11 +61,22 @@ export class Review extends StoreObserver {
   }
 
   review(button) {
-    ReviewActions.review({
-      rate: button.target.parentNode.querySelector('#Rate').value,
-      for: this.for,
-      visitId: this.id,
-    });
+    const rate = button.target.parentNode.querySelector('#Rate').value;
+    if (rate >= 0 && rate <= 5) {
+      ReviewActions.review({
+        rate: button.target.parentNode.querySelector('#Rate').value,
+        for: this.for,
+        visitId: this.id,
+      });
+    } else {
+      this.setState({
+        message: {
+          title: 'Hold on',
+          content: 'Your rate needs to be between 0 (included) and 5 (included)',
+          type: 'Alert',
+        },
+      });
+    }
   }
 
   render() {
@@ -89,15 +100,15 @@ export class Review extends StoreObserver {
         }
         {
           this.canPay && this.state.hidePay === false &&
-            <Panel panelStyle="LessSpaced">
-              <Pay onPay={this.pay.bind(this)} />
-            </Panel>
+            <Layout layoutStyle="W30 Transparent MarginAuto">
+              <Pay onPay={this.pay.bind(this)} visitId={this.id} />
+            </Layout>
         }
         {
           this.state.hidePay &&
             <div>
               <hr className="SpacedOverlay" />
-              <NumInput label="Rate" min={1} max={5} step={1} required />
+              <NumInput label="Rate" min={0} max={5} step={1} required />
               <Button buttonStyle="Auto Blue" label="Send" onCallback={this.review.bind(this)} />
               {
                 this.state.message &&

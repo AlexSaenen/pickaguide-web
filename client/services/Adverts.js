@@ -4,7 +4,10 @@ import PromiseApi from 'services/PromiseApi.js';
 export default class AdvertsApi {
 
   static create(form) {
-    PromiseApi.auth().post('/proposals', form)
+    const files = form.pictures[0];
+    delete form.pictures;
+
+    PromiseApi.auth().uploads('/proposals', form, files)
       .then((res) => {
         if (res.error) {
           AdvertsActions.error(res.error);

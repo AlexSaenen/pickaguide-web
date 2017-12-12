@@ -45,7 +45,7 @@ export class OwnerAdvertPreview extends PropsComponent {
   render() {
     return (
       <div onClick={this.onClick} className="OwnerAdvertPreview">
-        <DeleteAction onClick={this.onDelete} />
+        <DeleteAction className="ExtraMargin" onClick={this.onDelete} />
         <Picture url={this.props.photoUrl} pictureType="WidthLimited" />
         <ToggleCheckMark className="Inline" active={this.state.active} onToggle={this.toggleAdvertState} />
         {

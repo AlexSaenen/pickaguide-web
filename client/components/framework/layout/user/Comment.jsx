@@ -70,7 +70,7 @@ export class Comment extends StoreObserver {
       <div className="Comment">
         {
           myId && this.state.owner._id === myId &&
-            <DeleteAction onClick={this.onDelete} />
+            <DeleteAction className="ExtraMargin" onClick={this.onDelete} />
         }
         <div className="CommentContent">
           <div>
