@@ -93,7 +93,7 @@ export class Profile extends StoreObserver {
             <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" /></div>
             <p className="HeaderText Title Inline-Block" >{profile.displayName}</p>
             {
-              profile.rate !== null && profile.rate !== undefined &&
+              !!profile.rate &&
                 <div className="star-ratings-css Vertical">
                   <div className="star-ratings-css-top" style={{ width: `${profile.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                   <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>

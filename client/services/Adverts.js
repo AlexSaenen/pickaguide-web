@@ -12,7 +12,20 @@ export default class AdvertsApi {
         if (res.error) {
           AdvertsActions.error(res.error);
         } else {
-          AdvertsActions.getSuccess(res.adverts);
+          Promise.all(res.adverts.map((advert) => {
+            if (advert.photoUrl === '') {
+              return PromiseApi.download(`/public/proposals/${advert._id}/image`);
+            }
+
+            return advert.photoUrl;
+          }))
+          .then((images) => {
+            images.forEach((image, index) => {
+              res.adverts[index].images = [image];
+            });
+
+            AdvertsActions.getSuccess(res.adverts);
+          });
         }
       })
       .catch((err) => {
@@ -26,7 +39,19 @@ export default class AdvertsApi {
         if (res.error) {
           AdvertsActions.error(res.error);
         } else {
-          AdvertsActions.findSuccess(res.advert);
+          if (res.advert.photoUrl === '') {
+            PromiseApi.get(`/public/proposals/${advertId}/imageHooks`)
+            .then((hooks) => {
+              Promise.all(hooks.map(hook => PromiseApi.download(`/public/proposals/${advertId}/image/${hook}`)))
+              .then((images) => {
+                res.advert.images = images;
+                AdvertsActions.findSuccess(res.advert);
+              });
+            });
+          } else {
+            res.advert.images = [res.advert.photoUrl];
+            AdvertsActions.findSuccess(res.advert);
+          }
         }
       })
       .catch((err) => {
@@ -40,7 +65,20 @@ export default class AdvertsApi {
         if (res.error) {
           AdvertsActions.error(res.error);
         } else {
-          AdvertsActions.getSuccess(res.adverts);
+          Promise.all(res.adverts.map((advert) => {
+            if (advert.photoUrl === '') {
+              return PromiseApi.download(`/public/proposals/${advert._id}/image`);
+            }
+
+            return advert.photoUrl;
+          }))
+          .then((images) => {
+            images.forEach((image, index) => {
+              res.adverts[index].images = [image];
+            });
+
+            AdvertsActions.getSuccess(res.adverts);
+          });
         }
       })
       .catch((err) => {
@@ -54,7 +92,20 @@ export default class AdvertsApi {
         if (res.error) {
           AdvertsActions.error(res.error);
         } else {
-          AdvertsActions.getSuccess(res.adverts);
+          Promise.all(res.adverts.map((advert) => {
+            if (advert.photoUrl === '') {
+              return PromiseApi.download(`/public/proposals/${advert._id}/image`);
+            }
+
+            return advert.photoUrl;
+          }))
+          .then((images) => {
+            images.forEach((image, index) => {
+              res.adverts[index].images = [image];
+            });
+
+            AdvertsActions.getSuccess(res.adverts);
+          });
         }
       })
       .catch((err) => {
@@ -68,7 +119,20 @@ export default class AdvertsApi {
         if (res.error) {
           AdvertsActions.error(res.error);
         } else {
-          AdvertsActions.getSuccess(res.adverts);
+          Promise.all(res.adverts.map((advert) => {
+            if (advert.photoUrl === '') {
+              return PromiseApi.download(`/public/proposals/${advert._id}/image`);
+            }
+
+            return advert.photoUrl;
+          }))
+          .then((images) => {
+            images.forEach((image, index) => {
+              res.adverts[index].images = [image];
+            });
+
+            AdvertsActions.getSuccess(res.adverts);
+          });
         }
       })
       .catch((err) => {
@@ -82,7 +146,20 @@ export default class AdvertsApi {
         if (res.error) {
           AdvertsActions.error(res.error);
         } else {
-          AdvertsActions.getSuccess(res.adverts);
+          Promise.all(res.adverts.map((advert) => {
+            if (advert.photoUrl === '') {
+              return PromiseApi.download(`/public/proposals/${advert._id}/image`);
+            }
+
+            return advert.photoUrl;
+          }))
+          .then((images) => {
+            images.forEach((image, index) => {
+              res.adverts[index].images = [image];
+            });
+
+            AdvertsActions.getSuccess(res.adverts);
+          });
         }
       })
       .catch((err) => {
@@ -96,7 +173,16 @@ export default class AdvertsApi {
         if (res.error) {
           AdvertsActions.error(res.error);
         } else {
-          AdvertsActions.updateSuccess(res.advert);
+          if (res.advert.photoUrl === '') {
+            PromiseApi.download(`/public/proposals/${advert._id}/image`)
+            .then((image) => {
+              res.advert.images = [image];
+              AdvertsActions.updateSuccess(res.advert);
+            });
+          } else {
+            res.advert.images = [res.advert.photoUrl];
+            AdvertsActions.updateSuccess(res.advert);
+          }
         }
       })
       .catch((err) => {
@@ -110,7 +196,20 @@ export default class AdvertsApi {
         if (res.error) {
           AdvertsActions.error(res.error);
         } else {
-          AdvertsActions.getSuccess(res.adverts);
+          Promise.all(res.adverts.map((advert) => {
+            if (advert.photoUrl === '') {
+              return PromiseApi.download(`/public/proposals/${advert._id}/image`);
+            }
+
+            return advert.photoUrl;
+          }))
+          .then((images) => {
+            images.forEach((image, index) => {
+              res.adverts[index].images = [image];
+            });
+
+            AdvertsActions.getSuccess(res.adverts);
+          });
         }
       })
       .catch((err) => {
@@ -124,7 +223,20 @@ export default class AdvertsApi {
         if (res.error) {
           AdvertsActions.error(res.error);
         } else {
-          AdvertsActions.getSuccess(res.adverts);
+          Promise.all(res.adverts.map((advert) => {
+            if (advert.photoUrl === '') {
+              return PromiseApi.download(`/public/proposals/${advert._id}/image`);
+            }
+
+            return advert.photoUrl;
+          }))
+          .then((images) => {
+            images.forEach((image, index) => {
+              res.adverts[index].images = [image];
+            });
+
+            AdvertsActions.getSuccess(res.adverts);
+          });
         }
       })
       .catch((err) => {

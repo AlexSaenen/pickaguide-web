@@ -46,6 +46,7 @@ export class Transactions extends StoreObserver {
     } else if (store.infos) {
       this.setState({ cards: store.infos.sources.data, error: null });
     } else {
+      console.log(store);
       this.setState({ transactions: store.transactions.Payments, error: null });
     }
   }
@@ -110,8 +111,8 @@ export class Transactions extends StoreObserver {
             }
             <NewCard />
           </Element>
-          <Element elementStyle="W70 NoWrap Box Top Transparent">
-            <Layout layoutStyle="LayoutBlank NoWrap">
+          <Element elementStyle="W50 NoWrap Box Top Transparent">
+            <Layout layoutStyle="LayoutBlank NoWrap NoHorizontalWrap">
               {
                 transactions.map((transaction, index) => {
                   const isPayer = transaction.payerId === id;
@@ -127,7 +128,7 @@ export class Transactions extends StoreObserver {
                         content={content}
                         type={isPayer ? 'InfoLight' : 'SuccessLight'}
                         time={false}
-                        messageStyle="Medium MarginAuto"
+                        messageStyle="Auto MarginAuto"
                       />
                       <br />
                     </div>

@@ -46,10 +46,10 @@ export class OwnerAdvertPreview extends PropsComponent {
     return (
       <div onClick={this.onClick} className="OwnerAdvertPreview">
         <DeleteAction className="ExtraMargin" onClick={this.onDelete} />
-        <Picture url={this.props.photoUrl} pictureType="WidthLimited" />
+        <Picture url={this.props.images[0]} pictureType="WidthLimited" />
         <ToggleCheckMark className="Inline" active={this.state.active} onToggle={this.toggleAdvertState} />
         {
-          this.props.rate !== undefined &&
+          !!this.props.rate &&
             <div className="star-ratings-css LineSpaced">
               <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
               <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
@@ -71,7 +71,6 @@ OwnerAdvertPreview.propTypes = {
   onClick: React.PropTypes.func.isRequired,
   title: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
-  photoUrl: React.PropTypes.string.isRequired,
   active: React.PropTypes.bool.isRequired,
   rate: React.PropTypes.number,
 };

@@ -126,7 +126,7 @@ export class Advert extends StoreObserver {
           <hr className="Overlay" />
 
           {
-            advert.rate !== undefined &&
+            !!advert.rate &&
               <div className="star-ratings-css LineSpaced Margin">
                 <div className="star-ratings-css-top" style={{ width: `${advert.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                 <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
@@ -154,7 +154,9 @@ export class Advert extends StoreObserver {
           <hr className="SpacedDivider" />
 
           <Panel panelStyle="NoWrap">
-            <Picture pictureName="Advert Cover" pictureType="WidthLimited" url={advert.photoUrl} />
+            {
+              advert.images.map(image => <Picture pictureName="Advert Cover" pictureType="WidthLimited" url={image} />)
+            }
           </Panel>
 
           <AuthDependent auth>
