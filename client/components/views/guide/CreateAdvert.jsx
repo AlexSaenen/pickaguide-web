@@ -1,19 +1,19 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import ImageUploader from 'react-images-upload';
+import ImageUploader from 'layout/user/uploader/FileUploader.jsx';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { FormController } from 'base/FormController.jsx';
 import { PanelForm } from 'view/PanelForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import { Element } from 'layout/list/Element.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
 import ProfileStore from 'stores/user/Profile.js';
 import AdvertMap from 'layout/user/AdvertMap.jsx';
-
 
 export class CreateAdvert extends StoreObserver {
 
@@ -35,7 +35,6 @@ export class CreateAdvert extends StoreObserver {
     this.ctrl = new FormController();
     this.ctrl.attachSubmit(this.onSubmit.bind(this));
     this.timeoutChange = null;
-
     this.onDrop = this.onDrop.bind(this);
   }
 
@@ -54,7 +53,16 @@ export class CreateAdvert extends StoreObserver {
   onSubmit(form) {
     delete form[''];
     form.pictures = this.state.pictures;
-    AdvertsActions.create(form);
+
+    if (form.pictures.length > 0) {
+      AdvertsActions.create(form);
+    } else {
+      this.ctrl.messageCallback({
+        title: 'We need images',
+        content: 'We need at least one image for your new advert',
+        type: 'Alert',
+      }, false);
+    }
   }
 
   changeLocation(location) {
@@ -109,11 +117,9 @@ export class CreateAdvert extends StoreObserver {
     this.setState({ advert });
   }
 
-  onDrop(picture) {
-    const pictures = this.state.pictures;
-
+  onDrop(pictures) {
     this.setState({
-      pictures: pictures.concat(picture),
+      pictures,
     });
   }
 
@@ -125,12 +131,14 @@ export class CreateAdvert extends StoreObserver {
         <PanelForm controller={this.ctrl} layoutStyle="LayoutLight Tight" panelStyle="Large">
           <Title>Create Ad</Title>
 
+          <Information infoStyle="Info">Your first selected picture will be used as cover</Information>
+
           <ImageUploader
             withIcon
             withPreview
             buttonText="Choose images"
-            onChange={this.onDrop}
             imgExtension={['.jpg', '.gif', '.png', '.gif']}
+            onChange={this.onDrop}
           />
 
           <hr className="SpacedOverlay" />
