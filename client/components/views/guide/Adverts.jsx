@@ -30,9 +30,10 @@ export class Adverts extends StoreObserver {
   }
 
   onStore(store) {
-    const newState = Object.assign({}, this.state);
-    newState.adverts = store.adverts;
-    this.updateState(newState);
+    // const newState = Object.assign({}, this.state);
+    // newState.adverts = store.adverts;
+    this.setState({ adverts: store.adverts });
+    // this.updateState(newState);
   }
 
   reviewAdvert(advertId) {

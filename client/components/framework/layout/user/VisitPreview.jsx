@@ -71,8 +71,8 @@ export class VisitPreview extends PropsComponent {
     const statusLabelStyle = `Bold Inline OverflowHidden TextOverflow ${isBad ? 'Red' : ''}${isGood ? 'Green' : ''}${isOkay ? 'Blue' : ''}`;
 
     return (
-      <div className="VisitPreview" onClick={this.onClick}>
-        <Picture url={visit.about ? visit.about.photoUrl : '/assets/images/deleted.png'} pictureType="HeightLimited" />
+      <div className="VisitPreview SoftShadow Margin" onClick={this.onClick}>
+        <Picture url={visit.about ? visit.about.images[0] : '/assets/images/deleted.png'} pictureType="HeightLimited" />
 
         <div className="DescriptionSection">
           {

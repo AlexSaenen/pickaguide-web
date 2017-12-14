@@ -106,9 +106,11 @@ export class OwnerAdvert extends StoreObserver {
 
     if (advert === undefined || advert === null) {
       return (
-        <Layout layoutStyle="LayoutBlank">
-          <Text>No such advert found</Text>
-        </Layout>
+        <div className="OwnerAdvert">
+          <Layout layoutStyle="LayoutBlank">
+            <Text>No such advert found</Text>
+          </Layout>
+        </div>
       );
     }
 
@@ -174,7 +176,7 @@ export class OwnerAdvert extends StoreObserver {
             </Element>
 
             <Element elementStyle="Auto Tight Clickable">
-              <ClickablePicture onClick={this.coverEditorCtrl.toggle} url={advert.photoUrl} />
+              <ClickablePicture onClick={this.coverEditorCtrl.toggle} url={advert.images[0]} />
             </Element>
           </PanelList>
         </Layout>

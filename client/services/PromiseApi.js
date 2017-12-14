@@ -88,6 +88,35 @@ export default class PromiseApi {
     });
   }
 
+  static uploads(url, body, files) {
+    return new Promise((resolve, reject) => {
+      const req = new XMLHttpRequest();
+
+      const formData = new FormData();
+
+      formData.append('proposalForm', JSON.stringify(body));
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files.item(i);
+        formData.append(file.name, file);
+      }
+
+      req.addEventListener('load', function callback() {
+        if (req.status === 200) {
+          resolve(JSON.parse(this.response));
+        } else {
+          reject('Upload failed');
+        }
+      });
+
+      req.open('POST', `${config.apiUrl}${url}`, true);
+
+      if (this.token) { req.setRequestHeader('Authorization', `Bearer ${this.token}`); }
+
+      req.send(formData);
+    });
+  }
+
   static download(url) {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();

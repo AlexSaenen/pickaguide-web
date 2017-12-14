@@ -19,6 +19,50 @@
   }
 }
 
+.SuccessLight {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  .MessageTitle {
+    background-color: $successLightColor;
+  }
+
+  .MessageContent {
+    color: black;
+  }
+}
+
+.NeutralLight {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: 'bariol';
+
+  .MessageTitle {
+    background-color: $modalSecondaryColor;
+    color: white;
+  }
+
+  .MessageContent {
+    color: black;
+  }
+}
+
+.InfoLight {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  .MessageTitle {
+    background-color: $infoLightColor;
+  }
+
+  .MessageContent {
+    color: black;
+  }
+}
+
 .Alert {
   .MessageTitle {
     background-color: $alertLightColor;
@@ -51,6 +95,7 @@
   }
 }
 
+.Message.Auto { width: 100%; }
 .Message.Small { width: 20em; }
 .Message.Medium { width: 40em; }
 .Message.Large { width: 60em; }

@@ -17,7 +17,16 @@ export default class SearchApi {
       })
       .then((avatars) => {
         searchResults.avatars = avatars;
-        SearchActions.searchSuccess.defer(searchResults);
+      })
+      .then(() => {
+        Promise.all(searchResults.adverts.map(advert => PromiseApi.download(`/public/proposals/${advert._id}/image`)))
+        .then((images) => {
+          images.forEach((image, index) => {
+            searchResults.adverts[index].images = [image];
+          });
+
+          SearchActions.searchSuccess.defer(searchResults);
+        });
       })
       .catch(err => SearchActions.error(err));
   }

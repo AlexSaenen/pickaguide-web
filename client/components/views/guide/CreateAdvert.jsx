@@ -1,22 +1,18 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import ImageUploader from 'react-images-upload';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { ModalFormController } from 'base/ModalFormController.jsx';
 import { FormController } from 'base/FormController.jsx';
 import { PanelForm } from 'view/PanelForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Element } from 'layout/list/Element.jsx';
 import { TextArea } from 'form/TextArea.jsx';
-import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
-import { EditAdvertCover } from 'modals/EditAdvertCover.jsx';
 import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
 import ProfileStore from 'stores/user/Profile.js';
 import AdvertMap from 'layout/user/AdvertMap.jsx';
-
-const defaultCoverUrl = 'http://www.newyorker.com/wp-content/uploads/2015/12/Veix-Goodbye-New-York-Color-1200.jpg';
 
 
 export class CreateAdvert extends StoreObserver {
@@ -28,19 +24,19 @@ export class CreateAdvert extends StoreObserver {
 
     this.state = {
       advert: {
-        url: defaultCoverUrl,
         city: profile.city,
         country: profile.country,
         location: '',
         title: '',
       },
+      pictures: [],
     };
 
     this.ctrl = new FormController();
     this.ctrl.attachSubmit(this.onSubmit.bind(this));
-    this.editCoverCtrl = new ModalFormController();
-    this.editCoverCtrl.attachSubmit(this.updateCover.bind(this));
     this.timeoutChange = null;
+
+    this.onDrop = this.onDrop.bind(this);
   }
 
   onStore(store) {
@@ -55,15 +51,9 @@ export class CreateAdvert extends StoreObserver {
     }
   }
 
-  updateCover(form) {
-    const newState = Object.assign({}, this.state);
-    newState.advert.url = form.photoUrl;
-    this.editCoverCtrl.closeAndReset();
-    this.setState(newState);
-  }
-
   onSubmit(form) {
-    form.photoUrl = this.state.advert.url;
+    delete form[''];
+    form.pictures = this.state.pictures;
     AdvertsActions.create(form);
   }
 
@@ -83,7 +73,6 @@ export class CreateAdvert extends StoreObserver {
     if (this.timeoutChange) {
       clearTimeout(this.timeoutChange);
     }
-
 
     this.timeoutChange = setTimeout(() => {
       const advert = Object.assign({}, this.state.advert);
@@ -120,6 +109,14 @@ export class CreateAdvert extends StoreObserver {
     this.setState({ advert });
   }
 
+  onDrop(picture) {
+    const pictures = this.state.pictures;
+
+    this.setState({
+      pictures: pictures.concat(picture),
+    });
+  }
+
   render() {
     const advert = this.state.advert || {};
 
@@ -128,7 +125,13 @@ export class CreateAdvert extends StoreObserver {
         <PanelForm controller={this.ctrl} layoutStyle="LayoutLight Tight" panelStyle="Large">
           <Title>Create Ad</Title>
 
-          <ClickablePicture url={advert.url} onClick={this.editCoverCtrl.toggle} />
+          <ImageUploader
+            withIcon
+            withPreview
+            buttonText="Choose images"
+            onChange={this.onDrop}
+            imgExtension={['.jpg', '.gif', '.png', '.gif']}
+          />
 
           <hr className="SpacedOverlay" />
 
@@ -142,8 +145,6 @@ export class CreateAdvert extends StoreObserver {
             <AdvertMap zoom={12} location={this.state.location} city={advert.city} country={advert.country} />
           </Element>
         </PanelForm>
-
-        <EditAdvertCover controller={this.editCoverCtrl} />
       </div>
     );
   }

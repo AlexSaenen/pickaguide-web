@@ -43,10 +43,12 @@ const Visit = (props) => {
             visit.about &&
               <div>
                 {
-                  props.clickable ?
-                    <ClickablePicture url={visit.about.photoUrl} pictureName="Advert Cover" pictureType="WidthLimited" full onClick={() => { goToAdvert(props.type, visit.about._id); }} />
-                  :
-                    <Picture url={visit.about.photoUrl} pictureName="Advert Cover" pictureType="WidthLimited" full />
+                  visit.about.images.map((image) => {
+                    return props.clickable ?
+                      <ClickablePicture url={image} pictureName="Advert Cover" pictureType="WidthLimited" full onClick={() => { goToAdvert(props.type, visit.about._id); }} />
+                    :
+                      <Picture url={image} pictureName="Advert Cover" pictureType="WidthLimited" full />;
+                  })
                 }
               </div>
           }
