@@ -9,7 +9,7 @@ import PromiseApi from 'services/PromiseApi.js';
 const findImagesForVisits = (visits) => {
   return new Promise((resolve) => {
     Promise.all(visits.map((visit) => {
-      if (visit.about && visit.about.photoUrl !== '') {
+      if (visit.about && visit.about.photoUrl === '') {
         return PromiseApi.download(`/public/proposals/${visit.about._id}/image`);
       } else if (visit.about) {
         return Promise.resolve(visit.about.photoUrl);
@@ -84,7 +84,7 @@ export default class VisitsApi {
         if (res.error) {
           VisitsActions.error(res.error);
         } else {
-          if (res.visit.about && res.visit.about.photoUrl !== '') {
+          if (res.visit.about && res.visit.about.photoUrl === '') {
             PromiseApi.get(`/public/proposals/${res.visit.about._id}/imageHooks`)
             .then((hooks) => {
               Promise.all(hooks.map(hook => PromiseApi.download(`/public/proposals/${res.visit.about._id}/image/${hook}`)))
@@ -109,7 +109,7 @@ export default class VisitsApi {
         if (res.error) {
           VisitsActions.error(res.error);
         } else {
-          if (res.visit.about && res.visit.about.photoUrl !== '') {
+          if (res.visit.about && res.visit.about.photoUrl === '') {
             PromiseApi.get(`/public/proposals/${res.visit.about._id}/imageHooks`)
             .then((hooks) => {
               Promise.all(hooks.map(hook => PromiseApi.download(`/public/proposals/${res.visit.about._id}/image/${hook}`)))

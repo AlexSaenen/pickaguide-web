@@ -100,7 +100,7 @@ p.Underline { text-decoration: underline; }
 
 .arrow_box {
 	position: relative;
-	background: #3973BF;
+	background: $softMainColor;
 }
 
 .arrow_box:after {
@@ -113,7 +113,7 @@ p.Underline { text-decoration: underline; }
 	position: absolute;
 	pointer-events: none;
 	border-color: rgba(57, 115, 191, 0);
-	border-left-color: #3973BF;
+	border-left-color: $softMainColor;
 	border-width: 7px;
 	margin-top: -7px;
 }
@@ -180,9 +180,6 @@ p.Underline { text-decoration: underline; }
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
   -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
   box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition-property: all;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out;
   border-radius: 0.4em;
 }
 
@@ -196,6 +193,7 @@ p.Underline { text-decoration: underline; }
 .W20 { width: 20% !important; }
 .W30 { width: 30% !important; }
 .W40 { width: 40% !important; }
+.W45 { width: 45% !important; }
 .W50 { width: 50% !important; }
 .W60 { width: 60% !important; }
 .W70 { width: 70% !important; }
@@ -208,6 +206,7 @@ p.Underline { text-decoration: underline; }
 .AllowOverflow { overflow: visible !important; }
 *:focus { outline: none; }
 .Padding { padding: 0.5em !important; }
+.PaddingOne { padding: 1em !important; }
 .Hidden { display: none !important; }
 .SoftHidden { display: none; }
 .FullTransparent { opacity: 0; }
@@ -216,6 +215,7 @@ p.Underline { text-decoration: underline; }
 .Inline-BlockImportant { display: inline-block !important; }
 .Block { display: block !important; }
 .HeightNone { height: 0; }
+.HeightInherit { height: inherit; }
 .HeightFull { height: 100%; }
 .WidthFull { width: 100%; }
 .WidthFullImportant { width: 100% !important; }

@@ -18,10 +18,9 @@ div.LineContainer.Small {
   display: block;
   width: 40em;
   margin: 5em auto;
-  -moz-box-shadow: 0 0 6px black;
-	-webkit-box-shadow: 0 0 6px black;
-	box-shadow: 0 0 6px black;
-  border: 1px solid #555;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 0.1em;
 }
 

@@ -5,15 +5,12 @@ import { InlineForm } from 'form/InlineForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { strings } from '../../../views/Search_lang.js';
 
-import SearchActions from 'actions/Search.js';
-
 import 'scss/framework/form.scss';
 import 'scss/main/menu/entry.scss';
 
 
 export class SearchBar extends React.Component {
   constructor(props, context) {
-
     super(props, context);
 
     this.state = { visible: false };

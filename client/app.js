@@ -46,6 +46,10 @@ document.addEventListener('click', (event) => {
   }
 });
 
+document.fonts.ready.then(() => {
+  document.body.style.filter = 'blur(0px)';
+});
+
 browserHistory.listen(RoutesMiddleware);
 
 ReactDOM.render(

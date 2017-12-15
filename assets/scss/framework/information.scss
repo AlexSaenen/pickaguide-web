@@ -64,6 +64,7 @@ $borderWidth: 0.5em;
 .Information.Small { width: 20em; }
 .Information.Medium { width: 40em; }
 .Information.Large { width: 60em; }
+.Information.Auto { width: fit-content; }
 .Information.LineSpaced { margin: 2em auto; }
 .Information.LineTight { margin: 0.4em auto; }
 

@@ -90,7 +90,7 @@ export class EditProfile extends StoreObserver {
             profile.hasAvatar &&
               <Button
                 buttonStyle="Red Auto LineSpaced"
-                label="Remove"
+                label="Remove Picture"
                 onCallback={AvatarActions.remove}
               />
           }

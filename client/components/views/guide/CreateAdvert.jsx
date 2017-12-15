@@ -4,16 +4,18 @@ import ImageUploader from 'layout/user/uploader/FileUploader.jsx';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { FormController } from 'base/FormController.jsx';
-import { PanelForm } from 'view/PanelForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
+import { Form } from 'form/Form.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
+import { List } from 'layout/list/List.jsx';
 import { Element } from 'layout/list/Element.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
 import ProfileStore from 'stores/user/Profile.js';
-import AdvertMap from 'layout/user/AdvertMap.jsx';
+// import AdvertMap from 'layout/user/AdvertMap.jsx';
 
 export class CreateAdvert extends StoreObserver {
 
@@ -36,6 +38,7 @@ export class CreateAdvert extends StoreObserver {
     this.ctrl.attachSubmit(this.onSubmit.bind(this));
     this.timeoutChange = null;
     this.onDrop = this.onDrop.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onStore(store) {
@@ -128,31 +131,54 @@ export class CreateAdvert extends StoreObserver {
 
     return (
       <div>
-        <PanelForm controller={this.ctrl} layoutStyle="LayoutLight Tight" panelStyle="Large">
+        <Layout layoutStyle="LayoutBlank">
           <Title>Create Ad</Title>
+        </Layout>
 
-          <Information infoStyle="Info">Your first selected picture will be used as cover</Information>
+        <Layout layoutStyle="LayoutBlank">
+          <hr className="Overlay" />
+          <Form controller={this.ctrl} layoutStyle="LayoutBlank Tight" onSubmit={this.onSubmit}>
+            <List listStyle="ListGrid" elementStyle="W50 Transparent NoWrap Box Vertical">
+              <Layout layoutStyle="Transparent NoWrap">
+                <Information infoStyle="Info">Select images to illustrate your visit experience to others</Information>
 
-          <ImageUploader
-            withIcon
-            withPreview
-            buttonText="Choose images"
-            imgExtension={['.jpg', '.gif', '.png', '.gif']}
-            onChange={this.onDrop}
-          />
+                <ImageUploader
+                  className="SoftShadowNonHover"
+                  withIcon
+                  withPreview
+                  buttonText="Choose images"
+                  imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                  onChange={this.onDrop}
+                />
+              </Layout>
 
-          <hr className="SpacedOverlay" />
+              <Layout layoutStyle="Transparent SoftShadowNonHover">
+                <TextInput label="title" value={advert.title} required override onChange={this.changeTitle.bind(this)} />
+                <TextArea label="description" value={advert.description} required override onChange={this.changeDescription.bind(this)} />
+                <Information infoStyle="Info">The more descriptive you are, the more interesting people will find you</Information>
+              </Layout>
+            </List>
 
-          <TextInput label="title" value={advert.title} required override onChange={this.changeTitle.bind(this)} />
-          <TextInput label="city" value={advert.city} required onChange={this.changeCity.bind(this)} />
-          <TextInput label="country" value={advert.country} required onChange={this.changeCountry.bind(this)} />
-          <TextArea label="description" value={advert.description} required override onChange={this.changeDescription.bind(this)} />
-          <TextInput label="location" placeholder="Street Address" value={advert.location} onChange={this.changeLocation.bind(this)} />
+            <Layout layoutStyle="W80 NoWrap MarginAuto">
+              <Element elementStyle="W50 NoWrap PaddingOne Box Inline-Block Vertical">
+                <Element elementStyle="WidthFull Height20 NoWrap OverflowHidden Inline-Block SoftShadow">
+                  {/* <AdvertMap zoom={12} location={this.state.location} city={advert.city} country={advert.country} /> */}
+                </Element>
+              </Element>
 
-          <Element elementStyle="Tight NoHorizontalWrap Clickable Height20">
-            <AdvertMap zoom={12} location={this.state.location} city={advert.city} country={advert.country} />
-          </Element>
-        </PanelForm>
+              <Element elementStyle="W50 NoWrap PaddingOne Box Vertical Inline-Block">
+                <Information infoStyle="Info">Users near the location provided below will be able to see your advert in their choices</Information>
+
+                <Layout layoutStyle="Transparent SoftShadowNonHover">
+                  <TextInput label="city" value={advert.city} required onChange={this.changeCity.bind(this)} />
+                  <TextInput label="country" value={advert.country} required onChange={this.changeCountry.bind(this)} />
+                  <TextInput label="location" placeholder="Street Address" value={advert.location} onChange={this.changeLocation.bind(this)} />
+                </Layout>
+              </Element>
+            </Layout>
+            <Information infoStyle="Warning Auto MarginAuto">Once you create this advert you will still need to activate it, to appear to other users</Information>
+          </Form>
+        </Layout>
       </div>
     );
   }

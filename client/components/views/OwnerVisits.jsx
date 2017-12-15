@@ -74,32 +74,41 @@ export class OwnerVisits extends StoreObserver {
             </Layout>
         }
         <Layout layoutStyle="LayoutBlank">
-          <hr className="Overlay" />
+          {
+            !(myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0) && !(myVisits === null || theirVisits === null) &&
+              <hr className="Overlay" />
+          }
 
           <List listStyle="ListGrid" wrapChildren={false}>
             {
               myVisits && myVisits.length > 0 &&
-                <Element elementStyle={`${theirVisits && theirVisits.length > 0 ? 'Half' : 'WidthFull'} Transparent NoWrap Top Box`}>
+                <Element elementStyle={`${theirVisits && theirVisits.length > 0 ? 'Half' : 'WidthFullImportant'} Transparent NoWrap Top Box`}>
                   <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
                     <Title>Your visits as a traveler ...</Title>
-                    {
-                      myVisits.map((visit, index) => {
-                        return <OwnerVisitPreview {...visit} key={index} actionCtrl={this.actionCtrl} onClick={this.goToVisit} />;
-                      })
-                    }
+                    <br className="Margin" />
+                    <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap">
+                      {
+                        myVisits.map((visit, index) => {
+                          return <OwnerVisitPreview {...visit} key={index} actionCtrl={this.actionCtrl} onClick={this.goToVisit} />;
+                        })
+                      }
+                    </List>
                   </Layout>
                 </Element>
             }
             {
               theirVisits && theirVisits.length > 0 &&
-                <Element elementStyle={`${myVisits && myVisits.length > 0 ? 'Half' : 'WidthFull'} Transparent NoWrap Top Box`}>
+                <Element elementStyle={`${myVisits && myVisits.length > 0 ? 'Half' : 'WidthFullImportant'} Transparent NoWrap Top Box`}>
                   <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
                     <Title>Your visits with travelers ...</Title>
-                    {
-                      theirVisits.map((visit, index) => {
-                        return <GuideVisitPreview {...visit} key={index} actionCtrl={this.actionCtrl} onClick={this.goToVisit} />;
-                      })
-                    }
+                    <br className="Margin" />
+                    <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap">
+                      {
+                        theirVisits.map((visit, index) => {
+                          return <GuideVisitPreview {...visit} key={index} actionCtrl={this.actionCtrl} onClick={this.goToVisit} />;
+                        })
+                      }
+                    </List>
                   </Layout>
                 </Element>
             }

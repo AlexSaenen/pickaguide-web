@@ -25,11 +25,10 @@ $elementBorderRadius: 0.2em;
     margin: 0.8em 0;
     overflow: hidden;
     padding: 1em;
-    background-color: $modalLightColor;
     border-radius: $elementBorderRadius;
-    -moz-box-shadow: 0 0 4px black;
-    -webkit-box-shadow: 0 0 4px black;
-    box-shadow: 0 0 4px black;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
     transition-property: all;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
@@ -75,9 +74,9 @@ $elementBorderRadius: 0.2em;
     box-shadow: 0 0 0 black;
   }
   .Element.Clickable:hover {
-    -moz-box-shadow: 0 0 20px black;
-    -webkit-box-shadow: 0 0 20px black;
-    box-shadow: 0 0 20px black;
+    -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow:    0 0 14px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.22);
+    box-shadow:         0 0 14px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.22);
   }
 }
 

@@ -155,7 +155,7 @@ class ReactImageUploadComponent extends React.Component {
             {this.renderErrors()}
           </div>
           <button
-            className={`chooseFileButton ${this.props.buttonClassName}`}
+            className={`ShadowedButton ${this.props.buttonClassName}`}
             style={this.props.buttonStyles}
             onClick={this.triggerFileUpload}
           >{this.props.buttonText}
@@ -178,7 +178,7 @@ class ReactImageUploadComponent extends React.Component {
 
 ReactImageUploadComponent.defaultProps = {
   className: '',
-  buttonClassName: {},
+  buttonClassName: '',
   buttonStyles: {},
   withPreview: false,
   accept: 'accept=image/*',
@@ -186,10 +186,10 @@ ReactImageUploadComponent.defaultProps = {
   withIcon: true,
   buttonText: 'Choose images',
   withLabel: true,
-  label: 'Max file size: 5mb, accepted: jpg|gif|png|gif',
+  label: 'Max file size : 5mb, accepted types : jpeg | jpg | png | gif',
   labelStyles: {},
-  labelClass: '',
-  imgExtension: ['.jpg', '.gif', '.png', '.gif'],
+  labelClass: 'Italic',
+  imgExtension: ['.jpeg', '.jpg', '.png', '.gif'],
   maxFileSize: 5242880,
   fileSizeError: ' file size is too big',
   fileTypeError: ' is not supported file extension',
@@ -202,7 +202,7 @@ ReactImageUploadComponent.propTypes = {
   style: React.PropTypes.object,
   className: React.PropTypes.string,
   onChange: React.PropTypes.func,
-  buttonClassName: React.PropTypes.object,
+  buttonClassName: React.PropTypes.string,
   buttonStyles: React.PropTypes.object,
   withPreview: React.PropTypes.bool,
   accept: React.PropTypes.string,

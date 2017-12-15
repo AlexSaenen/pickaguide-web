@@ -38,7 +38,7 @@ export class VisitPreview extends PropsComponent {
       changeStatus = this.statusMapping[visitStatus].map((nextStatus, index) => {
         return (
           <Button
-            buttonStyle="Blue Auto AllSpaced"
+            buttonStyle="Blue Auto LessSpacedTop"
             label={nextStatus.capitalize()}
             key={index}
             onCallback={

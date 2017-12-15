@@ -59,12 +59,12 @@ $toggleCheckMarkSize: 1.5em;
 }
 
 .DeleteAction.ExtraMargin {
-  margin: 0.5em;  
+  margin: 0.5em;
 }
 
 .DeleteAction:hover {
   stroke: black;
-  background-color: $textLightColor;
+  background-color: $modalSecondaryColor;
 }
 
 $interestHeight: 1.6em;
