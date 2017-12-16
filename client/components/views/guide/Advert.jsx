@@ -155,7 +155,7 @@ export class Advert extends StoreObserver {
 
           <Panel panelStyle="NoWrap">
             {
-              advert.images.map(image => <Picture pictureName="Advert Cover" pictureType="WidthLimited" url={image} />)
+              advert.images.map((image, index) => <Picture key={index} pictureName="Advert Cover" pictureType="WidthLimited" url={image} />)
             }
           </Panel>
 

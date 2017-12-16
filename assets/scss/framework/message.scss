@@ -13,6 +13,10 @@
   margin-top: 1em;
 }
 
+.TopMarginImportant {
+  margin-top: 1em !important;
+}
+
 .Success {
   .MessageTitle {
     background-color: $successLightColor;

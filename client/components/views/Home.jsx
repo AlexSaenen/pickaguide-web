@@ -13,7 +13,7 @@ import { Loader } from 'layout/elements/Loader.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { Information } from 'layout/elements/Information.jsx';
-// import SimpleMap from 'layout/user/GoogleMap.jsx';
+import SimpleMap from 'layout/user/GoogleMap.jsx';
 import BlockStore from 'stores/user/Block.js';
 import AuthStore from 'stores/user/Auth.js';
 
@@ -30,7 +30,7 @@ export class Home extends StoreObserver {
     this.state = { adverts: null, isBlocking: BlockStore.getState().isBlocking };
     this.navigateToAdvert = this.navigateToAdvert.bind(this);
     this.renderAdverts = this.renderAdverts.bind(this);
-    // this.renderMap = this.renderMap.bind(this);
+    this.renderMap = this.renderMap.bind(this);
   }
 
   onStore(store) {
@@ -83,12 +83,12 @@ export class Home extends StoreObserver {
       </Element>;
   }
 
-  // renderMap() {
-  //   return (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
-  //     <Element elementStyle="Tight NoHorizontalWrap Clickable Height30">
-  //       <SimpleMap zoom={12} />
-  //     </Element>;
-  // }
+  renderMap() {
+    return (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
+      <Element elementStyle="Tight NoHorizontalWrap Clickable Height30">
+        <SimpleMap zoom={12} />
+      </Element>;
+  }
 
   navigateToAdvert(advertId) {
     browserHistory.push(`/guide/adverts/${advertId}`);
@@ -131,7 +131,7 @@ export class Home extends StoreObserver {
                     </Layout>
                   </Element>
               }
-              {/* {this.renderMap()} */}
+              {this.renderMap()}
               {this.renderAdverts()}
 
               <Element elementStyle="Auto Transparent Tight">

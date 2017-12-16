@@ -139,7 +139,7 @@ class ReactImageUploadComponent extends React.Component {
     return this.state.pictures.map((picture, index) => {
       return (
         <div key={index} className="uploadPictureContainer">
-          <img src={picture} className="uploadPicture" alt="preview" />
+          <img src={picture} className="uploadPicture" alt="preview" onClick={this.props.onSelect.bind(this, picture)} />
         </div>
       );
     });
@@ -202,6 +202,7 @@ ReactImageUploadComponent.propTypes = {
   style: React.PropTypes.object,
   className: React.PropTypes.string,
   onChange: React.PropTypes.func,
+  onSelect: React.PropTypes.func,
   buttonClassName: React.PropTypes.string,
   buttonStyles: React.PropTypes.object,
   withPreview: React.PropTypes.bool,

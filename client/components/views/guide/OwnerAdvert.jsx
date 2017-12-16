@@ -8,11 +8,12 @@ import { ModalController } from 'base/ModalController.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Text } from 'layout/elements/Text.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import { ToggleCheckMark } from 'layout/user/ToggleCheckMark.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Element } from 'layout/list/Element.jsx';
 import { Button } from 'layout/elements/Button.jsx';
-import { PanelList } from 'view/PanelList.jsx';
+import { List } from 'layout/list/List.jsx';
 import { EditAdvertCover } from 'modals/EditAdvertCover.jsx';
 import { EditText } from 'modals/EditText.jsx';
 import { EditTextArea } from 'modals/EditTextArea.jsx';
@@ -122,9 +123,19 @@ export class OwnerAdvert extends StoreObserver {
           onConfirm={this.onDelete}
         />
 
-        <Layout layoutStyle="LayoutLight">
-          <hr className="Overlay" />
+        <Layout layoutStyle="LayoutBlank">
+          <Title>Edit your advert</Title>
+          <br className="Margin" />
+          <Information infoStyle="Info Auto MarginAuto">Click on any part of the advert information below to edit it</Information>
+          <div>
+            <Button label="Back" buttonStyle="Auto TextWhite Bold" onCallback={browserHistory.goBack} />
+            <Button label="Preview" buttonStyle="Blue Auto TextWhite Bold Spaced" onCallback={this.previewAdvert} />
+            <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.deleteCtrl.toggle} />
+          </div>
+        </Layout>
 
+        <Layout layoutStyle="LayoutBlank">
+          <hr className="Overlay" />
           <Title
             onClick={
               function click() {
@@ -136,13 +147,7 @@ export class OwnerAdvert extends StoreObserver {
             {advert.title}
           </Title>
 
-          <div>
-            <Button label="Back" buttonStyle="Auto TextWhite Bold" onCallback={browserHistory.goBack} />
-            <Button label="Preview" buttonStyle="Blue Auto TextWhite Bold Spaced" onCallback={this.previewAdvert} />
-            <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.deleteCtrl.toggle} />
-          </div>
-
-          <PanelList listStyle="ListGrid" wrapChildren={false}>
+          <List listStyle="ListGrid" layoutStyle="LayoutBlank" wrapChildren={false}>
             <Element elementStyle="Auto Clickable" onClick={this.areaEditorCtrl.toggle}>
               <p className="Spaced OverflowHidden TextOverflow">{advert.description}</p>
             </Element>
@@ -178,7 +183,7 @@ export class OwnerAdvert extends StoreObserver {
             <Element elementStyle="Auto Tight Clickable">
               <ClickablePicture onClick={this.coverEditorCtrl.toggle} url={advert.images[0]} />
             </Element>
-          </PanelList>
+          </List>
         </Layout>
 
         <EditText controller={this.textEditorCtrl} />

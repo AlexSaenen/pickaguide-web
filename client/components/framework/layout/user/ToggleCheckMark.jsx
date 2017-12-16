@@ -20,7 +20,7 @@ export class ToggleCheckMark extends PropsComponent {
   render() {
     return (
       <div>
-        <p className="arrow_box" style={{ display: 'inline-block', backgroundColor: '#5ba2ff', borderRadius: '0.4em', padding: '0.2em 0.6em', margin: '0 0.8em', color: 'white', verticalAlign: 'middle' }}>{this.state.active ? 'disable' : 'enable'}</p>
+        <p className="arrow_box" style={{ display: 'inline-block', backgroundColor: '#5ba2ff', borderRadius: '0.4em', padding: '0.2em 0.6em', margin: '0 0.8em', color: 'white', verticalAlign: 'middle' }}>make {this.state.active ? 'private' : 'public'}</p>
         <div onClick={this.onToggle} className={`ToggleCheckMark InlineBlock ${this.props.transition ? '' : 'NoTransition NoRadius'}`}>
           <CheckMark active={this.state.active} />
         </div>
