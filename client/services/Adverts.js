@@ -167,21 +167,32 @@ export default class AdvertsApi {
       });
   }
 
-  static update(advert) {
-    PromiseApi.auth().put(`/proposals/${advert._id}`, advert)
+  static update(form) {
+    const files = form.pictures;
+    delete form.pictures;
+
+    let promiseChain = null;
+
+    if (files.length > 0) {
+      promiseChain = PromiseApi.auth().uploads(`/proposals/${form._id}`, form, files, 'PUT');
+    } else {
+      promiseChain = PromiseApi.auth().put(`/proposals/${form._id}`, { proposalForm: form });
+    }
+
+    promiseChain
       .then((res) => {
         if (res.error) {
           AdvertsActions.error(res.error);
         } else {
           if (res.advert.photoUrl === '') {
-            PromiseApi.download(`/public/proposals/${advert._id}/image`)
+            PromiseApi.download(`/public/proposals/${form._id}/image`)
             .then((image) => {
               res.advert.images = [image];
-              AdvertsActions.updateSuccess(res.advert);
+              AdvertsActions.updateSuccess.defer(res.advert);
             });
           } else {
             res.advert.images = [res.advert.photoUrl];
-            AdvertsActions.updateSuccess(res.advert);
+            AdvertsActions.updateSuccess.defer(res.advert);
           }
         }
       })

@@ -3,7 +3,6 @@ import { browserHistory } from 'react-router';
 import ImageUploader from 'layout/user/uploader/FileUploader.jsx';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { FormController } from 'base/FormController.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { Form } from 'form/Form.jsx';
 import { Title } from 'layout/elements/Title.jsx';
@@ -36,27 +35,26 @@ export class CreateAdvert extends StoreObserver {
       cover: null,
     };
 
-    this.ctrl = new FormController();
-    this.ctrl.attachSubmit(this.onSubmit.bind(this));
     this.timeoutChange = null;
     this.onDrop = this.onDrop.bind(this);
     this.onSelectAsCover = this.onSelectAsCover.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.messageCallback = () => {};
   }
 
   onStore(store) {
     if (store.error) {
-      this.ctrl.messageCallback({
+      this.messageCallback({
         title: 'Some error occurred when creating your ad',
         content: String(store.error),
-        type: 'Alert',
+        type: 'Alert Medium MarginAuto',
       }, false);
     } else {
       browserHistory.goBack();
     }
   }
 
-  onSubmit(form) {
+  onSubmit(form, messageCallback) {
     delete form[''];
     form.pictures = this.state.pictures;
 
@@ -98,10 +96,11 @@ export class CreateAdvert extends StoreObserver {
         AdvertsActions.create(form);
       }
     } else {
-      this.ctrl.messageCallback({
+      this.messageCallback = messageCallback;
+      messageCallback({
         title: 'We need images',
         content: 'We need at least one image for your new advert',
-        type: 'Alert',
+        type: 'Alert Medium MarginAuto',
       }, false);
     }
   }
@@ -112,7 +111,9 @@ export class CreateAdvert extends StoreObserver {
     }
 
     this.timeoutChange = setTimeout(() => {
-      this.setState({ location });
+      const advert = Object.assign({}, this.state.advert);
+      advert.location = location;
+      this.setState({ advert });
       clearTimeout(this.timeoutChange);
       this.timeoutChange = null;
     }, 400);
@@ -186,7 +187,7 @@ export class CreateAdvert extends StoreObserver {
 
         <Layout layoutStyle="LayoutBlank">
           <hr className="Overlay" />
-          <Form controller={this.ctrl} layoutStyle="LayoutBlank Tight" onSubmit={this.onSubmit}>
+          <Form layoutStyle="LayoutBlank Tight" onSubmit={this.onSubmit}>
             <List listStyle="ListGrid" elementStyle="W50 Transparent NoWrap Box Vertical">
               <Layout layoutStyle="Transparent NoWrap">
                 {
@@ -208,14 +209,14 @@ export class CreateAdvert extends StoreObserver {
                     pictures.length > 1 && cover === null &&
                       <Information infoStyle="Info">Select one of these images to be the advert's cover</Information>
                   }
-                  {
-                    cover !== null &&
-                      <div>
-                        <Information infoStyle="Info">The picture below will be the cover for your advert, or you can still chose another picture above</Information>
-                        <Picture pictureName="Cover" url={cover} />
-                      </div>
-                  }
                 </Layout>
+                {
+                  cover !== null &&
+                    <div>
+                      <Information infoStyle="Info">The picture below will be the cover for your advert, or you can still chose another picture above</Information>
+                      <Picture pictureName="Cover" url={cover} />
+                    </div>
+                }
               </Layout>
 
               <Layout layoutStyle="Transparent SoftShadowNonHover">
@@ -228,7 +229,7 @@ export class CreateAdvert extends StoreObserver {
             <Layout layoutStyle="W80 NoWrap MarginAuto">
               <Element elementStyle="W50 NoWrap PaddingOne Box Inline-Block Vertical">
                 <Element elementStyle="WidthFull Height20 NoWrap OverflowHidden Inline-Block SoftShadow">
-                  <AdvertMap zoom={12} location={this.state.location} city={advert.city} country={advert.country} />
+                  <AdvertMap zoom={12} location={advert.location} city={advert.city} country={advert.country} />
                 </Element>
               </Element>
 

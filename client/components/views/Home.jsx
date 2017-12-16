@@ -135,7 +135,7 @@ export class Home extends StoreObserver {
               {this.renderAdverts()}
 
               <Element elementStyle="Auto Transparent Tight">
-                <Button label="Explore all adverts available" onCallback={this.navigateToAllAdverts} buttonStyle="Auto Blue TextWhite" />
+                <Button label="Explore all adverts available" onCallback={this.navigateToAllAdverts} buttonStyle="Auto Blue TextWhite AllSpaced" />
               </Element>
             </List>
           </Element>

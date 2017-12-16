@@ -226,6 +226,7 @@ p.Underline { text-decoration: underline; }
 .BorderRadius { border-radius: 0.4em; }
 .NoRadius { border-radius: 0 !important; }
 .Clickable { cursor: pointer; }
+.LessMarginTop { margin-top: 0 !important; }
 .NoMargin { margin: 0 !important; }
 .MarginAuto { margin: auto; }
 .MarginAutoImportant { margin: auto !important; }

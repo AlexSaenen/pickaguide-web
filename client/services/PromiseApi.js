@@ -88,10 +88,9 @@ export default class PromiseApi {
     });
   }
 
-  static uploads(url, body, files) {
+  static uploads(url, body, files, method = 'POST') {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
-
       const formData = new FormData();
 
       formData.append('proposalForm', JSON.stringify(body));
@@ -109,7 +108,7 @@ export default class PromiseApi {
         }
       });
 
-      req.open('POST', `${config.apiUrl}${url}`, true);
+      req.open(method, `${config.apiUrl}${url}`, true);
 
       if (this.token) { req.setRequestHeader('Authorization', `Bearer ${this.token}`); }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
+import { Button } from 'layout/elements/Button.jsx';
 import './index.scss';
 
 const styles = {
@@ -20,6 +21,7 @@ class ReactImageUploadComponent extends React.Component {
     };
     this.inputElement = '';
     this.onDropFile = this.onDropFile.bind(this);
+    this.onDismissFiles = this.onDismissFiles.bind(this);
     this.triggerFileUpload = this.triggerFileUpload.bind(this);
   }
 
@@ -63,6 +65,16 @@ class ReactImageUploadComponent extends React.Component {
     }
   }
 
+  onDismissFiles() {
+    this.inputElement.value = '';
+
+    this.props.onChange([]);
+
+    this.setState({
+      pictures: [],
+    });
+  }
+
   /*
   Render the upload icon
   */
@@ -84,7 +96,9 @@ class ReactImageUploadComponent extends React.Component {
   /*
   On button click, trigger input file to open
   */
-  triggerFileUpload() {
+  triggerFileUpload(e) {
+    e.stopPropagation();
+    e.preventDefault();
     this.inputElement.value = '';
     this.inputElement.click();
   }
@@ -128,7 +142,7 @@ class ReactImageUploadComponent extends React.Component {
   renderPreview() {
     return (
       <div className="uploadPicturesWrapper">
-        <FlipMove enterAnimation="fade" leaveAnimation="fade" style={styles}>
+        <FlipMove enterAnimation="fade" leaveAnimation="none" style={styles}>
           {this.renderPreviewPictures()}
         </FlipMove>
       </div>
@@ -170,6 +184,10 @@ class ReactImageUploadComponent extends React.Component {
             className={this.props.className}
           />
           {this.props.withPreview ? this.renderPreview() : null}
+          {
+            this.state.pictures.length > 0 &&
+              <Button label="Dismiss" buttonStyle="Red Auto LessMarginTop" onCallback={this.onDismissFiles} />
+          }
         </div>
       </div>
     );

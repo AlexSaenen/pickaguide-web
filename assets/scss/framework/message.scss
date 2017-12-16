@@ -19,11 +19,11 @@
 
 .Success {
   .MessageTitle {
-    background-color: $successLightColor;
+    background-color: $successDarkColor;
   }
 
   .MessageContent {
-    background-color: $successDarkColor;
+    background-color: $successLightColor;
   }
 }
 
@@ -73,32 +73,32 @@
 
 .Alert {
   .MessageTitle {
-    background-color: $alertLightColor;
+    background-color: $alertDarkColor;
   }
 
   .MessageContent {
-    background-color: $alertDarkColor;
+    background-color: $alertLightColor;
   }
 }
 
 .Info {
   .MessageTitle {
-    background-color: $infoLightColor;
+    background-color: $infoDarkColor;
   }
 
   .MessageContent {
-    background-color: $infoDarkColor;
+    background-color: $infoLightColor;
   }
 }
 
 .Notif {
   .MessageTitle {
-    background-color: $modalSecondaryColor;
+    background-color: $textDarkerColor;
     color: white;
   }
 
   .MessageContent {
-    background-color: $textDarkerColor;
+    background-color: $modalSecondaryColor;
     color: white;
   }
 }
@@ -112,6 +112,7 @@
   padding: 0.7em;
   font-size: 1em;
   font-style: italic;
+  color: white;
 }
 
 .MessageContent {

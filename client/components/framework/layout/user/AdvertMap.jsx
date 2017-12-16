@@ -87,8 +87,8 @@ class AdvertMap extends React.Component {
           {...this.state.center}
           own={false}
           key={2}
-          text="yolo"
-          description="Hey you"
+          text="Information"
+          description="Here is the location of the visit according to the location you described"
         />
       </GoogleMapReact>
     );

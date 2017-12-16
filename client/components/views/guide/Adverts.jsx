@@ -26,7 +26,7 @@ export class Adverts extends StoreObserver {
 
   componentDidMount() {
     super.componentDidMount();
-    AdvertsActions.get();
+    AdvertsActions.get.defer();
   }
 
   onStore(store) {
