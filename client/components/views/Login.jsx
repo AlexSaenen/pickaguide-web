@@ -1,11 +1,10 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 
-import { PanelForm } from 'view/PanelForm.jsx';
+import { Form } from 'form/Form.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
 import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { FormController } from 'base/FormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { strings } from './Login_lang.js';
@@ -18,21 +17,21 @@ export class Login extends StoreObserver {
   constructor(props, context) {
     super(props, context, AuthStore);
 
-    this.ctrl = new FormController();
-    this.ctrl.attachSubmit(AuthActions.login.defer);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.messageCallback = () => {};
   }
 
   onStore(store) {
     const newState = Object.assign({}, this.state);
 
     if (store.error) {
-      this.ctrl.messageCallback({
+      this.messageCallback({
         title: String(strings.error),
         content: String(store.error),
         type: 'Alert',
       });
     } else {
-      this.ctrl.messageCallback({
+      this.messageCallback({
         title: String(strings.success),
         content: String(strings.content_success),
         type: 'Success',
@@ -42,15 +41,20 @@ export class Login extends StoreObserver {
     this.setState(newState);
   }
 
+  onSubmit(form, messageCallback) {
+    this.messageCallback = messageCallback;
+    AuthActions.login.defer(form);
+  }
+
   render() {
     return (
-      <div>
-        <PanelForm controller={this.ctrl} submitLabel={strings.submit}>
+      <div className="HomeContainer">
+        <Form layoutStyle="LayoutBlank SoftShadowNonHover W30 MarginAuto" submitLabel={strings.submit} onSubmit={this.onSubmit}>
           <Title>{strings.submit}</Title>
           <Button label="Or create an account" buttonStyle="MarginAuto Blue Auto LineSpaced" onCallback={() => { browserHistory.push('/signup'); }} />
           <EmailInput placeholder={strings.email} required />
           <PasswordInput placeholder={strings.password} required />
-        </PanelForm>
+        </Form>
 
       </div>
     );

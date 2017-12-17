@@ -6,6 +6,18 @@
     margin: auto 0.3em;
     align-items: center;
 
+    input {
+      color: white !important;
+    }
+
+    input[type="text"] {
+      border-bottom: 1px dashed white !important;
+    }
+
+    input[type="text"]:focus {
+      border-bottom: 1px dashed $infoLightColor !important;
+    }
+
     & > a {
         padding: 0.2em 1em;
         border-radius: 0.2em;

@@ -111,9 +111,11 @@ export class Search extends StoreObserver {
     }
 
     const searchBar = (
-      <InlineForm onSubmit={this.ctrl.submit} submitLabel={strings.submit}>
-        <TextInput label="terms" className="FormElement" placeholder={strings.placeholder} value={this.state.searchTerms} inline />
-      </InlineForm>
+      <Layout layoutStyle="LayoutBlank SoftShadow AutoWidthContent MarginAuto PaddingOne">
+        <InlineForm onSubmit={this.ctrl.submit} submitLabel={strings.submit}>
+          <TextInput label="terms" className="FormElement PaddingLeft" placeholder={strings.placeholder} value={this.state.searchTerms} inline />
+        </InlineForm>
+      </Layout>
     );
 
     if (results === null || profiles.length === 0 && adverts.length === 0) {

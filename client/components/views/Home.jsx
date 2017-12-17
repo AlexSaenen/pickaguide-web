@@ -113,7 +113,9 @@ export class Home extends StoreObserver {
               </Layout>
             </Element>
             <Element elementStyle="Tight Transparent NoWrap">
-              <Information infoStyle="Info Auto MarginAuto LineSpaced">You can access a Map with all <strong>available visits</strong> around you, you just need to <Link to="/login">log in</Link> or  <Link to="/signup">create</Link> an account</Information>
+              <Information infoStyle="Info Auto MarginAuto LineSpaced">
+                You can access a Map with all <strong>available visits</strong> around you, you just need to <Link to="/login">log in</Link> or <Link to="/signup">create</Link> an account
+              </Information>
             </Element>
           </List>
         </AuthDependent>

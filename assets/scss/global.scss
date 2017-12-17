@@ -202,11 +202,13 @@ p.Underline { text-decoration: underline; }
 .W90 { width: 90% !important; }
 .W30 { width: 30% !important; }
 
+.AutoWidthContent { width: fit-content; }
 .DashedDivider { border-top: 1px dashed #828282; margin: 0 !important; }
 .AllowOverflow { overflow: visible !important; }
 *:focus { outline: none; }
 .Padding { padding: 0.5em !important; }
 .PaddingOne { padding: 1em !important; }
+.PaddingLeft { padding-left: 1.5em !important; }
 .Hidden { display: none !important; }
 .SoftHidden { display: none; }
 .FullTransparent { opacity: 0; }
