@@ -59,7 +59,7 @@ export class VisitPreview extends PropsComponent {
       changeStatus = (
         <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
           <p className="Italic Inline LineSpaced">stating</p>
-          <p className="Bold Inline OverflowHidden TextOverflow">{this.state.status.message}</p>
+          <p className="Bold Inline OverflowHidden TextOverflow">"{this.state.status.message}"</p>
         </div>
       );
     }
@@ -71,7 +71,7 @@ export class VisitPreview extends PropsComponent {
     const statusLabelStyle = `Bold Inline OverflowHidden TextOverflow ${isBad ? 'Red' : ''}${isGood ? 'Green' : ''}${isOkay ? 'Blue' : ''}`;
 
     return (
-      <div className="VisitPreview SoftShadow Margin" onClick={this.onClick}>
+      <div className="VisitPreview SoftShadow Margin OverflowHidden" onClick={this.onClick}>
         <Picture url={visit.about ? visit.about.images[0] : '/assets/images/deleted.png'} pictureType="HeightLimited" />
 
         <div className="DescriptionSection">
@@ -87,7 +87,7 @@ export class VisitPreview extends PropsComponent {
           <p className="Bold Inline OverflowHidden TextOverflow">{new Date(visit.when).toDateString()}</p>
           <br />
           <p className="Italic Inline">with status</p>
-          <p className={statusLabelStyle}>{this.state.status.label}</p>
+          <p className={statusLabelStyle}>"{this.state.status.label}"</p>
           {changeStatus}
         </div>
       </div>

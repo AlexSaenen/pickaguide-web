@@ -20,7 +20,7 @@ export class AmountModal extends React.Component {
         <ModalForm controller={this.ctrl} layoutStyle="LayoutDark" modalStyle="Medium">
           <Title>How much do you wish to pay ?</Title>
           <hr className="SpacedOverlay" />
-          <NumInput label="amount" min={1} max={200} step={0.5} placeholder="Amount" defaultValue={5} required />
+          <NumInput label="amount" min={1} max={200} step={0.5} placeholder="Amount" required />
         </ModalForm>
       </div>
     );

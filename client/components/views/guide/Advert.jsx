@@ -16,6 +16,7 @@ import { Comment } from 'layout/user/Comment.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { CreateComment } from 'layout/user/CreateComment.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
+import { Loader } from 'layout/elements/Loader.jsx';
 import { Panel } from 'layout/containers/Panel.jsx';
 import { VisitCreation } from 'modals/VisitCreation.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
@@ -62,6 +63,7 @@ export class Advert extends StoreObserver {
       AdvertsActions.find(this.id);
     }
 
+
     if (AuthStore.getState().credentials) {
       CommentsActions.get(this.id);
     }
@@ -104,7 +106,7 @@ export class Advert extends StoreObserver {
     if (advert === undefined || advert === null) {
       return (
         <Layout layoutStyle="LayoutBlank">
-          <Text>No such advert found</Text>
+          <Loader />
         </Layout>
       );
     }

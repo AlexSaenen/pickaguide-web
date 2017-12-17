@@ -25,28 +25,28 @@ export class VisitToReview extends PropsComponent {
     const visit = this.props;
 
     return (
-      <div className="VisitToReview" onClick={this.onClick}>
+      <div className="VisitPreview SoftShadow Margin OverflowHidden" onClick={this.onClick}>
         <Picture url={visit.about ? visit.about.images[0] : '/assets/images/deleted.png'} pictureType="HeightLimited" />
 
         <div className="DescriptionSection">
           {
             visit.about ?
-              <p className="OverflowHidden TextOverflow Medium LineSpaced Bold Inline">{visit.about.title}</p>
+              <p className="OverflowHidden TextOverflow Medium Bold">{visit.about.title}</p>
               :
               <p className="OverflowHidden TextOverflow Small LineSpaced Bold Red">Advert was deleted</p>
           }
-          <br />
-          <p className="Italic Inline">with</p>
+          <p className="Italic Inline LineSpaced">with</p>
           <p className="Bold Inline OverflowHidden TextOverflow ">{visit.with}</p>
           <p className="Italic Inline">finished on</p>
           <p className="Bold Inline OverflowHidden TextOverflow ">{new Date(visit.finalStatus.date).toDateString()}</p>
           <br />
-          <p className="Italic Inline">stating</p>
-          <p className="Bold Inline OverflowHidden TextOverflow">{visit.finalStatus.message}</p>
-          <br />
+          <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <p className="Italic Inline">finished with</p>
+            <p className="Bold Inline OverflowHidden TextOverflow">"{visit.finalStatus.message}"</p>
+          </div>
 
           <Button
-            buttonStyle="Blue Auto LineSpaced"
+            buttonStyle="Blue Auto LessSpacedTop"
             label="Review"
             key={1}
             onCallback={

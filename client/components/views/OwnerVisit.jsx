@@ -3,8 +3,8 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Button } from 'layout/elements/Button.jsx';
-import { Text } from 'layout/elements/Text.jsx';
 import { SubTitle } from 'layout/elements/SubTitle.jsx';
+import { Loader } from 'layout/elements/Loader.jsx';
 import Visit from 'layout/user/Visit.jsx';
 import { FeedableModalFormController } from 'base/FeedableModalFormController.jsx';
 import { ChangeStatus } from 'modals/ChangeStatus.jsx';
@@ -69,7 +69,7 @@ export class OwnerVisit extends StoreObserver {
     if (visit === undefined || visit === null) {
       return (
         <Layout layoutStyle="LayoutBlank">
-          <Text>No such visit found</Text>
+          <Loader />
         </Layout>
       );
     }

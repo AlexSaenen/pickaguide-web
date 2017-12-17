@@ -19,7 +19,13 @@ export default class SearchApi {
         searchResults.avatars = avatars;
       })
       .then(() => {
-        Promise.all(searchResults.adverts.map(advert => PromiseApi.download(`/public/proposals/${advert._id}/image`)))
+        Promise.all(searchResults.adverts.map((advert) => {
+          if (advert.photoUrl === '') {
+            return PromiseApi.download(`/public/proposals/${advert._id}/image`);
+          }
+
+          return advert.photoUrl;
+        }))
         .then((images) => {
           images.forEach((image, index) => {
             searchResults.adverts[index].images = [image];

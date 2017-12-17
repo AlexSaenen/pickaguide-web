@@ -70,6 +70,7 @@ class AuthStore {
     AccountActions.invalidateAccount.defer();
     AvatarActions.invalidateAvatar.defer();
     UserActions.invalidateUser.defer();
+    BlockActions.invalidateBlock.defer();
 
     if (this.notifFetcher) {
       clearInterval(this.notifFetcher);

@@ -153,7 +153,8 @@ export default class VisitsApi {
           ReviewActions.error(res.error);
         } else {
           findImagesForVisits(res.myVisits)
-          .then(() => VisitsActions.getSuccess.defer(res));
+          .then(() => findImagesForVisits(res.theirVisits))
+          .then(() => VisitsActions.getSuccess(res));
 
           if (res.myVisits.length === 0 && res.theirVisits.length === 0) {
             BlockActions.isBlocking.defer();
