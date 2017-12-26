@@ -19,7 +19,7 @@ export class PanelLayout extends PropsComponent {
 }
 
 PanelLayout.defaultProps = {
-  layoutStyle: 'LayoutDark',
+  layoutStyle: 'LayoutBlank',
 };
 
 PanelLayout.propTypes = {

@@ -8,7 +8,7 @@ import { CreateComment } from 'layout/user/CreateComment.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
-import { SubTitle } from 'layout/elements/SubTitle.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { Pay } from 'layout/user/Pay.jsx';
 import ReviewStore from 'stores/user/Review.js';
 import ReviewActions from 'actions/Review.js';
@@ -86,7 +86,7 @@ export class Review extends StoreObserver {
         {
           this.state.hideComment === false && this.advertId &&
             <div>
-              <hr className="SpacedDivider" />
+              <hr className="SpacedOverlay" />
               <CreateComment advertId={this.advertId} onSubmit={this.comment.bind(this)} />
             </div>
         }
@@ -94,7 +94,7 @@ export class Review extends StoreObserver {
           this.canPay &&
             <div>
               <hr className="SpacedOverlay" />
-              <SubTitle>Do you wish to make a payment to your guide ?</SubTitle>
+              <Title smaller>Do you wish to make a payment to your guide ?</Title>
               <Slider checked={this.state.hidePay === false} onChange={this.onChangePayHide.bind(this)} />
             </div>
         }

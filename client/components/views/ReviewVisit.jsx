@@ -45,17 +45,19 @@ export class ReviewVisit extends PropsComponent {
     const forWhom = me === owner ? visit.by : owner;
 
     return (
-      <Layout layoutStyle="LayoutBlank">
-        <hr className="Overlay" />
+      <div>
 
         <Visit visit={visit} clickable={false} />
-        <Review
-          visitId={visit._id}
-          advertId={visit.about ? visit.about._id : null}
-          canPay={owner !== me}
-          for={forWhom}
-        />
-      </Layout>
+
+        <Layout layoutStyle="LessPaddingTop">
+          <Review
+            visitId={visit._id}
+            advertId={visit.about ? visit.about._id : null}
+            canPay={owner !== me}
+            for={forWhom}
+          />
+        </Layout>
+      </div>
     );
   }
 }

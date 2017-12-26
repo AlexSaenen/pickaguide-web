@@ -47,7 +47,7 @@ export class VisitCreation extends StoreObserver {
   render() {
     return (
       <div>
-        <ModalForm controller={this.ctrl} layoutStyle="LayoutDark Tight" modalStyle="Large">
+        <ModalForm controller={this.ctrl} layoutStyle="LayoutBlank Tight" modalStyle="Large">
           <Title>Request visit</Title>
           <hr className="SpacedOverlay" />
           <NumInput label="numberVisitors" min={1} max={100} step={1} placeholder="Visitors" defaultValue={1} required />

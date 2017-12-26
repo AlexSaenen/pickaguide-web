@@ -45,10 +45,10 @@ export class EditableInterests extends PropsComponent {
       <div className="EditableInterests">
         <div className="Editor">
           <svg width="100%" height="100%" viewBox="0 0 400 400" onClick={this.onAdd}>
-            <circle cx="200" cy="200" r="200" fill="#D7D7D7" />
+            <circle cx="200" cy="200" r="200" fill="white" />
             <circle id="hovered" cx="200" cy="200" fill="#5ba2ff" />
-            <line strokeWidth="25" x1="200" y1="80" x2="200" y2="320" />
-            <line strokeWidth="25" x1="80" y1="200" x2="320" y2="200" />
+            <line strokeWidth="35" x1="200" y1="80" x2="200" y2="320" strokeLinecap="round" />
+            <line strokeWidth="35" x1="80" y1="200" x2="320" y2="200" strokeLinecap="round" />
           </svg>
           <input placeholder="Any interest" id="interestEditor" onKeyPress={this._handleKeyPress} />
         </div>
@@ -66,9 +66,8 @@ export class EditableInterests extends PropsComponent {
                   }
                 >
                   <svg width="100%" height="100%" viewBox="0 0 400 400">
-                    <circle cx="200" cy="200" r="140" fill="none" strokeWidth="25" />
-                    <polyline points="130,130 270,270" fillOpacity="0" strokeWidth="20" />
-                    <polyline points="130,270 270,130" fillOpacity="0" strokeWidth="20" />
+                    <polyline points="130,130 270,270" fillOpacity="0" strokeWidth="20" strokeLinecap="round" />
+                    <polyline points="130,270 270,130" fillOpacity="0" strokeWidth="20" strokeLinecap="round" />
                   </svg>
                 </div>
                 <div className="Content">

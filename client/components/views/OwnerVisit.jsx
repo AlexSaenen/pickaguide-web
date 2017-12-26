@@ -22,6 +22,19 @@ const getStatusMapping = (type) => {
   });
 };
 
+const getButtonColor = (status) => {
+  switch (status.capitalize()) {
+    case 'Accept':
+    case 'Finish':
+      return 'Blue';
+    case 'Deny':
+    case 'Cancel':
+      return 'Red';
+    default:
+      return 'Blue';
+  }
+};
+
 
 export class OwnerVisit extends StoreObserver {
 
@@ -82,7 +95,7 @@ export class OwnerVisit extends StoreObserver {
       changeStatus = this.statusMapping[visitStatus].map((nextStatus, index) => {
         return (
           <Button
-            buttonStyle="Blue Auto AllSpaced"
+            buttonStyle={`${getButtonColor(nextStatus)} Auto`}
             label={nextStatus.capitalize()}
             key={index}
             onCallback={
@@ -94,42 +107,14 @@ export class OwnerVisit extends StoreObserver {
           />
         );
       });
-
-      changeStatus = (
-        <div><hr className="SpacedDivider" />{changeStatus}</div>
-      );
     }
 
     return (
-      <Layout layoutStyle="LayoutLight">
-        <hr className="Overlay" />
-
-        <Visit visit={visit} clickable type={this.type} />
-
-        {
-          visit.contact &&
-            <div>
-              <br /><br /><br />
-              <SubTitle>Contact Info</SubTitle>
-              {
-                visit.contact.phone &&
-                  <p>{visit.contact.phone}</p>
-              }
-              {
-                visit.contact.email &&
-                  <p>{visit.contact.email}</p>
-              }
-              {
-                !visit.contact.email && !visit.contact.phone &&
-                  <p>No contact info available</p>
-              }
-            </div>
-        }
-
-        {changeStatus}
+      <div>
+        <Visit visit={visit} clickable type={this.type} addon={changeStatus} />
 
         <ChangeStatus controller={this.ctrl} />
-      </Layout>
+      </div>
     );
   }
 }

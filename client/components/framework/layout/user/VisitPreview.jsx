@@ -6,6 +6,19 @@ import { Button } from 'layout/elements/Button.jsx';
 
 import 'scss/views/visits.scss';
 
+const getButtonColor = (status) => {
+  switch (status.capitalize()) {
+    case 'Accept':
+    case 'Finish':
+      return 'Blue';
+    case 'Deny':
+    case 'Cancel':
+      return 'Red';
+    default:
+      return 'Blue';
+  }
+};
+
 
 export class VisitPreview extends PropsComponent {
 
@@ -38,7 +51,7 @@ export class VisitPreview extends PropsComponent {
       changeStatus = this.statusMapping[visitStatus].map((nextStatus, index) => {
         return (
           <Button
-            buttonStyle="Blue Auto LessSpacedTop"
+            buttonStyle={`${getButtonColor(nextStatus)} Auto LessSpacedTop`}
             label={nextStatus.capitalize()}
             key={index}
             onCallback={

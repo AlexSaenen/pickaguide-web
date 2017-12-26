@@ -39,7 +39,7 @@ export class EditPassword extends StoreObserver {
 
   render() {
     return (
-      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutDark Tight">
+      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutBlank Tight">
         <Title>Update Password</Title>
         <PasswordInput label="currentPassword" placeholder="Current password" required />
         <PasswordInput placeholder="New password" required />

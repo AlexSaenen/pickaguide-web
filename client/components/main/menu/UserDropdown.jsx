@@ -56,8 +56,8 @@ export class UserDropdown extends StoreObserver {
 
         <div className="Dropdown HeightNone">
           <BlockDependent free>
-            <Link to="/accounts/mine/edit"><p>{strings.account}</p></Link>
-            <Link to="/profiles/mine/edit"><p>{strings.profile}</p></Link>
+            <Link to="/accounts/mine"><p>{strings.account}</p></Link>
+            <Link to="/profiles/mine"><p>{strings.profile}</p></Link>
             <Link to="/visits"><p>Visits</p></Link>
             <Link to="/notifications"><p>Notifications</p></Link>
             <Link to="/transactions"><p>Transactions</p></Link>

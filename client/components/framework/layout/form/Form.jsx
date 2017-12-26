@@ -97,7 +97,7 @@ export class Form extends PropsComponent {
 
 Form.defaultProps = {
   submitLabel: 'Submit',
-  layoutStyle: 'LayoutDark',
+  layoutStyle: 'LayoutBlank',
 };
 
 Form.propTypes = {

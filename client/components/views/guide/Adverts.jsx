@@ -60,7 +60,7 @@ export class Adverts extends StoreObserver {
           <Title>Adverts</Title>
           <Button
             label="New"
-            buttonStyle="Auto Red TextWhite Bold"
+            buttonStyle="Auto Blue TextWhite Bold"
             onCallback={this.navigateToAdCreation}
           />
         </Layout>

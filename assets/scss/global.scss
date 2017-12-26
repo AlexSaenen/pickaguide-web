@@ -88,6 +88,10 @@ p.Green { color: $successLightColor; }
 p.White { color: white; }
 p.Underline { text-decoration: underline; }
 
+p.LinkColor > a {
+  color: $infoLightColor;
+}
+
 .Box {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -96,7 +100,13 @@ p.Underline { text-decoration: underline; }
 
 .H80 { height: 80% !important; }
 .H20 { height: 20% !important; }
+.W20E { width: 20em; }
+.W30E { width: 30em; }
 .W40E { width: 40em; }
+.MinW24E { min-width: 24em; }
+
+.MW90 { max-width: 90%; }
+.MW30 { max-width: 30%; }
 
 .arrow_box {
 	position: relative;
@@ -192,6 +202,7 @@ p.Underline { text-decoration: underline; }
 .W10 { width: 10% !important; }
 .W20 { width: 20% !important; }
 .W30 { width: 30% !important; }
+.W35 { width: 35% !important; }
 .W40 { width: 40% !important; }
 .W45 { width: 45% !important; }
 .W50 { width: 50% !important; }
@@ -229,8 +240,14 @@ p.Underline { text-decoration: underline; }
 .NoRadius { border-radius: 0 !important; }
 .Clickable { cursor: pointer; }
 .LessMarginTop { margin-top: 0 !important; }
+.LessPaddingTop { padding-top: 0 !important; }
 .NoMargin { margin: 0 !important; }
 .MarginAuto { margin: auto; }
 .MarginAutoImportant { margin: auto !important; }
 .Margin { margin: 0.5em !important; }
+.MarginOne { margin: 1em !important; }
+.MarginOneAndHalf { margin: 1em 0.5em !important; }
+.MarginEight { margin: 0.8em !important; }
+.MarginFour { margin: 0.4em !important; }
+.MarginTopFour { margin-top: 0.4em !important; }
 .DecorationNone { text-decoration: none; }

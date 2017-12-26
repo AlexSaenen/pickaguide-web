@@ -1,5 +1,4 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 
 import { strings } from './About_lang.js';
 import { Title } from 'layout/elements/Title.jsx';
@@ -10,7 +9,7 @@ import { Layout } from 'layout/containers/Layout.jsx';
 const About = () => {
   return (
     <div>
-      <Layout layoutStyle="LayoutDark">
+      <Layout layoutStyle="LayoutBlank">
         <hr className="Overlay" />
         <Title>{strings.title}</Title>
       </Layout>

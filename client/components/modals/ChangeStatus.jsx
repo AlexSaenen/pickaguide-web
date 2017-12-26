@@ -50,7 +50,7 @@ export class ChangeStatus extends StoreObserver {
 
   render() {
     return (
-      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutDark Tight">
+      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutBlank Tight">
         <Title>{this.state.actionType.capitalize()} this visit</Title>
         <TextInput label="reason" placeholder="Comment" required value="No extra comment" />
         <Information infoStyle="Info LineTight">This action cannot be undone</Information>

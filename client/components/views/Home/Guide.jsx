@@ -24,9 +24,12 @@ export class Guide extends React.Component {
         <p className="Spaced Medium Inline">{this.props.firstName}</p>
         {
           !!this.props.rate &&
-            <div className="star-ratings-css NoMargin">
-              <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-              <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            <div>
+              <div className="star-ratings-css NoMargin">
+                <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+              </div>
+              <div className="Margin" />
             </div>
         }
       </div>
