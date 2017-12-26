@@ -28,11 +28,11 @@ export class NewCard extends React.Component {
       <div className="NewCard">
         <Form layoutStyle="" onSubmit={this.ctrl.submit} submitLabel="Create Card">
           <SubTitle>Expiration Date (Month then Year)</SubTitle>
-          <NumInput placeholder="1" label="expirationMonth" min={1} max={12} step={1} required />
-          <NumInput placeholder="2018" label="expirationYear" min={2012} max={2050} step={1} required />
-          <TextInput label="number" required />
+          <NumInput displayLabel="Expiration Month" placeholder="1" label="expirationMonth" min={1} max={12} step={1} required />
+          <NumInput displayLabel="Expiration Year" placeholder="2018" label="expirationYear" min={2012} max={2050} step={1} required />
+          <TextInput displayLabel={false} label="number" required />
           <br />
-          <TextInput placeholder="CVC" label="cvc" required />
+          <TextInput displayLabel={false} placeholder="CVC" label="cvc" required />
         </Form>
       </div>
     );

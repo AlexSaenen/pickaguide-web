@@ -71,10 +71,6 @@ export class Transactions extends StoreObserver {
       return wrapHeader(<Loader />);
     }
 
-    if (transactions.length === 0) {
-      return wrapHeader(<Information infoStyle="Info Small MarginAuto LineSpaced">No transactions yet</Information>);
-    }
-
     const id = AuthStore.getState().credentials.id;
     const balance = transactions.reduce((sum, transaction) => {
       const isPayer = transaction.payerId === id;
@@ -82,7 +78,7 @@ export class Transactions extends StoreObserver {
     }, 0);
 
     const htmlBalance = (
-      <p style={{ lineHeight: '3em', fontSize: '4em', color: `${balance > 0 ? '#2ECC71' : '#F75C4C'}` }}>{balance > 0 ? `+${balance}` : balance}€</p>
+      <p style={{ lineHeight: '3em', fontSize: '4em', color: `${balance >= 0 ? '#2ECC71' : '#F75C4C'}` }}>{balance > 0 ? `+${balance}` : balance}€</p>
     );
 
     return wrapHeader(
@@ -115,8 +111,11 @@ export class Transactions extends StoreObserver {
             }
             <NewCard />
           </Element>
-          <Element elementStyle="W50 NoWrap Box Top Transparent">
+          <Element elementStyle={`${transactions.length > 0 ? 'W50' : 'AutoWidthContent'} NoWrap Box Top Transparent`}>
             <Layout layoutStyle="LayoutBlank NoWrap NoHorizontalWrap">
+              {transactions.length === 0 &&
+                <Information infoStyle="Info Small MarginAuto LineSpaced">No transactions yet</Information>
+              }
               {
                 transactions.map((transaction, index) => {
                   const isPayer = transaction.payerId === id;

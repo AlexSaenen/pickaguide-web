@@ -22,7 +22,7 @@ export class Become extends StateComponent {
               <Text>
                 <p>Thank you for joining the <strong>Pickguide guides community</strong></p>
                 <p>Now you have access to <strong>lot of features</strong> that will allow you to handle <strong>your guide life</strong></p>
-                <p>You can begin by accessing to the <Link to="/guide/adverts">advert creation</Link> page to create your first advert</p>
+                <p>You can begin by accessing to the <a className="Blue" href="/guide/adverts">advert creation</a> page to create your first advert</p>
               </Text>
             </Layout>
             <Information infoStyle="Info">Enjoy & have a good experience with us.</Information>

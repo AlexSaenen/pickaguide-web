@@ -49,10 +49,10 @@ export class VisitCreation extends StoreObserver {
       <div>
         <ModalForm controller={this.ctrl} layoutStyle="LayoutBlank Tight" modalStyle="Large">
           <Title>Request visit</Title>
-          <hr className="SpacedOverlay" />
-          <NumInput label="numberVisitors" min={1} max={100} step={1} placeholder="Visitors" defaultValue={1} required />
+          <br />
+          <NumInput displayLabel="Number of visitors" label="numberVisitors" min={1} max={100} step={1} placeholder="Visitors" defaultValue={1} required />
           <DateTimeInput label="when" min={Date.now()} defaultValue={nowToInput(1000 * 60 * 60 * 5)} required />
-          <TextArea label="special" placeholder="More information" />
+          <TextArea displayLabel={false} label="special" placeholder="More information" />
         </ModalForm>
       </div>
     );

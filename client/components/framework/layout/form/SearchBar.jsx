@@ -53,7 +53,7 @@ export class SearchBar extends React.Component {
     return (
       <div className={`MenuEntry ${this.state.visible ? '' : 'Hidden'}`}>
         <InlineForm onSubmit={this.handleSubmit} submitLabel={strings.submit}>
-          <TextInput label="terms" className="FormElement" placeholder={strings.placeholder} inline />
+          <TextInput displayLabel={false} label="terms" className="FormElement" placeholder={strings.placeholder} inline />
         </InlineForm>
       </div>
     );

@@ -84,6 +84,7 @@ p.Vertical { vertical-align: middle; }
 .Vertical { vertical-align: middle; }
 p.Red { color: $alertLightColor; }
 p.Blue { color: $infoLightColor; }
+a.Blue { color: $infoLightColor; text-decoration: underline; }
 p.Green { color: $successLightColor; }
 p.White { color: white; }
 p.Underline { text-decoration: underline; }

@@ -58,14 +58,14 @@ export class Signup extends StoreObserver {
             <Layout layoutStyle="Transparent NoWrap Tight">
               <Information infoStyle="Info">{strings.success_info}</Information>
               <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
-                <TextInput label="firstName" placeholder={strings.first_name} required />
-                <TextInput label="lastName" placeholder={strings.last_name} required />
+                <TextInput displayLabel={false} label="firstName" placeholder={strings.first_name} required />
+                <TextInput displayLabel={false} label="lastName" placeholder={strings.last_name} required />
               </Layout>
             </Layout>
             <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
-              <EmailInput required />
-              <PasswordInput placeholder={strings.password} required />
-              <PasswordInput label="passwordConfirmation" placeholder={strings.passwordConfirm} required />
+              <EmailInput displayLabel={false} required />
+              <PasswordInput displayLabel={false} placeholder={strings.password} required />
+              <PasswordInput displayLabel={false} label="passwordConfirmation" placeholder={strings.passwordConfirm} required />
             </Layout>
           </List>
         </Form>

@@ -89,7 +89,7 @@ export class Form extends PropsComponent {
           />
           <SubmitButton label={this.props.submitLabel} />
         </form>
-        <Message {...this.state.message} messageStyle="TopMargin" onDismiss={this.clearMessage} />
+        <Message {...this.state.message} messageStyle="MessageCenter TopMargin AutoWidthContent" onDismiss={this.clearMessage} />
       </Layout>
     );
   }

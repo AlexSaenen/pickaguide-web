@@ -25,10 +25,12 @@ export class EditableInterests extends PropsComponent {
 
   onAdd() {
     const editor = document.getElementById('interestEditor');
-    const newState = Object.assign({}, this.state);
-    newState.interests.splice(0, 0, editor.value);
-    editor.value = '';
-    this.setState(newState);
+    if (editor.value !== '') {
+      const newState = Object.assign({}, this.state);
+      newState.interests.splice(0, 0, editor.value);
+      editor.value = '';
+      this.setState(newState);
+    }
   }
 
   _handleKeyPress(clickEvent) {

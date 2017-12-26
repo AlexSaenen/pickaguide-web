@@ -3,7 +3,6 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Button } from 'layout/elements/Button.jsx';
-import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import Visit from 'layout/user/Visit.jsx';
 import { FeedableModalFormController } from 'base/FeedableModalFormController.jsx';
@@ -91,19 +90,23 @@ export class OwnerVisit extends StoreObserver {
 
     let changeStatus = null;
 
+    const wrapFunctionToAction = (action) => {
+      return () => {
+        this.ctrl.feed({ callerId: this.id, actionType: action });
+        this.ctrl.toggle(true);
+      };
+    };
+
     if (this.statusMapping[visitStatus] !== undefined && visit.about) {
       changeStatus = this.statusMapping[visitStatus].map((nextStatus, index) => {
+        const callback = wrapFunctionToAction(nextStatus);
+
         return (
           <Button
             buttonStyle={`${getButtonColor(nextStatus)} Auto`}
             label={nextStatus.capitalize()}
             key={index}
-            onCallback={
-              function callback() {
-                this.ctrl.feed({ callerId: this.id, actionType: nextStatus });
-                this.ctrl.toggle(true);
-              }.bind(this)
-            }
+            onCallback={callback}
           />
         );
       });
