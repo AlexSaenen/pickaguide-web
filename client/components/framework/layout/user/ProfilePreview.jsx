@@ -26,10 +26,10 @@ export class ProfilePreview extends React.Component {
         <Picture url={this.props.avatar} pictureType="HeightLimited" />
         <div className="DescriptionSection">
           <div>
-            <p className="Spaced Medium Inline">{this.props.displayName}</p>
+            <p className="Spaced Medium Inline Vertical">{this.props.displayName}</p>
             {
               !!this.props.rate &&
-                <div className="star-ratings-css">
+                <div className="star-ratings-css Vertical">
                   <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                   <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                 </div>

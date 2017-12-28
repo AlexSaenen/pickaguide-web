@@ -71,11 +71,13 @@ export class AdvertPreview extends React.Component {
             <p className="Medium Bold Inline">{this.props.title}</p>
 
             <div>
-              <p className="Inline Italic">in</p>
-              <p className="Bold Inline">{this.props.city}, {this.props.country}</p>
+              <div className="Inline Vertical">
+                <p className="Inline Italic">in</p>
+                <p className="Bold Inline">{this.props.city}, {this.props.country}</p>
+              </div>
               {
                 !!this.props.rate &&
-                  <div className="star-ratings-css">
+                  <div className="star-ratings-css Vertical">
                     <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                     <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                   </div>
@@ -83,13 +85,13 @@ export class AdvertPreview extends React.Component {
 
               {
                 this.props.amountVisits !== 0 &&
-                  <p className="Italic">already visited {this.props.amountVisits > 1 ? `${this.props.amountVisits} times` : 'once'}</p>
+                  <p className="Italic MarginTwo">already visited {this.props.amountVisits > 1 ? `${this.props.amountVisits} times` : 'once'}</p>
               }
             </div>
           </div>
 
           <div className="Margin">
-            <p className="Small OverflowHidden MultiLineTextOverflow">{this.props.description}</p>
+            <p className={`Small OverflowHidden ${this.props.amountVisits !== 0 ? 'TextOverflow' : 'MultiLineTextOverflow'}`}>{this.props.description}</p>
           </div>
         </div>
 

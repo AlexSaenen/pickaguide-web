@@ -11,6 +11,7 @@ $footerHeight: 11em;
   height: $footerHeight;
   background-color: $modalDarkColor;
   color: white;
+  margin-top: 5em;
 
   a {
     text-decoration: none;
@@ -29,9 +30,10 @@ $footerHeight: 11em;
       a {
         display:inline-block;
         margin: 0 5px;
-      }
-      a:hover {
-        background-color: $modalLightColor;
+
+        img {
+          border-radius: 0.5em;
+        }
       }
     }
   }

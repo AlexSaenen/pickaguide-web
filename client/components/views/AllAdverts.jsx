@@ -9,6 +9,7 @@ import AdvertsActions from 'actions/Adverts.js';
 import { Element } from 'layout/list/Element.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 
 import 'scss/views/home.scss';
 
@@ -50,34 +51,42 @@ export class AllAdverts extends StoreObserver {
     const adverts = this.state.adverts;
 
     return (
-      <div className="HomeContainer">
-        <List wrapChildren={false} listStyle="ListGrid">
-          {
-            (adverts === null || adverts.length > 0) &&
-              <Element elementStyle="W70 Transparent NoWrap Box">
-                {
-                  adverts ?
-                    <List elementStyle="Tight Clickable WidthFullImportant Box NoHorizontalWrap" listStyle="WidthFull">
-                      {
-                        adverts.map((advert, index) => {
-                          return (
-                            <AdvertPreview
-                              {...advert}
-                              key={index}
-                              onClick={this.navigateToAdvert}
-                            />
-                          );
-                        })
-                      }
-                    </List>
-                  :
-                    <Layout layoutStyle="LayoutBlank">
-                      <Loader />
-                    </Layout>
-                }
-              </Element>
-          }
-        </List>
+      <div>
+        <Layout>
+          <Title>Find the visit you'll like</Title>
+          <p>Filters</p>
+        </Layout>
+
+        <Layout>
+          <hr className="Overlay" />
+          <List wrapChildren={false} listStyle="ListGrid">
+            {
+              (adverts === null || adverts.length > 0) &&
+                <Element elementStyle="W70 Transparent NoWrap Box">
+                  {
+                    adverts ?
+                      <List elementStyle="Tight Clickable WidthFullImportant Box NoHorizontalWrap" listStyle="WidthFull">
+                        {
+                          adverts.map((advert, index) => {
+                            return (
+                              <AdvertPreview
+                                {...advert}
+                                key={index}
+                                onClick={this.navigateToAdvert}
+                              />
+                            );
+                          })
+                        }
+                      </List>
+                    :
+                      <Layout layoutStyle="LayoutBlank">
+                        <Loader />
+                      </Layout>
+                  }
+                </Element>
+            }
+          </List>
+        </Layout>
       </div>
     );
   }

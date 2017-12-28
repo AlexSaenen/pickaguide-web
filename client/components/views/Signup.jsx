@@ -51,6 +51,13 @@ export class Signup extends StoreObserver {
   render() {
     return (
       <div className="HomeContainer">
+        <Layout>
+          <Title>{strings.signupMessage}</Title>
+          <p className="Italic">{strings.signupFollowup}</p>
+        </Layout>
+        <Layout>
+          <hr className="Overlay" />
+        </Layout>
         <Form layoutStyle="LayoutBlank SoftShadowNonHover W60 MarginAuto" onSubmit={this.onSubmit} submitLabel={strings.submit}>
           <Title>{strings.title}</Title>
 

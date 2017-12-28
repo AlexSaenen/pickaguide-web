@@ -6,6 +6,7 @@ import { Guide } from 'modals/Guide.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Element } from 'layout/list/Element.jsx';
 import { Text } from 'layout/elements/Text.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { List } from 'layout/list/List.jsx';
 
@@ -14,8 +15,15 @@ export class Become extends StateComponent {
   render() {
     return (
       <div className="HomeContainer">
-        <Guide controller={new ModalFormController(true)} />
-        <List wrapChildren={false}>
+        <Layout>
+          <Title>Thank you and have fun !</Title>
+        </Layout>
+
+        <Layout>
+          <hr className="Overlay" />
+        </Layout>
+
+        <List listStyle="W50E MW90" wrapChildren={false}>
           <Element elementStyle="Transparent">
             <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
               <Text>
@@ -29,6 +37,8 @@ export class Become extends StateComponent {
             <Information infoStyle="Info">Enjoy & have a good experience with us.</Information>
           </Element>
         </List>
+
+        <Guide controller={new ModalFormController(true)} />
       </div>
     );
   }

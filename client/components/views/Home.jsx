@@ -12,6 +12,7 @@ import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Text } from 'layout/elements/Text.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import SimpleMap from 'layout/user/GoogleMap.jsx';
 import BlockStore from 'stores/user/Block.js';
@@ -101,6 +102,15 @@ export class Home extends StoreObserver {
   render() {
     return (
       <div className="HomeContainer">
+        <Layout>
+          <Title>Pickaguide</Title>
+          <p className="Italic">A way to visit places and meet people differently</p>
+        </Layout>
+
+        <Layout>
+          <hr className="Overlay" />
+        </Layout>
+
         <AuthDependent unauth>
           <List wrapChildren={false}>
             <Element elementStyle="Tight NoWrap">
