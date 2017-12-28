@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 import { StateComponent } from 'base/StateComponent.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
@@ -17,12 +16,14 @@ export class Become extends StateComponent {
       <div className="HomeContainer">
         <Guide controller={new ModalFormController(true)} />
         <List wrapChildren={false}>
-          <Element elementStyle="Tight Transparent">
-            <Layout layoutStyle="LayoutRegular">
+          <Element elementStyle="Transparent">
+            <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
               <Text>
-                <p>Thank you for joining the <strong>Pickguide guides community</strong></p>
-                <p>Now you have access to <strong>lot of features</strong> that will allow you to handle <strong>your guide life</strong></p>
-                <p>You can begin by accessing to the <a className="Blue" href="/guide/adverts">advert creation</a> page to create your first advert</p>
+                <p>Thank you for joining the <strong>Pickguide guides community</strong></p><br />
+                <p>Now you have access to <strong>lot of features</strong> that will allow you to handle <strong>your guide life</strong></p><br />
+                <p>You can begin by accessing to the <a className="Blue Bold" href="/guide/adverts">advert creation</a> page to create your first advert</p><br />
+                <p>And we recommend you to fill in your personal description in your <a className="Blue Bold" href="/profiles/mine/edit">profile</a> and</p><br />
+                <p>update your avatar there as well</p>
               </Text>
             </Layout>
             <Information infoStyle="Info">Enjoy & have a good experience with us.</Information>

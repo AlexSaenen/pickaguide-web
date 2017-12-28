@@ -175,8 +175,7 @@ $layoutPadding: 2em;
 }
 
 .LayoutRegular {
-  @extend .LayoutLight;
-  background-color: #d1dbec;
+  @extend .LayoutBlank;
 
   strong {
     color: $softMainColor;

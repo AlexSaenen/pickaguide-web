@@ -3,6 +3,8 @@ import LocalizedStrings from 'react-localization';
 export let strings = new LocalizedStrings({
    en:{
       contact_us:"Contact Us",
+      contactInfo:"Contact information",
+      leaveMessage:"Leave us a message",
       contact:"Contact",
       name:"name",
       fname:"Full name",
@@ -16,6 +18,8 @@ export let strings = new LocalizedStrings({
    fr:{
       contact_us:"Contactez nous",
       contact:"Contact",
+      contactInfo:"Information de contact",
+      leaveMessage:"Laissez nous un message",
       name:"Nom",
       fname:"Nom complet",
       phone:"Téléphonne",

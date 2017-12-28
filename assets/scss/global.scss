@@ -87,6 +87,7 @@ p.Blue { color: $infoLightColor; }
 a.Blue { color: $infoLightColor; text-decoration: underline; }
 p.Green { color: $successLightColor; }
 p.White { color: white; }
+.TextWhite { color: white !important; }
 p.Underline { text-decoration: underline; }
 
 p.LinkColor > a {
@@ -218,6 +219,7 @@ p.LinkColor > a {
 .DashedDivider { border-top: 1px dashed #828282; margin: 0 !important; }
 .AllowOverflow { overflow: visible !important; }
 *:focus { outline: none; }
+.NoPadding { padding: 0 !important; }
 .Padding { padding: 0.5em !important; }
 .PaddingOne { padding: 1em !important; }
 .PaddingLeft { padding-left: 1.5em !important; }
@@ -251,4 +253,6 @@ p.LinkColor > a {
 .MarginEight { margin: 0.8em !important; }
 .MarginFour { margin: 0.4em !important; }
 .MarginTopFour { margin-top: 0.4em !important; }
+.BigVerticalMargin { margin-top: 4em !important; margin-bottom: 4em !important; }
 .DecorationNone { text-decoration: none; }
+.DecorationNoneImportant { text-decoration: none !important; }

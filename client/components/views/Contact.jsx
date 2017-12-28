@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { PanelForm } from 'view/PanelForm.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { TextInput } from 'form/TextInput.jsx';
-import { FormController } from 'base/FormController.jsx';
+import { Form } from 'form/Form.jsx';
 import { TelInput } from 'form/TelInput.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
@@ -24,8 +24,6 @@ export class Contact extends StoreObserver {
       profile: ProfileStore.getState().profile,
     };
 
-    this.ctrl = new FormController();
-    this.ctrl.attachSubmit(this.handleSubmit.bind(this));
     this.onStore = this.onStore.bind(this);
     this.onContact = this.onContact.bind(this);
   }
@@ -72,14 +70,26 @@ export class Contact extends StoreObserver {
     const profile = this.state.profile;
 
     return (
-      <PanelForm controller={this.ctrl} submitLabel={strings.submit}>
-        <Title>{strings.contact_us}</Title>
-        <hr className="SpacedOverlay" />
-        <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder={strings.fname} required />
-        <EmailInput value={account ? account.email : ''} required />
-        <TelInput label="phone" value={profile ? profile.phone : ''} />
-        <TextArea label="message" required />
-      </PanelForm>
+      <div>
+        <Layout>
+          <Title>{strings.contact_us}</Title>
+        </Layout>
+        <Layout>
+          <hr className="Overlay" />
+          <Layout layoutStyle="LayoutRegular W30E MW90 MarginAuto SoftShadowNonHover BigVerticalMargin">
+            <p className="Italic Small">06.70.62.85.88 - <a href="mailto:contact@pickaguide.com" className="Blue DecorationNoneImportant">contact@pickaguide.com</a></p>
+          </Layout>
+
+          <Form layoutStyle="W30E MW90 MarginAuto SoftShadowNonHover BigVerticalMargin" onSubmit={this.handleSubmit.bind(this)} submitLabel={strings.submit}>
+            <Title smaller>{strings.leaveMessage}</Title>
+            <br />
+            <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder={strings.fname} required />
+            <EmailInput value={account ? account.email : ''} required />
+            <TelInput label="phone" value={profile ? profile.phone : ''} />
+            <TextArea label="message" required />
+          </Form>
+        </Layout>
+      </div>
     );
   }
 }

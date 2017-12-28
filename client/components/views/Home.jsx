@@ -85,7 +85,7 @@ export class Home extends StoreObserver {
 
   renderMap() {
     return (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
-      <Element elementStyle="Tight NoHorizontalWrap Clickable Height30">
+      <Element elementStyle="Tight NoHorizontalWrap Clickable Height30 Map">
         <SimpleMap zoom={12} />
       </Element>;
   }
@@ -103,8 +103,8 @@ export class Home extends StoreObserver {
       <div className="HomeContainer">
         <AuthDependent unauth>
           <List wrapChildren={false}>
-            <Element elementStyle="Tight Transparent NoWrap">
-              <Layout layoutStyle="LayoutRegular">
+            <Element elementStyle="Tight NoWrap">
+              <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
                 <Text>
                   <p>Pickaguide is a service that allows you to <strong>genuinly discover</strong> a city or a place through the eyes of a <strong>local inhabitant</strong>.</p>
                   <p>Get a <strong>perfect visit</strong> wherever you are, whenever you want.</p>
@@ -127,8 +127,8 @@ export class Home extends StoreObserver {
             <List wrapChildren={false} listStyle="Tight NoWrap ListStack WidthFull">
               {
                 (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
-                  <Element elementStyle="Tight Transparent NoWrap">
-                    <Layout layoutStyle="LayoutRegular">
+                  <Element elementStyle="Tight NoWrap">
+                    <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
                       <p>There might be some available <strong>visits around</strong> you, why don't you have a look on the Map below ?</p>
                     </Layout>
                   </Element>

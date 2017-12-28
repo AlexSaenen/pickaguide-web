@@ -74,7 +74,7 @@ export class AdvertPreview extends React.Component {
               <p className="Inline Italic">in</p>
               <p className="Bold Inline">{this.props.city}, {this.props.country}</p>
               {
-                !!this.props.rate  &&
+                !!this.props.rate &&
                   <div className="star-ratings-css">
                     <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                     <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>

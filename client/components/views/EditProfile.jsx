@@ -123,8 +123,8 @@ export class EditProfile extends StoreObserver {
                 </Layout>
 
                 <Layout layoutStyle="SoftShadowNonHover MarginOneAndHalf">
-                  <TextInput value={profile.firstName} label="firstName" placeholder={strings.inputFirstName} required />
-                  <TextInput value={profile.lastName} label="lastName" placeholder={strings.inputLastName} required />
+                  <TextInput displayLabel="First Name" value={profile.firstName} label="firstName" placeholder={strings.inputFirstName} required />
+                  <TextInput displayLabel="Last Name" value={profile.lastName} label="lastName" placeholder={strings.inputLastName} required />
                 </Layout>
               </Element>
             </List>

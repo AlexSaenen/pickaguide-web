@@ -6,7 +6,7 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { List } from 'layout/list/List.jsx';
 import { Element } from 'layout/list/Element.jsx';
 import { Button } from 'layout/elements/Button.jsx';
-import { SubTitle } from 'layout/elements/SubTitle.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Text } from 'layout/elements/Text.jsx';
@@ -122,7 +122,8 @@ export class Profile extends StoreObserver {
             <Element elementStyle="W40 Transparent Top Box NoWrap">
               <Layout layoutStyle="LayoutBlank NoWrap">
                 <Layout layoutStyle="LayoutBlank SoftShadowNonHover MarginEight MarginTopFour">
-                  <SubTitle>{strings.stitleBasucInfo}</SubTitle>
+                  <Title smaller>{strings.stitleBasucInfo}</Title>
+                  <br />
                   <Text>
                     {
                       this.isOwnerView ?
@@ -136,12 +137,14 @@ export class Profile extends StoreObserver {
                 </Layout>
 
                 <Layout layoutStyle="LayoutBlank SoftShadowNonHover MarginEight">
-                  <SubTitle>{strings.stitleDescription}</SubTitle>
+                  <Title smaller>{strings.stitleDescription}</Title>
+                  <br />
                   <Text>{profile.description ? profile.description : String(strings.outputNoDescription)}</Text>
                 </Layout>
 
                 <Layout layoutStyle="LayoutBlank SoftShadowNonHover MarginEight">
-                  <SubTitle>{strings.stitleInterests}</SubTitle>
+                  <Title smaller>{strings.stitleInterests}</Title>
+                  <br />
                   <Text>{profile.interests.length > 0 ?
                     profile.interests.map((interest, index) => React.createElement('p', { key: index }, interest)) : String(strings.outputNoInterests)}
                   </Text>

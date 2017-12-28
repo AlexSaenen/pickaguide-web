@@ -3,7 +3,7 @@ import React from 'react';
 import { Form } from 'layout/form/Form.jsx';
 import { TextInput } from 'layout/form/TextInput.jsx';
 import { NumInput } from 'layout/form/NumInput.jsx';
-import { SubTitle } from 'layout/elements/SubTitle.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { FormController } from 'base/FormController.jsx';
 import PaymentActions from 'actions/Payment.js';
 
@@ -27,12 +27,12 @@ export class NewCard extends React.Component {
     return (
       <div className="NewCard">
         <Form layoutStyle="" onSubmit={this.ctrl.submit} submitLabel="Create Card">
-          <SubTitle>Expiration Date (Month then Year)</SubTitle>
+          <Title smaller white>New Card</Title>
+          <br />
           <NumInput displayLabel="Expiration Month" placeholder="1" label="expirationMonth" min={1} max={12} step={1} required />
           <NumInput displayLabel="Expiration Year" placeholder="2018" label="expirationYear" min={2012} max={2050} step={1} required />
           <TextInput displayLabel={false} label="number" required />
-          <br />
-          <TextInput displayLabel={false} placeholder="CVC" label="cvc" required />
+          <NumInput displayLabel={false} placeholder="CVC" label="cvc" required />
         </Form>
       </div>
     );
