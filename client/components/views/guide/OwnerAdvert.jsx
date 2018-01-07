@@ -19,6 +19,7 @@ import { EditTextArea } from 'modals/EditTextArea.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
+import { strings } from './OwnerAdvert_lang.js';
 
 import 'scss/views/adverts.scss';
 
@@ -107,7 +108,7 @@ export class OwnerAdvert extends StoreObserver {
     if (advert === undefined || advert === null) {
       return (
         <Layout layoutStyle="LayoutBlank">
-          <Text>No such advert found</Text>
+          <Text>{strings.noAdvert}</Text>
         </Layout>
       );
     }
@@ -116,7 +117,7 @@ export class OwnerAdvert extends StoreObserver {
       <div className="OwnerAdvert">
         <QueryModal
           controller={this.deleteCtrl}
-          query="Do you really wish to delete this Ad ?"
+          query="Do you really wish to delete this Ad ?de"
           onConfirm={this.onDelete}
         />
 

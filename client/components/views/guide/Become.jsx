@@ -9,6 +9,8 @@ import { Element } from 'layout/list/Element.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { List } from 'layout/list/List.jsx';
+import { strings } from './Become_lang.js'
+
 
 export class Become extends StateComponent {
 
@@ -20,12 +22,12 @@ export class Become extends StateComponent {
           <Element elementStyle="Tight Transparent">
             <Layout layoutStyle="LayoutRegular">
               <Text>
-                <p>Thank you for joining the <strong>Pickguide guides community</strong></p>
-                <p>Now you have access to <strong>lot of features</strong> that will allow you to handle <strong>your guide life</strong></p>
-                <p>You can begin by accessing to the <Link to="/guide/adverts">advert creation</Link> page to create your first advert</p>
+                  <p dangerouslySetInnerHTML={{ __html: strings.text1 }} / >
+                  <p dangerouslySetInnerHTML={{ __html: strings.text2 }} / >
+                  <p>{strings.text3}<Link to="/guide/adverts">{strings.text4}</Link>{strings.text5}</p>
               </Text>
             </Layout>
-            <Information infoStyle="Info">Enjoy & have a good experience with us.</Information>
+            <Information infoStyle="Info">{strings.info}</Information>
           </Element>
         </List>
       </div>

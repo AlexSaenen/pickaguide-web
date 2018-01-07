@@ -26,6 +26,7 @@ import AdvertsActions from 'actions/Adverts.js';
 import CommentsActions from 'actions/Comments.js';
 import CommentAvatarsActions from 'actions/CommentAvatars.js';
 import ProfileActions from 'actions/SearchProfile.js';
+import { strings } from './Advert_lang.js'
 
 
 import 'scss/views/adverts.scss';
@@ -104,7 +105,7 @@ export class Advert extends StoreObserver {
     if (advert === undefined || advert === null) {
       return (
         <Layout layoutStyle="LayoutBlank">
-          <Text>No such advert found</Text>
+          <Text>{strings.noAdvert}</Text>
         </Layout>
       );
     }
@@ -114,7 +115,7 @@ export class Advert extends StoreObserver {
         <VisitCreation controller={this.visitCreationCtrl} advertId={advert._id} />
         <QueryModal
           controller={this.deleteCommentCtrl}
-          query="Do you really wish to delete this comment ?"
+          query={strings.suppressComment}
           onConfirm={
             function confirm() {
               CommentsActions.remove({ id: this.deleteCommentCtrl.callerId, advertId: this.deleteCommentCtrl.advertId });
@@ -143,9 +144,9 @@ export class Advert extends StoreObserver {
             }
           />
 
-          <p className="Small Italic Inline LineSpaced">by </p>
+          <p className="Small Italic Inline LineSpaced">{strings.by}</p>
           <p className="Small Bold Inline">{advert.owner.displayName}</p>
-          <p className="Small Italic Inline"> in </p>
+          <p className="Small Italic Inline">{strings.in}</p>
           <p className="Small Bold Inline">{advert.city}, {advert.country}</p>
 
           <br /><br />
@@ -163,7 +164,7 @@ export class Advert extends StoreObserver {
                 <div>
                   <hr className="SpacedDivider" />
                   <Button
-                    label="Ask a visit"
+                    label={strings.askVisit}
                     buttonStyle="Auto Blue"
                     onCallback={this.visitCreationCtrl.toggle}
                   />
@@ -172,7 +173,7 @@ export class Advert extends StoreObserver {
           </AuthDependent>
 
           <AuthDependent unauth>
-            <Information infoStyle="Info Small LineSpaced">You need to be logged in to ask a visit and access comments</Information>
+            <Information infoStyle="Info Small LineSpaced">{strings.needLog}</Information>
           </AuthDependent>
 
           <hr className="SpacedOverlay" />
@@ -180,7 +181,7 @@ export class Advert extends StoreObserver {
           <AuthDependent auth>
             {
               comments.length !== 0 &&
-                <SubTitle>Comments</SubTitle>
+                <SubTitle>{strings.commentTitle}</SubTitle>
             }
 
             {
