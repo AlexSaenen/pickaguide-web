@@ -21,6 +21,8 @@ export class TextArea extends PropsComponent {
       className: props.className,
     };
 
+    this.overrideState = props.override;
+    this.editMiddleware = props.onChange || (() => {});
     this.handleEdit = this.handleEdit.bind(this);
   }
 
@@ -28,11 +30,17 @@ export class TextArea extends PropsComponent {
     e.preventDefault();
     const newState = Object.assign({}, this.state);
     newState.value = e.target.value;
-    this.updateState(newState);
+    this.editMiddleware(newState.value);
+    if (this.override !== true) {
+      this.updateState(newState);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     this.cache = this.state.value;
+    if (this.overrideState) {
+      this.cache = undefined;
+    }
     super.componentWillReceiveProps(nextProps);
   }
 

@@ -3,6 +3,7 @@ import React from 'react';
 import { PanelForm } from 'view/PanelForm.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { TextInput } from 'form/TextInput.jsx';
+import { FormController } from 'base/FormController.jsx';
 import { TelInput } from 'form/TelInput.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
@@ -23,10 +24,10 @@ export class Contact extends StoreObserver {
       profile: ProfileStore.getState().profile,
     };
 
+    this.ctrl = new FormController();
+    this.ctrl.attachSubmit(this.handleSubmit.bind(this));
     this.onStore = this.onStore.bind(this);
     this.onContact = this.onContact.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.messageCallback = () => {};
   }
 
   onContact(store) {
@@ -71,7 +72,7 @@ export class Contact extends StoreObserver {
     const profile = this.state.profile;
 
     return (
-      <PanelForm onSubmit={this.handleSubmit} submitLabel={strings.submit}>
+      <PanelForm controller={this.ctrl} submitLabel={strings.submit}>
         <Title>{strings.contact_us}</Title>
         <hr className="SpacedOverlay" />
         <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder={strings.fname} required />

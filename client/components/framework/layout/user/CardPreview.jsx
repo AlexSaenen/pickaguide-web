@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
+import DeleteAction from 'layout/user/DeleteAction.jsx';
 
 import 'scss/framework/payment.scss';
 
@@ -13,6 +14,7 @@ export class CardPreview extends PropsComponent {
     this.id = props.id;
     this.ctrl = props.controller;
     this.onClick = this.onClick.bind(this);
+    this.onDelete = this.onDelete.bind(this);
 
     this.state = {
       brand: props.brand,
@@ -43,18 +45,25 @@ export class CardPreview extends PropsComponent {
     this.ctrl.toggle(true);
   }
 
+  onDelete(clickEvent) {
+    clickEvent.stopPropagation();
+    this.props.deleter.callerId = this.id;
+    this.props.deleter.toggle(true);
+  }
+
   render() {
     return (
-      <div className="CardPreview" onClick={this.onClick}>
-        <p className="White Bold Inline OverflowHidden TextOverflow">{this.state.brand} {this.state.funding.capitalize()}</p>
-        <p className="White Inline OverflowHidden TextOverflow Italic"> card from </p>
-        <p className="White Bold Inline OverflowHidden TextOverflow">{this.state.country.capitalize()}</p>
+      <div className="CardPreview" onClick={this.ctrl ? this.onClick : () => {}}>
+        <DeleteAction onClick={this.onDelete} />
+        <p className="Bold Inline OverflowHidden TextOverflow">{this.state.brand} {this.state.funding.capitalize()}</p>
+        <p className="Inline OverflowHidden TextOverflow Italic"> card from </p>
+        <p className="Bold Inline OverflowHidden TextOverflow">{this.state.country.capitalize()}</p>
         <br />
-        <p className="White Inline OverflowHidden TextOverflow Italic">expires on </p>
-        <p className="White Bold Inline OverflowHidden TextOverflow">{this.state.exp_month}/{this.state.exp_year}</p>
+        <p className="Inline OverflowHidden TextOverflow Italic">expires on </p>
+        <p className="Bold Inline OverflowHidden TextOverflow">{this.state.exp_month}/{this.state.exp_year}</p>
         <br />
-        <p className="White Inline OverflowHidden TextOverflow Italic">ends with </p>
-        <p className="White Bold Inline OverflowHidden TextOverflow">{this.state.last4}</p>
+        <p className="Inline OverflowHidden TextOverflow Italic">ends with </p>
+        <p className="Bold Inline OverflowHidden TextOverflow">{this.state.last4}</p>
       </div>
     );
   }

@@ -22,6 +22,9 @@ export class Comment extends StoreObserver {
     this.advertId = props.advertId;
     this.userId = props.owner._id;
     this.state = props;
+    const newAvatar = CommentAvatarsStore.getState().avatars.find(avatarObj => avatarObj.id === this.userId);
+    this.state.owner.avatar = (newAvatar && newAvatar.avatar ? newAvatar.avatar : '');
+
     this.navigateToProfile = this.navigateToProfile.bind(this);
   }
 
@@ -70,7 +73,7 @@ export class Comment extends StoreObserver {
       <div className="Comment">
         {
           myId && this.state.owner._id === myId &&
-            <DeleteAction onClick={this.onDelete} />
+            <DeleteAction className="ExtraMargin" onClick={this.onDelete} />
         }
         <div className="CommentContent">
           <div>

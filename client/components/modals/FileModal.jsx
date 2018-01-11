@@ -22,13 +22,14 @@ export class FileModal extends PropsComponent {
 
   render() {
     return (
-      <ModalForm {...this.props} modalStyle="Small">
+      <ModalForm {...this.props} modalStyle="Medium">
         <Title>{this.state.title}</Title>
+        <br className="Margin" />
         {
           this.state.sizeWarning !== '' &&
-            <Information infoStyle="Info Auto">{this.state.sizeWarning}</Information>
+            <Information infoStyle="Info Auto MarginAuto AllSpaced">{this.state.sizeWarning}</Information>
         }
-        <FileInput placeholder={this.state.inputHolder} label={this.state.inputLabel} required />
+        <FileInput className="TopMargin" placeholder={this.state.inputHolder} label={this.state.inputLabel} required />
       </ModalForm>
     );
   }

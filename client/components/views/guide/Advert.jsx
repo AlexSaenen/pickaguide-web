@@ -16,6 +16,7 @@ import { Comment } from 'layout/user/Comment.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { CreateComment } from 'layout/user/CreateComment.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
+import { Loader } from 'layout/elements/Loader.jsx';
 import { Panel } from 'layout/containers/Panel.jsx';
 import { VisitCreation } from 'modals/VisitCreation.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
@@ -62,6 +63,7 @@ export class Advert extends StoreObserver {
       AdvertsActions.find(this.id);
     }
 
+
     if (AuthStore.getState().credentials) {
       CommentsActions.get(this.id);
     }
@@ -104,7 +106,7 @@ export class Advert extends StoreObserver {
     if (advert === undefined || advert === null) {
       return (
         <Layout layoutStyle="LayoutBlank">
-          <Text>No such advert found</Text>
+          <Loader />
         </Layout>
       );
     }
@@ -125,6 +127,13 @@ export class Advert extends StoreObserver {
         <Layout layoutStyle="LayoutLight">
           <hr className="Overlay" />
 
+          {
+            !!advert.rate &&
+              <div className="star-ratings-css LineSpaced Margin">
+                <div className="star-ratings-css-top" style={{ width: `${advert.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+              </div>
+          }
           <Title>{advert.title}</Title>
           <ClickablePicture
             url={this.state.avatar}
@@ -147,7 +156,9 @@ export class Advert extends StoreObserver {
           <hr className="SpacedDivider" />
 
           <Panel panelStyle="NoWrap">
-            <Picture pictureName="Advert Cover" pictureType="WidthLimited" url={advert.photoUrl} />
+            {
+              advert.images.map((image, index) => <Picture key={index} pictureName="Advert images" pictureType="WidthLimited" url={image} />)
+            }
           </Panel>
 
           <AuthDependent auth>

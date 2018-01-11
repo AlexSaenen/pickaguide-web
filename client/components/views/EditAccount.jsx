@@ -14,9 +14,7 @@ import { Information } from 'layout/elements/Information.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { strings } from './EditAccount_lang.js';
 import AccountStore from 'stores/user/Account.js';
-import AuthStore from 'stores/user/Auth.js';
 import UserActions from 'actions/User.js';
-import AuthActions from 'actions/Auth.js';
 
 
 export class EditAccount extends StoreObserver {
@@ -50,12 +48,12 @@ export class EditAccount extends StoreObserver {
           </Layout>
           <Layout layoutStyle="LayoutLight">
             <hr className="Overlay" />
-            <Button buttonStyle="Blue Spaced Auto TextWhite" label={strings.btnPasswd} onCallback={this.editPasswordCtrl.toggle} />
-            <Button buttonStyle="Blue Spaced Auto TextWhite" label={strings.btnEmail} onCallback={this.editEmailCtrl.toggle} />
             {
               this.state.isConfirmed === false &&
                 <Information infoStyle="Alert">{strings.msgConfirmEmail}</Information>
             }
+            <Button buttonStyle="Blue Spaced Auto TextWhite" label={strings.btnPasswd} onCallback={this.editPasswordCtrl.toggle} />
+            <Button buttonStyle="Blue Spaced Auto TextWhite" label={strings.btnEmail} onCallback={this.editEmailCtrl.toggle} />
             <Button buttonStyle="Red Spaced Auto TextWhite LineSpaced" label={strings.btnDelete} onCallback={this.queryCtrl.toggle} />
           </Layout>
         </Panel>

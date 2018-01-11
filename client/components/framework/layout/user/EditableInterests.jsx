@@ -46,7 +46,7 @@ export class EditableInterests extends PropsComponent {
         <div className="Editor">
           <svg width="100%" height="100%" viewBox="0 0 400 400" onClick={this.onAdd}>
             <circle cx="200" cy="200" r="200" fill="#D7D7D7" />
-            <circle id="hovered" cx="200" cy="200" fill="#3973BF" />
+            <circle id="hovered" cx="200" cy="200" fill="#5ba2ff" />
             <line strokeWidth="25" x1="200" y1="80" x2="200" y2="320" />
             <line strokeWidth="25" x1="80" y1="200" x2="320" y2="200" />
           </svg>

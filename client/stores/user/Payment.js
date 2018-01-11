@@ -35,6 +35,11 @@ class PaymentStore {
     return false;
   }
 
+  onDeleteCard(form) {
+    PaymentApi.deleteCard(form);
+    return false;
+  }
+
   // TODO this looks like onGetInfosSuccess
 
   onPaySuccess(infos) {

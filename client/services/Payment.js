@@ -24,7 +24,25 @@ export default class PaymentApi {
         if (res.error) {
           PaymentActions.error(res.error);
         } else {
-          PaymentActions.getInfosSuccess(PaymentStore.getState().infos);
+          const infos = PaymentStore.getState().infos;
+          infos.sources.data.push(res);
+          PaymentActions.getInfosSuccess(infos);
+        }
+      })
+      .catch((err) => {
+        PaymentActions.error(err);
+      });
+  }
+
+  static deleteCard(idCard) {
+    PromiseApi.auth().delete(`/payment/card/${idCard}`)
+      .then((res) => {
+        if (res.error) {
+          PaymentActions.error(res.error);
+        } else {
+          const infos = PaymentStore.getState().infos;
+          infos.sources.data = infos.sources.data.filter(card => card.id !== idCard);
+          PaymentActions.getInfosSuccess(infos);
         }
       })
       .catch((err) => {

@@ -35,7 +35,7 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.html$/, loader: 'file-loader?name=[name].[ext]' },
-            { test: /\.scss$/, loaders: ['style', 'css?sourceMap', 'sass'], exclude: /node_modules/ },
+            { test: /\.s?css$/, loaders: ['style', 'css?sourceMap', 'sass'], exclude: /node_modules/ },
             { test: /\.(png|jpg|ico)$/, loader: 'file-loader?name=[name].[ext]' },
             { test: /\.(eot|svg|ttf|woff|woff2|otf)$/, loader: 'file-loader?name=[name].[ext]' },
             { test: /\.(mp3)$/, loader: 'file-loader?name=[name].[ext]' },

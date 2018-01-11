@@ -22,10 +22,21 @@ export class Guide extends React.Component {
       <div onClick={this.onClick} className="Guide">
         <Picture url={this.props.avatar} pictureType="HeightLimited" pictureName={this.props.description} />
         <p className="Spaced Medium Inline">{this.props.firstName}</p>
+        {
+          !!this.props.rate &&
+            <div className="star-ratings-css NoMargin">
+              <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+              <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            </div>
+        }
       </div>
     );
   }
 }
+
+Guide.defaultProps = {
+  rate: undefined,
+};
 
 Guide.propTypes = {
   _id: React.PropTypes.string.isRequired,
@@ -33,4 +44,5 @@ Guide.propTypes = {
   firstName: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
   avatar: React.PropTypes.string.isRequired,
+  rate: React.PropTypes.number,
 };

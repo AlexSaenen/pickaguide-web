@@ -63,7 +63,7 @@ export class AdvertPreview extends React.Component {
     return (
       <div onClick={this.onClick} className="AdvertPreview">
         <div className="PictureSection" style={{ width: '20% !important' }}>
-          <Picture url={this.props.photoUrl} />
+          <Picture url={this.props.images[0]} />
         </div>
 
         <div className="DescriptionSection Box" style={{ width: `${this.props.owner ? '65%' : '80%'} !important`, verticalAlign: 'top !important' }}>
@@ -72,6 +72,13 @@ export class AdvertPreview extends React.Component {
 
             <p className="Inline Italic">in</p>
             <p className="Bold Inline">{this.props.city}, {this.props.country}</p>
+            {
+              !!this.props.rate  &&
+                <div className="star-ratings-css">
+                  <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                  <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                </div>
+            }
 
             {
               this.props.amountVisits !== 0 &&
@@ -111,7 +118,6 @@ AdvertPreview.propTypes = {
   city: React.PropTypes.string.isRequired,
   country: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
-  photoUrl: React.PropTypes.string.isRequired,
   owner: React.PropTypes.string,
   ownerId: React.PropTypes.string,
   amountVisits: React.PropTypes.number,

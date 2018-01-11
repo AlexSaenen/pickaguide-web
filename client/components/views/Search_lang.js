@@ -15,6 +15,6 @@ export let strings = new LocalizedStrings({
       placeholder:"Chercher quelque chose",
       error:"Quelque chose de bizarre s'est passé...",
       noResult:"Nous n'avons rien trouvé :(",
-      longerTerms:"Il faut plus que 2 lettres pour commencer une recherche",
+      longerTerms:"Il faut plus de 2 lettres pour commencer une recherche",
    }
 });

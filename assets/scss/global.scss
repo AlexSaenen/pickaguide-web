@@ -48,6 +48,7 @@ table {
 }
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 strong {
  font-weight: bold;
@@ -80,6 +81,7 @@ p.MultiLineLargeTextOverflow { display: -webkit-box; -webkit-line-clamp: 3; -web
 p.TextOverflow { text-overflow: ellipsis; white-space: nowrap; }
 .OverflowHidden { overflow: hidden; }
 p.Vertical { vertical-align: middle; }
+.Vertical { vertical-align: middle; }
 p.Red { color: $alertLightColor; }
 p.Blue { color: $infoLightColor; }
 p.Green { color: $successLightColor; }
@@ -96,6 +98,25 @@ p.Underline { text-decoration: underline; }
 .H20 { height: 20% !important; }
 .W40E { width: 40em; }
 
+.arrow_box {
+	position: relative;
+	background: $softMainColor;
+}
+
+.arrow_box:after {
+	left: 97%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(57, 115, 191, 0);
+	border-left-color: $softMainColor;
+	border-width: 7px;
+	margin-top: -7px;
+}
 
 .BackgroundMarker {
   div {
@@ -117,10 +138,77 @@ p.Underline { text-decoration: underline; }
   text-align: center;
 }
 
+.star-ratings-css {
+  display: inline-block;
+  unicode-bidi: bidi-override;
+  color: #c5c5c5;
+  font-size: 25px;
+  height: 25px;
+  margin: 0 0.3em;
+  position: relative;
+  padding: 0;
+  text-shadow: 0px 1px 0 #a2a2a2;
+
+  &-top {
+    color: #e7711b;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+  &-bottom {
+    padding: 0;
+    display: block;
+    z-index: 0;
+  }
+}
+
+.SoftShadow {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  border-radius: 0.4em;
+}
+
+.SoftShadowNonHover {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0.4em;
+}
+
+.SoftShadow:hover {
+  -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow:    0 0 14px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.22);
+  box-shadow:         0 0 14px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.22);
+}
+
+.W10 { width: 10% !important; }
+.W20 { width: 20% !important; }
+.W30 { width: 30% !important; }
+.W40 { width: 40% !important; }
+.W45 { width: 45% !important; }
+.W50 { width: 50% !important; }
+.W60 { width: 60% !important; }
+.W70 { width: 70% !important; }
+.W80 { width: 80% !important; }
+.W85 { width: 85% !important; }
+.W90 { width: 90% !important; }
+.W30 { width: 30% !important; }
+
+.AutoWidthContent { width: fit-content; }
 .DashedDivider { border-top: 1px dashed #828282; margin: 0 !important; }
 .AllowOverflow { overflow: visible !important; }
 *:focus { outline: none; }
 .Padding { padding: 0.5em !important; }
+.PaddingOne { padding: 1em !important; }
+.PaddingLeft { padding-left: 1.5em !important; }
 .Hidden { display: none !important; }
 .SoftHidden { display: none; }
 .FullTransparent { opacity: 0; }
@@ -129,6 +217,7 @@ p.Underline { text-decoration: underline; }
 .Inline-BlockImportant { display: inline-block !important; }
 .Block { display: block !important; }
 .HeightNone { height: 0; }
+.HeightInherit { height: inherit; }
 .HeightFull { height: 100%; }
 .WidthFull { width: 100%; }
 .WidthFullImportant { width: 100% !important; }
@@ -139,6 +228,9 @@ p.Underline { text-decoration: underline; }
 .BorderRadius { border-radius: 0.4em; }
 .NoRadius { border-radius: 0 !important; }
 .Clickable { cursor: pointer; }
+.LessMarginTop { margin-top: 0 !important; }
+.NoMargin { margin: 0 !important; }
 .MarginAuto { margin: auto; }
+.MarginAutoImportant { margin: auto !important; }
 .Margin { margin: 0.5em !important; }
 .DecorationNone { text-decoration: none; }

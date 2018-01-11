@@ -68,7 +68,10 @@ Message.defaultProps = {
 
 Message.propTypes = {
   title: React.PropTypes.string.isRequired,
-  content: React.PropTypes.string.isRequired,
+  content: React.PropTypes.oneOfType([
+    React.PropTypes.string.isRequired,
+    React.PropTypes.object.isRequired,
+  ]),
   type: React.PropTypes.string.isRequired,
   onDismiss: React.PropTypes.func,
   timed: React.PropTypes.bool,

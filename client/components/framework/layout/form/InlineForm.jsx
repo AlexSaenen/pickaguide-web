@@ -34,7 +34,7 @@ export class InlineForm extends PropsComponent {
       <div className="InlineForm">
         <form className="FormWrapper" onSubmit={this.handleSubmit}>
           {this.props.children}
-          <SubmitButton className="FormElement" label={this.state.submitLabel} />
+          <SubmitButton className="FormElement" buttonStyle="LessMarginTop" label={this.state.submitLabel} />
         </form>
       </div>
     );
