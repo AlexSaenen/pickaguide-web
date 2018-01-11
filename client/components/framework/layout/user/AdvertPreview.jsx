@@ -68,13 +68,14 @@ export class AdvertPreview extends React.Component {
 
         <div className="DescriptionSection Box" style={{ width: `${this.props.owner ? '65%' : '80%'} !important`, verticalAlign: 'top !important' }}>
           <div className="LineSpaced">
-            <p className="Medium Bold Inline">{this.props.title}</p>
+            <p className="Medium Bold Inline LineTextOverflow OverflowHidden">{this.props.title}</p>
 
             <div>
               <div className="Inline Vertical">
                 <p className="Inline Italic">in</p>
                 <p className="Bold Inline">{this.props.city}, {this.props.country}</p>
               </div>
+
               {
                 !!this.props.rate &&
                   <div className="star-ratings-css Vertical">

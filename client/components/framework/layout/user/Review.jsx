@@ -112,7 +112,7 @@ export class Review extends StoreObserver {
               <Button buttonStyle="Auto Blue" label="Send" onCallback={this.review.bind(this)} />
               {
                 this.state.message &&
-                  <Message timed={false} {...this.state.message} />
+                  <Message messageStyle="MessageCenter TopMargin AutoWidthContent" timed={false} {...this.state.message} />
               }
             </div>
         }

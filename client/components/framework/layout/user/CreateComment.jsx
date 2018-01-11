@@ -35,7 +35,7 @@ export class CreateComment extends PropsComponent {
     return (
       <div className="CreateComment">
         <form>
-          <input placeholder="Your comment ..." id="commentEditor" onKeyPress={this._handleKeyPress} />
+          <input placeholder="Leave a comment ..." id="commentEditor" onKeyPress={this._handleKeyPress} />
         </form>
       </div>
     );

@@ -25,7 +25,7 @@ export class NumInput extends PropsComponent {
 }
 
 NumInput.propTypes = {
-  min: React.PropTypes.number.isRequired,
-  max: React.PropTypes.number.isRequired,
-  step: React.PropTypes.number.isRequired,
+  min: React.PropTypes.number,
+  max: React.PropTypes.number,
+  step: React.PropTypes.number,
 };

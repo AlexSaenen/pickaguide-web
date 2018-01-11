@@ -81,11 +81,18 @@ const Visit = (props) => {
           </Layout>
 
           <Layout>
-            <Title smaller>Status history</Title>
+            <Title smaller>Status History</Title>
             <br className="Margin" />
 
             {
               visit.status.map((state, index) => {
+                const isBad = ['denied', 'cancelled'].indexOf(state.label) !== -1;
+                const isGood = state.label === 'accepted';
+                const isOkay = state.label === 'waiting';
+                const isCompleted = state.label === 'finished';
+
+                const statusLabelStyle = `Bold Inline OverflowHidden TextOverflow ${isBad ? 'Red' : ''}${isGood ? 'Green' : ''}${isOkay ? 'Blue' : ''}${isCompleted ? 'Secondary' : ''}`;
+
                 return (
                   <div key={index}>
                     <p className="Inline Italic">On </p>
@@ -93,14 +100,7 @@ const Visit = (props) => {
                     <p className="Inline Italic"> at </p>
                     <p className="Bold Inline Blue">{new Date(state.date).toLocaleTimeString()}</p>
                     <p className="Inline Italic"> to </p>
-                    <p
-                      className={
-                        `Bold Inline OverflowHidden TextOverflow
-                        ${['denied', 'cancelled'].indexOf(state.label) !== -1 ? 'Red' : ''}
-                        ${state.label === 'finished' ? 'Green' : ''}
-                        ${state.label === 'accepted' ? 'Blue' : ''}`
-                      }
-                    >{state.label}</p>
+                    <p className={statusLabelStyle}>{state.label}</p>
                     <p className="Inline Italic"> stating </p>
                     <p className="Bold Inline">"{state.message}"</p>
                     <br />

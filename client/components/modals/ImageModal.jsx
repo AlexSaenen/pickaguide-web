@@ -22,7 +22,7 @@ export class ImageModal extends PropsComponent {
         <Layout layoutStyle="Tight NoWrap">
           <Picture
             pictureName="Full Size"
-            pictureType="WidthFull"
+            pictureType="WidthFull MSize"
             url={this.state.image}
           />
         </Layout>

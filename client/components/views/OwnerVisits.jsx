@@ -1,16 +1,15 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
-import { Text } from 'layout/elements/Text.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import { List } from 'layout/list/List.jsx';
 import { Element } from 'layout/list/Element.jsx';
 import { OwnerVisitPreview } from 'layout/user/OwnerVisitPreview.jsx';
 import { GuideVisitPreview } from 'layout/user/GuideVisitPreview.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { FeedableModalFormController } from 'base/FeedableModalFormController.jsx';
-import { Button } from 'layout/elements/Button.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { ChangeStatus } from 'modals/ChangeStatus.jsx';
 import VisitsStore from 'stores/user/Visits.js';
@@ -52,18 +51,18 @@ export class OwnerVisits extends StoreObserver {
       <div>
         <Layout layoutStyle="LayoutBlank">
           <Title>Visits</Title>
-          <Button
-            buttonStyle="Blue Auto"
-            label="Refresh"
-            onCallback={VisitsActions.get}
-          />
         </Layout>
 
         {
           myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0 &&
             <Layout layoutStyle="LayoutBlank">
               <hr className="Overlay" />
-              <Text>You have no Visits at this time ..</Text>
+              <Information infoStyle="Info Small MarginAuto LineSpaced">No visits yet</Information>
+              <Layout layoutStyle="LayoutRegular SoftShadowNonHover AutoWidthContent MarginAuto">
+                <p>Browse the <Link className="Blue Bold" to="/">Home</Link> or <Link className="Blue Bold" to="/view-all-adverts">Adverts</Link> pages and request your first visit !</p>
+                <br />
+                <p>You could also use the <strong>search</strong> bar above</p>
+              </Layout>
             </Layout>
         }
         {
@@ -86,7 +85,7 @@ export class OwnerVisits extends StoreObserver {
                   <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
                     <Title>Your visits as a traveler ...</Title>
                     <br className="Margin" />
-                    <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap">
+                    <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap WidthFullImportant">
                       {
                         myVisits.map((visit, index) => {
                           return <OwnerVisitPreview {...visit} key={index} actionCtrl={this.actionCtrl} onClick={this.goToVisit} />;
@@ -102,7 +101,7 @@ export class OwnerVisits extends StoreObserver {
                   <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
                     <Title>Your visits with travelers ...</Title>
                     <br className="Margin" />
-                    <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap">
+                    <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap WidthFullImportant">
                       {
                         theirVisits.map((visit, index) => {
                           return <GuideVisitPreview {...visit} key={index} actionCtrl={this.actionCtrl} onClick={this.goToVisit} />;

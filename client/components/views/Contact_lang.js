@@ -10,7 +10,7 @@ export let strings = new LocalizedStrings({
       fname:"Full name",
       phone:"Phone",
       message:"Message",
-      submit:"Contact",
+      submit:"Send",
       success:"Successful",
       success_content:"You have successfully contacted us! Your contact id is '${store.contactId}'. One of our staff will answer you soon.",
       error:"Some error occurred when contacting us"

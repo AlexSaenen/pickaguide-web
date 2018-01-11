@@ -247,7 +247,7 @@ export class OwnerAdvert extends StoreObserver {
         />
 
         <Layout layoutStyle="LayoutBlank">
-          <Title>Edit your advert</Title>
+          <Title>Edit your Advert</Title>
           <div>
             <Button label="Back" buttonStyle="Auto TextWhite Bold" onCallback={browserHistory.goBack} />
             <Button label="Preview" buttonStyle="Blue Auto TextWhite Bold Spaced" onCallback={this.previewAdvert} />

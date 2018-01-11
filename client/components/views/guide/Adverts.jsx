@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
-import { Text } from 'layout/elements/Text.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import { List } from 'layout/list/List.jsx';
 import { OwnerAdvertPreview } from 'layout/user/OwnerAdvertPreview.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
@@ -84,7 +84,12 @@ export class Adverts extends StoreObserver {
                 adverts === null ?
                   <Loader />
                 :
-                  <Text>You have no Adverts yet ..</Text>
+                  <div>
+                    <Information infoStyle="Info Small MarginAuto LineSpaced">No adverts</Information>
+                    <Layout layoutStyle="LayoutRegular SoftShadowNonHover AutoWidthContent MarginAuto">
+                      <p>Create an advert so you can <strong>help</strong> other users <strong>discover</strong> your city !</p>
+                    </Layout>
+                  </div>
               }
             </Layout>
         }

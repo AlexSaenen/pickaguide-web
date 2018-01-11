@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
-import { Text } from 'layout/elements/Text.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import Visit from 'layout/user/Visit.jsx';
 import { Review } from 'layout/user/Review.jsx';
 import VisitsStore from 'stores/user/Visits.js';
@@ -35,7 +35,7 @@ export class ReviewVisit extends PropsComponent {
     if (visit === null) {
       return (
         <Layout layoutStyle="LayoutBlank">
-          <Text>No such visit found</Text>
+          <Information infoStyle="Info Small MarginAuto LineSpaced">No such visit found ..</Information>
         </Layout>
       );
     }

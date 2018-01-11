@@ -76,6 +76,7 @@ p.Large { font-size: 2em; }
 .Italic { font-style: italic; }
 p.LineSpaced { line-height: 2em; }
 p.Spaced { padding: 0.5em; }
+p.LineTextOverflow { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
 p.MultiLineTextOverflow { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 p.MultiLineLargeTextOverflow { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
 p.TextOverflow { text-overflow: ellipsis; white-space: nowrap; }
@@ -84,6 +85,7 @@ p.Vertical { vertical-align: middle; }
 .Vertical { vertical-align: middle; }
 p.Red { color: $alertLightColor; }
 p.Blue { color: $infoLightColor; }
+p.Secondary { color: $secondaryElementColor; }
 a.Blue { color: $infoLightColor; text-decoration: underline; }
 p.Green { color: $successLightColor; }
 p.White { color: white; }
@@ -109,6 +111,7 @@ p.LinkColor > a {
 .MinW24E { min-width: 24em; }
 
 .MW90 { max-width: 90%; }
+.MSize { img { max-width: 100% !important; height: auto !important; } }
 .MW30 { max-width: 30%; }
 
 .arrow_box {

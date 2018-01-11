@@ -7,8 +7,6 @@ import { ModalController } from 'base/ModalController.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
 import { ImageModal } from 'modals/ImageModal.jsx';
 import { AuthDependent } from 'base/AuthDependent.jsx';
-import { Title } from 'layout/elements/Title.jsx';
-import { Text } from 'layout/elements/Text.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
@@ -172,11 +170,11 @@ export class Advert extends StoreObserver {
             </Layout>
 
             <Layout layoutStyle="SoftShadowNonHover">
-              <Text>{advert.description}</Text>
+              <p className="LineSpaced">{advert.description}</p>
             </Layout>
           </List>
 
-          <List listStyle="ListGrid" elementStyle="Tight MW30">
+          <List listStyle="ListGrid" elementStyle="Tight MW30 Vertical">
             {
               advert.images.map((image, index) =>
                 <ClickablePicture
@@ -195,15 +193,6 @@ export class Advert extends StoreObserver {
           </AuthDependent>
 
           <AuthDependent auth>
-            {
-              comments.length !== 0 &&
-                <div>
-                  <br className="Margin" />
-                  <br className="Margin" />
-                  <Title smaller>Comments</Title>
-                </div>
-            }
-
             <hr className="SpacedOverlay" />
 
             <CreateComment advertId={this.id} />

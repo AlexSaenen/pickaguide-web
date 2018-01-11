@@ -78,14 +78,15 @@ export class VisitPreview extends PropsComponent {
     }
 
     const isBad = ['denied', 'cancelled'].indexOf(visitStatus) !== -1;
-    const isGood = visitStatus === 'finished';
-    const isOkay = visitStatus === 'accepted';
+    const isGood = visitStatus === 'accepted';
+    const isOkay = visitStatus === 'waiting';
+    const isCompleted = visitStatus === 'finished';
 
-    const statusLabelStyle = `Bold Inline OverflowHidden TextOverflow ${isBad ? 'Red' : ''}${isGood ? 'Green' : ''}${isOkay ? 'Blue' : ''}`;
+    const statusLabelStyle = `Bold Inline OverflowHidden TextOverflow ${isBad ? 'Red' : ''}${isGood ? 'Green' : ''}${isOkay ? 'Blue' : ''}${isCompleted ? 'Secondary' : ''}`;
 
     return (
       <div className="VisitPreview SoftShadow Margin OverflowHidden" onClick={this.onClick}>
-        <Picture url={visit.about ? visit.about.images[0] : '/assets/images/deleted.png'} pictureType="HeightLimited" />
+        <Picture url={visit.about ? visit.about.images[0] : '/assets/images/deleted.png'} pictureType="HeightLimited MW30" />
 
         <div className="DescriptionSection">
           {
