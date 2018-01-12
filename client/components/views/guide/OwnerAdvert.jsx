@@ -21,6 +21,7 @@ import { QueryModal } from 'modals/QueryModal.jsx';
 import AdvertMap from 'layout/user/AdvertMap.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
+import { strings } from './OwnerAdvert_lang.js';
 
 import 'scss/views/adverts.scss';
 
@@ -242,7 +243,7 @@ export class OwnerAdvert extends StoreObserver {
       <div className="OwnerAdvert">
         <QueryModal
           controller={this.deleteCtrl}
-          query="Do you really wish to delete this Ad ?"
+          query="Do you really wish to delete this Ad ?de"
           onConfirm={this.onDelete}
         />
 

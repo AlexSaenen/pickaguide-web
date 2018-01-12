@@ -13,6 +13,8 @@ import { Loader } from 'layout/elements/Loader.jsx';
 import { ModalController } from 'base/ModalController.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
+import { strings } from './Adverts_lang.js'
+
 
 export class Adverts extends StoreObserver {
 
@@ -48,7 +50,7 @@ export class Adverts extends StoreObserver {
       <div>
         <QueryModal
           controller={this.deleteAdCtrl}
-          query="Do you really wish to delete this Ad ?"
+          query={strings.deleteAdd}
           onConfirm={
             function confirm() {
               AdvertsActions.remove(this.deleteAdCtrl.callerId);
@@ -57,7 +59,7 @@ export class Adverts extends StoreObserver {
         />
 
         <Layout layoutStyle="LayoutBlank">
-          <Title>Adverts</Title>
+          <Title>{strings.title}</Title>
           <Button
             label="New"
             buttonStyle="Auto Blue TextWhite Bold"

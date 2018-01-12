@@ -9,6 +9,8 @@ import { Text } from 'layout/elements/Text.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { List } from 'layout/list/List.jsx';
+import { strings } from './Become_lang.js'
+
 
 export class Become extends StateComponent {
 
@@ -34,7 +36,7 @@ export class Become extends StateComponent {
                 <p>update your avatar there as well</p>
               </Text>
             </Layout>
-            <Information infoStyle="Info">Enjoy & have a good experience with us.</Information>
+            <Information infoStyle="Info">{strings.info}</Information>
           </Element>
         </List>
 
