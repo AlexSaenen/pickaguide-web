@@ -16,6 +16,7 @@ import { Title } from 'layout/elements/Title.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
+import { strings } from './Transactions.lang.js';
 import { ModalController } from 'base/ModalController.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
 

@@ -10,6 +10,7 @@ import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { strings } from './Search_lang.js';
+import { stringsNotif } from './Notifications.lang.js';
 
 export class Notifications extends StoreObserver {
 
