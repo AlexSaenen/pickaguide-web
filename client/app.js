@@ -62,7 +62,7 @@ ReactDOM.render(
       <Route path="profiles/mine" component={OwnerProfile} />
       <Route path="profiles/:id" component={Profile} />
       <Route path="profiles/mine/edit" component={EditProfile} />
-      <Route path="accounts/mine/edit" component={EditAccount} />
+      <Route path="accounts/mine" component={EditAccount} />
       <Route path="contact-us" component={Contact} />
       <Route path="about" component={About} />
       <Route path="view-all-adverts" component={AllAdverts} />

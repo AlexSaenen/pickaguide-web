@@ -34,6 +34,10 @@ div.LineContainer.Small {
     font-size: 1.8em;
   }
 
+  .SmallerTitle {
+    font-size: 1.5em;
+  }
+
   .SubTitle {
     margin: -0.3em 0 1.5em 0;
     font-size: 1.2em;
@@ -52,6 +56,12 @@ div.LineContainer.Small {
       display: block;
     }
 
+  }
+
+  .PictureNoMargin {
+    & > img {
+      margin: 0 !important;
+    }
   }
 
   .Picture.WidthLimited {
@@ -142,6 +152,7 @@ $layoutPadding: 2em;
 }
 
 .NoWrap { margin: 0 auto; padding: 0; }
+.NoWrapImportant { margin: 0 auto !important; padding: 0 !important; }
 
 .LayoutLight {
   background-color: $modalLightColor;
@@ -164,8 +175,7 @@ $layoutPadding: 2em;
 }
 
 .LayoutRegular {
-  @extend .LayoutLight;
-  background-color: #d1dbec;
+  @extend .LayoutBlank;
 
   strong {
     color: $softMainColor;

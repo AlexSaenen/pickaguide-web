@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 import DeleteAction from 'layout/user/DeleteAction.jsx';
 import CommentAvatarsStore from 'stores/user/CommentAvatars.js';
 import AuthStore from 'stores/user/Auth.js';
@@ -93,9 +94,9 @@ export class Comment extends StoreObserver {
           <p className="Bold Inline">{new Date(this.state.date).toDateString()}</p>
           <p className="Italic Inline"> at </p>
           <p className="Bold Inline">{new Date(this.state.date).toLocaleTimeString()}</p>
-          <div>
-            <p className="Bold Italic Inline LineSpaced">{this.state.likes.length} </p>
-            <p onClick={this.onToggleLike} className={`Clickable Inline ${this.state.likes.indexOf(myId) !== -1 ? 'Blue' : 'Underline'}`}>{this.state.likes.length === 1 ? 'Like' : 'Likes'}</p>
+          <div className="Margin">
+            <p className={`Inline ${this.state.likes.indexOf(myId) !== -1 ? 'Blue' : ''}`}>{this.state.likes.length} {this.state.likes.length === 1 ? 'point' : 'points'}</p>
+            <Button label={this.state.likes.indexOf(myId) !== -1 ? 'Unlike' : 'Like'} buttonStyle="Blue Inline Auto Small LessSpacedTop NotSpacedRight" onCallback={this.onToggleLike} />
           </div>
         </div>
       </div>

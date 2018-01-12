@@ -53,10 +53,11 @@ export class DeleteAccount extends StoreObserver {
 
   render() {
     return (
-      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutDark Tight">
+      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutBlank Tight">
         <Title>Login to delete your account</Title>
-        <EmailInput required />
-        <PasswordInput required />
+        <br />
+        <EmailInput displayLabel={false} required />
+        <PasswordInput displayLabel={false} required />
       </ModalForm>
     );
   }

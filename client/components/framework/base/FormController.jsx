@@ -7,7 +7,7 @@ export class FormController extends Controller {
     super();
 
     this.onSubmit = () => {};
-    this.messageCallback = () => { console.log('No message callback attached'); };
+    this.messageCallback = () => { };
     this.submit = this.submit.bind(this);
     this.attachSubmit = this.attachSubmit.bind(this);
   }

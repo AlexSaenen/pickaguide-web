@@ -12,6 +12,7 @@ import { List } from 'layout/list/List.jsx';
 import { NewCard } from 'layout/user/NewCard.jsx';
 import { Element } from 'layout/list/Element.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
@@ -47,7 +48,6 @@ export class Transactions extends StoreObserver {
     } else if (store.infos) {
       this.setState({ cards: store.infos.sources.data, error: null });
     } else {
-      console.log(store);
       this.setState({ transactions: store.transactions.Payments, error: null });
     }
   }
@@ -56,20 +56,20 @@ export class Transactions extends StoreObserver {
     const transactions = this.state.transactions;
     const cards = this.state.cards;
 
-    if (this.state.error || transactions === null) {
-      return (
-        <Layout layoutStyle="LayoutBlank">
-          <Loader />
+    const wrapHeader = (body) => (
+      <div>
+        <Layout>
+          <Title>Transactions</Title>
         </Layout>
-      );
-    }
+        <Layout>
+          <hr className="Overlay" />
+          {body}
+        </Layout>
+      </div>
+    );
 
-    if (transactions.length === 0) {
-      return (
-        <Layout layoutStyle="LayoutBlank">
-          <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noTransaction}</Information>
-        </Layout>
-      );
+    if (this.state.error || transactions === null) {
+      return wrapHeader(<Loader />);
     }
 
     const id = AuthStore.getState().credentials.id;
@@ -79,11 +79,11 @@ export class Transactions extends StoreObserver {
     }, 0);
 
     const htmlBalance = (
-      <p style={{ lineHeight: '3em', fontSize: '4em', color: `${balance > 0 ? '#2ECC71' : '#F75C4C'}` }}>{balance > 0 ? `+${balance}` : balance}€</p>
+      <p style={{ lineHeight: '3em', fontSize: '4em', color: `${balance >= 0 ? '#2ECC71' : '#F75C4C'}` }}>{balance > 0 ? `+${balance}` : balance}€</p>
     );
 
-    return (
-      <div className="HomeContainer">
+    return wrapHeader(
+      <div>
         <QueryModal
           controller={this.deleteAdCtrl}
           query="Do you really wish to delete this card ?"
@@ -95,7 +95,7 @@ export class Transactions extends StoreObserver {
         />
 
         <List wrapChildren={false} listStyle="ListGrid">
-          <Element elementStyle="W30 Transparent NoWrap Box">
+          <Element elementStyle="W30 MinW24E Transparent NoWrap Box">
             <Message
               title="Balance"
               content={htmlBalance}
@@ -112,15 +112,17 @@ export class Transactions extends StoreObserver {
             }
             <NewCard />
           </Element>
-          <Element elementStyle="W50 NoWrap Box Top Transparent">
+          <Element elementStyle={`${transactions.length > 0 ? 'W50' : 'AutoWidthContent'} NoWrap Box Top Transparent`}>
             <Layout layoutStyle="LayoutBlank NoWrap NoHorizontalWrap">
+              {transactions.length === 0 &&
+                <Information infoStyle="Info Small MarginAuto LineSpaced">No transactions yet</Information>
+              }
               {
                 transactions.map((transaction, index) => {
                   const isPayer = transaction.payerId === id;
                   const content = isPayer ?
                     <p>You gave <span style={{ color: '#F75C4C', fontWeight: 'bold' }}>-{transaction.amountPayer}€</span> to your <Link to={`/profiles/${transaction.beneficiaryId}`}>guide</Link> on {new Date(transaction.date).toLocaleString()}</p>
-                  :
-                    <p>You received <span style={{ color: '#2ECC71', fontWeight: 'bold' }}>+{transaction.amountBeneficiary}€</span> from your <Link to={`/profiles/${transaction.payerId}`}>visitor</Link> on {new Date(transaction.date).toLocaleString()}</p>
+                    : <p>You received <span style={{ color: '#2ECC71', fontWeight: 'bold' }}>+{transaction.amountBeneficiary}€</span> from your <Link to={`/profiles/${transaction.payerId}`}>visitor</Link> on {new Date(transaction.date).toLocaleString()}</p>
 
                   return (
                     <div key={index}>

@@ -1,13 +1,15 @@
 import React from 'react';
 
-import { PanelForm } from 'view/PanelForm.jsx';
-import { PanelLayout } from 'view/PanelLayout.jsx';
+import { Form } from 'layout/form/Form.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { DateInput, nowToInput } from 'form/DateInput.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { List } from 'layout/list/List.jsx';
+import { Element } from 'layout/list/Element.jsx';
 import { Button } from 'layout/elements/Button.jsx';
-import { FormController } from 'base/FormController.jsx';
+import { Loader } from 'layout/elements/Loader.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
@@ -30,9 +32,9 @@ export class EditProfile extends StoreObserver {
       avatar: AvatarStore.getState().avatar,
     };
 
-    this.ctrl = new FormController();
-    this.ctrl.attachSubmit(this.onSubmit.bind(this));
     this.editPictureCtrl = new ModalFormController();
+    this.onSubmit = this.onSubmit.bind(this);
+    this.messageCallback = () => {};
   }
 
   componentDidMount() {
@@ -46,7 +48,7 @@ export class EditProfile extends StoreObserver {
     const newState = Object.assign({}, this.state);
 
     if (store.error) {
-      this.ctrl.messageCallback({
+      this.messageCallback({
         title: String(strings.errorTitle),
         content: String(store.error),
         type: 'Alert',
@@ -58,7 +60,7 @@ export class EditProfile extends StoreObserver {
         newState.avatar = store.avatar;
       }
 
-      this.ctrl.messageCallback({
+      this.messageCallback({
         title: String(strings.successTitle),
         content: String(strings.successContent),
         type: 'Success',
@@ -68,7 +70,8 @@ export class EditProfile extends StoreObserver {
     this.setState(newState);
   }
 
-  onSubmit(form) {
+  onSubmit(form, messageCallback) {
+    this.messageCallback = messageCallback;
     form.interests = this.interestEditor.state.interests;
     ProfileActions.update(form);
   }
@@ -78,40 +81,55 @@ export class EditProfile extends StoreObserver {
     const avatar = this.state.avatar;
 
     if (profile === null) {
-      return (<PanelLayout layoutStyle="LayoutLight Tight" />);
+      return (<Loader />);
     }
 
     return (
       <div>
-        <PanelForm controller={this.ctrl} submitLabel={strings.submit}>
+        <Layout layoutStyle="LayoutBlank">
           <Title>{strings.title}</Title>
-          <ClickablePicture url={avatar} onClick={this.editPictureCtrl.toggle} />
-          {
-            profile.hasAvatar &&
-              <Button
-                buttonStyle="Red Auto LineSpaced"
-                label="Remove Picture"
-                onCallback={AvatarActions.remove}
-              />
-          }
+        </Layout>
 
-          <hr className="SpacedOverlay" />
+        <Form onSubmit={this.onSubmit} submitLabel={strings.submit}>
+          <hr className="Overlay" />
 
-          <TextInput value={profile.firstName} label="firstName" placeholder={strings.inputFirstName} required />
-          <TextInput value={profile.lastName} label="lastName" placeholder={strings.inputLastName} required />
+          <Layout layoutStyle="W70 MarginAuto">
+            <List listStyle="ListGrid WidthFull" wrapChildren={false}>
+              <Element elementStyle="W30 Transparent NoWrapImportant Top Box">
+                <Layout layoutStyle="SoftShadowNonHover MarginOneAndHalf">
+                  <ClickablePicture url={avatar} onClick={this.editPictureCtrl.toggle} />
+                  {
+                    profile.hasAvatar &&
+                      <Button
+                        buttonStyle="Red Auto"
+                        label="Remove Picture"
+                        onCallback={AvatarActions.remove}
+                      />
+                  }
+                </Layout>
 
-          <hr className="SpacedDivider" />
+                <Layout layoutStyle="SoftShadowNonHover MarginOneAndHalf">
+                  <EditableInterests interests={profile.interests} ref={(el) => { this.interestEditor = el; }} />
+                </Layout>
+              </Element>
 
-          <DateInput value={profile.birthdate} label="birthdate" max={Date.now()} defaultValue={nowToInput()} />
-          <TextInput value={profile.phone || ''} label="phone" />
-          <TextInput value={profile.city || ''} label="city" />
-          <TextInput value={profile.country || ''} label="country" />
-          <TextArea value={profile.description || ''} label="description" />
+              <Element elementStyle="W60 Transparent NoWrapImportant Top Box">
+                <Layout layoutStyle="SoftShadowNonHover MarginOneAndHalf">
+                  <DateInput value={profile.birthdate} label="birthdate" max={Date.now()} defaultValue={nowToInput()} />
+                  <TextInput value={profile.phone || ''} label="phone" />
+                  <TextInput value={profile.city || ''} label="city" />
+                  <TextInput value={profile.country || ''} label="country" />
+                  <TextArea value={profile.description || ''} label="description" />
+                </Layout>
 
-          <hr className="SpacedDivider" />
-
-          <EditableInterests interests={profile.interests} ref={(el) => { this.interestEditor = el; }} />
-        </PanelForm>
+                <Layout layoutStyle="SoftShadowNonHover MarginOneAndHalf">
+                  <TextInput displayLabel="First Name" value={profile.firstName} label="firstName" placeholder={strings.inputFirstName} required />
+                  <TextInput displayLabel="Last Name" value={profile.lastName} label="lastName" placeholder={strings.inputLastName} required />
+                </Layout>
+              </Element>
+            </List>
+          </Layout>
+        </Form>
 
         <EditPicture controller={this.editPictureCtrl} />
       </div>

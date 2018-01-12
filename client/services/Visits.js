@@ -134,6 +134,7 @@ export default class VisitsApi {
         if (res.error) {
           VisitsActions.error(res.error);
         } else {
+          res.visit.contact = res.contact;
           VisitsActions.actionSuccess(res.visit);
           if (type === 'finish') {
             browserHistory.push('/visits/review');

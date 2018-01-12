@@ -16,6 +16,7 @@ import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
 import ProfileStore from 'stores/user/Profile.js';
 import AdvertMap from 'layout/user/AdvertMap.jsx';
+import { strings } from './CreateAdvert_lang.js';
 
 export class CreateAdvert extends StoreObserver {
 
@@ -45,7 +46,7 @@ export class CreateAdvert extends StoreObserver {
   onStore(store) {
     if (store.error) {
       this.messageCallback({
-        title: 'Some error occurred when creating your ad',
+        title: String(strings.errorTitle),
         content: String(store.error),
         type: 'Alert Medium MarginAuto',
       }, false);

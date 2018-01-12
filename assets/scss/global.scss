@@ -76,6 +76,7 @@ p.Large { font-size: 2em; }
 .Italic { font-style: italic; }
 p.LineSpaced { line-height: 2em; }
 p.Spaced { padding: 0.5em; }
+p.LineTextOverflow { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
 p.MultiLineTextOverflow { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 p.MultiLineLargeTextOverflow { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
 p.TextOverflow { text-overflow: ellipsis; white-space: nowrap; }
@@ -84,9 +85,16 @@ p.Vertical { vertical-align: middle; }
 .Vertical { vertical-align: middle; }
 p.Red { color: $alertLightColor; }
 p.Blue { color: $infoLightColor; }
+p.Secondary { color: $secondaryElementColor; }
+a.Blue { color: $infoLightColor; text-decoration: underline; }
 p.Green { color: $successLightColor; }
 p.White { color: white; }
+.TextWhite { color: white !important; }
 p.Underline { text-decoration: underline; }
+
+p.LinkColor > a {
+  color: $infoLightColor;
+}
 
 .Box {
   -moz-box-sizing: border-box;
@@ -96,7 +104,15 @@ p.Underline { text-decoration: underline; }
 
 .H80 { height: 80% !important; }
 .H20 { height: 20% !important; }
+.W20E { width: 20em; }
+.W30E { width: 30em; }
 .W40E { width: 40em; }
+.W50E { width: 50em; }
+.MinW24E { min-width: 24em; }
+
+.MW90 { max-width: 90%; }
+.MSize { img { max-width: 100% !important; height: auto !important; } }
+.MW30 { max-width: 30%; }
 
 .arrow_box {
 	position: relative;
@@ -192,6 +208,7 @@ p.Underline { text-decoration: underline; }
 .W10 { width: 10% !important; }
 .W20 { width: 20% !important; }
 .W30 { width: 30% !important; }
+.W35 { width: 35% !important; }
 .W40 { width: 40% !important; }
 .W45 { width: 45% !important; }
 .W50 { width: 50% !important; }
@@ -206,6 +223,7 @@ p.Underline { text-decoration: underline; }
 .DashedDivider { border-top: 1px dashed #828282; margin: 0 !important; }
 .AllowOverflow { overflow: visible !important; }
 *:focus { outline: none; }
+.NoPadding { padding: 0 !important; }
 .Padding { padding: 0.5em !important; }
 .PaddingOne { padding: 1em !important; }
 .PaddingLeft { padding-left: 1.5em !important; }
@@ -229,8 +247,17 @@ p.Underline { text-decoration: underline; }
 .NoRadius { border-radius: 0 !important; }
 .Clickable { cursor: pointer; }
 .LessMarginTop { margin-top: 0 !important; }
+.LessPaddingTop { padding-top: 0 !important; }
 .NoMargin { margin: 0 !important; }
 .MarginAuto { margin: auto; }
 .MarginAutoImportant { margin: auto !important; }
 .Margin { margin: 0.5em !important; }
+.MarginOne { margin: 1em !important; }
+.MarginOneAndHalf { margin: 1em 0.5em !important; }
+.MarginEight { margin: 0.8em !important; }
+.MarginFour { margin: 0.4em !important; }
+.MarginTwo { margin: 0.2em !important; }
+.MarginTopFour { margin-top: 0.4em !important; }
+.BigVerticalMargin { margin-top: 4em !important; margin-bottom: 4em !important; }
 .DecorationNone { text-decoration: none; }
+.DecorationNoneImportant { text-decoration: none !important; }

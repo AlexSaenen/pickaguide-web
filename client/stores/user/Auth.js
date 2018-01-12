@@ -64,7 +64,6 @@ class AuthStore {
   }
 
   onLogout(isDeleted = false) {
-    browserHistory.push('/');
     CookieApi.revokeAll();
     ProfileActions.invalidateProfile.defer();
     AccountActions.invalidateAccount.defer();
@@ -82,6 +81,7 @@ class AuthStore {
     }
 
     this.credentials = null;
+    browserHistory.push('/login');
   }
 
   onLogoutSuccess() {

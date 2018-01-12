@@ -60,7 +60,10 @@ export class TextArea extends PropsComponent {
 
     return (
       <div className={this.state.className}>
-        <textarea {...props} /><br /><br />
+        {this.props.displayLabel !== false &&
+          <p style={{ backgroundColor: 'white' }} className="Inline Padding SoftShadowNonHover Tight Margin Vertical">{(this.props.displayLabel || this.state.label).capitalize()}</p>
+        }
+        <textarea className="Vertical" {...props} /><br /><br />
       </div>
     );
   }
@@ -73,6 +76,7 @@ TextArea.defaultProps = {
   cols: '50',
   required: false,
   className: '',
+  displayLabel: '',
 };
 
 TextArea.propTypes = {

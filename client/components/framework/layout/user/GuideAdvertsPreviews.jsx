@@ -2,7 +2,10 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
 import { List } from 'layout/list/List.jsx';
+import { Element } from 'layout/list/Element.jsx';
+import { Loader } from 'layout/elements/Loader.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import AdvertsActions from 'actions/Adverts.js';
 import AdvertsStore from 'stores/user/Adverts.js';
@@ -48,25 +51,32 @@ export class GuideAdvertsPreviews extends StoreObserver {
   render() {
     const adverts = this.state.adverts;
 
+    if (adverts === null) {
+      return (<Loader />);
+    }
+
+    if (adverts.length === 0) {
+      return (<div />);
+    }
+
     return (
-      <div>
-        {
-          adverts && adverts.length > 0 &&
-            <List elementStyle="Tight Clickable W40E MarginAuto" listStyle="WidthFull">
-              {
-                adverts.map((advert, index) => {
-                  return (
-                    <AdvertPreview
-                      {...advert}
-                      key={index}
-                      onClick={this.navigateToAdvert}
-                    />
-                  );
-                })
-              }
-            </List>
-        }
-      </div>
+      <Element elementStyle="W60 Transparent Top Box NoWrap">
+        <Layout layoutStyle="LayoutBlank NoWrap">
+          <List elementStyle="Tight MarginFour Clickable WidthFullImportant MarginAuto" listStyle="WidthFull">
+            {
+              adverts.map((advert, index) => {
+                return (
+                  <AdvertPreview
+                    {...advert}
+                    key={index}
+                    onClick={this.navigateToAdvert}
+                  />
+                );
+              })
+            }
+          </List>
+        </Layout>
+      </Element>
     );
   }
 }

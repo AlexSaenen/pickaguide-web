@@ -4,6 +4,7 @@ export let strings = new LocalizedStrings({
    en:{
       submit:"Login",
       title:"Login",
+      loginMessage: "Log in to enjoy more of our services",
       email:"email",
       password:"password",
       success:"Success",
@@ -14,6 +15,7 @@ export let strings = new LocalizedStrings({
       submit:"Connection",
       title:"Connection",
       email:"courriel",
+      loginMessage: "Connectez vous pour profiter plus de nos services",
       password:"mot de passe",
       success:"Réussi",
       content_success:"Vous êtes maintenant connecté",

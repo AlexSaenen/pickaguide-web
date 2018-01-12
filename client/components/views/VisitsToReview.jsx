@@ -3,7 +3,6 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
-import { Text } from 'layout/elements/Text.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Element } from 'layout/list/Element.jsx';
@@ -56,7 +55,7 @@ export class VisitsToReview extends StoreObserver {
           myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0 &&
             <Layout layoutStyle="LayoutBlank">
               <hr className="Overlay" />
-              <Text>strings.noVisit</Text>
+              <Information infoStyle="Info Small MarginAuto LineSpaced">You have no Visits to review</Information>
             </Layout>
         }
         {

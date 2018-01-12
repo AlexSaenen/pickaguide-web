@@ -2,7 +2,8 @@ import LocalizedStrings from 'react-localization';
 
 export let strings = new LocalizedStrings({
    en:{
-      title:"Edit your Account",
+      title:"Account",
+      editTitle:"Edit your Account",
       btnPasswd:"Change password",
       btnEmail:"Change email",
       msgConfirmEmail:"You need to confirm your email",
@@ -10,7 +11,8 @@ export let strings = new LocalizedStrings({
       deleteConfirm:"Do you really wish to delete your account? You will lose all your ongoing visits and unclaimed gains, all your information will be deleted"
    },
    fr:{
-      title:"Editez votre compte",
+      title:"Votre compte",
+      editTitle:"Editez votre compte",
       btnPasswd:"Changez votre mot de passe",
       btnEmail:"Changez votre courriel",
       msgConfirmEmail:"Entrez votre courriel à nouveau",

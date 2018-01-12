@@ -47,17 +47,19 @@ export class OwnerAdvertPreview extends PropsComponent {
       <div onClick={this.onClick} className="OwnerAdvertPreview">
         <DeleteAction className="ExtraMargin" onClick={this.onDelete} />
         <Picture url={this.props.images[0]} pictureType="WidthLimited" />
-        <ToggleCheckMark className="Inline" active={this.state.active} onToggle={this.toggleAdvertState} />
-        {
-          !!this.props.rate &&
-            <div className="star-ratings-css LineSpaced">
-              <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-              <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-            </div>
-        }
-        <p className="Medium Bold">{this.props.title}</p>
-        <p className="OverflowHidden Italic TextOverflow">{this.props.city}, {this.props.country}</p>
-        <p className="Spaced OverflowHidden TextOverflow">{this.props.description}</p>
+        <div className="Padding">
+          <ToggleCheckMark className="Inline" active={this.state.active} onToggle={this.toggleAdvertState} />
+          {
+            !!this.props.rate &&
+              <div className="star-ratings-css LineSpaced">
+                <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+              </div>
+          }
+          <p className="Medium Bold Margin">{this.props.title}</p>
+          <p className="OverflowHidden Italic TextOverflow">{this.props.city}, {this.props.country}</p>
+          <p className="Spaced OverflowHidden TextOverflow">{this.props.description}</p>
+        </div>
       </div>
     );
   }

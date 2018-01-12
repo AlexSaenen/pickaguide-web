@@ -3,7 +3,6 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Button } from 'layout/elements/Button.jsx';
-import { SubTitle } from 'layout/elements/SubTitle.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import Visit from 'layout/user/Visit.jsx';
 import { FeedableModalFormController } from 'base/FeedableModalFormController.jsx';
@@ -20,6 +19,19 @@ const getStatusMapping = (type) => {
     waiting: ['accept', 'deny'],
     accepted: ['finish', 'deny'],
   });
+};
+
+const getButtonColor = (status) => {
+  switch (status.capitalize()) {
+    case 'Accept':
+    case 'Finish':
+      return 'Blue';
+    case 'Deny':
+    case 'Cancel':
+      return 'Red';
+    default:
+      return 'Blue';
+  }
 };
 
 
@@ -78,58 +90,34 @@ export class OwnerVisit extends StoreObserver {
 
     let changeStatus = null;
 
+    const wrapFunctionToAction = (action) => {
+      return () => {
+        this.ctrl.feed({ callerId: this.id, actionType: action });
+        this.ctrl.toggle(true);
+      };
+    };
+
     if (this.statusMapping[visitStatus] !== undefined && visit.about) {
       changeStatus = this.statusMapping[visitStatus].map((nextStatus, index) => {
+        const callback = wrapFunctionToAction(nextStatus);
+
         return (
           <Button
-            buttonStyle="Blue Auto AllSpaced"
+            buttonStyle={`${getButtonColor(nextStatus)} Auto`}
             label={nextStatus.capitalize()}
             key={index}
-            onCallback={
-              function callback() {
-                this.ctrl.feed({ callerId: this.id, actionType: nextStatus });
-                this.ctrl.toggle(true);
-              }.bind(this)
-            }
+            onCallback={callback}
           />
         );
       });
-
-      changeStatus = (
-        <div><hr className="SpacedDivider" />{changeStatus}</div>
-      );
     }
 
     return (
-      <Layout layoutStyle="LayoutLight">
-        <hr className="Overlay" />
-
-        <Visit visit={visit} clickable type={this.type} />
-
-        {
-          visit.contact &&
-            <div>
-              <br /><br /><br />
-              <SubTitle>Contact Info</SubTitle>
-              {
-                visit.contact.phone &&
-                  <p>{visit.contact.phone}</p>
-              }
-              {
-                visit.contact.email &&
-                  <p>{visit.contact.email}</p>
-              }
-              {
-                !visit.contact.email && !visit.contact.phone &&
-                  <p>No contact info available</p>
-              }
-            </div>
-        }
-
-        {changeStatus}
+      <div>
+        <Visit visit={visit} clickable type={this.type} addon={changeStatus} />
 
         <ChangeStatus controller={this.ctrl} />
-      </Layout>
+      </div>
     );
   }
 }

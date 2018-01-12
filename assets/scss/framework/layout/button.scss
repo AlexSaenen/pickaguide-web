@@ -26,7 +26,10 @@
 .Button.BetweenSpaced { margin-left: 1em; margin-right: 1em;}
 .Button.LineSpaced { margin: 1em 0; }
 .Button.LessSpacedTop { margin-top: 0.6em !important; }
+.Button.NotSpacedRight { margin-right: 0 !important; }
 .Button.AllSpaced { margin: 1em !important; }
+
+.Button.Small { padding: 0.1em 0.9em; }
 
 .Button.Auto, .ShadowedButton.Auto { display: inline-block; }
 .Button.AutoWidth, .ShadowedButton.AutoWidth { width: auto; }

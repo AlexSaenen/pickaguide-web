@@ -20,8 +20,8 @@
   }
 
   .CommentContent {
+    background-color: white;
     margin: 1em;
-    background-color: $modalLightColor;
     color: $textDarkColor;
     width: inherit;
     overflow: visible;
@@ -43,9 +43,8 @@
   }
 
   .CommentMeta {
-    padding: 0.5em;
-    background-color: $modalSecondaryColor;
     color: $textLightColor;
+    padding: 0.5em;
   }
 }
 
@@ -65,7 +64,7 @@
   input {
     border-radius: 0.4em;
     padding: 1em;
-    width: 7em;
+    width: 9em;
     background-color: $modalSecondaryColor;
     color: white;
     border: 0;

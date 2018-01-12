@@ -29,7 +29,7 @@ export class FileModal extends PropsComponent {
           this.state.sizeWarning !== '' &&
             <Information infoStyle="Info Auto MarginAuto AllSpaced">{this.state.sizeWarning}</Information>
         }
-        <FileInput className="TopMargin" placeholder={this.state.inputHolder} label={this.state.inputLabel} required />
+        <FileInput displayLabel={false} className="TopMargin" placeholder={this.state.inputHolder} label={this.state.inputLabel} required />
       </ModalForm>
     );
   }

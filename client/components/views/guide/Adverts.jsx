@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
-import { Text } from 'layout/elements/Text.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import { List } from 'layout/list/List.jsx';
 import { OwnerAdvertPreview } from 'layout/user/OwnerAdvertPreview.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
@@ -13,6 +13,8 @@ import { Loader } from 'layout/elements/Loader.jsx';
 import { ModalController } from 'base/ModalController.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
+import { strings } from './Adverts_lang.js'
+
 
 export class Adverts extends StoreObserver {
 
@@ -48,7 +50,7 @@ export class Adverts extends StoreObserver {
       <div>
         <QueryModal
           controller={this.deleteAdCtrl}
-          query="Do you really wish to delete this Ad ?"
+          query={strings.deleteAdd}
           onConfirm={
             function confirm() {
               AdvertsActions.remove(this.deleteAdCtrl.callerId);
@@ -57,10 +59,10 @@ export class Adverts extends StoreObserver {
         />
 
         <Layout layoutStyle="LayoutBlank">
-          <Title>Adverts</Title>
+          <Title>{strings.title}</Title>
           <Button
             label="New"
-            buttonStyle="Auto Red TextWhite Bold"
+            buttonStyle="Auto Blue TextWhite Bold"
             onCallback={this.navigateToAdCreation}
           />
         </Layout>
@@ -84,7 +86,12 @@ export class Adverts extends StoreObserver {
                 adverts === null ?
                   <Loader />
                 :
-                  <Text>You have no Adverts yet ..</Text>
+                  <div>
+                    <Information infoStyle="Info Small MarginAuto LineSpaced">No adverts</Information>
+                    <Layout layoutStyle="LayoutRegular SoftShadowNonHover AutoWidthContent MarginAuto">
+                      <p>Create an advert so you can <strong>help</strong> other users <strong>discover</strong> your city !</p>
+                    </Layout>
+                  </div>
               }
             </Layout>
         }

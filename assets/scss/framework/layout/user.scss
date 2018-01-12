@@ -95,7 +95,7 @@ $interestHeight: 1.6em;
 
       & svg {
         margin: auto;
-        stroke: $textDarkColor;
+        stroke: black;
         cursor: pointer;
       }
 
@@ -147,17 +147,14 @@ $interestHeight: 1.6em;
       height: 1.6em;
       width: 1.6em;
       margin: 0.5em;
-      -webkit-filter: drop-shadow(0 0 1px #222);
-      -moz-filter:    drop-shadow(0 0 1px #222);
-      filter:         drop-shadow(0 0 1px #222);
       cursor: pointer;
 
-      line { stroke: #495C70; }
+      line { stroke: black; }
 
       #hovered {
         transition-property: all;
         transition-duration: 0.3s;
-        transition-timing-function: ease-out;
+        transition-timing-function: ease-in-out;
         r: 0;
       }
     }

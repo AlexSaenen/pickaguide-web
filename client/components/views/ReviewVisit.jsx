@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
-import { Text } from 'layout/elements/Text.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import Visit from 'layout/user/Visit.jsx';
 import { Review } from 'layout/user/Review.jsx';
 import VisitsStore from 'stores/user/Visits.js';
@@ -35,7 +35,7 @@ export class ReviewVisit extends PropsComponent {
     if (visit === null) {
       return (
         <Layout layoutStyle="LayoutBlank">
-          <Text>No such visit found</Text>
+          <Information infoStyle="Info Small MarginAuto LineSpaced">No such visit found ..</Information>
         </Layout>
       );
     }
@@ -45,17 +45,19 @@ export class ReviewVisit extends PropsComponent {
     const forWhom = me === owner ? visit.by : owner;
 
     return (
-      <Layout layoutStyle="LayoutBlank">
-        <hr className="Overlay" />
+      <div>
 
         <Visit visit={visit} clickable={false} />
-        <Review
-          visitId={visit._id}
-          advertId={visit.about ? visit.about._id : null}
-          canPay={owner !== me}
-          for={forWhom}
-        />
-      </Layout>
+
+        <Layout layoutStyle="LessPaddingTop">
+          <Review
+            visitId={visit._id}
+            advertId={visit.about ? visit.about._id : null}
+            canPay={owner !== me}
+            for={forWhom}
+          />
+        </Layout>
+      </div>
     );
   }
 }

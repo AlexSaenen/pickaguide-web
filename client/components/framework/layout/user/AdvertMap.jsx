@@ -95,17 +95,6 @@ class AdvertMap extends React.Component {
   }
 }
 
-// AdvertMap.defaultProps = {
-//   center: { lat: 59.95, lng: 30.33 },
-//   zoom: 9,
-//   guideCoor: [
-//     { id: 'A', lat: 43.79831666666667, lng: 0.625095 },
-//     { id: 'B', lat: 43.79833266666667, lng: 0.625075 },
-//     { id: 'C', lat: 43.79732266666667, lng: 0.635096 },
-//   ],
-//   advertLocation: [43.79839666666667, 0.626995],
-// };
-
 AdvertMap.propTypes = {
   location: React.PropTypes.string,
   city: React.PropTypes.string,

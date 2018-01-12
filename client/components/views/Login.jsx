@@ -5,6 +5,7 @@ import { Form } from 'form/Form.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
 import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { strings } from './Login_lang.js';
@@ -49,11 +50,17 @@ export class Login extends StoreObserver {
   render() {
     return (
       <div className="HomeContainer">
+        <Layout>
+          <Title>{strings.loginMessage}</Title>
+        </Layout>
+        <Layout>
+          <hr className="Overlay" />
+        </Layout>
         <Form layoutStyle="LayoutBlank SoftShadowNonHover W30 MarginAuto" submitLabel={strings.submit} onSubmit={this.onSubmit}>
           <Title>{strings.submit}</Title>
           <Button label="Or create an account" buttonStyle="MarginAuto Blue Auto LineSpaced" onCallback={() => { browserHistory.push('/signup'); }} />
-          <EmailInput placeholder={strings.email} required />
-          <PasswordInput placeholder={strings.password} required />
+          <EmailInput displayLabel={false} placeholder={strings.email} required />
+          <PasswordInput displayLabel={false} placeholder={strings.password} required />
         </Form>
 
       </div>

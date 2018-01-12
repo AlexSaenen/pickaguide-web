@@ -102,7 +102,7 @@ export class Pay extends StoreObserver {
 
         {
           cards.map((card, index) => {
-            return <div className="Clickable"><CardPreview {...card} key={index} controller={this.amountCtrl} deleter={this.deleteAdCtrl} /></div>;
+            return <div key={index} className="Clickable"><CardPreview {...card} controller={this.amountCtrl} deleter={this.deleteAdCtrl} /></div>;
           })
         }
         <NewCard />

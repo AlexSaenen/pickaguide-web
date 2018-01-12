@@ -12,10 +12,12 @@ import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Text } from 'layout/elements/Text.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import SimpleMap from 'layout/user/GoogleMap.jsx';
 import BlockStore from 'stores/user/Block.js';
 import AuthStore from 'stores/user/Auth.js';
+import { strings } from './Home_lang.js'
 
 import { Guides } from './Home';
 
@@ -85,7 +87,7 @@ export class Home extends StoreObserver {
 
   renderMap() {
     return (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
-      <Element elementStyle="Tight NoHorizontalWrap Clickable Height30">
+      <Element elementStyle="Tight NoHorizontalWrap Clickable Height30 Map">
         <SimpleMap zoom={12} />
       </Element>;
   }
@@ -101,21 +103,32 @@ export class Home extends StoreObserver {
   render() {
     return (
       <div className="HomeContainer">
+        <Layout>
+          <Title>Pickaguide</Title>
+          <p className="Italic">A way to visit places and meet people differently</p>
+        </Layout>
+
+        <Layout>
+          <hr className="Overlay" />
+        </Layout>
+
         <AuthDependent unauth>
           <List wrapChildren={false}>
-            <Element elementStyle="Tight Transparent NoWrap">
-              <Layout layoutStyle="LayoutRegular">
+            <Element elementStyle="Tight NoWrap">
+              <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
                 <Text>
-                  <p>Pickaguide is a service that allows you to <strong>genuinly discover</strong> a city or a place through the eyes of a <strong>local inhabitant</strong>.</p>
-                  <p>Get a <strong>perfect visit</strong> wherever you are, whenever you want.</p>
-                  <p>With Pickaguide, live a <strong>unique experience.</strong></p>
+                  <p dangerouslySetInnerHTML={{ __html: strings.desc1 }} / >
+                  <p dangerouslySetInnerHTML={{ __html: strings.desc2 }} / >
+                  <p dangerouslySetInnerHTML={{ __html: strings.desc3 }} / >
                 </Text>
               </Layout>
             </Element>
             <Element elementStyle="Tight Transparent NoWrap">
+
               <Information infoStyle="Info Auto MarginAuto LineSpaced">
-                You can access a Map with all <strong>available visits</strong> around you, you just need to <Link to="/login">log in</Link> or <Link to="/signup">create</Link> an account
+                {strings.infoLogin1}<Link to="/login">{strings.infoLogin2}</Link>{strings.infoLogin3}<Link to="/signup">{strings.infoLogin4}</Link>{strings.infoLogin5}
               </Information>
+
             </Element>
           </List>
         </AuthDependent>
@@ -127,9 +140,10 @@ export class Home extends StoreObserver {
             <List wrapChildren={false} listStyle="Tight NoWrap ListStack WidthFull">
               {
                 (AuthStore.getState().credentials !== null && this.state.isBlocking === false) &&
-                  <Element elementStyle="Tight Transparent NoWrap">
-                    <Layout layoutStyle="LayoutRegular">
-                      <p>There might be some available <strong>visits around</strong> you, why don't you have a look on the Map below ?</p>
+
+                  <Element elementStyle="Tight NoWrap">
+                    <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
+                      <p dangerouslySetInnerHTML={{ __html: strings.visitMap }} / >
                     </Layout>
                   </Element>
               }
@@ -137,7 +151,7 @@ export class Home extends StoreObserver {
               {this.renderAdverts()}
 
               <Element elementStyle="Auto Transparent Tight">
-                <Button label="Explore all adverts available" onCallback={this.navigateToAllAdverts} buttonStyle="Auto Blue TextWhite AllSpaced" />
+                <Button label={strings.exploreVisit} onCallback={this.navigateToAllAdverts} buttonStyle="Auto Blue TextWhite AllSpaced" />
               </Element>
             </List>
           </Element>

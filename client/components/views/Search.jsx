@@ -113,7 +113,7 @@ export class Search extends StoreObserver {
     const searchBar = (
       <Layout layoutStyle="LayoutBlank SoftShadow AutoWidthContent MarginAuto PaddingOne">
         <InlineForm onSubmit={this.ctrl.submit} submitLabel={strings.submit}>
-          <TextInput label="terms" className="FormElement PaddingLeft" placeholder={strings.placeholder} value={this.state.searchTerms} inline />
+          <TextInput displayLabel={false} label="terms" className="FormElement PaddingLeft" placeholder={strings.placeholder} value={this.state.searchTerms} inline />
         </InlineForm>
       </Layout>
     );
@@ -149,10 +149,10 @@ export class Search extends StoreObserver {
         <List wrapChildren={false} listStyle="ListGrid Center WidthFull">
           {
             (profiles.length > 0) &&
-              <Element key={0} elementStyle="Small Transparent NoWrap">
-                <Element elementStyle="Tight WidthFullImportant Transparent NoWrap">
-                  <Layout layoutStyle="LayoutLight">
-                    <p>We found these awesome guides for you !</p>
+              <Element key={0} elementStyle="W30 Transparent NoWrap">
+                <Element elementStyle="Tight WidthFullImportant NoWrap">
+                  <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
+                    <p>We found these <strong>awesome guides</strong> for you !</p>
                   </Layout>
                 </Element>
 
@@ -176,10 +176,10 @@ export class Search extends StoreObserver {
           }
           {
             (adverts.length > 0) &&
-              <Element key={1} elementStyle="Half Transparent NoWrap Top Box">
-                <Element elementStyle="Tight WidthFullImportant Transparent NoWrap">
-                  <Layout layoutStyle="LayoutLight">
-                    <p>These amazing visit opportunities are waiting for you !</p>
+              <Element key={1} elementStyle="W50 Transparent NoWrap Top Box">
+                <Element elementStyle="Tight WidthFullImportant NoWrap">
+                  <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
+                    <p>These amazing <strong>visit opportunities</strong> are waiting for you !</p>
                   </Layout>
                 </Element>
 

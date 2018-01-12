@@ -49,3 +49,7 @@ $modalIndex: 150;
 .Wide .ModalContent {
   width: 50em;
 }
+
+.Auto .ModalContent {
+  width: fit-content;
+}

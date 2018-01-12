@@ -43,10 +43,11 @@ export class EditEmail extends StoreObserver {
     const account = this.state.account || {};
 
     return (
-      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutDark Tight">
+      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutBlank Tight">
         <Title>Update Email</Title>
-        <EmailInput placeholder={`New email (current: ${account.email})`} required />
-        <EmailInput label="emailConfirmation" placeholder="Confirm email" required />
+        <br />
+        <EmailInput displayLabel={false} placeholder={`New email (current: ${account.email})`} required />
+        <EmailInput displayLabel={false} label="emailConfirmation" placeholder="Confirm email" required />
       </ModalForm>
     );
   }
