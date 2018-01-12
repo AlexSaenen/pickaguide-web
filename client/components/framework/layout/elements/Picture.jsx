@@ -20,7 +20,7 @@ export class Picture extends PropsComponent {
       <div className={classNames}>
         {
           this.state.url !== '' &&
-            <img alt={this.state.pictureName} title={this.state.pictureName} src={this.state.url} />
+            <img alt={this.state.pictureName} title={this.state.pictureName} src={this.state.url} className={`${this.state.radius ? 'BorderRadius' : ''}`} />
         }
       </div>
     );
@@ -32,10 +32,12 @@ Picture.defaultProps = {
   pictureName: 'None',
   pictureType: '',
   url: '',
+  radius: false,
 };
 
 Picture.propTypes = {
   pictureName: React.PropTypes.string,
   url: React.PropTypes.string,
+  radius: React.PropTypes.bool,
   pictureType: React.PropTypes.string,
 };

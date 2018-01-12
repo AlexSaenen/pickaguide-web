@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { PanelForm } from 'view/PanelForm.jsx';
+import { Form } from 'form/Form.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
 import { PasswordInput } from 'form/PasswordInput.jsx';
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { FormController } from 'base/FormController.jsx';
 import { Title } from 'layout/elements/Title.jsx';
-import { InformationWithClose } from 'layout/elements/InformationWithClose.jsx';
+import { Layout } from 'layout/containers/Layout.jsx';
+import { List } from 'layout/list/List.jsx';
+import { Information } from 'layout/elements/Information.jsx';
 import { strings } from './Singup_lang.js';
 import SignupActions from 'actions/Signup.js';
 import SignupStore from 'stores/user/Signup.js';
@@ -18,21 +19,21 @@ export class Signup extends StoreObserver {
   constructor(props, context) {
     super(props, context, SignupStore);
 
-    this.ctrl = new FormController();
-    this.ctrl.attachSubmit(SignupActions.signup);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.messageCallback = () => {};
   }
 
   onStore(store) {
     const newState = Object.assign({}, this.state);
 
     if (store.error) {
-      this.ctrl.messageCallback({
+      this.messageCallback({
         title: String(strings.error),
         content: String(store.error),
         type: 'Alert',
       });
     } else {
-      this.ctrl.messageCallback({
+      this.messageCallback({
         title: String(strings.success),
         content: store.message,
         type: 'Success',
@@ -42,24 +43,39 @@ export class Signup extends StoreObserver {
     this.setState(newState);
   }
 
+  onSubmit(form, messageCallback) {
+    this.messageCallback = messageCallback;
+    SignupActions.signup.defer(form);
+  }
+
   render() {
     return (
-      <div>
-        <PanelForm controller={this.ctrl} submitLabel={strings.submit}>
+      <div className="HomeContainer">
+        <Layout>
+          <Title>{strings.signupMessage}</Title>
+          <p className="Italic">{strings.signupFollowup}</p>
+        </Layout>
+        <Layout>
+          <hr className="Overlay" />
+        </Layout>
+        <Form layoutStyle="LayoutBlank SoftShadowNonHover W60 MarginAuto" onSubmit={this.onSubmit} submitLabel={strings.submit}>
           <Title>{strings.title}</Title>
 
-          <hr className="SpacedOverlay" />
-
-          <TextInput label="firstName" placeholder={strings.first_name} required />
-          <TextInput label="lastName" placeholder={strings.last_name} required />
-
-          <hr className="SpacedDivider" />
-
-          <EmailInput required />
-          <InformationWithClose>{strings.success_info}</InformationWithClose>
-          <PasswordInput placeholder={strings.password} required />
-          <PasswordInput label="passwordConfirmation" placeholder={strings.passwordConfirm} required />
-        </PanelForm>
+          <List listStyle="ListGrid WidthFull" elementStyle="Vertical W50 NoWrap Box Transparent">
+            <Layout layoutStyle="Transparent NoWrap Tight">
+              <Information infoStyle="Info">{strings.success_info}</Information>
+              <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
+                <TextInput displayLabel={false} label="firstName" placeholder={strings.first_name} required />
+                <TextInput displayLabel={false} label="lastName" placeholder={strings.last_name} required />
+              </Layout>
+            </Layout>
+            <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
+              <EmailInput displayLabel={false} required />
+              <PasswordInput displayLabel={false} placeholder={strings.password} required />
+              <PasswordInput displayLabel={false} label="passwordConfirmation" placeholder={strings.passwordConfirm} required />
+            </Layout>
+          </List>
+        </Form>
       </div>
     );
   }

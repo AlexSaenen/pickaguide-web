@@ -3,9 +3,9 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
-import { Text } from 'layout/elements/Text.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
+import { Element } from 'layout/list/Element.jsx';
 import { List } from 'layout/list/List.jsx';
 import { VisitToReview } from 'layout/user/VisitToReview.jsx';
 import VisitsStore from 'stores/user/Visits.js';
@@ -54,7 +54,7 @@ export class VisitsToReview extends StoreObserver {
           myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0 &&
             <Layout layoutStyle="LayoutBlank">
               <hr className="Overlay" />
-              <Text>You have no Visits to review</Text>
+              <Information infoStyle="Info Small MarginAuto LineSpaced">You have no Visits to review</Information>
             </Layout>
         }
         {
@@ -64,37 +64,47 @@ export class VisitsToReview extends StoreObserver {
               <Loader />
             </Layout>
         }
-        {
-          myVisits && myVisits.length > 0 &&
-            <Layout layoutStyle="LayoutBlank">
+        <Layout layoutStyle="LayoutBlank">
+          {
+            !(myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0) && !(myVisits === null || theirVisits === null) &&
               <hr className="Overlay" />
-              <Title>Your visits as a traveler ...</Title>
-              <List layoutStyle="LayoutLight" elementStyle="Tight AutoWidthContent MarginAuto">
-                {
-                  myVisits.map((visit, index) => {
-                    return <VisitToReview key={index} {...visit} />;
-                  })
-                }
-              </List>
-            </Layout>
-        }
-        {
-          theirVisits && theirVisits.length > 0 &&
-            <Layout layoutStyle="LayoutBlank">
-              {
-                myVisits.length === 0 &&
-                  <hr className="Overlay" />
-              }
-              <Title>Your visits with travelers ...</Title>
-              <List layoutStyle="LayoutLight" elementStyle="Tight AutoWidthContent MarginAuto">
-                {
-                  theirVisits.map((visit, index) => {
-                    return <VisitToReview key={index} {...visit} />;
-                  })
-                }
-              </List>
-            </Layout>
-        }
+          }
+
+          <List listStyle="ListGrid" wrapChildren={false}>
+            {
+              myVisits && myVisits.length > 0 &&
+                <Element elementStyle={`${theirVisits && theirVisits.length > 0 ? 'Half' : 'WidthFullImportant'} Transparent NoWrap Top Box`}>
+                  <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
+                    <Title>Your visits as a traveler ...</Title>
+                    <br className="Margin" />
+                    <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap">
+                      {
+                        myVisits.map((visit, index) => {
+                          return <VisitToReview key={index} {...visit} />;
+                        })
+                      }
+                    </List>
+                  </Layout>
+                </Element>
+            }
+            {
+              theirVisits && theirVisits.length > 0 &&
+                <Element elementStyle={`${myVisits && myVisits.length > 0 ? 'Half' : 'WidthFullImportant'} Transparent NoWrap Top Box`}>
+                  <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
+                    <Title>Your visits with travelers ...</Title>
+                    <br className="Margin" />
+                    <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap">
+                      {
+                        theirVisits.map((visit, index) => {
+                          return <VisitToReview key={index} {...visit} />;
+                        })
+                      }
+                    </List>
+                  </Layout>
+                </Element>
+            }
+          </List>
+        </Layout>
       </div>
     );
   }

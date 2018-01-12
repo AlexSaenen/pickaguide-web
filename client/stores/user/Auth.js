@@ -64,12 +64,12 @@ class AuthStore {
   }
 
   onLogout(isDeleted = false) {
-    browserHistory.push('/');
     CookieApi.revokeAll();
     ProfileActions.invalidateProfile.defer();
     AccountActions.invalidateAccount.defer();
     AvatarActions.invalidateAvatar.defer();
     UserActions.invalidateUser.defer();
+    BlockActions.invalidateBlock.defer();
 
     if (this.notifFetcher) {
       clearInterval(this.notifFetcher);
@@ -81,6 +81,7 @@ class AuthStore {
     }
 
     this.credentials = null;
+    browserHistory.push('/login');
   }
 
   onLogoutSuccess() {

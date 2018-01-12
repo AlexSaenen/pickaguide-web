@@ -57,11 +57,12 @@ export class Guide extends StoreObserver {
 
     const inputs = neededAttrs
       .filter(attr => !profile[attr])
-      .map((attr, index) => <TextInput key={index} value={profile[attr]} label={attr} placeholder={attrNameMapping[attr] || attr} required />);
+      .map((attr, index) => <TextInput displayLabel={false} key={index} value={profile[attr]} label={attr} placeholder={attrNameMapping[attr] || attr} required />);
 
     return (
-      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutDark Tight" modalStyle="Large">
+      <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutBlank Tight" modalStyle="Large">
         <Title>Become Guide</Title>
+        <br />
         {inputs}
       </ModalForm>
     );

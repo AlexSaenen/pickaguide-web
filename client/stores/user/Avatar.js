@@ -3,7 +3,7 @@ import AvatarActions from 'actions/Avatar.js';
 import AvatarApi from 'services/Avatar.js';
 import AuthStore from 'stores/user/Auth.js';
 
-const MAX_AVATAR_SIZE = 2097151;
+const MAX_AVATAR_SIZE = 5242880;
 
 
 class AvatarStore {
@@ -29,7 +29,7 @@ class AvatarStore {
 
   onUpdate(form) {
     if (form.picture.size > MAX_AVATAR_SIZE) {
-      AvatarActions.error.defer('File size exceeds 2mb');
+      AvatarActions.error.defer('File size exceeds 5mb');
     } else {
       AvatarApi.updateAvatar(form);
     }

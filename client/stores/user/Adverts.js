@@ -1,4 +1,5 @@
 import alt from 'client/alt';
+import { browserHistory } from 'react-router';
 import AdvertsActions from 'actions/Adverts.js';
 import AdvertsApi from 'services/Adverts.js';
 
@@ -64,6 +65,7 @@ class AdvertsStore {
   onUpdateSuccess(advert) {
     this.specificAdvert = advert;
     this.error = null;
+    browserHistory.push('/guide/adverts');
     AdvertsApi.getMine();
   }
 

@@ -6,6 +6,7 @@ import NotificationsActions from 'actions/Notifications.js';
 import NotificationsStore from 'stores/user/Notifications.js';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Message } from 'layout/elements/Message.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { strings } from './Search_lang.js';
@@ -43,6 +44,18 @@ export class Notifications extends StoreObserver {
   render() {
     const notifs = this.state.notifs;
 
+    const wrapHeader = (body) => (
+      <div>
+        <Layout>
+          <Title>Notifications</Title>
+        </Layout>
+        <Layout>
+          <hr className="Overlay" />
+          {body}
+        </Layout>
+      </div>
+    );
+
     if (this.state.error) {
       const message = {
         title: String(strings.error),
@@ -50,30 +63,18 @@ export class Notifications extends StoreObserver {
         type: 'Alert',
       };
 
-      return (
-        <Layout layoutStyle="LayoutBlank">
-          <Message messageStyle="Medium" {...message} timed={false} />
-        </Layout>
-      );
+      return wrapHeader(<Message messageStyle="Medium" {...message} timed={false} />);
     }
 
     if (notifs === null) {
-      return (
-        <Layout layoutStyle="LayoutBlank">
-          <Loader />
-        </Layout>
-      );
+      return wrapHeader(<Loader />);
     }
 
     if (notifs.length === 0) {
-      return (
-        <Layout layoutStyle="LayoutBlank">
-          <Information infoStyle="Info Small MarginAuto LineSpaced">No notifications yet</Information>
-        </Layout>
-      );
+      return wrapHeader(<Information infoStyle="Info Small MarginAuto LineSpaced">No notifications yet</Information>);
     }
 
-    return (
+    return wrapHeader(
       <Layout layoutStyle="LayoutBlank">
         {
           notifs.map((notif, index) => {
@@ -82,12 +83,14 @@ export class Notifications extends StoreObserver {
               <Link to={`/profiles/${notif.by}`}>{body[0]}.</Link> {body[1]}
             </p>);
 
+            const createdAt = new Date(notif.creationDate);
+
             return (
               <div key={index}>
                 <Message
-                  title={notif.title}
+                  title={`${notif.title} on ${createdAt.toLocaleDateString()} at ${createdAt.toLocaleTimeString()}`}
                   content={html}
-                  type="Notif"
+                  type="NeutralLight"
                   time={false}
                   messageStyle="Medium MarginAuto"
                 />

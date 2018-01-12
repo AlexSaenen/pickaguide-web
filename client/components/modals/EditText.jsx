@@ -27,6 +27,7 @@ export class EditText extends PropsComponent {
     return (
       <ModalForm {...this.props} layoutStyle="LayoutLight Tight">
         <Title>{this.state.title}</Title>
+        <br />
         <TextInput label={this.state.label} value={this.state.value} required />
       </ModalForm>
     );

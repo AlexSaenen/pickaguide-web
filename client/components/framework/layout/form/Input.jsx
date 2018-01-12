@@ -76,7 +76,10 @@ export class Input extends PropsComponent {
     }
 
     return (
-      <div className={this.state.className}>
+      <div className={`${this.state.className} Margin`}>
+        {this.props.displayLabel !== false &&
+          <p style={{ backgroundColor: 'white' }} className="Inline Padding SoftShadowNonHover Tight Margin">{(this.props.displayLabel || this.state.label).capitalize()}</p>
+        }
         <input {...props} />
         {this.state.inline === false ? <span><br /><br /></span> : ''}
       </div>
@@ -90,6 +93,7 @@ Input.defaultProps = {
   required: false,
   inline: false,
   className: '',
+  displayLabel: '',
 };
 
 Input.propTypes = {

@@ -35,6 +35,7 @@ $modalIndex: 150;
   display: flex;
   justify-content: space-around;
   flex-wrap: nowrap;
+  padding-bottom: 1em;
 }
 
 .Small .ModalContent {
@@ -47,4 +48,8 @@ $modalIndex: 150;
 
 .Wide .ModalContent {
   width: 50em;
+}
+
+.Auto .ModalContent {
+  width: fit-content;
 }

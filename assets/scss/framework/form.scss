@@ -21,9 +21,12 @@
 
   input[type="submit"] {
     border: 0;
-    border-radius: 0.3em;
+    border-radius: 1.5em;
     padding: 0.4em 1.5em;
-    margin: 1em;
+    margin: auto 1em;
+    margin-top: 1em;
+    font-size: 1em;
+    line-height: 1.5em;
     background-color: $elementColor;
     -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
     -moz-box-shadow:    0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -43,8 +46,13 @@
     max-width: 100%;
     background-color: rgba(0, 0, 0, 0);
     border: 0;
-    border-bottom: 1px dashed $highlightColor;
+    border-bottom: 1px dashed black;
     z-index: 1;
+  }
+
+  input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus, input[type="tel"]:focus,
+  input[type="number"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, textarea:focus {
+    border-bottom: 1px dashed $infoLightColor;
   }
 
   input[type="number"] {

@@ -23,10 +23,13 @@ export class Guide extends React.Component {
         <Picture url={this.props.avatar} pictureType="HeightLimited" pictureName={this.props.description} />
         <p className="Spaced Medium Inline">{this.props.firstName}</p>
         {
-          this.props.rate !== undefined &&
-            <div className="star-ratings-css NoMargin">
-              <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-              <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          !!this.props.rate &&
+            <div>
+              <div className="star-ratings-css NoMargin">
+                <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+              </div>
+              <div className="Margin" />
             </div>
         }
       </div>

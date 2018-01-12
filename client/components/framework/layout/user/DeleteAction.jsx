@@ -5,9 +5,10 @@ import 'scss/framework/layout/user.scss';
 
 const DeleteAction = (props) => {
   return (
-    <div className="DeleteAction" onClick={props.onClick}>
+    <div className={`DeleteAction ${props.className}`} onClick={props.onClick}>
       <svg width="100%" height="100%" viewBox="0 0 400 400">
-        <polyline points="90,200 310,200" fillOpacity="0" strokeWidth="60" />
+        <polyline points="15,15 385,385" fillOpacity="0" stroke="#F75C4C" strokeWidth="80" strokeLinecap="round" />
+        <polyline points="385,15 15,385" fillOpacity="0" stroke="#F75C4C" strokeWidth="80" strokeLinecap="round" />
       </svg>
     </div>
   );
@@ -15,6 +16,7 @@ const DeleteAction = (props) => {
 
 DeleteAction.propTypes = {
   onClick: React.PropTypes.func.isRequired,
+  className: React.PropTypes.string,
 };
 
 export default DeleteAction;

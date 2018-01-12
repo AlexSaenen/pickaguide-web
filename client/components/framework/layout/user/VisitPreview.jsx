@@ -6,6 +6,19 @@ import { Button } from 'layout/elements/Button.jsx';
 
 import 'scss/views/visits.scss';
 
+const getButtonColor = (status) => {
+  switch (status.capitalize()) {
+    case 'Accept':
+    case 'Finish':
+      return 'Blue';
+    case 'Deny':
+    case 'Cancel':
+      return 'Red';
+    default:
+      return 'Blue';
+  }
+};
+
 
 export class VisitPreview extends PropsComponent {
 
@@ -38,7 +51,7 @@ export class VisitPreview extends PropsComponent {
       changeStatus = this.statusMapping[visitStatus].map((nextStatus, index) => {
         return (
           <Button
-            buttonStyle="Blue Auto AllSpaced"
+            buttonStyle={`${getButtonColor(nextStatus)} Auto LessSpacedTop`}
             label={nextStatus.capitalize()}
             key={index}
             onCallback={
@@ -59,20 +72,21 @@ export class VisitPreview extends PropsComponent {
       changeStatus = (
         <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
           <p className="Italic Inline LineSpaced">stating</p>
-          <p className="Bold Inline OverflowHidden TextOverflow">{this.state.status.message}</p>
+          <p className="Bold Inline OverflowHidden TextOverflow">"{this.state.status.message}"</p>
         </div>
       );
     }
 
     const isBad = ['denied', 'cancelled'].indexOf(visitStatus) !== -1;
-    const isGood = visitStatus === 'finished';
-    const isOkay = visitStatus === 'accepted';
+    const isGood = visitStatus === 'accepted';
+    const isOkay = visitStatus === 'waiting';
+    const isCompleted = visitStatus === 'finished';
 
-    const statusLabelStyle = `Bold Inline OverflowHidden TextOverflow ${isBad ? 'Red' : ''}${isGood ? 'Green' : ''}${isOkay ? 'Blue' : ''}`;
+    const statusLabelStyle = `Bold Inline OverflowHidden TextOverflow ${isBad ? 'Red' : ''}${isGood ? 'Green' : ''}${isOkay ? 'Blue' : ''}${isCompleted ? 'Secondary' : ''}`;
 
     return (
-      <div className="VisitPreview" onClick={this.onClick}>
-        <Picture url={visit.about ? visit.about.photoUrl : '/assets/images/deleted.png'} pictureType="HeightLimited" />
+      <div className="VisitPreview SoftShadow Margin OverflowHidden" onClick={this.onClick}>
+        <Picture url={visit.about ? visit.about.images[0] : '/assets/images/deleted.png'} pictureType="HeightLimited MW30" />
 
         <div className="DescriptionSection">
           {
@@ -87,7 +101,7 @@ export class VisitPreview extends PropsComponent {
           <p className="Bold Inline OverflowHidden TextOverflow">{new Date(visit.when).toDateString()}</p>
           <br />
           <p className="Italic Inline">with status</p>
-          <p className={statusLabelStyle}>{this.state.status.label}</p>
+          <p className={statusLabelStyle}>"{this.state.status.label}"</p>
           {changeStatus}
         </div>
       </div>

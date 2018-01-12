@@ -43,22 +43,28 @@ $toggleCheckMarkSize: 1.5em;
 }
 
 .DeleteAction {
+  margin: -0.5em;
+  padding: 0.5em;
   z-index: 5;
+  cursor: pointer;
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   display: none;
-  width: 1.5em;
-  height: 1.5em;
-  background-color: $alertLightColor;
+  width: 1.3em;
+  height: 1.3em;
   position: absolute;
-  border-radius: 0 0 $elementBorderRadius 0;
+  border-radius: 1.3em;
   stroke: white;
 }
 
+.DeleteAction.ExtraMargin {
+  margin: 0.5em;
+}
+
 .DeleteAction:hover {
-  stroke: $alertLightColor;
-  background-color: $modalLightColor;
+  stroke: black;
+  background-color: $modalSecondaryColor;
 }
 
 $interestHeight: 1.6em;
@@ -89,7 +95,7 @@ $interestHeight: 1.6em;
 
       & svg {
         margin: auto;
-        stroke: $textDarkColor;
+        stroke: black;
         cursor: pointer;
       }
 
@@ -141,17 +147,14 @@ $interestHeight: 1.6em;
       height: 1.6em;
       width: 1.6em;
       margin: 0.5em;
-      -webkit-filter: drop-shadow(0 0 1px #222);
-      -moz-filter:    drop-shadow(0 0 1px #222);
-      filter:         drop-shadow(0 0 1px #222);
       cursor: pointer;
 
-      line { stroke: #495C70; }
+      line { stroke: black; }
 
       #hovered {
         transition-property: all;
         transition-duration: 0.3s;
-        transition-timing-function: ease-out;
+        transition-timing-function: ease-in-out;
         r: 0;
       }
     }

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { List } from 'layout/list/List.jsx';
 import { CardPreview } from 'layout/user/CardPreview.jsx';
 import { NewCard } from 'layout/user/NewCard.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
@@ -25,8 +24,10 @@ export class Pay extends StoreObserver {
       cards: [],
     };
 
+    this.visitId = props.visitId;
     this.payCtrl = new ModalController();
     this.amountCtrl = new ModalFormController();
+    this.deleteAdCtrl = new ModalController();
     this.onPay = props.onPay || function onPay() {};
   }
 
@@ -35,6 +36,10 @@ export class Pay extends StoreObserver {
     if (this.state.id === null) {
       PaymentActions.getInfos.defer();
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.visitId = nextProps.visitId;
   }
 
   onStore(store) {
@@ -71,31 +76,36 @@ export class Pay extends StoreObserver {
         />
 
         <QueryModal
+          controller={this.deleteAdCtrl}
+          query="Do you really wish to delete this card ?"
+          onConfirm={
+            function confirm() {
+              PaymentActions.deleteCard(this.deleteAdCtrl.callerId);
+            }.bind(this)
+          }
+        />
+
+        <QueryModal
           controller={this.payCtrl}
           query="This card will be used to pay"
           onConfirm={
             function confirm() {
               PaymentActions.pay({
+                idVisit: this.visitId,
                 idCard: this.payCtrl.callerId,
                 amount: this.payCtrl.amount,
-                description: 'Tip for pickaguide visit',
               });
               this.onPay();
             }.bind(this)
           }
         />
 
-        <NewCard />
         {
-          cards.length > 0 &&
-            <List elementStyle="Tight Clickable">
-              {
-                cards.map((card, index) => {
-                  return <CardPreview {...card} key={index} controller={this.amountCtrl} />;
-                })
-              }
-            </List>
+          cards.map((card, index) => {
+            return <div key={index} className="Clickable"><CardPreview {...card} controller={this.amountCtrl} deleter={this.deleteAdCtrl} /></div>;
+          })
         }
+        <NewCard />
       </div>
     );
   }

@@ -35,11 +35,11 @@ export class EditPicture extends StoreObserver {
     return (
       <FileModal
         {...this.props}
-        layoutStyle="LayoutDark Tight"
+        layoutStyle="LayoutBlank Tight"
         title="Edit Profile Picture"
         inputHolder="New Picture"
         inputLabel="picture"
-        sizeWarning="Please verify your file does not exceed 2mb"
+        sizeWarning="Please verify your file does not exceed 5mb"
       />
     );
   }

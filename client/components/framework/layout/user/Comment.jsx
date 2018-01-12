@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
+import { Button } from 'layout/elements/Button.jsx';
 import DeleteAction from 'layout/user/DeleteAction.jsx';
 import CommentAvatarsStore from 'stores/user/CommentAvatars.js';
 import AuthStore from 'stores/user/Auth.js';
@@ -22,6 +23,9 @@ export class Comment extends StoreObserver {
     this.advertId = props.advertId;
     this.userId = props.owner._id;
     this.state = props;
+    const newAvatar = CommentAvatarsStore.getState().avatars.find(avatarObj => avatarObj.id === this.userId);
+    this.state.owner.avatar = (newAvatar && newAvatar.avatar ? newAvatar.avatar : '');
+
     this.navigateToProfile = this.navigateToProfile.bind(this);
   }
 
@@ -70,7 +74,7 @@ export class Comment extends StoreObserver {
       <div className="Comment">
         {
           myId && this.state.owner._id === myId &&
-            <DeleteAction onClick={this.onDelete} />
+            <DeleteAction className="ExtraMargin" onClick={this.onDelete} />
         }
         <div className="CommentContent">
           <div>
@@ -90,9 +94,9 @@ export class Comment extends StoreObserver {
           <p className="Bold Inline">{new Date(this.state.date).toDateString()}</p>
           <p className="Italic Inline"> at </p>
           <p className="Bold Inline">{new Date(this.state.date).toLocaleTimeString()}</p>
-          <div>
-            <p className="Bold Italic Inline LineSpaced">{this.state.likes.length} </p>
-            <p onClick={this.onToggleLike} className={`Clickable Inline ${this.state.likes.indexOf(myId) !== -1 ? 'Blue' : 'Underline'}`}>{this.state.likes.length === 1 ? 'Like' : 'Likes'}</p>
+          <div className="Margin">
+            <p className={`Inline ${this.state.likes.indexOf(myId) !== -1 ? 'Blue' : ''}`}>{this.state.likes.length} {this.state.likes.length === 1 ? 'point' : 'points'}</p>
+            <Button label={this.state.likes.indexOf(myId) !== -1 ? 'Unlike' : 'Like'} buttonStyle="Blue Inline Auto Small LessSpacedTop NotSpacedRight" onCallback={this.onToggleLike} />
           </div>
         </div>
       </div>

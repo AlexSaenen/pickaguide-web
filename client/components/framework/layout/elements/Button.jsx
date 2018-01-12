@@ -14,6 +14,7 @@ export class Button extends React.Component {
   componentWillReceiveProps(nextProps) {
     const nextState = Object.assign({}, this.state);
     nextState.label = nextProps.label;
+    nextState.onCallback = nextProps.onCallback;
     this.setState(nextState);
   }
 

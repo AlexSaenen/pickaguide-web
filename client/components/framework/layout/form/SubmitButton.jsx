@@ -16,7 +16,7 @@ export class SubmitButton extends PropsComponent {
   render() {
     return (
       <div className="FormElement">
-        <input type="submit" name="Submit" value={this.state.label} />
+        <input className={this.state.buttonStyle} type="submit" name="Submit" value={this.state.label} />
       </div>
     );
   }
@@ -24,8 +24,10 @@ export class SubmitButton extends PropsComponent {
 
 SubmitButton.defaultProps = {
   label: 'Submit',
+  buttonStyle: '',
 };
 
 SubmitButton.propTypes = {
   label: React.PropTypes.string,
+  buttonStyle: React.PropTypes.string,
 };

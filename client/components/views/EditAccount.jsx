@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Panel } from 'layout/containers/Panel.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { EditPassword } from 'modals/EditPassword.jsx';
 import { EditEmail } from 'modals/EditEmail.jsx';
@@ -14,9 +13,7 @@ import { Information } from 'layout/elements/Information.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { strings } from './EditAccount_lang.js';
 import AccountStore from 'stores/user/Account.js';
-import AuthStore from 'stores/user/Auth.js';
 import UserActions from 'actions/User.js';
-import AuthActions from 'actions/Auth.js';
 
 
 export class EditAccount extends StoreObserver {
@@ -24,7 +21,11 @@ export class EditAccount extends StoreObserver {
   constructor(props, context) {
     super(props, context, AccountStore);
 
-    this.state = { isConfirmed: AccountStore.getState().isConfirmed };
+    this.state = {
+      isConfirmed: AccountStore.getState().isConfirmed,
+      account: AccountStore.getState().account,
+    };
+
     this.editPasswordCtrl = new ModalFormController();
     this.editEmailCtrl = new ModalFormController();
     this.deleteCtrl = new ModalFormController();
@@ -36,6 +37,7 @@ export class EditAccount extends StoreObserver {
 
     if (store.error == null) {
       newState.isConfirmed = store.isConfirmed;
+      newState.account = store.account;
     }
 
     this.updateState(newState);
@@ -44,21 +46,26 @@ export class EditAccount extends StoreObserver {
   render() {
     return (
       <div>
-        <Panel panelStyle="Medium">
-          <Layout layoutStyle="LayoutGray">
-            <Title>{strings.title}</Title>
-          </Layout>
-          <Layout layoutStyle="LayoutLight">
-            <hr className="Overlay" />
+        <Layout>
+          <Title>{strings.title}</Title>
+          {this.state.account &&
+            <p className="MarginOne Italic">{this.state.account.email}</p>
+          }
+          {this.state.isConfirmed === false &&
+            <Information infoStyle="Alert Small MarginAuto">{strings.msgConfirmEmail}</Information>
+          }
+        </Layout>
+        <Layout>
+          <hr className="Overlay" />
+
+          <Layout layoutStyle="SoftShadowNonHover W30E MW90 MarginAuto">
+            <Title>{strings.editTitle}</Title>
+            <br className="Margin" />
             <Button buttonStyle="Blue Spaced Auto TextWhite" label={strings.btnPasswd} onCallback={this.editPasswordCtrl.toggle} />
             <Button buttonStyle="Blue Spaced Auto TextWhite" label={strings.btnEmail} onCallback={this.editEmailCtrl.toggle} />
-            {
-              this.state.isConfirmed === false &&
-                <Information infoStyle="Alert">{strings.msgConfirmEmail}</Information>
-            }
             <Button buttonStyle="Red Spaced Auto TextWhite LineSpaced" label={strings.btnDelete} onCallback={this.queryCtrl.toggle} />
           </Layout>
-        </Panel>
+        </Layout>
 
         <EditPassword controller={this.editPasswordCtrl} />
         <EditEmail controller={this.editEmailCtrl} />

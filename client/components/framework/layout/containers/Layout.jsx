@@ -14,7 +14,7 @@ export class Layout extends PropsComponent {
 
   render() {
     const classNames = `Layout ${this.state.layoutStyle}`;
-    
+
     return (
       <div className={classNames}>
         {this.props.children}
@@ -24,7 +24,7 @@ export class Layout extends PropsComponent {
 }
 
 Layout.defaultProps = {
-  layoutStyle: 'LayoutDark',
+  layoutStyle: 'LayoutBlank',
 };
 
 Layout.propTypes = {

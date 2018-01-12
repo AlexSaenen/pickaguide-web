@@ -2,12 +2,14 @@
 
 .Button {
   border: 0;
-  border-radius: 0.3em;
+  border-radius: 1.5em;
   padding: 0.4em 1.5em;
   min-width: 1em;
-  margin: 0.6em auto;
+  margin: auto 1em;
+  margin-top: 1em;
   text-align: center;
   cursor: pointer;
+  color: white;
   background-color: $secondaryElementColor;
   font-family: bariol;
   font-size: 1em;
@@ -23,7 +25,11 @@
 .Button.Spaced { margin: 0 1em; }
 .Button.BetweenSpaced { margin-left: 1em; margin-right: 1em;}
 .Button.LineSpaced { margin: 1em 0; }
-.Button.AllSpaced { margin: 1em; }
+.Button.LessSpacedTop { margin-top: 0.6em !important; }
+.Button.NotSpacedRight { margin-right: 0 !important; }
+.Button.AllSpaced { margin: 1em !important; }
+
+.Button.Small { padding: 0.1em 0.9em; }
 
 .Button.Auto, .ShadowedButton.Auto { display: inline-block; }
 .Button.AutoWidth, .ShadowedButton.AutoWidth { width: auto; }

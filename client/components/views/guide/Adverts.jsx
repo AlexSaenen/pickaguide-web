@@ -3,8 +3,8 @@ import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { Title } from 'layout/elements/Title.jsx';
-import { Text } from 'layout/elements/Text.jsx';
-import { PanelList } from 'view/PanelList.jsx';
+import { Information } from 'layout/elements/Information.jsx';
+import { List } from 'layout/list/List.jsx';
 import { OwnerAdvertPreview } from 'layout/user/OwnerAdvertPreview.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Button } from 'layout/elements/Button.jsx';
@@ -28,13 +28,11 @@ export class Adverts extends StoreObserver {
 
   componentDidMount() {
     super.componentDidMount();
-    AdvertsActions.get();
+    AdvertsActions.get.defer();
   }
 
   onStore(store) {
-    const newState = Object.assign({}, this.state);
-    newState.adverts = store.adverts;
-    this.updateState(newState);
+    this.setState({ adverts: store.adverts });
   }
 
   reviewAdvert(advertId) {
@@ -60,26 +58,26 @@ export class Adverts extends StoreObserver {
           }
         />
 
-        <Layout layoutStyle="LayoutLight">
+        <Layout layoutStyle="LayoutBlank">
           <Title>{strings.title}</Title>
           <Button
             label="New"
-            buttonStyle="Auto Red TextWhite Bold"
+            buttonStyle="Auto Blue TextWhite Bold"
             onCallback={this.navigateToAdCreation}
           />
         </Layout>
 
         {
           adverts && adverts.length > 0 ?
-            <Layout>
+            <Layout layoutStyle="LayoutBlank">
               <hr className="Overlay" />
-              <PanelList layoutStyle="LayoutLight" panelStyle="Wide" listStyle="ListGrid" elementStyle="Large Tight Clickable">
+              <List layoutStyle="LayoutLight" listStyle="ListGrid" elementStyle="Medium Tight Clickable">
                 {
                   adverts.map((advert, index) => {
                     return <OwnerAdvertPreview {...advert} key={index} onClick={this.reviewAdvert} deleter={this.deleteAdCtrl} />;
                   })
                 }
-              </PanelList>
+              </List>
             </Layout>
           :
             <Layout layoutStyle="LayoutBlank">
@@ -88,7 +86,12 @@ export class Adverts extends StoreObserver {
                 adverts === null ?
                   <Loader />
                 :
-                  <Text>{strings.noAdd}</Text>
+                  <div>
+                    <Information infoStyle="Info Small MarginAuto LineSpaced">No adverts</Information>
+                    <Layout layoutStyle="LayoutRegular SoftShadowNonHover AutoWidthContent MarginAuto">
+                      <p>Create an advert so you can <strong>help</strong> other users <strong>discover</strong> your city !</p>
+                    </Layout>
+                  </div>
               }
             </Layout>
         }
