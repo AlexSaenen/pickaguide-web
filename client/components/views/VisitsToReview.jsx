@@ -8,6 +8,7 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { Element } from 'layout/list/Element.jsx';
 import { List } from 'layout/list/List.jsx';
 import { VisitToReview } from 'layout/user/VisitToReview.jsx';
+import { strings } from './VisitsToReview_lang.js';
 import VisitsStore from 'stores/user/Visits.js';
 import VisitsActions from 'actions/Visits.js';
 
@@ -43,10 +44,10 @@ export class VisitsToReview extends StoreObserver {
     return (
       <div>
         <Layout layoutStyle="LayoutLight">
-          <Title>Review your visits</Title>
+          <Title>strings.title</Title>
           {
             !(myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0) &&
-              <Information infoStyle="Medium MarginAuto Warning">You need to review all your visits to continue using our services</Information>
+              <Information infoStyle="Medium MarginAuto Warning">strings.error</Information>
           }
         </Layout>
 

@@ -27,6 +27,7 @@ import AdvertsActions from 'actions/Adverts.js';
 import CommentsActions from 'actions/Comments.js';
 import CommentAvatarsActions from 'actions/CommentAvatars.js';
 import ProfileActions from 'actions/SearchProfile.js';
+import { strings } from './Advert_lang.js'
 
 
 import 'scss/views/adverts.scss';
@@ -122,7 +123,7 @@ export class Advert extends StoreObserver {
         <VisitCreation controller={this.visitCreationCtrl} advertId={advert._id} />
         <QueryModal
           controller={this.deleteCommentCtrl}
-          query="Do you really wish to delete this comment ?"
+          query={strings.suppressComment}
           onConfirm={
             function confirm() {
               CommentsActions.remove({ id: this.deleteCommentCtrl.callerId, advertId: this.deleteCommentCtrl.advertId });
@@ -199,7 +200,7 @@ export class Advert extends StoreObserver {
           </List>
 
           <AuthDependent unauth>
-            <Information infoStyle="Info Small LineSpaced">You need to be logged in to ask a visit and access comments</Information>
+            <Information infoStyle="Info Small LineSpaced">{strings.needLog}</Information>
           </AuthDependent>
 
           <AuthDependent auth>
