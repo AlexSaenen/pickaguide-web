@@ -95,10 +95,24 @@ export class VisitPreview extends PropsComponent {
               :
               <p className="OverflowHidden TextOverflow Small LineSpaced Bold Red">Advert was deleted</p>
           }
-          <p className="Italic Inline LineSpaced">with</p>
-          <p className="Bold Inline OverflowHidden TextOverflow ">{visit.with}</p>
-          <p className="Italic Inline">on</p>
-          <p className="Bold Inline OverflowHidden TextOverflow">{new Date(visit.when).toDateString()}</p>
+
+          <div className="Inline Vertical">
+            <p className="Italic Inline LineSpaced">with</p>
+            <p className="Bold Inline OverflowHidden TextOverflow ">{visit.with}</p>
+            <p className="Italic Inline">on</p>
+            <p className="Bold Inline OverflowHidden TextOverflow">{new Date(visit.when).toDateString()}</p>
+            {visit[`${this.type}Rate`] !== null &&
+              <p className="Italic Inline">you rated</p>
+            }
+          </div>
+
+          {visit[`${this.type}Rate`] !== null &&
+            <div className="star-ratings-css Vertical">
+              <div className="star-ratings-css-top" style={{ width: `${visit[`${this.type}Rate`] * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+              <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            </div>
+          }
+
           <br />
           <p className="Italic Inline">with status</p>
           <p className={statusLabelStyle}>"{this.state.status.label}"</p>

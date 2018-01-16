@@ -2,7 +2,6 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
-import { NumInput } from 'form/NumInput.jsx';
 import { Slider } from 'form/Slider.jsx';
 import { CreateComment } from 'layout/user/CreateComment.jsx';
 import { Button } from 'layout/elements/Button.jsx';
@@ -23,7 +22,14 @@ export class Review extends StoreObserver {
     this.canPay = props.canPay;
     this.advertId = props.advertId;
     this.for = props.for;
-    this.state = { hidePay: !this.canPay, hideComment: !this.canPay, message: null };
+    this.state = {
+      hidePay: !this.canPay,
+      hideComment: !this.canPay,
+      message: null,
+      selectedScore: null,
+    };
+
+    this.selectScore = this.selectScore.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,23 +66,21 @@ export class Review extends StoreObserver {
     this.setState({ hidePay: !this.state.hidePay });
   }
 
-  review(button) {
-    const rate = button.target.parentNode.querySelector('#Rate').value;
-    if (rate >= 0 && rate <= 5) {
-      ReviewActions.review({
-        rate: button.target.parentNode.querySelector('#Rate').value,
-        for: this.for,
-        visitId: this.id,
-      });
+  selectScore(score) {
+    if (this.state.selectedScore === score) {
+      this.setState({ selectedScore: null });
     } else {
-      this.setState({
-        message: {
-          title: 'Hold on',
-          content: 'Your rate needs to be between 0 (included) and 5 (included)',
-          type: 'Alert',
-        },
-      });
+      this.setState({ selectedScore: score });
     }
+  }
+
+  review() {
+    const rate = this.state.selectedScore;
+    ReviewActions.review({
+      rate,
+      for: this.for,
+      visitId: this.id,
+    });
   }
 
   render() {
@@ -108,8 +112,18 @@ export class Review extends StoreObserver {
           this.state.hidePay &&
             <div>
               <hr className="SpacedOverlay" />
-              <NumInput label="Rate" min={0} max={5} step={1} required />
-              <Button buttonStyle="Auto Blue" label="Send" onCallback={this.review.bind(this)} />
+              <Title smaller>Select a score to give and click "Rate" !</Title>
+
+              {[0, 1, 2, 3, 4, 5].map(score =>
+                <Button
+                  buttonStyle={`Auto LessSpaced ${this.state.selectedScore === score ? 'Blue' : 'White'}`}
+                  label={String(score)}
+                  key={score}
+                  onCallback={function click() { this.selectScore(score); }.bind(this)}
+                />
+              )}
+
+              <Button buttonStyle="Auto Blue" label="Rate" onCallback={this.review.bind(this)} disabled={this.state.selectedScore === null} />
               {
                 this.state.message &&
                   <Message messageStyle="MessageCenter TopMargin AutoWidthContent" timed={false} {...this.state.message} />

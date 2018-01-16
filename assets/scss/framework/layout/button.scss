@@ -21,13 +21,20 @@
 
 .Button.Red { background-color: $redElementColor; }
 .Button.Blue { background-color: $softMainColor; }
+.Button.White { background-color: white; color: black; }
 .Button.TextWhite { color: white; }
 .Button.Spaced { margin: 0 1em; }
+.Button.LessSpaced { margin: 0 0.2em; }
 .Button.BetweenSpaced { margin-left: 1em; margin-right: 1em;}
 .Button.LineSpaced { margin: 1em 0; }
 .Button.LessSpacedTop { margin-top: 0.6em !important; }
 .Button.NotSpacedRight { margin-right: 0 !important; }
 .Button.AllSpaced { margin: 1em !important; }
+.Button.Disabled {
+  filter: grayscale(50%);
+  -webkit-filter: grayscale(50%);
+  -moz-filter:    grayscale(50%);
+}
 
 .Button.Small { padding: 0.1em 0.9em; }
 
@@ -41,7 +48,7 @@
   box-shadow:         0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.ShadowedButton:hover {
+.ShadowedButton:not(.Disabled):hover {
   -webkit-box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
   -moz-box-shadow:    0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
   box-shadow:         0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);

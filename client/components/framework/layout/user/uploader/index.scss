@@ -46,13 +46,14 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	width: 100%;
+	margin: 1em;
 }
 
 .fileContainer .uploadPictureContainer {
 	width: auto;
 	border-radius: 0.4em;
 	overflow: hidden;
-	margin: 5%;
+	margin: 0.6em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -64,6 +65,7 @@
 }
 
 .fileContainer .uploadPictureContainer img.uploadPicture:hover {
+	backface-visibility: hidden;
 	cursor: pointer;
   opacity: 0.6;
 }
