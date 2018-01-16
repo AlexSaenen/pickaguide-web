@@ -5,6 +5,7 @@ import { Button } from 'layout/elements/Button.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
+import { strings } from './strings_lang.js'
 
 import 'scss/framework/form.scss';
 
@@ -84,7 +85,7 @@ export class Form extends PropsComponent {
           {this.props.children}
           <Button
             buttonStyle="Red Auto Inline"
-            label="Reset"
+            label={strings.reset}
             onCallback={this.reset}
           />
           <SubmitButton label={this.props.submitLabel} />
@@ -96,7 +97,7 @@ export class Form extends PropsComponent {
 }
 
 Form.defaultProps = {
-  submitLabel: 'Submit',
+  submitLabel: String(strings.submit),
   layoutStyle: 'LayoutBlank',
 };
 

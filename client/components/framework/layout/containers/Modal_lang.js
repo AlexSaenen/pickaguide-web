@@ -2,11 +2,9 @@ import LocalizedStrings from 'react-localization';
 
 export let strings = new LocalizedStrings({
    en:{
-   	confirm: "Confirm",
-   	cancel: "Cancel"
+      dismiss: "Dismiss"
    },
-   fr:{
-   	confirm: "aa",
-   	cancel: "aa"
+   fr: {
+      dismiss: "aa"
    }
 });

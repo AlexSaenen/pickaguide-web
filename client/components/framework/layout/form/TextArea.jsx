@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
+import { strings } from './strings_lang.js'
 
 import 'scss/framework/form.scss';
 
@@ -55,7 +56,7 @@ export class TextArea extends PropsComponent {
     this.cache = null;
 
     if (this.state.required) {
-      props.required = 'required';
+      props.required = String(strings.required);
     }
 
     return (

@@ -5,6 +5,7 @@ import { Modal } from 'layout/containers/Modal.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Text } from 'layout/elements/Text.jsx';
 import { Button } from 'layout/elements/Button.jsx';
+import { strings } from './QueryModal_lang.js';
 
 
 export class QueryModal extends PropsComponent {
@@ -21,7 +22,7 @@ export class QueryModal extends PropsComponent {
     let buttons =
       [
         <Button
-          label="Cancel"
+          label={strings.cancel}
           buttonStyle="Red"
           key={1}
           onCallback={
@@ -32,7 +33,7 @@ export class QueryModal extends PropsComponent {
           }
         />,
         <Button
-          label="Confirm"
+          label={strings.confirm}
           buttonStyle="Blue"
           key={2}
           onCallback={

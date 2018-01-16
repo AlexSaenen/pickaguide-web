@@ -6,6 +6,7 @@ import { PasswordInput } from 'form/PasswordInput.jsx';
 import { EmailInput } from 'form/EmailInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import AccountStore from 'stores/user/Account.js';
+import { strings } from './DeleteAccount_lang.js';
 import UserStore from 'stores/user/User.js';
 
 export class DeleteAccount extends StoreObserver {
@@ -22,14 +23,14 @@ export class DeleteAccount extends StoreObserver {
 
     if (store.error) {
       this.ctrl.messageCallback({
-        title: 'Some error occurred when deleting your account',
+        title: String(strings.error),
         content: String(store.error),
         type: 'Alert',
       });
     } else {
       this.ctrl.messageCallback({
-        title: 'Successful',
-        content: 'Your account has been deleted',
+        title: String(strings.successTitle),
+        content: String(strings.successDesc),
         type: 'Success',
       });
     }
@@ -44,8 +45,8 @@ export class DeleteAccount extends StoreObserver {
       this.props.onSubmit(form);
     } else {
       this.ctrl.messageCallback({
-        title: 'Some error occurred when deleting your account',
-        content: 'Does not seem like your email address',
+        title: String(strings.errorTitle),
+        content: String(strings.errorDesc),
         type: 'Alert',
       }, false);
     }
@@ -54,10 +55,10 @@ export class DeleteAccount extends StoreObserver {
   render() {
     return (
       <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutBlank Tight">
-        <Title>Login to delete your account</Title>
+        <Title>{strings.title}</Title>
         <br />
-        <EmailInput displayLabel={false} required />
-        <PasswordInput displayLabel={false} required />
+        <EmailInput displayLabel={false} placeholder={strings.email} required />
+        <PasswordInput displayLabel={false} placeholder={strings.password} required />
       </ModalForm>
     );
   }

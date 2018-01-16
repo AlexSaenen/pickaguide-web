@@ -2,6 +2,7 @@ import React from 'react';
 
 import { SubmitButton } from 'form/SubmitButton.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
+import { strings } from './strings_lang.js'
 
 import 'scss/framework/form.scss';
 
@@ -42,7 +43,7 @@ export class InlineForm extends PropsComponent {
 }
 
 InlineForm.defaultProps = {
-  submitLabel: 'Submit',
+  submitLabel: String(strings.submit),
 };
 
 InlineForm.propTypes = {
