@@ -9,8 +9,8 @@ import { Message } from 'layout/elements/Message.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
-import { strings } from './Search_lang.js';
-import { stringsNotif } from './Notifications.lang.js';
+//import { stringsx } from './Search_lang.js';
+import { strings } from './Notifications_lang.js';
 
 export class Notifications extends StoreObserver {
 
@@ -48,7 +48,7 @@ export class Notifications extends StoreObserver {
     const wrapHeader = (body) => (
       <div>
         <Layout>
-          <Title>Notifications</Title>
+          <Title>{strings.title}</Title>
         </Layout>
         <Layout>
           <hr className="Overlay" />
@@ -72,7 +72,7 @@ export class Notifications extends StoreObserver {
     }
 
     if (notifs.length === 0) {
-      return wrapHeader(<Information infoStyle="Info Small MarginAuto LineSpaced">No notifications yet</Information>);
+      return wrapHeader(<Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noNotifications}</Information>);
     }
 
     return wrapHeader(
