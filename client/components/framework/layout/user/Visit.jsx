@@ -114,7 +114,7 @@ const Visit = (props) => {
 
         {
           visit.about &&
-            <List listStyle="ListGrid" elementStyle="Tight MW30">
+            <List listStyle="ListGrid" elementStyle="Tight MW30 Vertical">
               {
                 visit.about.images.map((image, index) => <Picture key={index} url={image} pictureName="Advert Cover" pictureType="WidthLimited" full />)
               }

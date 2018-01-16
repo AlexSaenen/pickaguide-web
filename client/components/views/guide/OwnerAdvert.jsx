@@ -258,74 +258,87 @@ export class OwnerAdvert extends StoreObserver {
         <Layout layoutStyle="LayoutBlank">
           <hr className="Overlay" />
           <Form layoutStyle="LayoutBlank Tight" onSubmit={this.onSubmit}>
-            <List listStyle="ListGrid" elementStyle="W50 Transparent NoWrap Box Vertical">
-              <Layout layoutStyle="Transparent NoWrap">
-                {
-                  pictures.length === 0 &&
-                    <div>
-                      <Text><p className="Italic">Current images attached to the Advert</p></Text>
-                      <List listStyle="ListGrid" elementStyle="W20 Vertical SoftShadowNonHover Tight">
-                        {
-                          advert.images.map((image, index) =>
-                            <ClickablePicture key={index} pictureName="Advert images" full pictureType="WidthFull" url={image} onClick={this.onSelectAsCover.bind(this, image)} />
-                          )
-                        }
-                      </List>
-                    </div>
-                }
-
-                <Layout layoutStyle="SoftShadowNonHover OverflowHidden">
-                  {
-                    pictures.length === 0 &&
-                      <Information infoStyle="Info LessMarginTop">You may still decide to replace the current images with new ones</Information>
-                  }
-                  <ImageUploader
-                    className="Transparent NoWrap"
-                    withIcon
-                    withPreview
-                    buttonText="Choose images"
-                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                    onChange={this.onDrop}
-                    onSelect={this.onSelectAsCover}
-                  />
-                  {
-                    pictures.length > 1 && cover === null &&
-                      <Information infoStyle="Info">Select one of these images to be the advert's cover</Information>
-                  }
+            <List listStyle="ListStack" wrapChildren={false}>
+              <div className="W80 Transparent MarginAuto PaddingOne Box">
+                <Layout layoutStyle="Transparent SoftShadowNonHover Fluid">
+                  <TextInput displayLabel={false} label="title" value={advert.title} required override onChange={this.changeTitle.bind(this)} />
+                  <TextArea displayLabel={false} className="Margin" label="description" value={advert.description} required override onChange={this.changeDescription.bind(this)} />
+                  <Information infoStyle="Info Medium MarginHAuto">The more descriptive you are, the better matches we can find you</Information>
                 </Layout>
-                {
-                  cover !== null &&
-                    <div>
-                      <Information infoStyle="Info">The picture below will be the cover for your advert, or you can still chose another picture above</Information>
-                      <Picture pictureName="Cover" url={cover} />
-                    </div>
-                }
-              </Layout>
+              </div>
 
-              <Layout layoutStyle="Transparent SoftShadowNonHover">
-                <TextInput label="title" value={advert.title} required override onChange={this.changeTitle.bind(this)} />
-                <TextArea label="description" value={advert.description} required override onChange={this.changeDescription.bind(this)} />
-                <Information infoStyle="Info">The more descriptive you are, the more interesting people will find you</Information>
-              </Layout>
+              <div className="W80 Transparent MarginAuto">
+                <Layout layoutStyle="Transparent NoWrap">
+                  <List listStyle="ListGrid WidthFull" wrapChildren={false}>
+                    <Element elementStyle="W60 Inline-BlockImportant NoWrap Transparent Vertical Box">
+                      <Layout layoutStyle="Transparent NoWrap">
+                        {
+                          pictures.length === 0 &&
+                            <div>
+                              <Text><p className="Italic">Current images attached to the advert</p></Text>
+                              <List listStyle="ListGrid" elementStyle="W20 Vertical SoftShadowNonHover Tight Inline-BlockImportant">
+                                {
+                                  advert.images.map((image, index) =>
+                                    <ClickablePicture key={index} pictureName="Advert images" full pictureType="WidthFull" url={image} onClick={this.onSelectAsCover.bind(this, image)} />
+                                  )
+                                }
+                              </List>
+                              <Information infoStyle="Info LessMarginTop">You may still decide to replace the current images with new ones</Information>
+                            </div>
+                        }
+
+                        <Layout layoutStyle="SoftShadowNonHover OverflowHidden">
+                          <ImageUploader
+                            className="Transparent NoWrap"
+                            withIcon
+                            withPreview
+                            buttonText="Choose images"
+                            imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
+                            onChange={this.onDrop}
+                            onSelect={this.onSelectAsCover}
+                          />
+                          {
+                            pictures.length > 1 && cover === null &&
+                              <Information infoStyle="Info">Select one of these images to be the advert's cover</Information>
+                          }
+                        </Layout>
+                      </Layout>
+                    </Element>
+
+                    {
+                      cover !== null &&
+                        <Element elementStyle="W40 Inline-BlockImportant NoWrap Transparent Vertical Box">
+                          <Layout layoutStyle="Transparent NoWrap">
+                            <Text><p className="Italic MarginEight">Image used for the advert's cover</p></Text>
+                            <Picture pictureName="Cover" url={cover} />
+                          </Layout>
+                        </Element>
+                    }
+                  </List>
+                </Layout>
+              </div>
             </List>
 
             <Layout layoutStyle="W80 NoWrap MarginAuto">
-              <Element elementStyle="W50 NoWrap PaddingOne Box Inline-Block Vertical">
-                <Element elementStyle="WidthFull Height20 NoWrap OverflowHidden Inline-Block SoftShadow">
-                  <AdvertMap zoom={12} location={advert.location} city={advert.city} country={advert.country} />
+              <Layout layoutStyle="W80 NoWrap MarginAuto">
+                <Element elementStyle="W60 NoWrap PaddingOne Box Inline-Block Vertical">
+                  <Element elementStyle="WidthFull Height20 NoWrap OverflowHidden Inline-Block SoftShadow">
+                    <AdvertMap zoom={12} location={advert.location} city={advert.city} country={advert.country} />
+                  </Element>
                 </Element>
-              </Element>
 
-              <Element elementStyle="W50 NoWrap PaddingOne Box Vertical Inline-Block">
-                <Information infoStyle="Info">Users near the location provided below will be able to see your advert in their choices</Information>
+                <Element elementStyle="W40 NoWrap PaddingOne Box Vertical Inline-Block">
+                  <Information infoStyle="Info LessMarginTop">Users near the location provided below will be able to see your advert in their choices</Information>
 
-                <Layout layoutStyle="Transparent SoftShadowNonHover">
-                  <TextInput label="city" value={advert.city} required onChange={this.changeCity.bind(this)} />
-                  <TextInput label="country" value={advert.country} required onChange={this.changeCountry.bind(this)} />
-                  <TextInput label="location" defaultValue="" placeholder="Street Address" value={advert.location} onChange={this.changeLocation.bind(this)} />
-                </Layout>
-              </Element>
+                  <Layout layoutStyle="Transparent SoftShadowNonHover">
+                    <TextInput displayLabel={false} label="city" value={advert.city} required onChange={this.changeCity.bind(this)} />
+                    <TextInput displayLabel={false} label="country" value={advert.country} required onChange={this.changeCountry.bind(this)} />
+                    <TextInput displayLabel={false} label="location" defaultValue="" placeholder="Street Address" value={advert.location} onChange={this.changeLocation.bind(this)} />
+                  </Layout>
+                </Element>
+              </Layout>
             </Layout>
+
             <Information infoStyle="Warning Auto MarginAuto TopMarginImportant">Once you edit this advert, as a measure of privacy we will disable it again for you to enable when comfortable</Information>
           </Form>
         </Layout>

@@ -49,13 +49,18 @@ const notForReviewing = {
 const notForBlocked = {
   routes: [
     new RegExp(/^\/(profiles|accounts)\/mine\/(edit)?$/),
+    new RegExp(/^\/profiles\/[a-z0-9]{24}$/),
     new RegExp(/^\/guide\/(become|adverts)$/),
     new RegExp(/^\/guide\/adverts\/[a-z0-9]{24}$/),
     new RegExp(/^\/guide\/adverts\/mine\/new$/),
     new RegExp(/^\/guide\/adverts\/mine\/[a-z0-9]{24}$/),
     new RegExp(/^\/visits$/),
     new RegExp(/^\/visits\/mine\/[a-z]+\/[a-z0-9]{24}$/),
+    new RegExp(/^\/view-all-adverts$/),
+    new RegExp(/^\/search\/.+$/),
     new RegExp(/^\/signup$/),
+    new RegExp(/^\/notifications$/),
+    new RegExp(/^\/transactions$/),
     new RegExp(/^\/login$/),
   ],
   on: goReview,

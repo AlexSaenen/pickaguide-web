@@ -23,7 +23,7 @@ export class VisitsToReview extends StoreObserver {
 
   componentDidMount() {
     super.componentDidMount();
-    VisitsActions.getUnreviewed();
+    VisitsActions.getUnreviewed.defer();
   }
 
   onStore(store) {

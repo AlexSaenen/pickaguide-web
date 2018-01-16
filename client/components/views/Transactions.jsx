@@ -114,7 +114,7 @@ export class Transactions extends StoreObserver {
           <Element elementStyle={`${transactions.length > 0 ? 'W50' : 'AutoWidthContent'} NoWrap Box Top Transparent`}>
             <Layout layoutStyle="LayoutBlank NoWrap NoHorizontalWrap">
               {transactions.length === 0 &&
-                <Information infoStyle="Info Small MarginAuto LineSpaced">No transactions yet</Information>
+                <Information infoStyle="Info Small MarginAuto">No transactions yet</Information>
               }
               {
                 transactions.map((transaction, index) => {

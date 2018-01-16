@@ -12,11 +12,13 @@ import { Button } from 'layout/elements/Button.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { List } from 'layout/list/List.jsx';
+import { Element } from 'layout/list/Element.jsx';
 import { Comment } from 'layout/user/Comment.jsx';
 import { CreateComment } from 'layout/user/CreateComment.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { VisitCreation } from 'modals/VisitCreation.jsx';
+import AdvertMap from 'layout/user/AdvertMap.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AvatarStore from 'stores/other/Avatar.js';
 import CommentsStore from 'stores/user/Comments.js';
@@ -173,6 +175,14 @@ export class Advert extends StoreObserver {
               <p className="LineSpaced">{advert.description}</p>
             </Layout>
           </List>
+
+          <Layout layoutStyle="W80 NoWrap MarginAuto">
+            <Element elementStyle="W50 NoWrap PaddingOne Box Inline-Block Vertical">
+              <Element elementStyle="WidthFull Height20 NoWrap OverflowHidden Inline-Block SoftShadow">
+                <AdvertMap zoom={12} location={advert.location} city={advert.city} country={advert.country} />
+              </Element>
+            </Element>
+          </Layout>
 
           <List listStyle="ListGrid" elementStyle="Tight MW30 Vertical">
             {

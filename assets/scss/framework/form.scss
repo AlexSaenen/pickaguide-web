@@ -77,6 +77,13 @@
   }
 }
 
+.Layout.Fluid {
+  input[type="email"], input[type="password"], input[type="text"], input[type="tel"],
+  input[type="number"], input[type="datetime-local"], input[type="date"], textarea {
+    width: 80%;
+  }
+}
+
 .FormWrapper {
   margin: 0 0;
 }
