@@ -102,7 +102,7 @@ export class EditProfile extends StoreObserver {
                     profile.hasAvatar &&
                       <Button
                         buttonStyle="Red Auto"
-                        label="Remove Picture"
+                        label={strings.remove}
                         onCallback={AvatarActions.remove}
                       />
                   }
@@ -115,16 +115,16 @@ export class EditProfile extends StoreObserver {
 
               <Element elementStyle="W60 Transparent NoWrapImportant Top Box">
                 <Layout layoutStyle="SoftShadowNonHover MarginOneAndHalf">
-                  <DateInput value={profile.birthdate} label="birthdate" max={Date.now()} defaultValue={nowToInput()} />
-                  <TextInput value={profile.phone || ''} label="phone" />
-                  <TextInput value={profile.city || ''} label="city" />
-                  <TextInput value={profile.country || ''} label="country" />
-                  <TextArea value={profile.description || ''} label="description" />
+                  <DateInput displayLabel={strings.inputBirthdate} value={profile.birthdate} label="birthdate" max={Date.now()} defaultValue={nowToInput()} />
+                  <TextInput displayLabel={strings.inputPhone} value={profile.phone || ''} label="phone" />
+                  <TextInput displayLabel={strings.inputCity} value={profile.city || ''} label="city" />
+                  <TextInput displayLabel={strings.inputCountry} value={profile.country || ''} label="country" />
+                  <TextArea displayLabel={strings.inputDescription} value={profile.description || ''} label="description" />
                 </Layout>
 
                 <Layout layoutStyle="SoftShadowNonHover MarginOneAndHalf">
-                  <TextInput displayLabel="First Name" value={profile.firstName} label="firstName" placeholder={strings.inputFirstName} required />
-                  <TextInput displayLabel="Last Name" value={profile.lastName} label="lastName" placeholder={strings.inputLastName} required />
+                  <TextInput displayLabel={strings.inputFirstName} value={profile.firstName} label="firstName" placeholder={strings.inputFirstName} required />
+                  <TextInput displayLabel={strings.inputLastName} value={profile.lastName} label="lastName" placeholder={strings.inputLastName} required />
                 </Layout>
               </Element>
             </List>

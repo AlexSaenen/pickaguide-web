@@ -13,7 +13,8 @@ export let strings = new LocalizedStrings({
       inputDescription:"Description",
       errorTitle:"Some error occurred when updating your profile",
       successTitle:"Successful",
-      successContent:"Your informations have been updated"
+      successContent:"Your informations have been updated",
+      remove: "Remove picture"
    },
    fr:{
       title:"Mettre à jour votre profile",
@@ -27,6 +28,7 @@ export let strings = new LocalizedStrings({
       inputDescription:"Description",
       errorTitle:"Une érreur s'est produite pendant la mise à jour de votre profile",
       successTitle:"Réussi",
-      successContent:"Vos informations ont bien était mise à jour."
+      successContent:"Vos informations ont bien était mise à jour.",
+      remove: "Supprimer la photo"
    }
 });

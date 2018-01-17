@@ -89,7 +89,7 @@ export class Notifications extends StoreObserver {
             return (
               <div key={index}>
                 <Message
-                  title={`${notif.title} on ${createdAt.toLocaleDateString()} at ${createdAt.toLocaleTimeString()}`}
+                  title={`${notif.title}${strings.on}${createdAt.toLocaleDateString()}${strings.at}${createdAt.toLocaleTimeString()}`}
                   content={html}
                   type="NeutralLight"
                   time={false}

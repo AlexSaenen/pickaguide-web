@@ -61,7 +61,7 @@ export class Adverts extends StoreObserver {
         <Layout layoutStyle="LayoutBlank">
           <Title>{strings.title}</Title>
           <Button
-            label="New"
+            label={strings.new}
             buttonStyle="Auto Blue TextWhite Bold"
             onCallback={this.navigateToAdCreation}
           />
@@ -87,9 +87,9 @@ export class Adverts extends StoreObserver {
                   <Loader />
                 :
                   <div>
-                    <Information infoStyle="Info Small MarginAuto LineSpaced">No adverts</Information>
+                    <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noAdd}</Information>
                     <Layout layoutStyle="LayoutRegular SoftShadowNonHover AutoWidthContent MarginAuto">
-                      <p>Create an advert so you can <strong>help</strong> other users <strong>discover</strong> your city !</p>
+                      <p dangerouslySetInnerHTML={{ __html: strings.createAd }} / >
                     </Layout>
                   </div>
               }

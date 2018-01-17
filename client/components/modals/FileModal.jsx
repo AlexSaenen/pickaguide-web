@@ -5,6 +5,7 @@ import { ModalForm } from 'view/ModalForm.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { FileInput } from 'form/FileInput.jsx';
+import { strings } from './FileModal_lang.js'
 
 
 export class FileModal extends PropsComponent {
@@ -36,8 +37,8 @@ export class FileModal extends PropsComponent {
 }
 
 FileModal.defaultProps = {
-  title: 'Open File',
-  inputLabel: 'file',
+  title: String(strings.title),
+  inputLabel: String(strings.inputLabel),
   sizeWarning: '',
 };
 
