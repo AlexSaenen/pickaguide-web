@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Button } from 'layout/elements/Button.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
+import { strings } from './Modal_lang.js'
 
 import 'scss/framework/modal.scss';
 import 'scss/framework/layout.scss';
@@ -21,7 +22,7 @@ export class Modal extends PropsComponent {
     let classNames = `Modal ${this.state.modalStyle}`;
     let modalButtons = this.props.buttons ||
       (<Button
-        label="Dismiss"
+        label={strings.dismiss}
         buttonStyle="Red"
         onCallback={
           function callback(clickEvent) {

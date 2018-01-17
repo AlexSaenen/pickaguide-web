@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Button } from 'layout/elements/Button.jsx';
+import { strings } from './VisitToReview_lang.js'
 
 import 'scss/views/visits.scss';
 
@@ -33,21 +34,21 @@ export class VisitToReview extends PropsComponent {
             visit.about ?
               <p className="OverflowHidden TextOverflow Medium Bold">{visit.about.title}</p>
               :
-              <p className="OverflowHidden TextOverflow Small LineSpaced Bold Red">Advert was deleted</p>
+              <p className="OverflowHidden TextOverflow Small LineSpaced Bold Red">{strings.deleted}</p>
           }
-          <p className="Italic Inline LineSpaced">with</p>
+          <p className="Italic Inline LineSpaced">{strings.str1}</p>
           <p className="Bold Inline OverflowHidden TextOverflow ">{visit.with}</p>
-          <p className="Italic Inline">finished on</p>
+          <p className="Italic Inline">{strings.str2}</p>
           <p className="Bold Inline OverflowHidden TextOverflow ">{new Date(visit.finalStatus.date).toDateString()}</p>
           <br />
           <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            <p className="Italic Inline">finished with</p>
+            <p className="Italic Inline">{strings.str3}</p>
             <p className="Bold Inline OverflowHidden TextOverflow">"{visit.finalStatus.message}"</p>
           </div>
 
           <Button
             buttonStyle="Blue Auto LessSpacedTop"
-            label="Review"
+            label={strings.label}
             key={1}
             onCallback={
               function callback(clickEvent) {

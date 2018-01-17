@@ -83,10 +83,10 @@ export class Contact extends StoreObserver {
           <Form layoutStyle="W30E MW90 MarginAuto SoftShadowNonHover BigVerticalMargin" onSubmit={this.handleSubmit.bind(this)} submitLabel={strings.submit}>
             <Title smaller>{strings.leaveMessage}</Title>
             <br />
-            <TextInput label="name" value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder={strings.fname} required />
-            <EmailInput value={account ? account.email : ''} required />
-            <TelInput label="phone" value={profile ? profile.phone : ''} />
-            <TextArea label="message" required />
+            <TextInput label="name" displayLabel={strings.fname} value={profile ? `${profile.firstName} ${profile.lastName}` : ''} placeholder={strings.fname} required />
+            <EmailInput displayLabel={strings.email} value={account ? account.email : ''} required />
+            <TelInput label="phone" displayLabel={strings.phone} value={profile ? profile.phone : ''} />
+            <TextArea label="message" displayLabel={strings.message} required />
           </Form>
         </Layout>
       </div>

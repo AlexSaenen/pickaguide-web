@@ -2,9 +2,9 @@ import LocalizedStrings from 'react-localization';
 
 export let strings = new LocalizedStrings({
    en:{
-      noTransaction:"No transactions yet"
+      dismiss: "Dismiss"
    },
    fr: {
-      noTransaction:"Pas de transactions actuellement"
+      dismiss: "aa"
    }
 });

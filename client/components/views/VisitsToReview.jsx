@@ -55,7 +55,7 @@ export class VisitsToReview extends StoreObserver {
           myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0 &&
             <Layout layoutStyle="LayoutBlank">
               <hr className="Overlay" />
-              <Information infoStyle="Info Small MarginAuto LineSpaced">You have no Visits to review</Information>
+              <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noVisit}</Information>
             </Layout>
         }
         {
@@ -76,7 +76,7 @@ export class VisitsToReview extends StoreObserver {
               myVisits && myVisits.length > 0 &&
                 <Element elementStyle={`${theirVisits && theirVisits.length > 0 ? 'Half' : 'WidthFullImportant'} Transparent NoWrap Top Box`}>
                   <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
-                    <Title>Your visits as a traveler ...</Title>
+                    <Title>{strings.guide}</Title>
                     <br className="Margin" />
                     <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap">
                       {
@@ -92,7 +92,7 @@ export class VisitsToReview extends StoreObserver {
               theirVisits && theirVisits.length > 0 &&
                 <Element elementStyle={`${myVisits && myVisits.length > 0 ? 'Half' : 'WidthFullImportant'} Transparent NoWrap Top Box`}>
                   <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
-                    <Title>Your visits with travelers ...</Title>
+                    <Title>{strings.visitor}</Title>
                     <br className="Margin" />
                     <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap">
                       {

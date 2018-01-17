@@ -18,7 +18,7 @@ export class Become extends StateComponent {
     return (
       <div className="HomeContainer">
         <Layout>
-          <Title>Thank you and have fun !</Title>
+          <Title>{strings.title}</Title>
         </Layout>
 
         <Layout>
@@ -29,11 +29,11 @@ export class Become extends StateComponent {
           <Element elementStyle="Transparent">
             <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
               <Text>
-                <p>Thank you for joining the <strong>Pickguide guides community</strong></p><br />
-                <p>Now you have access to <strong>lot of features</strong> that will allow you to handle <strong>your guide life</strong></p><br />
-                <p>You can begin by accessing to the <a className="Blue Bold" href="/guide/adverts">advert creation</a> page to create your first advert</p><br />
-                <p>And we recommend you to fill in your personal description in your <a className="Blue Bold" href="/profiles/mine/edit">profile</a> and</p><br />
-                <p>update your avatar there as well</p>
+                <p dangerouslySetInnerHTML={{ __html: strings.text1 }} / ><br />
+                <p dangerouslySetInnerHTML={{ __html: strings.text2 }} / ><br />
+                <p>{strings.text3}<a className="Blue Bold" href="/guide/adverts">{strings.text4}</a>{strings.text5}</p><br />
+                <p>{strings.text6}<a className="Blue Bold" href="/profiles/mine/edit">{strings.text7}</a>{strings.text8}</p><br />
+                <p>{strings.text9}</p>
               </Text>
             </Layout>
             <Information infoStyle="Info">{strings.info}</Information>

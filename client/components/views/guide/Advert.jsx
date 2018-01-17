@@ -150,7 +150,7 @@ export class Advert extends StoreObserver {
             {
               AuthStore.getState().credentials && AuthStore.getState().credentials.id !== advert.owner._id &&
                 <Button
-                  label="Ask a visit"
+                  label={strings.askVisit}
                   buttonStyle="Auto Blue"
                   onCallback={this.visitCreationCtrl.toggle}
                 />
@@ -164,10 +164,10 @@ export class Advert extends StoreObserver {
           <List listStyle="ListGrid" elementStyle="Auto Transparent NoWrap Vertical Box">
             <Layout layoutStyle="SoftShadowNonHover">
               <div className="LayoutHeader">
-                <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName="Profile" radius /></div>
-                <p className="Small Italic Inline LineSpaced">by </p>
+                <div className="HeaderPicture Inline-Block"><Picture url={this.state.avatar} pictureName={strings.pictureName} radius /></div>
+                <p className="Small Italic Inline LineSpaced">{strings.by}</p>
                 <p className="Small Bold Inline LinkColor"><Link to={`/profiles/${this.ownerId}`}>{advert.owner.displayName}</Link></p>
-                <p className="Small Italic Inline"> in </p>
+                <p className="Small Italic Inline">{strings.in}</p>
                 <p className="Small Bold Inline">{advert.city}, {advert.country}</p>
               </div>
             </Layout>
@@ -190,7 +190,7 @@ export class Advert extends StoreObserver {
               advert.images.map((image, index) =>
                 <ClickablePicture
                   key={index}
-                  pictureName="Advert images"
+                  pictureName={strings.picturesName}
                   pictureType="WidthLimited"
                   full
                   url={image}

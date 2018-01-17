@@ -4,6 +4,7 @@ import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
 import { PasswordInput } from 'form/PasswordInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { strings } from './EditPassword_lang.js';
 import PasswordActions from 'actions/Password.js';
 import PasswordStore from 'stores/user/Password.js';
 
@@ -22,14 +23,14 @@ export class EditPassword extends StoreObserver {
 
     if (store.error) {
       this.ctrl.messageCallback({
-        title: 'Some error occurred when updating your password',
+        title: String(strings.error),
         content: String(store.error),
         type: 'Alert',
       });
     } else {
       this.ctrl.messageCallback({
-        title: 'Successful',
-        content: 'Your password has been updated',
+        title: String(strings.successTitle),
+        content: String(strings.successDesc),
         type: 'Success',
       });
     }
@@ -40,11 +41,11 @@ export class EditPassword extends StoreObserver {
   render() {
     return (
       <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutBlank Tight">
-        <Title>Update Password</Title>
+        <Title>{strings.title}</Title>
         <br />
-        <PasswordInput displayLabel={false} label="currentPassword" placeholder="Current password" required />
-        <PasswordInput displayLabel={false} placeholder="New password" required />
-        <PasswordInput displayLabel={false} label="passwordConfirmation" placeholder="Confirm password" required />
+        <PasswordInput displayLabel={false} label="currentPassword" placeholder={strings.curPass} required />
+        <PasswordInput displayLabel={false} placeholder={strings.newPass} required />
+        <PasswordInput displayLabel={false} label="passwordConfirmation" placeholder={strings.conPass} required />
       </ModalForm>
     );
   }

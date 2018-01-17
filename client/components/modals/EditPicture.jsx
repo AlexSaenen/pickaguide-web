@@ -2,6 +2,7 @@ import React from 'react';
 
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { FileModal } from 'modals/FileModal.jsx';
+import { strings } from './EditPicture_lang.js';
 import AvatarActions from 'actions/Avatar.js';
 import AvatarStore from 'stores/user/Avatar.js';
 
@@ -20,7 +21,7 @@ export class EditPicture extends StoreObserver {
 
     if (store.error) {
       this.ctrl.messageCallback({
-        title: 'Some error occurred when updating your profile picture',
+        title: String(strings.errorTitle),
         content: String(store.error),
         type: 'Alert',
       });
@@ -36,10 +37,10 @@ export class EditPicture extends StoreObserver {
       <FileModal
         {...this.props}
         layoutStyle="LayoutBlank Tight"
-        title="Edit Profile Picture"
-        inputHolder="New Picture"
-        inputLabel="picture"
-        sizeWarning="Please verify your file does not exceed 5mb"
+        title={strings.title}
+        inputHolder={strings.inputHolder}
+        inputLabel={strings.inputLabel}
+        sizeWarning={strings.sizeWarning}
       />
     );
   }

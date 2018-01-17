@@ -16,7 +16,7 @@ import { Title } from 'layout/elements/Title.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
-import { strings } from './Transactions.lang.js';
+import { strings } from './Transactions_lang.js';
 import { ModalController } from 'base/ModalController.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
 
@@ -59,7 +59,7 @@ export class Transactions extends StoreObserver {
     const wrapHeader = (body) => (
       <div>
         <Layout>
-          <Title>Transactions</Title>
+          <Title>{strings.title}</Title>
         </Layout>
         <Layout>
           <hr className="Overlay" />
@@ -86,7 +86,7 @@ export class Transactions extends StoreObserver {
       <div>
         <QueryModal
           controller={this.deleteAdCtrl}
-          query="Do you really wish to delete this card ?"
+          query={strings.deleteCard}
           onConfirm={
             function confirm() {
               PaymentActions.deleteCard(this.deleteAdCtrl.callerId);
@@ -97,7 +97,7 @@ export class Transactions extends StoreObserver {
         <List wrapChildren={false} listStyle="ListGrid">
           <Element elementStyle="W30 MinW24E Transparent NoWrap Box">
             <Message
-              title="Balance"
+              title={strings.balance}
               content={htmlBalance}
               type="NeutralLight"
               time={false}
@@ -115,14 +115,14 @@ export class Transactions extends StoreObserver {
           <Element elementStyle={`${transactions.length > 0 ? 'W50' : 'AutoWidthContent'} NoWrap Box Top Transparent`}>
             <Layout layoutStyle="LayoutBlank NoWrap NoHorizontalWrap">
               {transactions.length === 0 &&
-                <Information infoStyle="Info Small MarginAuto">No transactions yet</Information>
+                <Information infoStyle="Info Small MarginAuto">{strings.noTransaction}</Information>
               }
               {
                 transactions.map((transaction, index) => {
                   const isPayer = transaction.payerId === id;
                   const content = isPayer ?
-                    <p>You gave <span style={{ color: '#F75C4C', fontWeight: 'bold' }}>-{transaction.amountPayer}€</span> to your <Link to={`/profiles/${transaction.beneficiaryId}`}>guide</Link> on {new Date(transaction.date).toLocaleString()}</p>
-                    : <p>You received <span style={{ color: '#2ECC71', fontWeight: 'bold' }}>+{transaction.amountBeneficiary}€</span> from your <Link to={`/profiles/${transaction.payerId}`}>visitor</Link> on {new Date(transaction.date).toLocaleString()}</p>
+                    <p>{strings.str1}<span style={{ color: '#F75C4C', fontWeight: 'bold' }}>-{transaction.amountPayer}€</span>{strings.str2}<Link to={`/profiles/${transaction.beneficiaryId}`}>{strings.str3}</Link>{strings.str4}{new Date(transaction.date).toLocaleString()}</p>
+                    : <p>{strings.str5}<span style={{ color: '#2ECC71', fontWeight: 'bold' }}>+{transaction.amountBeneficiary}€</span>{strings.str6}<Link to={`/profiles/${transaction.payerId}`}>{strings.str8}</Link>{strings.str9}{new Date(transaction.date).toLocaleString()}</p>
 
                   return (
                     <div key={index}>

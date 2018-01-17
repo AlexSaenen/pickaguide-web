@@ -4,6 +4,7 @@ import { PropsComponent } from 'base/PropsComponent.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { strings } from './EditText_lang.js';
 
 
 export class EditText extends PropsComponent {
@@ -36,7 +37,7 @@ export class EditText extends PropsComponent {
 
 EditText.defaultProps = {
   value: '',
-  title: 'Edit Text',
+  title: String(strings.title),
   label: 'text',
 };
 

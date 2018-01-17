@@ -12,6 +12,7 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { FeedableModalFormController } from 'base/FeedableModalFormController.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { ChangeStatus } from 'modals/ChangeStatus.jsx';
+import { strings } from './OwnerVisits_lang.js'
 import VisitsStore from 'stores/user/Visits.js';
 import VisitsActions from 'actions/Visits.js';
 
@@ -50,18 +51,18 @@ export class OwnerVisits extends StoreObserver {
     return (
       <div>
         <Layout layoutStyle="LayoutBlank">
-          <Title>Visits</Title>
+          <Title>{strings.title}</Title>
         </Layout>
 
         {
           myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0 &&
             <Layout layoutStyle="LayoutBlank">
               <hr className="Overlay" />
-              <Information infoStyle="Info Small MarginAuto LineSpaced">No visits yet</Information>
+              <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noVisit}</Information>
               <Layout layoutStyle="LayoutRegular SoftShadowNonHover AutoWidthContent MarginAuto">
-                <p>Browse the <Link className="Blue Bold" to="/">Home</Link> or <Link className="Blue Bold" to="/view-all-adverts">Adverts</Link> pages and request your first visit !</p>
+                <p>{strings.str1}<Link className="Blue Bold" to="/">{strings.str2}</Link>{strings.str3}<Link className="Blue Bold" to="/view-all-adverts">{strings.str4}</Link>{strings.str5}</p>
                 <br />
-                <p>You could also use the <strong>search</strong> bar above</p>
+                <p dangerouslySetInnerHTML={{ __html: strings.str6 }} / >
               </Layout>
             </Layout>
         }
@@ -83,7 +84,7 @@ export class OwnerVisits extends StoreObserver {
               myVisits && myVisits.length > 0 &&
                 <Element elementStyle={`${theirVisits && theirVisits.length > 0 ? 'Half' : 'WidthFullImportant'} Transparent NoWrap Top Box`}>
                   <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
-                    <Title>Your visits as a traveler ...</Title>
+                    <Title>{strings.visitor}</Title>
                     <br className="Margin" />
                     <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap WidthFullImportant">
                       {
@@ -99,7 +100,7 @@ export class OwnerVisits extends StoreObserver {
               theirVisits && theirVisits.length > 0 &&
                 <Element elementStyle={`${myVisits && myVisits.length > 0 ? 'Half' : 'WidthFullImportant'} Transparent NoWrap Top Box`}>
                   <Layout layoutStyle="LayoutBlank SoftShadowNonHover">
-                    <Title>Your visits with travelers ...</Title>
+                    <Title>{strings.guide}</Title>
                     <br className="Margin" />
                     <List listStyle="ListGrid WidthFull" elementStyle="Transparent Tight NoWrap WidthFullImportant">
                       {
