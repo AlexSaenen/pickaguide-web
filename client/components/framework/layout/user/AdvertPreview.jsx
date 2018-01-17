@@ -2,6 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { Picture } from 'layout/elements/Picture.jsx';
+import { strings } from './AdvertPreview_lang.js';
 import AvatarApi from 'services/Avatar.js';
 
 import 'scss/views/adverts.scss';
@@ -72,7 +73,7 @@ export class AdvertPreview extends React.Component {
 
             <div>
               <div className="Inline Vertical">
-                <p className="Inline Italic">in</p>
+                <p className="Inline Italic">{strings.in}</p>
                 <p className="Bold Inline">{this.props.city}, {this.props.country}</p>
               </div>
 
@@ -86,7 +87,7 @@ export class AdvertPreview extends React.Component {
 
               {
                 this.props.amountVisits !== 0 &&
-                  <p className="Italic MarginTwo">already visited {this.props.amountVisits > 1 ? `${this.props.amountVisits} times` : 'once'}</p>
+                  <p className="Italic MarginTwo">{strings.visited1}{this.props.amountVisits > 1 ? `${this.props.amountVisits}${strings.visited2}` : `${strings.visited3}`}</p>
               }
             </div>
           </div>
