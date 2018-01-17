@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
+import { strings } from './strings_lang.js'
 
 import 'scss/framework/form.scss';
 
@@ -23,7 +24,7 @@ export class SubmitButton extends PropsComponent {
 }
 
 SubmitButton.defaultProps = {
-  label: 'Submit',
+  label: String(strings.submit),
   buttonStyle: '',
 };
 

@@ -16,6 +16,7 @@ export let strings = new LocalizedStrings({
       outputNoDescription:"None",
       outputNoInterests:"None",
       notIndicated:"None",
+      edit: "Edit profile",
       monthMap:[
       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
@@ -36,6 +37,7 @@ export let strings = new LocalizedStrings({
       outputNoDescription:"Indéfini",
       outputNoInterests:"Indéfini",
       notIndicated:"Indéfini",
+      edit: "Editer le profile",
       monthMap:[
       'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jun',
       'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec',

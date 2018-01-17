@@ -99,8 +99,8 @@ export class CreateAdvert extends StoreObserver {
     } else {
       this.messageCallback = messageCallback;
       messageCallback({
-        title: 'We need images',
-        content: 'We need at least one image for your new advert',
+        title: String(strings.needTitle),
+        content: String(strings.needContent),
         type: 'Alert Medium MarginAuto',
       }, false);
     }
@@ -183,7 +183,7 @@ export class CreateAdvert extends StoreObserver {
     return (
       <div>
         <Layout layoutStyle="LayoutBlank">
-          <Title>Create your Advert</Title>
+          <Title>{strings.title}</Title>
         </Layout>
 
         <Layout layoutStyle="LayoutBlank">
@@ -192,9 +192,9 @@ export class CreateAdvert extends StoreObserver {
             <List listStyle="ListStack" wrapChildren={false}>
               <div className="W80 Transparent MarginAuto PaddingOne Box">
                 <Layout layoutStyle="Transparent SoftShadowNonHover Fluid">
-                  <TextInput displayLabel={false} label="title" value={advert.title} required override onChange={this.changeTitle.bind(this)} />
-                  <TextArea displayLabel={false} className="Margin" label="description" value={advert.description} required override onChange={this.changeDescription.bind(this)} />
-                  <Information infoStyle="Info Medium MarginHAuto">The more descriptive you are, the better matches we can find you</Information>
+                  <TextInput placeholder={strings.POTitle} displayLabel={false} label="title" value={advert.title} required override onChange={this.changeTitle.bind(this)}/>
+                  <TextArea placeholder={strings.PODescription} displayLabel={false} className="Margin" label="description" value={advert.description} required override onChange={this.changeDescription.bind(this)} />
+                  <Information infoStyle="Info Medium MarginHAuto">{strings.PODescriptionInfo}</Information>
                 </Layout>
               </div>
 
@@ -205,7 +205,7 @@ export class CreateAdvert extends StoreObserver {
                       <Layout layoutStyle="Transparent NoWrap">
                         {
                           pictures.length === 0 &&
-                            <Information infoStyle="Info">Select images to illustrate your visit experience to others</Information>
+                            <Information infoStyle="Info">{strings.POImage}</Information>
                         }
 
                         <Layout layoutStyle="SoftShadowNonHover OverflowHidden">
@@ -213,14 +213,14 @@ export class CreateAdvert extends StoreObserver {
                             className="Transparent NoWrap"
                             withIcon
                             withPreview
-                            buttonText="Choose images"
+                            buttonText={strings.POImageBtn}
                             imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
                             onChange={this.onDrop}
                             onSelect={this.onSelectAsCover}
                           />
                           {
                             pictures.length > 1 && cover === null &&
-                              <Information infoStyle="Info">Select one of these images to be the advert's cover</Information>
+                              <Information infoStyle="Info">{strings.imageInfo}</Information>
                           }
                         </Layout>
                       </Layout>
@@ -230,8 +230,8 @@ export class CreateAdvert extends StoreObserver {
                       cover !== null &&
                         <Element elementStyle="W40 Inline-BlockImportant NoWrap Transparent Vertical Box">
                           <Layout layoutStyle="Transparent NoWrap">
-                            <Information infoStyle="Info">The picture below will be the cover for your advert, or you can still chose another picture</Information>
-                            <Picture pictureName="Cover" url={cover} />
+                            <Information infoStyle="Info">{strings.imageInfo2}</Information>
+                            <Picture pictureName={strings.imageName} url={cover} />
                           </Layout>
                         </Element>
                     }
@@ -249,18 +249,17 @@ export class CreateAdvert extends StoreObserver {
                 </Element>
 
                 <Element elementStyle="W40 NoWrap PaddingOne Box Vertical Inline-Block">
-                  <Information infoStyle="Info LessMarginTop">Users near the location provided below will be able to see your advert in their choices</Information>
+                  <Information infoStyle="Info LessMarginTop">{strings.localisationInfo}</Information>
 
                   <Layout layoutStyle="Transparent SoftShadowNonHover">
-                    <TextInput displayLabel={false} label="city" value={advert.city} required onChange={this.changeCity.bind(this)} />
-                    <TextInput displayLabel={false} label="country" value={advert.country} required onChange={this.changeCountry.bind(this)} />
-                    <TextInput displayLabel={false} label="location" placeholder="Street Address" value={advert.location} onChange={this.changeLocation.bind(this)} />
+                    <TextInput displayLabel={false} label="city" placeholder={strings.POCity} value={advert.city} required onChange={this.changeCity.bind(this)} />
+                    <TextInput displayLabel={false} label="country" placeholder={strings.POCountry} value={advert.country} required onChange={this.changeCountry.bind(this)} />
+                    <TextInput displayLabel={false} label="location" placeholder={strings.POStreetAdresse} value={advert.location} onChange={this.changeLocation.bind(this)} />
                   </Layout>
                 </Element>
               </Layout>
             </Layout>
-
-            <Information infoStyle="Warning Auto MarginAuto TopMarginImportant">Once you create this advert you will still need to activate it, to make it available to the other users</Information>
+            <Information infoStyle="Warning Auto MarginAuto TopMarginImportant">{strings.activateInfo}</Information>
           </Form>
         </Layout>
       </div>

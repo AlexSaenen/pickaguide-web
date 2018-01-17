@@ -1,6 +1,7 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
 import { Button } from 'layout/elements/Button.jsx';
+import { strings } from './FileUploader_lang.js';
 import './index.scss';
 
 const styles = {
@@ -203,15 +204,15 @@ ReactImageUploadComponent.defaultProps = {
   accept: 'accept=image/*',
   name: '',
   withIcon: true,
-  buttonText: 'Choose images',
+  buttonText: String(strings.buttonText),
   withLabel: true,
-  label: 'Max file size : 5mb, accepted types : jpeg | jpg | png | gif',
+  label: String(strings.label),
   labelStyles: {},
   labelClass: 'Italic',
   imgExtension: ['.jpeg', '.jpg', '.png', '.gif'],
   maxFileSize: 5242880,
-  fileSizeError: ' file size is too big',
-  fileTypeError: ' is not supported file extension',
+  fileSizeError: String(strings.fileSizeError),
+  fileTypeError: String(strings.fileTypeError),
   errorClass: '',
   style: {},
   errorStyle: {},

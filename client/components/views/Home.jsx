@@ -104,8 +104,8 @@ export class Home extends StoreObserver {
     return (
       <div className="HomeContainer">
         <Layout>
-          <Title>Pickaguide</Title>
-          <p className="Italic">A way to visit places and meet people differently</p>
+          <Title>{strings.title}</Title>
+          <p className="Italic">{strings.slogan}</p>
         </Layout>
 
         <Layout>

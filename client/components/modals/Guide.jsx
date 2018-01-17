@@ -5,6 +5,7 @@ import { StoreObserver } from 'base/StoreObserver.jsx';
 import { ModalForm } from 'view/ModalForm.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { TextInput } from 'form/TextInput.jsx';
+import { strings } from './Guide_lang.js';
 import UserActions from 'actions/User.js';
 import ProfileStore from 'stores/user/Profile.js';
 import UserStore from 'stores/user/User.js';
@@ -26,7 +27,7 @@ export class Guide extends StoreObserver {
 
     if (store.error) {
       this.ctrl.messageCallback({
-        title: 'Some error occurred when you want to become guide',
+        title: String(strings.error),
         content: String(store.error),
         type: 'Alert',
       });
@@ -51,8 +52,11 @@ export class Guide extends StoreObserver {
     const profile = this.state.profile || {};
     const neededAttrs = ['firstName', 'lastName', 'phone', 'city', 'country'];
     const attrNameMapping = {
-      firstName: 'First name',
-      lastName: 'Last name',
+      firstName: String(strings.firstName),
+      lastName: String(strings.lastName),
+      phone: String(strings.phone),
+      city: String(strings.city),
+      country: String(strings.country),
     };
 
     const inputs = neededAttrs
@@ -61,7 +65,7 @@ export class Guide extends StoreObserver {
 
     return (
       <ModalForm controller={this.ctrl} {...this.props} layoutStyle="LayoutBlank Tight" modalStyle="Large">
-        <Title>Become Guide</Title>
+        <Title>{strings.title}</Title>
         <br />
         {inputs}
       </ModalForm>

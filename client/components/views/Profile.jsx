@@ -111,7 +111,7 @@ export class Profile extends StoreObserver {
           </div>
           {
             this.isOwnerView &&
-              <Button label="Edit" buttonStyle="Blue Auto" onCallback={this.goToEditPage} />
+              <Button label={strings.edit} buttonStyle="Blue Auto" onCallback={this.goToEditPage} />
           }
         </Layout>
 

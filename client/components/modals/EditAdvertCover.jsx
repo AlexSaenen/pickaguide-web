@@ -2,6 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { LinkModal } from 'modals/LinkModal.jsx';
+import { strings } from './EditAdvertCover_lang.js';
 
 
 export class EditAdvertCover extends PropsComponent {
@@ -11,8 +12,8 @@ export class EditAdvertCover extends PropsComponent {
       <LinkModal
         {...this.props}
         layoutStyle="LayoutLight Tight"
-        title="Edit Advert Cover"
-        inputHolder="New URL"
+        title={strings.title}
+        inputHolder={strings.inputHolder}
         inputLabel="photoUrl"
       />
     );

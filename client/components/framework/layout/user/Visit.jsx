@@ -7,6 +7,7 @@ import { Picture } from 'layout/elements/Picture.jsx';
 import { Button } from 'layout/elements/Button.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
+import { strings } from './Visit_lang.js';
 
 const goToAdvert = (type, id) => {
   browserHistory.push(`/guide/adverts/${type === 'guide' ? 'mine/' : ''}${id}`);
@@ -22,11 +23,11 @@ const Visit = (props) => {
       <Layout>
         {
           visit.about === null &&
-            <Information infoStyle="Alert Small MarginAuto">The advert doesn't exist anymore</Information>
+            <Information infoStyle="Alert Small MarginAuto">{strings.noExist}</Information>
         }
 
-        <Title>{visit.about ? visit.about.title : 'Title not available'}</Title>
-        <p className="Small Italic Inline">with </p>
+        <Title>{visit.about ? visit.about.title : String(strings.noTitle)}</Title>
+        <p className="Small Italic Inline">{strings.with}</p>
         <p className="Small Bold Inline">{visit.with}</p>
         {
           visit.contact &&
@@ -38,7 +39,7 @@ const Visit = (props) => {
                 }
                 {
                   !visit.contact.email && !visit.contact.phone &&
-                    <p className="Italic">No contact info available</p>
+                    <p className="Italic">{strings.noContact}</p>
                 }
               </Layout>
             </div>
@@ -47,7 +48,7 @@ const Visit = (props) => {
         <div className="Margin" />
         {
           visit.about && props.clickable &&
-            <Button onCallback={() => { goToAdvert(props.type, visit.about._id); }} label="See advert" buttonStyle="Auto" />
+            <Button onCallback={() => { goToAdvert(props.type, visit.about._id); }} label={strings.linkAdvert} buttonStyle="Auto" />
         }
         {props.addon}
       </Layout>
@@ -57,31 +58,31 @@ const Visit = (props) => {
 
         <List listStyle="ListGrid" elementStyle="SoftShadowNonHover W30E MW90">
           <Layout>
-            <p className="Inline LineSpaced Italic">The visit {whenDate >= new Date().toDateString() ? 'is' : 'was'} on </p>
+            <p className="Inline LineSpaced Italic">{strings.str1}{whenDate >= new Date().toDateString() ? String(strings.str2) : String(strings.str3)}{strings.str4}</p>
             <p className="Bold Inline Blue">{whenDate}</p>
-            <p className="Inline Italic"> at </p>
+            <p className="Inline Italic">{strings.str5}</p>
             <p className="Bold Inline Blue">{whenTime}</p>
             <br />
-            <p className="Inline LineSpaced Italic"> and created on </p>
+            <p className="Inline LineSpaced Italic">{strings.str6}</p>
             <p className="Bold Inline Blue">{new Date(visit.creationDate).toDateString()}</p>
-            <p className="Inline Italic"> at </p>
+            <p className="Inline Italic">{strings.str7}</p>
             <p className="Bold Inline Blue">{new Date(visit.creationDate).toLocaleTimeString()}</p>
             <br />
-            <p className="Inline LineSpaced Italic">with </p>
-            <p className="Bold Inline Blue">{visit.numberVisitors === 1 ? 'one' : String(visit.numberVisitors)} {visit.numberVisitors > 1 ? 'visitors' : 'visitor'}</p>
+            <p className="Inline LineSpaced Italic">{strings.str8}</p>
+            <p className="Bold Inline Blue">{visit.numberVisitors === 1 ? String(strings.str9) : String(visit.numberVisitors)} {visit.numberVisitors > 1 ? String(strings.str10) : String(strings.str11)}</p>
             {
               visit.special ?
                 <div className="LineSpaced">
-                  <p className="Inline Italic"> and a special request stating: </p>
+                  <p className="Inline Italic">{strings.str12}</p>
                   <p className="Bold Inline">"{visit.special}"</p>
                 </div>
                 :
-                <p className="Inline Italic"> and no special request</p>
+                <p className="Inline Italic">{strings.str13}</p>
             }
           </Layout>
 
           <Layout>
-            <Title smaller>Status History</Title>
+            <Title smaller>{strings.titleStatus}</Title>
             <br className="Margin" />
 
             {
@@ -95,13 +96,13 @@ const Visit = (props) => {
 
                 return (
                   <div key={index}>
-                    <p className="Inline Italic">On </p>
+                    <p className="Inline Italic">{strings.text1}</p>
                     <p className="Bold Inline Blue">{new Date(state.date).toDateString()}</p>
-                    <p className="Inline Italic"> at </p>
+                    <p className="Inline Italic">{strings.text2}</p>
                     <p className="Bold Inline Blue">{new Date(state.date).toLocaleTimeString()}</p>
-                    <p className="Inline Italic"> to </p>
+                    <p className="Inline Italic">{strings.text3}</p>
                     <p className={statusLabelStyle}>{state.label}</p>
-                    <p className="Inline Italic"> stating </p>
+                    <p className="Inline Italic">{strings.text4}</p>
                     <p className="Bold Inline">"{state.message}"</p>
                     <br />
                     <br />
@@ -116,13 +117,13 @@ const Visit = (props) => {
           visit.about &&
             <List listStyle="ListGrid" elementStyle="Tight MW30 Vertical">
               {
-                visit.about.images.map((image, index) => <Picture key={index} url={image} pictureName="Advert Cover" pictureType="WidthLimited" full />)
+                visit.about.images.map((image, index) => <Picture key={index} url={image} pictureName={strings.pictureName} pictureType="WidthLimited" full />)
               }
             </List>
         }
         {
           visit.about === undefined &&
-            <Picture url="/assets/images/deleted.png" pictureName="Deleted advert" pictureType="WidthLimited" full />
+            <Picture url="/assets/images/deleted.png" pictureName={strings.pictureName2} pictureType="WidthLimited" full />
         }
       </Layout>
     </div>

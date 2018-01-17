@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
+import { strings } from './CreateComment_lang.js';
 import CommentsActions from 'actions/Comments.js';
 
 import 'scss/framework/comment.scss';
@@ -35,7 +36,7 @@ export class CreateComment extends PropsComponent {
     return (
       <div className="CreateComment">
         <form>
-          <input placeholder="Leave a comment ..." id="commentEditor" onKeyPress={this._handleKeyPress} />
+          <input placeholder={strings.leaveComment} id="commentEditor" onKeyPress={this._handleKeyPress} />
         </form>
       </div>
     );

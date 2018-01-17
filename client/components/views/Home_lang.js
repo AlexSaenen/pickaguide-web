@@ -2,7 +2,8 @@ import LocalizedStrings from 'react-localization';
 
 export let strings = new LocalizedStrings({
    en:{
-      title:"Home page",
+      title:"Pickaguide",
+      slogan:"A way to visit places and meet people differently",
       desc1:"Pickaguide is a service that allows you to <strong>genuinly discover</strong> a city or a place through the eyes of a <strong>local inhabitant</strong>.",
       desc2:"Get a <strong>perfect visit</strong> wherever you are, whenever you want.",
       desc3:"With Pickaguide, live a <strong>unique experience</strong>.",
@@ -15,7 +16,8 @@ export let strings = new LocalizedStrings({
       exploreVisit:"Explore all adverts available"
    },
    fr:{
-      title:"Page d'acceuil",
+      title:"Pickaguide",
+      slogan:"Une façon différente de visiter et rencontrer des gens",
       desc1:"Pickaguide est un service qui vous permet de <strong>découvrir</strong> une ville a travers les yeux d'un <strong>habitant local</strong>.",
       desc2:"Trouver un <strong>guide génial</strong> partout où vous êtes, quand vous voulez!",
       desc3:"Avec Pickaguide, vivez une <strong>experience unique</strong>.",

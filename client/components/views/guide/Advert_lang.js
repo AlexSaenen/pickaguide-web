@@ -10,7 +10,9 @@ export let strings = new LocalizedStrings({
       needLog: "You need to be logged in to ask a visit and access comments",
       commentTitle: "Comments",
       by: "by ",
-      in: " in "
+      in: " in ",
+      pictureName: "Profile",
+      picturesName: "Advert images"
    },
    fr:{
       noAdvert: "Annonce non trouvée",
@@ -21,6 +23,8 @@ export let strings = new LocalizedStrings({
       needLog: "Vous devez être connecté pour demander un visite ou poser un commentaire",
       commentTitle: "Commentaire",
       by: "Par ",
-      in: " à "
+      in: " à ",
+      pictureName: "Profil",
+      picturesName: "Images de l'annonce"
    }
 });
