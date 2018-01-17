@@ -21,7 +21,7 @@ export class Guide extends React.Component {
     return (
       <div onClick={this.onClick} className="Guide">
         <Picture url={this.props.avatar} pictureType="HeightLimited" pictureName={this.props.description} />
-        <p className="Spaced Medium Inline">{this.props.firstName}</p>
+        <p className="Spaced Medium Inline LineSpaced">{this.props.firstName}</p>
         {
           !!this.props.rate &&
             <div>

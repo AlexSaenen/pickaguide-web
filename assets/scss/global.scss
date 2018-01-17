@@ -113,6 +113,7 @@ p.LinkColor > a {
 .MW90 { max-width: 90%; }
 .MSize { img { max-width: 100% !important; height: auto !important; } }
 .MW30 { max-width: 30%; }
+.MW40 { max-width: 40%; }
 
 .arrow_box {
 	position: relative;
@@ -249,11 +250,14 @@ p.LinkColor > a {
 .LessMarginTop { margin-top: 0 !important; }
 .LessPaddingTop { padding-top: 0 !important; }
 .NoMargin { margin: 0 !important; }
+.NoMarginTop { margin-top: 0 !important; }
 .MarginAuto { margin: auto; }
 .MarginHAuto { margin-left: auto; margin-right: auto; }
+.MarginHAutoImportant { margin-left: auto !important; margin-right: auto !important; }
 .MarginAutoImportant { margin: auto !important; }
 .Margin { margin: 0.5em !important; }
 .MarginOne { margin: 1em !important; }
+.MarginOneNotI { margin: 1em; }
 .MarginOneAndHalf { margin: 1em 0.5em !important; }
 .MarginEight { margin: 0.8em !important; }
 .MarginFour { margin: 0.4em !important; }

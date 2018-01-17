@@ -11,11 +11,9 @@ import { Layout } from 'layout/containers/Layout.jsx';
 import { Message } from 'layout/elements/Message.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { List } from 'layout/list/List.jsx';
-import { Element } from 'layout/list/Element.jsx';
-import { ProfilePreview } from 'layout/user/ProfilePreview.jsx';
-import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { strings } from './Search_lang.js';
+import { Profiles, Adverts, Filters } from './Search';
 
 export class Search extends StoreObserver {
 
@@ -26,6 +24,7 @@ export class Search extends StoreObserver {
       results: null,
       error: null,
       searchTerms: props.params.terms.trim(),
+      showFilters: false,
     };
 
     this.ctrl = new FormController();
@@ -34,9 +33,6 @@ export class Search extends StoreObserver {
         browserHistory.push(`/search/${encodeURIComponent(form.terms.trim())}`);
       }
     });
-
-    this.navigateToAdvert = this.navigateToAdvert.bind(this);
-    this.navigateToProfile = this.navigateToProfile.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -69,19 +65,6 @@ export class Search extends StoreObserver {
     }
 
     this.setState(newState);
-  }
-
-  navigateToAdvert(advertId) {
-    browserHistory.push(`/guide/adverts/${advertId}`);
-  }
-
-  navigateToProfile(profileId) {
-    if (this.state.results !== undefined) {
-      const profileIndex = this.state.results.ids.indexOf(profileId);
-      if (profileIndex !== -1) {
-        browserHistory.push(`/profiles/${profileId}`);
-      }
-    }
   }
 
   render() {
@@ -118,7 +101,7 @@ export class Search extends StoreObserver {
       </Layout>
     );
 
-    if (results === null || profiles.length === 0 && adverts.length === 0) {
+    if (results === null || (profiles.length === 0 && adverts.length === 0)) {
       return (
         <div>
           <Layout layoutStyle="LayoutBlank">
@@ -146,57 +129,14 @@ export class Search extends StoreObserver {
           {searchBar}
         </Layout>
 
+        <Filters />
+
         <List wrapChildren={false} listStyle="ListGrid Center WidthFull">
-          {
-            (profiles.length > 0) &&
-              <Element key={0} elementStyle="W30 Transparent NoWrap">
-                <Element elementStyle="Tight WidthFullImportant NoWrap">
-                  <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
-                    <p>We found these <strong>awesome guides</strong> for you !</p>
-                  </Layout>
-                </Element>
-
-                <List elementStyle="Tight Clickable WidthFullImportant Box NoHorizontalWrap" listStyle="WidthFull">
-                  {
-                    profiles.map((profile, index) => {
-                      return (
-                        <ProfilePreview
-                          {...profile}
-                          avatar={avatars[index]}
-                          _id={ids[index]}
-                          isConfirmed={areConfirmed[index]}
-                          key={index}
-                          onClick={this.navigateToProfile}
-                        />
-                      );
-                    })
-                  }
-                </List>
-              </Element>
+          {(profiles.length > 0) &&
+            <Profiles {...{ profiles, avatars, areConfirmed, ids }} />
           }
-          {
-            (adverts.length > 0) &&
-              <Element key={1} elementStyle="W50 Transparent NoWrap Top Box">
-                <Element elementStyle="Tight WidthFullImportant NoWrap">
-                  <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
-                    <p>These amazing <strong>visit opportunities</strong> are waiting for you !</p>
-                  </Layout>
-                </Element>
-
-                <List elementStyle="Tight Clickable WidthFullImportant Box NoHorizontalWrap" listStyle="WidthFull">
-                  {
-                    adverts.map((advert, index) => {
-                      return (
-                        <AdvertPreview
-                          {...advert}
-                          key={index}
-                          onClick={this.navigateToAdvert}
-                        />
-                      );
-                    })
-                  }
-                </List>
-              </Element>
+          {(adverts.length > 0) &&
+            <Adverts adverts={adverts.filter(advert => advert.hide !== true)} />
           }
         </List>
       </div>

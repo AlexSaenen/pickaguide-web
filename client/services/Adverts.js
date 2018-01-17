@@ -1,3 +1,4 @@
+import { browserHistory } from 'react-router';
 import AdvertsActions from 'actions/Adverts.js';
 import PromiseApi from 'services/PromiseApi.js';
 
@@ -62,23 +63,25 @@ export default class AdvertsApi {
   static findAll() {
     PromiseApi.get('/public/proposals/')
       .then((res) => {
-        if (res.error) {
-          AdvertsActions.error(res.error);
-        } else {
-          Promise.all(res.adverts.map((advert) => {
-            if (advert.photoUrl === '') {
-              return PromiseApi.download(`/public/proposals/${advert._id}/image`);
-            }
+        if (!browserHistory.location || browserHistory.location.pathname !== '/guide/adverts') {
+          if (res.error) {
+            AdvertsActions.error(res.error);
+          } else {
+            Promise.all(res.adverts.map((advert) => {
+              if (advert.photoUrl === '') {
+                return PromiseApi.download(`/public/proposals/${advert._id}/image`);
+              }
 
-            return advert.photoUrl;
-          }))
-          .then((images) => {
-            images.forEach((image, index) => {
-              res.adverts[index].images = [image];
+              return advert.photoUrl;
+            }))
+            .then((images) => {
+              images.forEach((image, index) => {
+                res.adverts[index].images = [image];
+              });
+
+              AdvertsActions.getSuccess(res.adverts);
             });
-
-            AdvertsActions.getSuccess(res.adverts);
-          });
+          }
         }
       })
       .catch((err) => {
@@ -89,23 +92,25 @@ export default class AdvertsApi {
   static findMain() {
     PromiseApi.get('/public/proposals/main')
       .then((res) => {
-        if (res.error) {
-          AdvertsActions.error(res.error);
-        } else {
-          Promise.all(res.adverts.map((advert) => {
-            if (advert.photoUrl === '') {
-              return PromiseApi.download(`/public/proposals/${advert._id}/image`);
-            }
+        if (!browserHistory.location || browserHistory.location.pathname !== '/guide/adverts') {
+          if (res.error) {
+            AdvertsActions.error(res.error);
+          } else {
+            Promise.all(res.adverts.map((advert) => {
+              if (advert.photoUrl === '') {
+                return PromiseApi.download(`/public/proposals/${advert._id}/image`);
+              }
 
-            return advert.photoUrl;
-          }))
-          .then((images) => {
-            images.forEach((image, index) => {
-              res.adverts[index].images = [image];
+              return advert.photoUrl;
+            }))
+            .then((images) => {
+              images.forEach((image, index) => {
+                res.adverts[index].images = [image];
+              });
+
+              AdvertsActions.getSuccess(res.adverts);
             });
-
-            AdvertsActions.getSuccess(res.adverts);
-          });
+          }
         }
       })
       .catch((err) => {

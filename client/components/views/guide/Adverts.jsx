@@ -28,11 +28,16 @@ export class Adverts extends StoreObserver {
 
   componentDidMount() {
     super.componentDidMount();
-    AdvertsActions.get.defer();
+
+    if (this.state.adverts === null) {
+      AdvertsActions.get.defer();
+    }
   }
 
   onStore(store) {
-    this.setState({ adverts: store.adverts });
+    if (store.adverts.every(advert => advert.ownerId === undefined)) {
+      this.setState({ adverts: store.adverts });
+    }
   }
 
   reviewAdvert(advertId) {

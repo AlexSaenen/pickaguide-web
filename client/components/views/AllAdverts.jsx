@@ -10,6 +10,7 @@ import { Element } from 'layout/list/Element.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { Filters } from './Home/Filters.jsx';
 
 import 'scss/views/home.scss';
 
@@ -54,11 +55,15 @@ export class AllAdverts extends StoreObserver {
       <div>
         <Layout>
           <Title>Find the visit you'll like</Title>
-          <p>Filters</p>
         </Layout>
 
         <Layout>
           <hr className="Overlay" />
+
+          {adverts && adverts.length > 0 &&
+            <Filters />
+          }
+
           <List wrapChildren={false} listStyle="ListGrid">
             {
               (adverts === null || adverts.length > 0) &&
@@ -67,7 +72,7 @@ export class AllAdverts extends StoreObserver {
                     adverts ?
                       <List elementStyle="Tight Clickable WidthFullImportant Box NoHorizontalWrap" listStyle="WidthFull">
                         {
-                          adverts.map((advert, index) => {
+                          adverts.filter(advert => advert.hide !== true).map((advert, index) => {
                             return (
                               <AdvertPreview
                                 {...advert}

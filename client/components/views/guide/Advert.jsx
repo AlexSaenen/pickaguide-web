@@ -9,6 +9,7 @@ import { ImageModal } from 'modals/ImageModal.jsx';
 import { AuthDependent } from 'base/AuthDependent.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Button } from 'layout/elements/Button.jsx';
+import { Title } from 'layout/elements/Title.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { ClickablePicture } from 'layout/user/ClickablePicture.jsx';
 import { List } from 'layout/list/List.jsx';
@@ -27,7 +28,7 @@ import AdvertsActions from 'actions/Adverts.js';
 import CommentsActions from 'actions/Comments.js';
 import CommentAvatarsActions from 'actions/CommentAvatars.js';
 import ProfileActions from 'actions/SearchProfile.js';
-import { strings } from './Advert_lang.js'
+import { strings } from './Advert_lang.js';
 
 
 import 'scss/views/adverts.scss';
@@ -176,6 +177,27 @@ export class Advert extends StoreObserver {
               <p className="LineSpaced">{advert.description}</p>
             </Layout>
           </List>
+
+          {advert.upcoming.length > 0 &&
+            <Layout layoutStyle="SoftShadowNonHover MarginOneNotI W40 MarginHAutoImportant">
+              <Title smaller>{strings.availability}</Title>
+              <p className="Italic"><strong>{advert.owner.displayName}</strong> {strings.availabilitySub}</p>
+              <br />
+              {advert.upcoming.map((visit) => {
+                const whenDate = new Date(visit.when).toDateString();
+                const whenTime = new Date(visit.when).toLocaleTimeString();
+
+                return (
+                  <div>
+                    <p className="Inline LineSpaced Italic">on </p>
+                    <p className="Bold Inline Blue">{whenDate}</p>
+                    <p className="Inline Italic"> at </p>
+                    <p className="Bold Inline Blue">{whenTime}</p>
+                  </div>
+                );
+              })}
+            </Layout>
+          }
 
           <Layout layoutStyle="W80 NoWrap MarginAuto">
             <Element elementStyle="W50 NoWrap PaddingOne Box Inline-Block Vertical">

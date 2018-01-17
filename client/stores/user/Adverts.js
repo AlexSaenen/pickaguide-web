@@ -3,6 +3,23 @@ import { browserHistory } from 'react-router';
 import AdvertsActions from 'actions/Adverts.js';
 import AdvertsApi from 'services/Adverts.js';
 
+const filterThings = (element, filters, filterKeys) => {
+  let keep = true;
+
+  filterKeys.forEach((key) => {
+    const filterRow = filters[key];
+
+    if (filterRow.length !== 0 && keep !== false) {
+      if (filterRow.find(el => el.field === element[key]) !== undefined) {
+        keep = true;
+      } else {
+        keep = false;
+      }
+    }
+  });
+
+  element.hide = !keep;
+};
 
 class AdvertsStore {
 
@@ -55,6 +72,15 @@ class AdvertsStore {
 
   onError(error) {
     this.error = error;
+  }
+
+  onApplyFilters(filters) {
+    const filterKeys = Object.keys(filters);
+    filterKeys.forEach((key) => {
+      filters[key] = filters[key].filter(el => el.active);
+    });
+
+    this.adverts.forEach(advert => filterThings(advert, filters, filterKeys));
   }
 
   onUpdate(advert) {
