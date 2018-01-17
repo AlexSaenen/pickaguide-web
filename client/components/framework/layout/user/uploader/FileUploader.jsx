@@ -151,10 +151,11 @@ class ReactImageUploadComponent extends React.Component {
   }
 
   renderPreviewPictures() {
+    const onSelect = this.props.onSelect || function onSelect() {};
     return this.state.pictures.map((picture, index) => {
       return (
         <div key={index} className="uploadPictureContainer">
-          <img src={picture} className="uploadPicture" alt="preview" onClick={this.props.onSelect.bind(this, picture)} />
+          <img src={picture} className="uploadPicture" alt="preview" onClick={onSelect.bind(this, picture)} />
         </div>
       );
     });

@@ -56,14 +56,19 @@ export class UserDropdown extends StoreObserver {
 
         <div className="Dropdown HeightNone">
           <BlockDependent free>
+            <Link to="/notifications"><p>Notifications</p></Link>
             <Link to="/accounts/mine"><p>{strings.account}</p></Link>
             <Link to="/profiles/mine"><p>{strings.profile}</p></Link>
-            <Link to="/visits"><p>Visits</p></Link>
-            <Link to="/notifications"><p>Notifications</p></Link>
-            <Link to="/transactions"><p>Transactions</p></Link>
 
             <GuideDependent guide>
               <Link to="/guide/adverts"><p>{strings.adverts}</p></Link>
+            </GuideDependent>
+
+            <Link to="/visits"><p>{strings.visits}</p></Link>
+            <Link to="/travelbook"><p>{strings.travelbook}</p></Link>
+            <Link to="/transactions"><p>Transactions</p></Link>
+
+            <GuideDependent guide>
               <Link><p className="alert Clickable" onClick={this.ctrl.toggle}>{strings.retire}</p></Link>
             </GuideDependent>
 

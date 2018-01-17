@@ -243,14 +243,13 @@ export class OwnerAdvert extends StoreObserver {
       <div className="OwnerAdvert">
         <QueryModal
           controller={this.deleteCtrl}
-          query="Do you really wish to delete this Ad ?de"
+          query="Do you really wish to delete this Ad ?"
           onConfirm={this.onDelete}
         />
 
         <Layout layoutStyle="LayoutBlank">
           <Title>Edit your Advert</Title>
           <div>
-            <Button label="Back" buttonStyle="Auto TextWhite Bold" onCallback={browserHistory.goBack} />
             <Button label="Preview" buttonStyle="Blue Auto TextWhite Bold Spaced" onCallback={this.previewAdvert} />
             <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.deleteCtrl.toggle} />
           </div>
