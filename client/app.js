@@ -24,6 +24,9 @@ import { OwnerAdvert } from 'views/guide/OwnerAdvert.jsx';
 import { Advert } from 'views/guide/Advert.jsx';
 import { CreateAdvert } from 'views/guide/CreateAdvert.jsx';
 import { AllAdverts } from 'views/AllAdverts.jsx';
+import { Travelbook } from 'views/Travelbook.jsx';
+import { Chapter } from 'views/Book/Chapter.jsx';
+import { EditChapter } from 'views/Book/EditChapter.jsx';
 import About from 'views/About.jsx';
 
 import RoutesMiddleware from 'services/Routing.js';
@@ -73,6 +76,9 @@ ReactDOM.render(
       <Route path="visits/review" component={VisitsToReview} />
       <Route path="visits/:id/review" component={ReviewVisit} />
       <Route path="visits/mine/:type/:id" component={OwnerVisit} />
+      <Route path="travelbook" component={Travelbook} />
+      <Route path="travelbook/:id/edit" component={EditChapter} />
+      <Route path="travelbook/:id" component={Chapter} />
       <Route path="guide/become" component={Become} />
       <Route path="guide/adverts" component={Adverts} />
       <Route path="guide/adverts/:id" component={Advert} />

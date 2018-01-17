@@ -44,10 +44,10 @@ export class VisitsToReview extends StoreObserver {
     return (
       <div>
         <Layout layoutStyle="LayoutLight">
-          <Title>strings.title</Title>
+          <Title>{strings.title}</Title>
           {
             !(myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0) &&
-              <Information infoStyle="Medium MarginAuto Warning">strings.error</Information>
+              <Information infoStyle="Medium MarginAuto Warning">{strings.error}</Information>
           }
         </Layout>
 

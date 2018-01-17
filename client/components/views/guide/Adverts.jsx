@@ -13,7 +13,7 @@ import { Loader } from 'layout/elements/Loader.jsx';
 import { ModalController } from 'base/ModalController.jsx';
 import AdvertsStore from 'stores/user/Adverts.js';
 import AdvertsActions from 'actions/Adverts.js';
-import { strings } from './Adverts_lang.js'
+import { strings } from './Adverts_lang.js';
 
 
 export class Adverts extends StoreObserver {
