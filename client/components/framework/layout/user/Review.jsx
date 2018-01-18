@@ -130,7 +130,7 @@ export class Review extends StoreObserver {
                 />
               )}
 
-              <Button buttonStyle="Auto Blue" label="Rate" onCallback={this.review.bind(this)} disabled={this.state.selectedScore === null} />
+              <Button buttonStyle="Auto Blue" label={strings.rate} onCallback={this.review.bind(this)} disabled={this.state.selectedScore === null} />
               {
                 this.state.message &&
                   <Message messageStyle="MessageCenter TopMargin AutoWidthContent" timed={false} {...this.state.message} />

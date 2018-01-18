@@ -11,11 +11,11 @@ export let strings = new LocalizedStrings({
 
    },
    fr: {
-      title: "aa",
-      month: "aa",
-      year: "aa",
-      number: "aa",
-      cvc: "aa",
-      create: "aa"
+      title: "Nouvelle carte",
+      month: "Mois d'expiration",
+      year: "Année d'expiration",
+      number: "Numero de la carte",
+      cvc: "Code CVC",
+      create: "Créer la carte"
    }
 });

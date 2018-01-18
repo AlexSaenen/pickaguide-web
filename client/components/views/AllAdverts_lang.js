@@ -6,7 +6,7 @@ export let strings = new LocalizedStrings({
       desc: "Filters"
    },
    fr:{
-      title: "aa",
-      desc: "aa"
+      title: "Trouver la visite que vous aimerais",
+      desc: "Filtres"
    }
 });

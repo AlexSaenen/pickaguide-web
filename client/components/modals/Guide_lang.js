@@ -11,12 +11,12 @@ export let strings = new LocalizedStrings({
    	country: "Country"
    },
    fr:{
-   	title: "aa",
-   	error: "aa",
-   	firstName: "aa",
-   	lastName: "aa",
-   	phone: "aa",
-   	city: "aa",
-   	country: "aa"
+   	title: "Devenir guide",
+   	error: "Une erreur est survenue",
+   	firstName: "Prénom",
+   	lastName: "Nom",
+   	phone: "Téléphone",
+   	city: "Ville",
+   	country: "Pays"
    }
 });

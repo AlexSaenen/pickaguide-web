@@ -6,7 +6,7 @@ export let strings = new LocalizedStrings({
    	inputHolder: "New URL"
    },
    fr:{
-   	title: "aa",
-   	inputHolder: "aa"
+   	title: "Editer l'image de couverture de l'annonce",
+   	inputHolder: "Nouvelle URL"
    }
 });

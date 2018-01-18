@@ -7,7 +7,7 @@ export let strings = new LocalizedStrings({
    	use: "This card will be used to pay"
    },
    fr:{
-   	delete: "aa",
-   	use: "aa"
+   	delete: "Voulez-vous supprimer cette carte?",
+   	use: "Cette carte sera utilisé pour le paiement"
    }
 });

@@ -5,6 +5,6 @@ export let strings = new LocalizedStrings({
       check: "Check out these <strong>guides</strong> near you"
    },
    fr:{
-      check: "aa"
+      check: "Regardez les <strong>guides</strong> proche de vous"
    }
 });

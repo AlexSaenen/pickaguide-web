@@ -7,13 +7,15 @@ export let strings = new LocalizedStrings({
    	pay: "Do you wish to make a payment to your guide ?",
    	other: "Other visitors pay around ",
    	money: "€",
-   	score: 'Select a score to give and click "Rate" !'
+   	score: 'Select a score to give and click "Rate" !',
+      rate: "rate"
    },
    fr:{
-   	error: "aa",
-   	pay: "aa",
-   	other: "aa",
-   	money: "aa",
-   	score: "aa"
+   	error: "Des erreurs sont apparus pendant la notation de la visite",
+   	pay: "Est-ce que tu veux faire un paiement au guide ?",
+   	other: "Les autres visiteurs ont payé en moyenne ",
+   	money: "€",
+   	score: 'Sélectionne une note à donner et clique sur "Noter"',
+      rate: "Noter"
    }
 });

@@ -6,7 +6,7 @@ export let strings = new LocalizedStrings({
       description: "Here is the location of the visit according to the location you described"
    },
    fr:{
-      text: "aa",
-      description: "aa"
+      text: "Information",
+      description: "Ici est la location de votre visite en fonction de la location décrite"
    }
 });

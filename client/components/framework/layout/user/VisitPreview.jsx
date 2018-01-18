@@ -3,6 +3,7 @@ import React from 'react';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Button } from 'layout/elements/Button.jsx';
+import { strings } from './VisitPreview_lang.js';
 
 import 'scss/views/visits.scss';
 
@@ -71,7 +72,7 @@ export class VisitPreview extends PropsComponent {
     } else {
       changeStatus = (
         <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-          <p className="Italic Inline LineSpaced">stating</p>
+          <p className="Italic Inline LineSpaced">{strings.starting}</p>
           <p className="Bold Inline OverflowHidden TextOverflow">"{this.state.status.message}"</p>
         </div>
       );
@@ -93,16 +94,16 @@ export class VisitPreview extends PropsComponent {
             visit.about ?
               <p className="OverflowHidden TextOverflow Medium Bold">{visit.about.title}</p>
               :
-              <p className="OverflowHidden TextOverflow Small LineSpaced Bold Red">Advert was deleted</p>
+              <p className="OverflowHidden TextOverflow Small LineSpaced Bold Red">{strings.deleted}</p>
           }
 
           <div className="Inline Vertical">
-            <p className="Italic Inline LineSpaced">with</p>
+            <p className="Italic Inline LineSpaced">{strings.with}</p>
             <p className="Bold Inline OverflowHidden TextOverflow ">{visit.with}</p>
-            <p className="Italic Inline">on</p>
+            <p className="Italic Inline">{strings.on}</p>
             <p className="Bold Inline OverflowHidden TextOverflow">{new Date(visit.when).toDateString()}</p>
             {visit[`${this.type}Rate`] !== null &&
-              <p className="Italic Inline">you rated</p>
+              <p className="Italic Inline">{strings.rated}</p>
             }
           </div>
 
@@ -114,7 +115,7 @@ export class VisitPreview extends PropsComponent {
           }
 
           <br />
-          <p className="Italic Inline">with status</p>
+          <p className="Italic Inline">{strings.status}</p>
           <p className={statusLabelStyle}>"{this.state.status.label}"</p>
           {changeStatus}
         </div>

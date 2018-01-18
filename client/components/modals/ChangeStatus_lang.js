@@ -8,9 +8,9 @@ export let strings = new LocalizedStrings({
    	info: "This action cannot be undone"
    },
    fr:{
-   	error: "aa",
-   	title: "aa",
-   	comment: "aa",
-   	info: "aa"
+   	error: "Une erreur est survenue pendant l'envoie de la visite",
+   	title: " cette visite",
+   	comment: "Commentaire",
+   	info: "Cette action est irréversible"
    }
 });

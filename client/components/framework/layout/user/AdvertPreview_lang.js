@@ -8,9 +8,9 @@ export let strings = new LocalizedStrings({
    	visited3: "once"
    },
    fr:{
-   	in: "aa",
-   	visited1: "aa",
-   	visited2: "aa",
-   	visited3: "aa"
+   	in: "à",
+   	visited1: "déjà visité ",
+   	visited2: " fois",
+   	visited3: "une fois"
    }
 });

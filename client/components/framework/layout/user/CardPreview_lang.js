@@ -7,8 +7,8 @@ export let strings = new LocalizedStrings({
    	end: "ends with "
    },
    fr:{
-   	from: "aa",
-   	expire: "aa",
-   	end: "aa"
+   	from: " carte de ",
+   	expire: "expire le ",
+   	end: "fini avec "
    }
 });
