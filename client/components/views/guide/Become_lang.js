@@ -16,7 +16,7 @@ export let strings = new LocalizedStrings({
    },
    fr:{
       title: "aa",
-      text1: "Merci d'avoir rejoin la <strong>communauté des guides Pickaguide</strong>",
+      text1: "Merci d'avoir rejoint la <strong>communauté des guides Pickaguide</strong>",
       text2: "Vous avez maintenant accès a <strong>beaucoup de fonctionalitées</strong> dont vous aurez besoin <strong>dans vôte vie de guide</strong>",
       text3: "Vous pouvez donc accéder a la page de ",
       text4: "creation d'annonce",
