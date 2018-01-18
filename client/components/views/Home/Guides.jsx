@@ -9,6 +9,7 @@ import { Element } from 'layout/list/Element.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import AuthStore from 'stores/user/Auth.js';
 import { Guide } from './Guide.jsx';
+import { strings } from './Guides_lang.js';
 import AvatarApi from 'services/Avatar.js';
 
 import LocationStore from 'stores/user/Location.js';
@@ -52,7 +53,7 @@ export class Guides extends StoreObserver {
         <AuthDependent auth>
           <Element elementStyle="Tight WidthFull NoWrap">
             <Layout layoutStyle="LayoutRegular SoftShadowNonHover">
-              <p>Check out these <strong>guides</strong> near you</p>
+              <p dangerouslySetInnerHTML={{ __html: strings.check }} / >
             </Layout>
           </Element>
 

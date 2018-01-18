@@ -2,11 +2,9 @@ import LocalizedStrings from 'react-localization';
 
 export let strings = new LocalizedStrings({
    en:{
-   	title: "How much do you wish to pay ?",
-   	amount: "Amount"
+   	any: "Any interest"
    },
    fr:{
-   	title: "Combien veux-tu payer?",
-   	amount: "Montan"
+   	any: "Centres d'interets"
    }
 });

@@ -10,11 +10,11 @@ export let strings = new LocalizedStrings({
    	conEmail: "Confirm email"
    },
    fr:{
-   	error: "aa",
-   	successTitle: "aa",
-   	successDesc: "aa",
-   	title: "aa",
-   	newEmail: "aa",
-   	conEmail: "aa"
+   	error: "Des erreurs sont apparus pendant la mise à jour de votre email",
+   	successTitle: "Succès",
+   	successDesc: "Votre mail a été mis à jour",
+   	title: "Email mis à jour",
+   	newEmail: "Nouveau email",
+   	conEmail: "Confirmez email"
    }
 });

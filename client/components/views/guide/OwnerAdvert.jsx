@@ -243,15 +243,15 @@ export class OwnerAdvert extends StoreObserver {
       <div className="OwnerAdvert">
         <QueryModal
           controller={this.deleteCtrl}
-          query="Do you really wish to delete this Ad ?"
+          query={strings.deleteTitle}
           onConfirm={this.onDelete}
         />
 
         <Layout layoutStyle="LayoutBlank">
-          <Title>Edit your Advert</Title>
+          <Title>{strings.title}</Title>
           <div>
-            <Button label="Preview" buttonStyle="Blue Auto TextWhite Bold Spaced" onCallback={this.previewAdvert} />
-            <Button buttonStyle="Red Auto TextWhite Bold" label="Delete" onCallback={this.deleteCtrl.toggle} />
+            <Button label={strings.preview} displayLabel={strings.preview} buttonStyle="Blue Auto TextWhite Bold Spaced" onCallback={this.previewAdvert} />
+            <Button buttonStyle="Red Auto TextWhite Bold" label={strings.delete} displayLabel={strings.delete} onCallback={this.deleteCtrl.toggle} />
           </div>
         </Layout>
 
@@ -261,9 +261,9 @@ export class OwnerAdvert extends StoreObserver {
             <List listStyle="ListStack" wrapChildren={false}>
               <div className="W80 Transparent MarginAuto PaddingOne Box">
                 <Layout layoutStyle="Transparent SoftShadowNonHover Fluid">
-                  <TextInput displayLabel={false} label="title" value={advert.title} required override onChange={this.changeTitle.bind(this)} />
-                  <TextArea displayLabel={false} className="Margin" label="description" value={advert.description} required override onChange={this.changeDescription.bind(this)} />
-                  <Information infoStyle="Info Medium MarginHAuto">The more descriptive you are, the better matches we can find you</Information>
+                  <TextInput displayLabel={false} label="title" placeholder={strings.titleForm} value={advert.title} required override onChange={this.changeTitle.bind(this)} />
+                  <TextArea displayLabel={false} className="Margin" label="description" placeholder={strings.descForm} value={advert.description} required override onChange={this.changeDescription.bind(this)} />
+                  <Information infoStyle="Info Medium MarginHAuto">{strings.bestDesc}</Information>
                 </Layout>
               </div>
 
@@ -275,15 +275,15 @@ export class OwnerAdvert extends StoreObserver {
                         {
                           pictures.length === 0 &&
                             <div>
-                              <Text><p className="Italic">Current images attached to the advert</p></Text>
+                              <Text><p className="Italic">{strings.curentImage}</p></Text>
                               <List listStyle="ListGrid" elementStyle="W20 Vertical SoftShadowNonHover Tight Inline-BlockImportant">
                                 {
                                   advert.images.map((image, index) =>
-                                    <ClickablePicture key={index} pictureName="Advert images" full pictureType="WidthFull" url={image} onClick={this.onSelectAsCover.bind(this, image)} />
+                                    <ClickablePicture key={index} pictureName={strings.pictureName} full pictureType="WidthFull" url={image} onClick={this.onSelectAsCover.bind(this, image)} />
                                   )
                                 }
                               </List>
-                              <Information infoStyle="Info LessMarginTop">You may still decide to replace the current images with new ones</Information>
+                              <Information infoStyle="Info LessMarginTop">{strings.replaceImage}</Information>
                             </div>
                         }
 
@@ -292,14 +292,14 @@ export class OwnerAdvert extends StoreObserver {
                             className="Transparent NoWrap"
                             withIcon
                             withPreview
-                            buttonText="Choose images"
+                            buttonText={strings.chooseImage}
                             imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
                             onChange={this.onDrop}
                             onSelect={this.onSelectAsCover}
                           />
                           {
                             pictures.length > 1 && cover === null &&
-                              <Information infoStyle="Info">Select one of these images to be the advert's cover</Information>
+                              <Information infoStyle="Info">{strings.selectCover}</Information>
                           }
                         </Layout>
                       </Layout>
@@ -309,8 +309,8 @@ export class OwnerAdvert extends StoreObserver {
                       cover !== null &&
                         <Element elementStyle="W40 Inline-BlockImportant NoWrap Transparent Vertical Box">
                           <Layout layoutStyle="Transparent NoWrap">
-                            <Text><p className="Italic MarginEight">Image used for the advert's cover</p></Text>
-                            <Picture pictureName="Cover" url={cover} />
+                            <Text><p className="Italic MarginEight">{strings.coverSelected}</p></Text>
+                            <Picture pictureName={strings.coverName} url={cover} />
                           </Layout>
                         </Element>
                     }
@@ -328,18 +328,18 @@ export class OwnerAdvert extends StoreObserver {
                 </Element>
 
                 <Element elementStyle="W40 NoWrap PaddingOne Box Vertical Inline-Block">
-                  <Information infoStyle="Info LessMarginTop">Users near the location provided below will be able to see your advert in their choices</Information>
+                  <Information infoStyle="Info LessMarginTop">{strings.userNear}</Information>
 
                   <Layout layoutStyle="Transparent SoftShadowNonHover">
-                    <TextInput displayLabel={false} label="city" value={advert.city} required onChange={this.changeCity.bind(this)} />
-                    <TextInput displayLabel={false} label="country" value={advert.country} required onChange={this.changeCountry.bind(this)} />
-                    <TextInput displayLabel={false} label="location" defaultValue="" placeholder="Street Address" value={advert.location} onChange={this.changeLocation.bind(this)} />
+                    <TextInput displayLabel={false} label="city" placeholder={strings.city} value={advert.city} required onChange={this.changeCity.bind(this)} />
+                    <TextInput displayLabel={false} label="country" placeholder={strings.country} value={advert.country} required onChange={this.changeCountry.bind(this)} />
+                    <TextInput displayLabel={false} label="location" defaultValue="" placeholder={strings.location} value={advert.location} onChange={this.changeLocation.bind(this)} />
                   </Layout>
                 </Element>
               </Layout>
             </Layout>
 
-            <Information infoStyle="Warning Auto MarginAuto TopMarginImportant">Once you edit this advert, as a measure of privacy we will disable it again for you to enable when comfortable</Information>
+            <Information infoStyle="Warning Auto MarginAuto TopMarginImportant">{strings.editInfo}</Information>
           </Form>
         </Layout>
       </div>

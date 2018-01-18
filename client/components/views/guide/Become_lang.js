@@ -15,16 +15,16 @@ export let strings = new LocalizedStrings({
       info: "Enjoy & have a good experience with us."
    },
    fr:{
-      title: "aa",
-      text1: "Merci d'avoir rejoin la <strong>communauté des guides Pickaguide</strong>",
+      title: "Merci et profitez bien !",
+      text1: "Merci d'avoir rejoint la <strong>communauté des guides Pickaguide</strong>",
       text2: "Vous avez maintenant accès a <strong>beaucoup de fonctionalitées</strong> dont vous aurez besoin <strong>dans vôte vie de guide</strong>",
       text3: "Vous pouvez donc accéder a la page de ",
       text4: "creation d'annonce",
       text5: " pour créer vos annonces",
-      text6: "aa",
-      text7: "aa",
-      text8: "aa",
-      text9: "aa",
+      text6: "Et nous vous recommandons to remplir votre description personnelle ",
+      text7: "profil",
+      text8: " et",
+      text9: "mettre à jour votre avatar serait une bonne chose",
       info: "Bonne continuation avec Pickaguide"
    }
 });

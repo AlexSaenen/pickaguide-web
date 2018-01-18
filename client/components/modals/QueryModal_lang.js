@@ -6,7 +6,7 @@ export let strings = new LocalizedStrings({
    	cancel: "Cancel"
    },
    fr:{
-   	confirm: "aa",
-   	cancel: "aa"
+   	confirm: "Confirmer",
+   	cancel: "Annuler"
    }
 });

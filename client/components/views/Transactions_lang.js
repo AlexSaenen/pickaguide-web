@@ -16,17 +16,17 @@ export let strings = new LocalizedStrings({
     str9: " on "
    },
    fr: {
-   	title: "aa",
-    noTransaction: "aa",
-    deleteCard: "aa",
-    balance: "a",
-    str1: "aa",
-    str2: "aa",
-    str3: "aa",
-    str4: "aa",
-    str5: "aa",
-    str7: "aa",
-    str8: "aa",
-    str9: "aa"
+   	title: "Transactions",
+    noTransaction: "Pas de transactions encore",
+    deleteCard: "Voulez-vous vraiment supprimer cette carte ?",
+    balance: "Balance",
+    str1: "Vous avez donné ",
+    str2: " à votre ",
+    str3: "guide",
+    str4: " pour ",
+    str5: "Vous avez reçu ",
+    str7: " de la part de votre ",
+    str8: "visiteur",
+    str9: " pour "
    }
 });

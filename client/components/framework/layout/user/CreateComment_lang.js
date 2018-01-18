@@ -5,6 +5,6 @@ export let strings = new LocalizedStrings({
       leaveComment: "Leave a comment ..."
    },
    fr:{
-      leaveComment: "aa"
+      leaveComment: "Laisser un commentaire ..."
    }
 });

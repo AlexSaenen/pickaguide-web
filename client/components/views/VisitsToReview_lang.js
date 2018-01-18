@@ -9,10 +9,10 @@ export let strings = new LocalizedStrings({
       visitor:"Your visits with travelers ..."
    },
    fr: {
-      title:"aa",
-      error:"aa",
-      noVisit:"aa",
-      guide:"aa",
-      visitor:"aa"
+      title:"Notez vos visites",
+      error:"Vous devez noter toutes vos visites pour continuer d'utiliser nos services",
+      noVisit:"Vous n'avez pas de visites à noter",
+      guide:"Vos visites en tant que voyageurs",
+      visitor:"Vos visites avec des voyageurs"
    }
 });
