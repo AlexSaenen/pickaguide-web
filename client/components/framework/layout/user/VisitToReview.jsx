@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { Button } from 'layout/elements/Button.jsx';
-import { strings } from './VisitToReview_lang.js'
+import { strings } from './VisitToReview_lang.js';
 
 import 'scss/views/visits.scss';
 

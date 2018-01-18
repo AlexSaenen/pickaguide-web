@@ -51,6 +51,7 @@ export class ReviewVisit extends PropsComponent {
 
         <Layout layoutStyle="LessPaddingTop">
           <Review
+            averagePrice={visit.averagePrice}
             visitId={visit._id}
             advertId={visit.about ? visit.about._id : null}
             canPay={owner !== me}

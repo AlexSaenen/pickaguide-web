@@ -1,5 +1,6 @@
 import alt from 'client/alt';
 import ReviewActions from 'actions/Review.js';
+import ProfileActions from 'actions/Profile.js';
 import VisitsApi from 'services/Visits.js';
 
 
@@ -21,6 +22,7 @@ class ReviewStore {
 
   onReviewSuccess() {
     this.error = null;
+    ProfileActions.get.defer();
   }
 
 }

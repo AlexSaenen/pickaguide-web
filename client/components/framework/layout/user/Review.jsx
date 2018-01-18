@@ -20,6 +20,7 @@ export class Review extends StoreObserver {
 
     this.id = props.visitId;
     this.canPay = props.canPay;
+    this.averagePrice = props.averagePrice;
     this.advertId = props.advertId;
     this.for = props.for;
     this.state = {
@@ -37,6 +38,7 @@ export class Review extends StoreObserver {
     this.canPay = nextProps.canPay;
     this.advertId = nextProps.advertId;
     this.for = nextProps.for;
+    this.averagePrice = nextProps.averagePrice;
     super.componentWillReceiveProps(nextProps);
   }
 
@@ -99,12 +101,16 @@ export class Review extends StoreObserver {
             <div>
               <hr className="SpacedOverlay" />
               <Title smaller>Do you wish to make a payment to your guide ?</Title>
+              <br />
               <Slider checked={this.state.hidePay === false} onChange={this.onChangePayHide.bind(this)} />
             </div>
         }
         {
           this.canPay && this.state.hidePay === false &&
             <Layout layoutStyle="W30 Transparent MarginAuto">
+              {this.averagePrice !== undefined &&
+                <p className="Italic">Other visitors pay around {this.averagePrice.toFixed(2)}€</p>
+              }
               <Pay onPay={this.pay.bind(this)} visitId={this.id} />
             </Layout>
         }
