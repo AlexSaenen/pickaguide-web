@@ -14,7 +14,8 @@ export let strings = new LocalizedStrings({
       filterInterests:"Interests",
       longerTerms:"Need more than 2 letters to start search",
       show: "Show",
-      hide: "Hide"
+      hide: "Hide",
+      advertText: "These amazing <strong>visit opportunities</strong> are waiting for you !"
    },
    fr:{
       title:"Recherche",
@@ -29,6 +30,7 @@ export let strings = new LocalizedStrings({
       filterInterests:"Interets",
       longerTerms:"Il faut plus de 2 lettres pour commencer une recherche",
       show: "Afficher",
-      hide: "Cacher"
+      hide: "Cacher",
+      advertText: "Ces <strong>opportunitées de visites</strong> exceptionnelles vous attendent !"
    }
 });
