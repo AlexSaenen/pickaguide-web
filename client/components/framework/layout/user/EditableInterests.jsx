@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
+import { strings } from './EditableInterests_lang.js';
 
 import 'scss/framework/layout/user.scss';
 
@@ -52,7 +53,7 @@ export class EditableInterests extends PropsComponent {
             <line strokeWidth="35" x1="200" y1="80" x2="200" y2="320" strokeLinecap="round" />
             <line strokeWidth="35" x1="80" y1="200" x2="320" y2="200" strokeLinecap="round" />
           </svg>
-          <input placeholder="Any interest" id="interestEditor" onKeyPress={this._handleKeyPress} />
+          <input placeholder={strings.any} id="interestEditor" onKeyPress={this._handleKeyPress} />
         </div>
 
         {

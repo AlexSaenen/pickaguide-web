@@ -5,6 +5,6 @@ export let strings = new LocalizedStrings({
       dismiss: "Dismiss"
    },
    fr: {
-      dismiss: "aa"
+      dismiss: "Annuler"
    }
 });

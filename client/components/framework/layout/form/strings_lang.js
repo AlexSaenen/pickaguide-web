@@ -7,8 +7,8 @@ export let strings = new LocalizedStrings({
       required: "required"
    },
    fr: {
-      submit: "aa",
-      reset: "aa",
-      required: "aa"
+      submit: "Valider",
+      reset: "Réinitialiser",
+      required: "Requis"
    }
 });

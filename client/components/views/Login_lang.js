@@ -9,7 +9,8 @@ export let strings = new LocalizedStrings({
       password:"password",
       success:"Success",
       content_success:"You have successfully logged in !",
-      error:"Some error occurred when logging in"
+      error:"Some error occurred when logging in",
+      create: "Or create an account"
    },
    fr: {
       submit:"Connection",
@@ -19,6 +20,7 @@ export let strings = new LocalizedStrings({
       password:"mot de passe",
       success:"Réussi",
       content_success:"Vous êtes maintenant connecté",
-      error:"Une erreur s'est produite pendant la connection"
+      error:"Une erreur s'est produite pendant la connection",
+      create: "Ou créer un compte"
    }
 });

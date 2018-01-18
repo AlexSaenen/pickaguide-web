@@ -10,6 +10,7 @@ import { Element } from 'layout/list/Element.jsx';
 import { AdvertPreview } from 'layout/user/AdvertPreview.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { strings } from './AllAdverts_lang.js';
 import { Filters } from './Home/Filters.jsx';
 
 import 'scss/views/home.scss';
@@ -54,7 +55,7 @@ export class AllAdverts extends StoreObserver {
     return (
       <div>
         <Layout>
-          <Title>Find the visit you'll like</Title>
+          <Title>{strings.title}</Title>
         </Layout>
 
         <Layout>

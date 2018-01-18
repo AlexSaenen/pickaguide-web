@@ -9,10 +9,10 @@ export let strings = new LocalizedStrings({
       deleted: "Advert was deleted"
    },
    fr: {
-      str1: "aa",
-      str2: "aa",
-      str3: "aa",
-      label: "aa",
-      deleted: "aa"
+      str1: "avec",
+      str2: "fini le",
+      str3: "fini avec",
+      label: "Noter",
+      deleted: "L'annonce a été supprimée"
    }
 });

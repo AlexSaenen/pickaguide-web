@@ -5,6 +5,6 @@ export let strings = new LocalizedStrings({
    	title: "Edit Text"
    },
    fr:{
-   	title: "aa"
+   	title: "Editer le Texte"
    }
 });

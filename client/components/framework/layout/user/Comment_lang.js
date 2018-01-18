@@ -10,11 +10,11 @@ export let strings = new LocalizedStrings({
       like: "Like"
    },
    fr:{
-      postedOn: "aa",
-      at: "aa",
-      point: "aa",
-      points: "aa",
-      unlike: "aa",
-      like: "aa"
+      postedOn: "Posté le ",
+      at: " à ",
+      point: "point",
+      points: "points",
+      unlike: "j'aime plus",
+      like: "j'aime"
    }
 });

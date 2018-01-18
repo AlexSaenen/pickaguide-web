@@ -58,7 +58,7 @@ export class Login extends StoreObserver {
         </Layout>
         <Form layoutStyle="LayoutBlank SoftShadowNonHover W30 MarginAuto" submitLabel={strings.submit} onSubmit={this.onSubmit}>
           <Title>{strings.submit}</Title>
-          <Button label="Or create an account" buttonStyle="MarginAuto Blue Auto LineSpaced" onCallback={() => { browserHistory.push('/signup'); }} />
+          <Button label={strings.create} buttonStyle="MarginAuto Blue Auto LineSpaced" onCallback={() => { browserHistory.push('/signup'); }} />
           <EmailInput displayLabel={false} placeholder={strings.email} required />
           <PasswordInput displayLabel={false} placeholder={strings.password} required />
         </Form>

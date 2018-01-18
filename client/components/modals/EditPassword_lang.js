@@ -11,12 +11,12 @@ export let strings = new LocalizedStrings({
    	conPass: "Confirm password"
    },
    fr:{
-   	error: "aa",
-   	successTitle: "aa",
-   	successDesc: "aa",
-   	title: "aa",
-   	curPass: "aa",
-   	newPass: "aa",
-   	conPass: "aa"
+   	error: "Des erreurs sont apparus durant la mise à jour de votre mot de passe",
+   	successTitle: "Succès",
+   	successDesc: "Votre mot de passe a été mis à jour",
+   	title: "Mot de passe mis à jour",
+   	curPass: "Mot de passe actuel",
+   	newPass: "Nouveau mot de passe",
+   	conPass: "Confirmez mot de passe"
    }
 });
