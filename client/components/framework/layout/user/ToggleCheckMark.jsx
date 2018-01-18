@@ -2,6 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import { CheckMark } from 'layout/elements/CheckMark.jsx';
+import { strings } from './ToggleCheckMark_lang.js';
 
 import 'scss/framework/layout/user.scss';
 
@@ -20,7 +21,7 @@ export class ToggleCheckMark extends PropsComponent {
   render() {
     return (
       <div>
-        <p className="arrow_box" style={{ display: 'inline-block', backgroundColor: '#5ba2ff', borderRadius: '0.4em', padding: '0.2em 0.6em', margin: '0 0.8em', color: 'white', verticalAlign: 'middle' }}>make {this.state.active ? 'private' : 'public'}</p>
+        <p className="arrow_box" style={{ display: 'inline-block', backgroundColor: '#5ba2ff', borderRadius: '0.4em', padding: '0.2em 0.6em', margin: '0 0.8em', color: 'white', verticalAlign: 'middle' }}>{strings.make}{this.state.active ? String(strings.private) : String(strings.public)}</p>
         <div onClick={this.onToggle} className={`ToggleCheckMark InlineBlock ${this.props.transition ? '' : 'NoTransition NoRadius'}`}>
           <CheckMark active={this.state.active} />
         </div>

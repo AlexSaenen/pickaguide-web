@@ -9,6 +9,7 @@ import { Message } from 'layout/elements/Message.jsx';
 import { Layout } from 'layout/containers/Layout.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Pay } from 'layout/user/Pay.jsx';
+import { strings } from './Review_lang.js';
 import ReviewStore from 'stores/user/Review.js';
 import ReviewActions from 'actions/Review.js';
 
@@ -46,7 +47,7 @@ export class Review extends StoreObserver {
     if (ReviewStore.getState().error) {
       this.setState({
         message: {
-          title: 'Some error occurred when reviewing the visit',
+          title: String(strings.error),
           content: String(ReviewStore.getState().error),
           type: 'Alert',
         },
@@ -100,7 +101,7 @@ export class Review extends StoreObserver {
           this.canPay &&
             <div>
               <hr className="SpacedOverlay" />
-              <Title smaller>Do you wish to make a payment to your guide ?</Title>
+              <Title smaller>{strings.pay}</Title>
               <br />
               <Slider checked={this.state.hidePay === false} onChange={this.onChangePayHide.bind(this)} />
             </div>
@@ -109,7 +110,7 @@ export class Review extends StoreObserver {
           this.canPay && this.state.hidePay === false &&
             <Layout layoutStyle="W30 Transparent MarginAuto">
               {this.averagePrice !== undefined &&
-                <p className="Italic">Other visitors pay around {this.averagePrice.toFixed(2)}€</p>
+                <p className="Italic">{strings.other}{this.averagePrice.toFixed(2)}{strings.money}</p>
               }
               <Pay onPay={this.pay.bind(this)} visitId={this.id} />
             </Layout>
@@ -118,7 +119,7 @@ export class Review extends StoreObserver {
           this.state.hidePay &&
             <div>
               <hr className="SpacedOverlay" />
-              <Title smaller>Select a score to give and click "Rate" !</Title>
+              <Title smaller>{strings.score}</Title>
 
               {[0, 1, 2, 3, 4, 5].map(score =>
                 <Button
@@ -129,7 +130,7 @@ export class Review extends StoreObserver {
                 />
               )}
 
-              <Button buttonStyle="Auto Blue" label="Rate" onCallback={this.review.bind(this)} disabled={this.state.selectedScore === null} />
+              <Button buttonStyle="Auto Blue" label={strings.rate} onCallback={this.review.bind(this)} disabled={this.state.selectedScore === null} />
               {
                 this.state.message &&
                   <Message messageStyle="MessageCenter TopMargin AutoWidthContent" timed={false} {...this.state.message} />

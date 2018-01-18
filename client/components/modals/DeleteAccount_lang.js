@@ -12,13 +12,13 @@ export let strings = new LocalizedStrings({
    	password: "password"
    },
    fr:{
-   	error: "aa",
-   	successTitle: "aa",
-   	successDesc: "aa",
-   	title: "aa",
-   	errorTitle: "aa",
-   	errorDesc: "aa",
-   	email: "aa",
-   	password: "aa"
+   	error: "Des erreurs sont apparus durant la suppression de votre compte",
+   	successTitle: "Succès",
+   	successDesc: "Votre compte a été supprimé",
+   	title: "Connectez-vous pour supprimer ton compte",
+   	errorTitle: "Des erreurs sont apparus durant la suppression de votre compte",
+   	errorDesc: "Votre email semble mauvais",
+   	email: "email",
+   	password: "mot de passe"
    }
 });

@@ -8,9 +8,9 @@ export let strings = new LocalizedStrings({
       fileTypeError: " is not supported file extension"
    },
    fr:{
-      buttonText: "aa",
-      label: "aa",
-      fileSizeError: "aa",
-      fileTypeError: "aa"
+      buttonText: "Choisissez des images",
+      label: "Maximum taille de fichier: 5mb, types acceptés: jpeg | jpg | png | gif",
+      fileSizeError: " la taille du fichier est trop grosse",
+      fileTypeError: " l'extension du fichier n'est pas supporté"
    }
 });
