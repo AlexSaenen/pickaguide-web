@@ -21,7 +21,7 @@ export let strings = new LocalizedStrings({
       desc1:"Pickaguide est un service qui vous permet de <strong>découvrir</strong> une ville a travers les yeux d'un <strong>habitant local</strong>.",
       desc2:"Trouver un <strong>guide génial</strong> partout où vous êtes, quand vous voulez!",
       desc3:"Avec Pickaguide, vivez une <strong>experience unique</strong>.",
-      infoLogin1:"Vous pouvez, grace au plant voir les visites disponible autour de vous! Pour cela, vous devez être",
+      infoLogin1:"Vous pouvez, grace au plant voir les visites disponible autour de vous! Pour cela, vous devez être ",
       infoLogin2:"connecté",
       infoLogin3:" ou  ",
       infoLogin4:"créer",

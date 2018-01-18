@@ -39,7 +39,7 @@ export class EditPicture extends StoreObserver {
         layoutStyle="LayoutBlank Tight"
         title={strings.title}
         inputHolder={strings.inputHolder}
-        inputLabel={strings.inputLabel}
+        inputLabel="picture"
         sizeWarning={strings.sizeWarning}
       />
     );
