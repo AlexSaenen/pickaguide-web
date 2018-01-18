@@ -6,6 +6,7 @@ import { Title } from 'layout/elements/Title.jsx';
 import { TextArea } from 'form/TextArea.jsx';
 import { NumInput } from 'form/NumInput.jsx';
 import { DateTimeInput, nowToInput } from 'form/DateTimeInput.jsx';
+import { strings } from './VisitCreation_lang.js';
 import VisitsStore from 'stores/user/Visits.js';
 import VisitsActions from 'actions/Visits.js';
 
@@ -48,11 +49,11 @@ export class VisitCreation extends StoreObserver {
     return (
       <div>
         <ModalForm controller={this.ctrl} layoutStyle="LayoutBlank Tight" modalStyle="Large">
-          <Title>Request visit</Title>
+          <Title>{strings.title}</Title>
           <br />
-          <NumInput displayLabel="Number of visitors" label="numberVisitors" min={1} max={100} step={1} placeholder="Visitors" defaultValue={1} required />
-          <DateTimeInput label="when" min={Date.now()} defaultValue={nowToInput(1000 * 60 * 60 * 5)} required />
-          <TextArea displayLabel={false} label="special" placeholder="More information" />
+          <NumInput displayLabel={strings.nbVisitor} label="numberVisitors" min={1} max={100} step={1} placeholder="Visitors" defaultValue={1} required />
+          <DateTimeInput displayLabel={strings.when} label="when" min={Date.now()} defaultValue={nowToInput(1000 * 60 * 60 * 5)} required />
+          <TextArea displayLabel={false} label="special" placeholder={strings.description} />
         </ModalForm>
       </div>
     );
