@@ -2,6 +2,7 @@ import React from 'react';
 
 import { PropsComponent } from 'base/PropsComponent.jsx';
 import DeleteAction from 'layout/user/DeleteAction.jsx';
+import { strings } from './CardPreview_lang.js';
 
 import 'scss/framework/payment.scss';
 
@@ -56,13 +57,13 @@ export class CardPreview extends PropsComponent {
       <div className="CardPreview" onClick={this.ctrl ? this.onClick : () => {}}>
         <DeleteAction onClick={this.onDelete} />
         <p className="Bold Inline OverflowHidden TextOverflow">{this.state.brand} {this.state.funding.capitalize()}</p>
-        <p className="Inline OverflowHidden TextOverflow Italic"> card from </p>
+        <p className="Inline OverflowHidden TextOverflow Italic">{strings.from}</p>
         <p className="Bold Inline OverflowHidden TextOverflow">{this.state.country.capitalize()}</p>
         <br />
-        <p className="Inline OverflowHidden TextOverflow Italic">expires on </p>
+        <p className="Inline OverflowHidden TextOverflow Italic">{strings.expire}</p>
         <p className="Bold Inline OverflowHidden TextOverflow">{this.state.exp_month}/{this.state.exp_year}</p>
         <br />
-        <p className="Inline OverflowHidden TextOverflow Italic">ends with </p>
+        <p className="Inline OverflowHidden TextOverflow Italic">{strings.end}</p>
         <p className="Bold Inline OverflowHidden TextOverflow">{this.state.last4}</p>
       </div>
     );

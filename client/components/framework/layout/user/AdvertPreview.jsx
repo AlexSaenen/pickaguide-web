@@ -42,6 +42,14 @@ export class AdvertPreview extends React.Component {
     this.id = nextProps._id;
     this.userId = nextProps.ownerId;
     this.setState({ avatar: null });
+    AvatarApi.getAvatar(this.userId, {
+      getSuccess: {
+        defer: this.onStore,
+      },
+      error: {
+        defer: () => {},
+      },
+    });
   }
 
   onStore(result) {

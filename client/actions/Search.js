@@ -1,3 +1,3 @@
 import alt from 'client/alt';
 
-export default alt.generateActions('search', 'error', 'searchSuccess');
+export default alt.generateActions('search', 'error', 'searchSuccess', 'applyFilters');

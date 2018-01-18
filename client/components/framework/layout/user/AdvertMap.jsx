@@ -6,6 +6,7 @@ import controllable from 'react-controllables';
 import MyPositionsGuidesWithControllableHover from 'layout/user/confHoverGoogleMap.jsx';
 
 import { K_CIRCLE_SIZE, K_STICK_SIZE } from 'layout/user/confGoogleMap.js';
+import { strings } from './AdvertMap_lang.js';
 
 const geocoder = new google.maps.Geocoder(); // eslint-disable-line
 
@@ -87,8 +88,8 @@ class AdvertMap extends React.Component {
           {...this.state.center}
           own={false}
           key={2}
-          text="Information"
-          description="Here is the location of the visit according to the location you described"
+          text={strings.text}
+          description={strings.description}
         />
       </GoogleMapReact>
     );

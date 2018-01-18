@@ -8,6 +8,7 @@ import { QueryModal } from 'modals/QueryModal.jsx';
 import { AmountModal } from 'modals/AmountModal.jsx';
 import { ModalController } from 'base/ModalController.jsx';
 import { ModalFormController } from 'base/ModalFormController.jsx';
+import { strings } from './Pay_lang.js';
 import PaymentStore from 'stores/user/Payment.js';
 import PaymentActions from 'actions/Payment.js';
 
@@ -77,7 +78,7 @@ export class Pay extends StoreObserver {
 
         <QueryModal
           controller={this.deleteAdCtrl}
-          query="Do you really wish to delete this card ?"
+          query={strings.delete}
           onConfirm={
             function confirm() {
               PaymentActions.deleteCard(this.deleteAdCtrl.callerId);
@@ -87,7 +88,7 @@ export class Pay extends StoreObserver {
 
         <QueryModal
           controller={this.payCtrl}
-          query="This card will be used to pay"
+          query={strings.use}
           onConfirm={
             function confirm() {
               PaymentActions.pay({

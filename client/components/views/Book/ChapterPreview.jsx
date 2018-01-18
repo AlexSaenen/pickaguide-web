@@ -34,7 +34,7 @@ export class Chapter extends PropsComponent {
     const visit = this.props;
 
     return (
-      <div className="Chapter SoftShadow Margin OverflowHidden" onClick={this.onClick}>
+      <div className="ChapterPreview SoftShadow Margin OverflowHidden" onClick={this.onClick}>
         <div className="Inline-Block Vertical Margin">
           {
             visit.about ?
