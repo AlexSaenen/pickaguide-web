@@ -77,7 +77,7 @@ export class Filters extends StoreObserver {
       <Layout layoutStyle="LayoutBlank">
         <Layout layoutStyle="LayoutBlank AutoWidthContent MW40 SoftShadowNonHover MarginAuto">
           <Title smaller>{strings.filterTitle}</Title>
-          <Button label={show ? 'Hide' : 'Show'} buttonStyle="Blue Auto MarginAuto" onCallback={this.toggle} />
+          <Button label={show ? String(strings.hide) : String(strings.show)} buttonStyle="Blue Auto MarginAuto" onCallback={this.toggle} />
           {show &&
             <List listStyle="ListStack WidthFull" elementStyle="Tight Transparent">
               {cities.length > 0 &&
