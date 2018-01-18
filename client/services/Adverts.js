@@ -1,6 +1,7 @@
 import { browserHistory } from 'react-router';
 import AdvertsActions from 'actions/Adverts.js';
 import PromiseApi from 'services/PromiseApi.js';
+import AuthStore from 'stores/user/Auth.js';
 
 export default class AdvertsApi {
 
@@ -61,7 +62,9 @@ export default class AdvertsApi {
   }
 
   static findAll() {
-    PromiseApi.get('/public/proposals/')
+    const credentials = AuthStore.getState().credentials;
+
+    PromiseApi.get(`/public/proposals${credentials ? `/forMe/${credentials.id}` : ''}`)
       .then((res) => {
         if (!browserHistory.location || browserHistory.location.pathname !== '/guide/adverts') {
           if (res.error) {
@@ -90,7 +93,9 @@ export default class AdvertsApi {
   }
 
   static findMain() {
-    PromiseApi.get('/public/proposals/main')
+    const credentials = AuthStore.getState().credentials;
+
+    PromiseApi.get(`/public/proposals/main${credentials ? `/${credentials.id}` : ''}`)
       .then((res) => {
         if (!browserHistory.location || browserHistory.location.pathname !== '/guide/adverts') {
           if (res.error) {

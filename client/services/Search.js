@@ -3,14 +3,16 @@ import ProfileActions from 'actions/SearchProfile.js';
 import AccountActions from 'actions/SearchAccount.js';
 import PromiseApi from 'services/PromiseApi.js';
 import AvatarApi from 'services/Avatar.js';
+import AuthStore from 'stores/user/Auth.js';
 
 
 export default class SearchApi {
 
   static search(term) {
     let searchResults = {};
+    const credentials = AuthStore.getState().credentials;
 
-    PromiseApi.get(`/public/search/filter/${encodeURIComponent(term)}`)
+    PromiseApi.get(`/public/search/filter/${credentials ? `${credentials.id}/` : ''}${encodeURIComponent(term)}`)
       .then((res) => {
         searchResults = res;
         return AvatarApi.getAvatars(res.ids, res.profiles.map(profile => profile.hasAvatar));
