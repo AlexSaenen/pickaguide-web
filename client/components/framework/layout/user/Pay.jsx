@@ -3,6 +3,7 @@ import React from 'react';
 import { StoreObserver } from 'base/StoreObserver.jsx';
 import { CardPreview } from 'layout/user/CardPreview.jsx';
 import { NewCard } from 'layout/user/NewCard.jsx';
+import { Message } from 'layout/elements/Message.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
 import { QueryModal } from 'modals/QueryModal.jsx';
 import { AmountModal } from 'modals/AmountModal.jsx';
@@ -15,6 +16,12 @@ import PaymentActions from 'actions/Payment.js';
 import 'scss/framework/payment.scss';
 
 
+const emptyMessage = () => ({
+  title: '',
+  content: '',
+  type: '',
+});
+
 export class Pay extends StoreObserver {
 
   constructor(props, context) {
@@ -23,6 +30,7 @@ export class Pay extends StoreObserver {
     this.state = {
       id: null,
       cards: [],
+      message: emptyMessage(),
     };
 
     this.visitId = props.visitId;
@@ -47,10 +55,21 @@ export class Pay extends StoreObserver {
     const nextState = Object.assign({}, this.state);
 
     if (store.error) {
-      return;
+      nextState.message = {
+        title: 'An error occurred',
+        content: store.error,
+        type: 'Alert',
+      };
     } else if (store.infos) {
       nextState.cards = store.infos.sources.data;
       nextState.id = store.infos.id;
+      if (this.paying) {
+        nextState.message = {
+          title: 'All good!',
+          content: 'Your payment got through! You can make more payments if you want',
+          type: 'Success',
+        };
+      }
     }
 
     this.setState(nextState);
@@ -58,6 +77,7 @@ export class Pay extends StoreObserver {
 
   render() {
     const cards = this.state.cards;
+    const { message } = this.state;
 
     if (this.state.id === null) {
       return (<Loader />);
@@ -65,6 +85,8 @@ export class Pay extends StoreObserver {
 
     return (
       <div className="Pay">
+        <br />
+        <Message timed={false} {...message} />
         <AmountModal
           controller={this.amountCtrl}
           onConfirm={
@@ -96,6 +118,8 @@ export class Pay extends StoreObserver {
                 idCard: this.payCtrl.callerId,
                 amount: this.payCtrl.amount,
               });
+              this.paying = true;
+              this.amountCtrl.toggle(false);
               this.onPay();
             }.bind(this)
           }

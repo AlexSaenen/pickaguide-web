@@ -62,7 +62,7 @@ export class Review extends StoreObserver {
   }
 
   pay() {
-    this.setState({ hidePay: true });
+    // this.setState({ hidePay: true });
   }
 
   onChangePayHide() {
@@ -89,13 +89,12 @@ export class Review extends StoreObserver {
   render() {
     return (
       <div className="Review">
-
         {
           this.state.hideComment === false && this.advertId &&
-            <div>
-              <hr className="SpacedOverlay" />
-              <CreateComment advertId={this.advertId} onSubmit={this.comment.bind(this)} />
-            </div>
+          <div>
+            <hr className="SpacedOverlay" />
+            <CreateComment advertId={this.advertId} onSubmit={this.comment.bind(this)} />
+          </div>
         }
         {
           this.canPay &&
