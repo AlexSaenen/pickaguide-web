@@ -11,9 +11,9 @@ export let strings = new LocalizedStrings({
     str3: "guide",
     str4: " on ",
     str5: "You received ",
-    str7: " from your ",
-    str8: "visitor",
-    str9: " on "
+    str6: " from your ",
+    str7: "visitor",
+    str8: " on "
    },
    fr: {
    	title: "Transactions",
@@ -25,8 +25,8 @@ export let strings = new LocalizedStrings({
     str3: "guide",
     str4: " pour ",
     str5: "Vous avez reçu ",
-    str7: " de la part de votre ",
-    str8: "visiteur",
-    str9: " pour "
+    str6: " de la part de votre ",
+    str7: "visiteur",
+    str8: " pour "
    }
 });

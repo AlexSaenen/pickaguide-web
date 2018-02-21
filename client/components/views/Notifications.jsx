@@ -9,7 +9,6 @@ import { Message } from 'layout/elements/Message.jsx';
 import { Title } from 'layout/elements/Title.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { Loader } from 'layout/elements/Loader.jsx';
-//import { stringsx } from './Search_lang.js';
 import { strings } from './Notifications_lang.js';
 
 export class Notifications extends StoreObserver {

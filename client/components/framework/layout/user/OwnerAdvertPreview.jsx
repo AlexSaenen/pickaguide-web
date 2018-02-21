@@ -54,9 +54,12 @@ export class OwnerAdvertPreview extends PropsComponent {
           </div>
           {
             !!this.props.rate &&
-            <div className="star-ratings-css LineSpaced">
-              <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-              <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            <div>
+              <br />
+              <div className="star-ratings-css LineSpaced">
+                <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+              </div>
             </div>
           }
           <p className="Medium Bold Margin">{this.props.title}</p>

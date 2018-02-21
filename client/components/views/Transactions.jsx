@@ -121,8 +121,8 @@ export class Transactions extends StoreObserver {
                 transactions.map((transaction, index) => {
                   const isPayer = transaction.payerId === id;
                   const content = isPayer ?
-                    <p>{strings.str1}<span style={{ color: '#F75C4C', fontWeight: 'bold' }}>-{transaction.amountPayer}€</span>{strings.str2}<Link to={`/profiles/${transaction.beneficiaryId}`}>{strings.str3}</Link>{strings.str4}{new Date(transaction.date).toLocaleString()}</p>
-                    : <p>{strings.str5}<span style={{ color: '#2ECC71', fontWeight: 'bold' }}>+{transaction.amountBeneficiary}€</span>{strings.str6}<Link to={`/profiles/${transaction.payerId}`}>{strings.str8}</Link>{strings.str9}{new Date(transaction.date).toLocaleString()}</p>
+                    <p>{strings.str1}<span style={{ color: '#F75C4C', fontWeight: 'bold' }}>-{transaction.amountPayer}€</span>{strings.str2}<Link className="Blue DecorationNoneImportant Bold" to={`/profiles/${transaction.beneficiaryId}`}>{strings.str3}</Link>{strings.str4}{new Date(transaction.date).toLocaleString()}</p>
+                    : <p>{strings.str5}<span style={{ color: '#2ECC71', fontWeight: 'bold' }}>+{transaction.amountBeneficiary}€</span>{strings.str6}<Link className="Blue DecorationNoneImportant Bold" to={`/profiles/${transaction.payerId}`}>{strings.str7}</Link>{strings.str8}{new Date(transaction.date).toLocaleString()}</p>
 
                   return (
                     <div key={index}>
