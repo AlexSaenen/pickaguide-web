@@ -84,16 +84,16 @@ p.TextOverflow { text-overflow: ellipsis; white-space: nowrap; }
 p.Vertical { vertical-align: middle; }
 .Vertical { vertical-align: middle; }
 p.Red { color: $alertLightColor; }
-p.Blue { color: $infoLightColor; }
+p.Blue { color: $elementColor; }
 p.Secondary { color: $secondaryElementColor; }
-a.Blue { color: $infoLightColor; text-decoration: underline; }
-p.Green { color: $successLightColor; }
+a.Blue { color: $elementColor; text-decoration: underline; }
+p.Green { color: $successDarkColor; }
 p.White { color: white; }
 .TextWhite { color: white !important; }
 p.Underline { text-decoration: underline; }
 
 p.LinkColor > a {
-  color: $infoLightColor;
+  color: $elementColor;
 }
 
 .Box {

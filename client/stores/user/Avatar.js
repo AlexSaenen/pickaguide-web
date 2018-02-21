@@ -24,7 +24,7 @@ class AvatarStore {
   onGetSuccess(avatarObj) {
     this.error = null;
     this.isLoaded = true;
-    this.avatar = avatarObj.avatar === '' ? '/assets/images/avatar.png' : avatarObj.avatar;
+    this.avatar = avatarObj.avatar === '' ? '/assets/images/avatar.svg' : avatarObj.avatar;
   }
 
   onUpdate(form) {

@@ -47,7 +47,7 @@ export default class AvatarApi {
         resolve(hasAvatar);
       }
     })
-      .then(userHasAvatar => (userHasAvatar ? retrieveAvatar(id, forceCache) : Promise.resolve('/assets/images/avatar.png')))
+      .then(userHasAvatar => (userHasAvatar ? retrieveAvatar(id, forceCache) : Promise.resolve('/assets/images/avatar.svg')))
       .then(avatar => actions.getSuccess.defer({ id, avatar }))
       .catch(err => actions.error.defer(err));
   }
@@ -73,7 +73,7 @@ export default class AvatarApi {
                 return retrieveAvatar(id);
               }
 
-              return Promise.resolve('/assets/images/avatar.png');
+              return Promise.resolve('/assets/images/avatar.svg');
             }))
             .then(avatars => resolve(avatars))
             .catch(err => reject(err));

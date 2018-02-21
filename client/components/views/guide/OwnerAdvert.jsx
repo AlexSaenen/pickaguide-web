@@ -261,9 +261,9 @@ export class OwnerAdvert extends StoreObserver {
             <List listStyle="ListStack" wrapChildren={false}>
               <div className="W80 Transparent MarginAuto PaddingOne Box">
                 <Layout layoutStyle="Transparent SoftShadowNonHover Fluid">
+                  <Information infoStyle="Info Medium MarginHAuto">{strings.bestDesc}</Information>
                   <TextInput displayLabel={false} label="title" placeholder={strings.titleForm} value={advert.title} required override onChange={this.changeTitle.bind(this)} />
                   <TextArea displayLabel={false} className="Margin" label="description" placeholder={strings.descForm} value={advert.description} required override onChange={this.changeDescription.bind(this)} />
-                  <Information infoStyle="Info Medium MarginHAuto">{strings.bestDesc}</Information>
                 </Layout>
               </div>
 

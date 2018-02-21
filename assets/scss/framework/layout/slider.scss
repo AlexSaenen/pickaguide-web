@@ -34,11 +34,11 @@
 }
 
 input:checked + .Slider {
-  background-color: $infoLightColor;
+  background-color: $elementColor;
 }
 
 input:focus + .Slider {
-  box-shadow: 0 0 1px $infoLightColor;
+  box-shadow: 0 0 1px $elementColor;
 }
 
 input:checked + .Slider:before {

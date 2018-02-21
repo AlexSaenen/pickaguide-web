@@ -6,6 +6,7 @@ import { StoreObserver } from 'base/StoreObserver.jsx';
 import { TextInput } from 'form/TextInput.jsx';
 import { Form } from 'form/Form.jsx';
 import { Title } from 'layout/elements/Title.jsx';
+import { Message } from 'layout/elements/Message.jsx';
 import { Picture } from 'layout/elements/Picture.jsx';
 import { Information } from 'layout/elements/Information.jsx';
 import { List } from 'layout/list/List.jsx';
@@ -192,9 +193,9 @@ export class CreateAdvert extends StoreObserver {
             <List listStyle="ListStack" wrapChildren={false}>
               <div className="W80 Transparent MarginAuto PaddingOne Box">
                 <Layout layoutStyle="Transparent SoftShadowNonHover Fluid">
-                  <TextInput placeholder={strings.POTitle} displayLabel={false} label="title" value={advert.title} required override onChange={this.changeTitle.bind(this)}/>
-                  <TextArea placeholder={strings.PODescription} displayLabel={false} className="Margin" label="description" value={advert.description} required override onChange={this.changeDescription.bind(this)} />
                   <Information infoStyle="Info Medium MarginHAuto">{strings.PODescriptionInfo}</Information>
+                  <TextInput placeholder={strings.POTitle} displayLabel={false} label="title" value={advert.title} required override onChange={this.changeTitle.bind(this)} />
+                  <TextArea placeholder={strings.PODescription} displayLabel={false} className="Margin" label="description" value={advert.description} required override onChange={this.changeDescription.bind(this)} />
                 </Layout>
               </div>
 
