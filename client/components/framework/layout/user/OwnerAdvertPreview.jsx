@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Picture } from 'layout/elements/Picture.jsx';
 import { PropsComponent } from 'base/PropsComponent.jsx';
-import { ToggleCheckMark } from 'layout/user/ToggleCheckMark.jsx';
+import { Slider } from 'layout/form/Slider.jsx';
 import DeleteAction from 'layout/user/DeleteAction.jsx';
 import AdvertsActions from 'actions/Adverts.js';
 
@@ -48,13 +48,16 @@ export class OwnerAdvertPreview extends PropsComponent {
         <DeleteAction className="ExtraMargin" onClick={this.onDelete} />
         <Picture url={this.props.images[0]} pictureType="WidthLimited" />
         <div className="Padding">
-          <ToggleCheckMark className="Inline" active={this.state.active} onToggle={this.toggleAdvertState} />
+          <br />
+          <div onClick={(e) => { e.stopPropagation(); }}>
+            <Slider checked={this.state.active} onChange={this.toggleAdvertState} />
+          </div>
           {
             !!this.props.rate &&
-              <div className="star-ratings-css LineSpaced">
-                <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-              </div>
+            <div className="star-ratings-css LineSpaced">
+              <div className="star-ratings-css-top" style={{ width: `${this.props.rate * 20}%` }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+              <div className="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            </div>
           }
           <p className="Medium Bold Margin">{this.props.title}</p>
           <p className="OverflowHidden Italic TextOverflow">{this.props.city}, {this.props.country}</p>
