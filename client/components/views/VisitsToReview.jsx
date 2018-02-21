@@ -43,32 +43,32 @@ export class VisitsToReview extends StoreObserver {
 
     return (
       <div>
-        <Layout layoutStyle="LayoutLight">
+        <Layout layoutStyle="LayoutBlank">
           <Title>{strings.title}</Title>
           {
             !(myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0) &&
-              <Information infoStyle="Medium MarginAuto Warning">{strings.error}</Information>
+            <Information infoStyle="Medium MarginAuto Warning">{strings.error}</Information>
           }
         </Layout>
 
         {
           myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0 &&
-            <Layout layoutStyle="LayoutBlank">
-              <hr className="Overlay" />
-              <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noVisit}</Information>
-            </Layout>
+          <Layout layoutStyle="LayoutBlank">
+            <hr className="Overlay" />
+            <Information infoStyle="Info Small MarginAuto LineSpaced">{strings.noVisit}</Information>
+          </Layout>
         }
         {
           (myVisits === null || theirVisits === null) &&
-            <Layout layoutStyle="LayoutBlank">
-              <hr className="Overlay" />
-              <Loader />
-            </Layout>
+          <Layout layoutStyle="LayoutBlank">
+            <hr className="Overlay" />
+            <Loader />
+          </Layout>
         }
         <Layout layoutStyle="LayoutBlank">
           {
             !(myVisits && theirVisits && myVisits.length === 0 && theirVisits.length === 0) && !(myVisits === null || theirVisits === null) &&
-              <hr className="Overlay" />
+            <hr className="Overlay" />
           }
 
           <List listStyle="ListGrid" wrapChildren={false}>
